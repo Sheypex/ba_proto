@@ -1,0 +1,324 @@
+{
+  "title": "nodeconfigtestres",
+  "results": [
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Random Read - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 4KB - Disk Target: Default Test Directory",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "11.7",
+          "all_results": "11.7:11.7:11.7"
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Random Read - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 4KB - Disk Target: Default Test Directory",
+      "units": "IOPS",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "2998",
+          "all_results": ""
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Random Write - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 4KB - Disk Target: Default Test Directory",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "11.7",
+          "all_results": "11.7:11.7:11.7"
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Random Write - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 4KB - Disk Target: Default Test Directory",
+      "units": "IOPS",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "2997",
+          "all_results": "2998:2997:2997"
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Sequential Read - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 2MB - Disk Target: Default Test Directory",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "131",
+          "all_results": ""
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Sequential Read - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 2MB - Disk Target: Default Test Directory",
+      "units": "IOPS",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "62",
+          "all_results": ""
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Sequential Write - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 2MB - Disk Target: Default Test Directory",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "131",
+          "all_results": ""
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Sequential Write - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 2MB - Disk Target: Default Test Directory",
+      "units": "IOPS",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "62",
+          "all_results": ""
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "18886.01",
+          "all_results": "18897.02:18915.8:18845.2"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "17254.48",
+          "all_results": "17316.3:17213.61:17233.54"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "15643.62",
+          "all_results": "15683.19:15559.16:15688.52"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "15484.65",
+          "all_results": "15672.52:15453.68:15327.74"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "16530.90",
+          "all_results": "16778.54:16720.22:16093.93"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "18744.08",
+          "all_results": "18572.5:18969.44:18690.29"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "17017.49",
+          "all_results": "16887.76:17110.9:17053.82"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "15250.99",
+          "all_results": "15208.65:15337.15:15207.16"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "18055.96",
+          "all_results": "18093.7:18107.26:17966.92"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "17245.82",
+          "all_results": "17281.81:17303.53:17152.11"
+        }
+      }
+    },
+    {
+      "test": "pts/iperf-1.1.1",
+      "arguments": "Server Address: 10.0.0.25 - Server Port: 9204 - Duration: 10 Seconds - Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "56.4",
+          "all_results": "26.3:29.9:33.9:35.9:37.9:49.6:54.2:70.6:76.3:75.5:76.4:110"
+        }
+      }
+    },
+    {
+      "test": "pts/iperf-1.1.1",
+      "arguments": "Server Address: 10.0.0.25 - Server Port: 9204 - Duration: 10 Seconds - Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "1.05",
+          "all_results": "1.05:1.05:1.05"
+        }
+      }
+    },
+    {
+      "test": "pts/iperf-1.1.1",
+      "arguments": "Server Address: 10.0.0.25 - Server Port: 9204 - Duration: 10 Seconds - Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "134",
+          "all_results": "423:196:107:108:108:108:108:108:108:108:108:107:100:111:108"
+        }
+      }
+    },
+    {
+      "test": "pts/iperf-1.1.1",
+      "arguments": "Server Address: 10.0.0.25 - Server Port: 9204 - Duration: 10 Seconds - Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "33.7",
+          "all_results": "33.7:33.7:33.7"
+        }
+      }
+    },
+    {
+      "test": "pts/john-the-ripper-1.7.2",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "1439",
+          "all_results": "1373:1424:1459:1459:1459:1460"
+        }
+      }
+    },
+    {
+      "test": "pts/john-the-ripper-1.7.2",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "47546",
+          "all_results": "47165:47692:47782"
+        }
+      }
+    },
+    {
+      "test": "pts/build-linux-kernel-1.11.0",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "results": {
+        "Amazon Elastic Block Store": {
+          "value": "1185.445",
+          "all_results": "1188.057:1183.385:1184.892"
+        }
+      }
+    },
+    {
+      "test": "pts/stream-1.3.2",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "results": {
+        "AMD EPYC 7571 -  - Amazon EC2 m5a.large (1.0 BIOS)": {
+          "value": "17178.4",
+          "all_results": "16796.1:17110.4:17145.4:17215.3:17625"
+        }
+      }
+    },
+    {
+      "test": "pts/stream-1.3.2",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "results": {
+        "AMD EPYC 7571 -  - Amazon EC2 m5a.large (1.0 BIOS)": {
+          "value": "17403.2",
+          "all_results": "17315.7:17156.4:17154.2:17308.6:18081.3"
+        }
+      }
+    },
+    {
+      "test": "pts/stream-1.3.2",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "results": {
+        "AMD EPYC 7571 -  - Amazon EC2 m5a.large (1.0 BIOS)": {
+          "value": "17654.8",
+          "all_results": "17433:17415.2:17532.6:17522.2:18370.9"
+        }
+      }
+    },
+    {
+      "test": "pts/stream-1.3.2",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "results": {
+        "AMD EPYC 7571 -  - Amazon EC2 m5a.large (1.0 BIOS)": {
+          "value": "17709.7",
+          "all_results": "17876.9:17199.2:17543.9:17332.1:18596.2"
+        }
+      }
+    }
+  ]
+}

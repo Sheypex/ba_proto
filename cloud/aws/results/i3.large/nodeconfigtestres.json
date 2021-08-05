@@ -1,0 +1,324 @@
+{
+  "title": "nodeconfigtestres",
+  "results": [
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Random Read - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 4KB - Disk Target: Default Test Directory",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "11.2",
+          "all_results": "11:11.9:11:11:11:11.9:11:11:11.9:11:11:11:11:11:11"
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Random Read - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 4KB - Disk Target: Default Test Directory",
+      "units": "IOPS",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "3056",
+          "all_results": "3057:3052:3056:3057:3057:3055:3057:3057:3054:3056:3057:3057:3057:3057:3057"
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Random Write - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 4KB - Disk Target: Default Test Directory",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "11.2",
+          "all_results": "11.9:11:11.9:11:11:11:11:11:11:11:11:11.9:11:11:11"
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Random Write - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 4KB - Disk Target: Default Test Directory",
+      "units": "IOPS",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "3057",
+          "all_results": "3055:3057:3056:3057:3057:3057:3058:3057:3057:3057:3057:3053:3057:3057:3057"
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Sequential Read - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 2MB - Disk Target: Default Test Directory",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "56.1",
+          "all_results": "56.1:56.1:56.2"
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Sequential Read - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 2MB - Disk Target: Default Test Directory",
+      "units": "IOPS",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "24",
+          "all_results": ""
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Sequential Write - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 2MB - Disk Target: Default Test Directory",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "56.1",
+          "all_results": "56.1:56.1:56.2"
+        }
+      }
+    },
+    {
+      "test": "pts/fio-1.14.1",
+      "arguments": "Type: Sequential Write - Engine: Linux AIO - Buffered: No - Direct: Yes - Block Size: 2MB - Disk Target: Default Test Directory",
+      "units": "IOPS",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "24",
+          "all_results": ""
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "10098.50",
+          "all_results": "10076.99:10105.94:10112.56"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "9562.88",
+          "all_results": "9585.69:9558.02:9544.94"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "9318.31",
+          "all_results": "9303.01:9296.55:9355.37"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "10069.20",
+          "all_results": "10053.41:10085.27:10068.91"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "9759.68",
+          "all_results": "9762.03:9753.21:9763.81"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "10038.55",
+          "all_results": "10046.78:10018.31:10050.56"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "9568.83",
+          "all_results": "9592.94:9550.95:9562.61"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "9272.46",
+          "all_results": "9284.82:9255.52:9277.05"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "9929.48",
+          "all_results": "9943.79:9905.83:9938.81"
+        }
+      }
+    },
+    {
+      "test": "pts/ramspeed-1.4.3",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "9716.78",
+          "all_results": "9716.68:9717.52:9716.15"
+        }
+      }
+    },
+    {
+      "test": "pts/iperf-1.1.1",
+      "arguments": "Server Address: 10.0.0.183 - Server Port: 9209 - Duration: 10 Seconds - Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "658",
+          "all_results": "861:836:807:782:751:716:679:639:589:530:448:262"
+        }
+      }
+    },
+    {
+      "test": "pts/iperf-1.1.1",
+      "arguments": "Server Address: 10.0.0.183 - Server Port: 9209 - Duration: 10 Seconds - Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "1.05",
+          "all_results": "1.05:1.05:1.05"
+        }
+      }
+    },
+    {
+      "test": "pts/iperf-1.1.1",
+      "arguments": "Server Address: 10.0.0.183 - Server Port: 9209 - Duration: 10 Seconds - Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "134",
+          "all_results": "423:196:108:107:107:108:107:108:108:108:107:107:107:108:108"
+        }
+      }
+    },
+    {
+      "test": "pts/iperf-1.1.1",
+      "arguments": "Server Address: 10.0.0.183 - Server Port: 9209 - Duration: 10 Seconds - Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "33.7",
+          "all_results": "33.7:33.7:33.7"
+        }
+      }
+    },
+    {
+      "test": "pts/john-the-ripper-1.7.2",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "1188",
+          "all_results": "1189:1186:1189"
+        }
+      }
+    },
+    {
+      "test": "pts/john-the-ripper-1.7.2",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "75144",
+          "all_results": "75020:75142:75270"
+        }
+      }
+    },
+    {
+      "test": "pts/build-linux-kernel-1.11.0",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "results": {
+        "Amazon EC2 NVMe Instance Storage": {
+          "value": "1215.417",
+          "all_results": "1220.706:1212.533:1213.012"
+        }
+      }
+    },
+    {
+      "test": "pts/stream-1.3.2",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "results": {
+        "1 x 15616 MB RAM": {
+          "value": "18758.1",
+          "all_results": "18781.7:18752.8:18732.9:18728.8:18794.3"
+        }
+      }
+    },
+    {
+      "test": "pts/stream-1.3.2",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "results": {
+        "1 x 15616 MB RAM": {
+          "value": "9643.4",
+          "all_results": "9728.2:9581.4:9502.3:9616:9788.9"
+        }
+      }
+    },
+    {
+      "test": "pts/stream-1.3.2",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "results": {
+        "1 x 15616 MB RAM": {
+          "value": "10218.4",
+          "all_results": "10269.1:10162.3:10196.2:10231.2:10233.2"
+        }
+      }
+    },
+    {
+      "test": "pts/stream-1.3.2",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "results": {
+        "1 x 15616 MB RAM": {
+          "value": "10254.9",
+          "all_results": "10296:10177.3:10289.4:10225.9:10285.8"
+        }
+      }
+    }
+  ]
+}
