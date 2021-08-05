@@ -1,0 +1,1982 @@
+digraph "sarek" {
+p0 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+p393 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p0 -> p393 [label="ch_multiqc_custom_config"];
+
+p1 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+p2 [shape=point];
+p1 -> p2;
+
+p3 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.from"];
+p4 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="splitCsv"];
+p3 -> p4;
+
+p4 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="splitCsv"];
+p5 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p4 -> p5;
+
+p5 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p6 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p5 -> p6;
+
+p6 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p37 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p6 -> p37 [label="inputSample"];
+
+p7 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.from"];
+p8 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p7 -> p8;
+
+p8 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p9 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="reduce"];
+p8 -> p9;
+
+p9 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="reduce"];
+p10 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p9 -> p10;
+
+p10 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p396 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p10 -> p396 [label="ch_workflow_summary"];
+
+p11 [label="get_software_versions"];
+p191 [label="FreebayesSingle"];
+p11 -> p191 [label="ch_software_versions_yaml"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p13 [label="BuildBWAindexes"];
+p12 -> p13 [label="ch_fasta"];
+
+p13 [label="BuildBWAindexes"];
+p53 [label="UMIMapBamFile"];
+p13 -> p53 [label="bwa_built"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p14 [label="BuildDict"];
+p12 -> p14 [label="ch_fasta"];
+
+p14 [label="BuildDict"];
+p108 [label="BaseRecalibrator"];
+p14 -> p108 [label="dictBuilt"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p15 [label="BuildFastaFai"];
+p12 -> p15 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p27 [label="BuildIntervals"];
+p15 -> p27 [label="ch_fai"];
+
+p16 [shape=point,label="",fixedsize=true,width=0.1];
+p17 [label="BuildDbsnpIndex"];
+p16 -> p17 [label="ch_dbsnp"];
+
+p17 [label="BuildDbsnpIndex"];
+p108 [label="BaseRecalibrator"];
+p17 -> p108 [label="dbsnp_tbi"];
+
+p18 [shape=point,label="",fixedsize=true,width=0.1];
+p19 [label="BuildGermlineResourceIndex"];
+p18 -> p19 [label="germlineResource"];
+
+p19 [label="BuildGermlineResourceIndex"];
+p20 [shape=point];
+p19 -> p20 [label="germline_resource_tbi"];
+
+p21 [shape=point,label="",fixedsize=true,width=0.1];
+p22 [label="BuildKnownIndelsIndex"];
+p21 -> p22 [label="ch_known_indels"];
+
+p22 [label="BuildKnownIndelsIndex"];
+p23 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p22 -> p23 [label="known_indels_tbi"];
+
+p23 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p108 [label="BaseRecalibrator"];
+p23 -> p108 [label="ch_known_indels_tbi"];
+
+p24 [shape=point,label="",fixedsize=true,width=0.1];
+p25 [label="BuildPonIndex"];
+p24 -> p25 [label="pon"];
+
+p25 [label="BuildPonIndex"];
+p26 [shape=point];
+p25 -> p26 [label="pon_tbi"];
+
+p27 [label="BuildIntervals"];
+p28 [shape=point];
+p27 -> p28 [label="intervalBuilt"];
+
+p29 [shape=point,label="",fixedsize=true,width=0.1];
+p30 [label="CreateIntervalBeds"];
+p29 -> p30 [label="ch_intervals"];
+
+p30 [label="CreateIntervalBeds"];
+p31 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p30 -> p31;
+
+p31 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p32 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="toSortedList"];
+p31 -> p32;
+
+p32 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="toSortedList"];
+p33 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="flatten"];
+p32 -> p33;
+
+p33 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="flatten"];
+p34 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collate"];
+p33 -> p34;
+
+p34 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collate"];
+p35 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p34 -> p35;
+
+p35 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p36 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p35 -> p36 [label="bedIntervals"];
+
+p37 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p41 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p37 -> p41;
+
+p37 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p38 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p37 -> p38;
+
+p39 [shape=point,label="",fixedsize=true,width=0.1];
+p40 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p39 -> p40;
+
+p40 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p44 [label="FastQCBAM"];
+p40 -> p44 [label="inputBamFastQC"];
+
+p42 [shape=point,label="",fixedsize=true,width=0.1];
+p43 [label="FastQCFQ"];
+p42 -> p43 [label="inputPairReadsFastQC"];
+
+p43 [label="FastQCFQ"];
+p45 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p43 -> p45 [label="fastQCFQReport"];
+
+p44 [label="FastQCBAM"];
+p45 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p44 -> p45 [label="fastQCBAMReport"];
+
+p45 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p401 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p45 -> p401 [label="fastQCReport"];
+
+p46 [shape=point,label="",fixedsize=true,width=0.1];
+p47 [label="TrimGalore"];
+p46 -> p47 [label="inputPairReadsTrimGalore"];
+
+p47 [label="TrimGalore"];
+p403 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p47 -> p403 [label="trimGaloreReport"];
+
+p47 [label="TrimGalore"];
+p48 [shape=point];
+p47 -> p48 [label="outputPairReadsTrimGalore"];
+
+p49 [shape=point,label="",fixedsize=true,width=0.1];
+p52 [label="UMIFastqToBAM"];
+p49 -> p52 [label="inputPairReadsUMI"];
+
+p50 [shape=point,label="",fixedsize=true,width=0.1];
+p52 [label="UMIFastqToBAM"];
+p50 -> p52 [label="read_structure1"];
+
+p51 [shape=point,label="",fixedsize=true,width=0.1];
+p52 [label="UMIFastqToBAM"];
+p51 -> p52 [label="read_structure2"];
+
+p52 [label="UMIFastqToBAM"];
+p53 [label="UMIMapBamFile"];
+p52 -> p53 [label="umi_converted_bams_ch"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p53 [label="UMIMapBamFile"];
+p12 -> p53 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p53 [label="UMIMapBamFile"];
+p15 -> p53 [label="ch_fai"];
+
+p53 [label="UMIMapBamFile"];
+p54 [label="GroupReadsByUmi"];
+p53 -> p54 [label="umi_aligned_bams_ch"];
+
+p54 [label="GroupReadsByUmi"];
+p55 [shape=point];
+p54 -> p55 [label="umi_histogram_ch"];
+
+p54 [label="GroupReadsByUmi"];
+p56 [label="CallMolecularConsensusReads"];
+p54 -> p56 [label="umi_grouped_bams_ch"];
+
+p56 [label="CallMolecularConsensusReads"];
+p57 [shape=point];
+p56 -> p57 [label="consensus_bam_ch"];
+
+p58 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+p59 [shape=point];
+p58 -> p59;
+
+p60 [shape=point,label="",fixedsize=true,width=0.1];
+p62 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p60 -> p62;
+
+p61 [shape=point,label="",fixedsize=true,width=0.1];
+p62 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p61 -> p62 [label="inputBam"];
+
+p62 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p63 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p62 -> p63;
+
+p64 [shape=point,label="",fixedsize=true,width=0.1];
+p65 [label="MapReads"];
+p64 -> p65 [label="inputPairReads"];
+
+p13 [label="BuildBWAindexes"];
+p65 [label="MapReads"];
+p13 -> p65 [label="bwa_built"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p65 [label="MapReads"];
+p12 -> p65 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p65 [label="MapReads"];
+p15 -> p65 [label="ch_fai"];
+
+p65 [label="MapReads"];
+p66 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p65 -> p66 [label="bamMapped"];
+
+p65 [label="MapReads"];
+p163 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p65 -> p163 [label="bamMappedBamQC"];
+
+p66 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p67 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p66 -> p67;
+
+p67 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p68 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p67 -> p68;
+
+p67 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p74 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p67 -> p74;
+
+p68 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p76 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p68 -> p76 [label="singleBam"];
+
+p69 [shape=point,label="",fixedsize=true,width=0.1];
+p70 [label="Sentieon_MapReads"];
+p69 -> p70 [label="input_pair_reads_sentieon"];
+
+p13 [label="BuildBWAindexes"];
+p70 [label="Sentieon_MapReads"];
+p13 -> p70 [label="bwa_built"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p70 [label="Sentieon_MapReads"];
+p12 -> p70 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p70 [label="Sentieon_MapReads"];
+p15 -> p70 [label="ch_fai"];
+
+p70 [label="Sentieon_MapReads"];
+p71 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p70 -> p71 [label="bam_sentieon_mapped"];
+
+p71 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p72 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p71 -> p72;
+
+p72 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p73 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p72 -> p73;
+
+p72 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p74 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p72 -> p74 [label="multipleBamSentieon"];
+
+p73 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p76 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p73 -> p76 [label="singleBamSentieon"];
+
+p74 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p75 [label="MergeBamMapped"];
+p74 -> p75 [label="multipleBam"];
+
+p75 [label="MergeBamMapped"];
+p76 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p75 -> p76;
+
+p76 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p77 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p76 -> p77;
+
+p78 [shape=point,label="",fixedsize=true,width=0.1];
+p79 [label="IndexBamMergedForSentieon"];
+p78 -> p79 [label="bam_sentieon_mapped_merged"];
+
+p79 [label="IndexBamMergedForSentieon"];
+p107 [label="Sentieon_Dedup"];
+p79 -> p107 [label="bam_sentieon_mapped_merged_indexed"];
+
+p80 [shape=point,label="",fixedsize=true,width=0.1];
+p81 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p80 -> p81;
+
+p82 [shape=point,label="",fixedsize=true,width=0.1];
+p83 [label="IndexBamFile"];
+p82 -> p83 [label="bam_mapped_merged_to_index"];
+
+p83 [label="IndexBamFile"];
+p84 [shape=point];
+p83 -> p84 [label="bam_mapped_merged_indexed"];
+
+p83 [label="IndexBamFile"];
+p85 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p83 -> p85;
+
+p86 [shape=point,label="",fixedsize=true,width=0.1];
+p87 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p86 -> p87 [label="tsv_bam_indexed"];
+
+p87 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p88 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p87 -> p88;
+
+p88 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p89 [shape=point];
+p88 -> p89;
+
+p90 [shape=point,label="",fixedsize=true,width=0.1];
+p91 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p90 -> p91 [label="tsv_bam_indexed_sample"];
+
+p91 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p92 [shape=point];
+p91 -> p92;
+
+p93 [shape=point,label="",fixedsize=true,width=0.1];
+p94 [label="MarkDuplicates"];
+p93 -> p94 [label="bam_mapped_merged"];
+
+p94 [label="MarkDuplicates"];
+p103 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p94 -> p103;
+
+p94 [label="MarkDuplicates"];
+p95 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p94 -> p95;
+
+p94 [label="MarkDuplicates"];
+p405 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p94 -> p405 [label="duplicates_marked_report"];
+
+p96 [shape=point,label="",fixedsize=true,width=0.1];
+p97 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p96 -> p97 [label="tsv_bam_duplicates_marked"];
+
+p97 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p98 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p97 -> p98;
+
+p98 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p99 [shape=point];
+p98 -> p99;
+
+p100 [shape=point,label="",fixedsize=true,width=0.1];
+p101 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p100 -> p101 [label="tsv_bam_duplicates_marked_sample"];
+
+p101 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p102 [shape=point];
+p101 -> p102;
+
+p104 [shape=point,label="",fixedsize=true,width=0.1];
+p106 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p104 -> p106 [label="intBaseRecalibrator"];
+
+p105 [shape=point,label="",fixedsize=true,width=0.1];
+p106 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p105 -> p106 [label="bamMD"];
+
+p106 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p108 [label="BaseRecalibrator"];
+p106 -> p108 [label="bamBaseRecalibrator"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p107 [label="Sentieon_Dedup"];
+p12 -> p107 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p107 [label="Sentieon_Dedup"];
+p15 -> p107 [label="ch_fai"];
+
+p107 [label="Sentieon_Dedup"];
+p127 [label="Sentieon_BQSR"];
+p107 -> p127 [label="bam_sentieon_dedup"];
+
+p16 [shape=point,label="",fixedsize=true,width=0.1];
+p108 [label="BaseRecalibrator"];
+p16 -> p108 [label="ch_dbsnp"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p108 [label="BaseRecalibrator"];
+p12 -> p108 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p108 [label="BaseRecalibrator"];
+p15 -> p108 [label="ch_fai"];
+
+p21 [shape=point,label="",fixedsize=true,width=0.1];
+p108 [label="BaseRecalibrator"];
+p21 -> p108 [label="ch_known_indels"];
+
+p108 [label="BaseRecalibrator"];
+p109 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p108 -> p109;
+
+p108 [label="BaseRecalibrator"];
+p111 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p108 -> p111 [label="recalTableTSVnoInt"];
+
+p109 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p110 [label="GatherBQSRReports"];
+p109 -> p110 [label="tableGatherBQSRReports"];
+
+p110 [label="GatherBQSRReports"];
+p121 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p110 -> p121;
+
+p110 [label="GatherBQSRReports"];
+p407 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p110 -> p407 [label="baseRecalibratorReport"];
+
+p110 [label="GatherBQSRReports"];
+p111 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p110 -> p111;
+
+p111 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p112 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p111 -> p112;
+
+p113 [shape=point,label="",fixedsize=true,width=0.1];
+p114 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p113 -> p114 [label="recalTableTSV"];
+
+p114 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p115 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p114 -> p115;
+
+p115 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p116 [shape=point];
+p115 -> p116;
+
+p117 [shape=point,label="",fixedsize=true,width=0.1];
+p118 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p117 -> p118 [label="recalTableSampleTSV"];
+
+p118 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p119 [shape=point];
+p118 -> p119;
+
+p120 [shape=point,label="",fixedsize=true,width=0.1];
+p121 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p120 -> p121 [label="bamMDToJoin"];
+
+p121 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p123 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p121 -> p123;
+
+p122 [shape=point,label="",fixedsize=true,width=0.1];
+p123 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p122 -> p123 [label="intApplyBQSR"];
+
+p123 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p124 [label="ApplyBQSR"];
+p123 -> p124 [label="bamApplyBQSR"];
+
+p14 [label="BuildDict"];
+p124 [label="ApplyBQSR"];
+p14 -> p124 [label="dictBuilt"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p124 [label="ApplyBQSR"];
+p12 -> p124 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p124 [label="ApplyBQSR"];
+p15 -> p124 [label="ch_fai"];
+
+p124 [label="ApplyBQSR"];
+p125 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p124 -> p125;
+
+p125 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p126 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p125 -> p126;
+
+p16 [shape=point,label="",fixedsize=true,width=0.1];
+p127 [label="Sentieon_BQSR"];
+p16 -> p127 [label="ch_dbsnp"];
+
+p17 [label="BuildDbsnpIndex"];
+p127 [label="Sentieon_BQSR"];
+p17 -> p127 [label="dbsnp_tbi"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p127 [label="Sentieon_BQSR"];
+p12 -> p127 [label="ch_fasta"];
+
+p14 [label="BuildDict"];
+p127 [label="Sentieon_BQSR"];
+p14 -> p127 [label="dictBuilt"];
+
+p15 [label="BuildFastaFai"];
+p127 [label="Sentieon_BQSR"];
+p15 -> p127 [label="ch_fai"];
+
+p21 [shape=point,label="",fixedsize=true,width=0.1];
+p127 [label="Sentieon_BQSR"];
+p21 -> p127 [label="ch_known_indels"];
+
+p23 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p127 [label="Sentieon_BQSR"];
+p23 -> p127 [label="ch_known_indels_tbi"];
+
+p127 [label="Sentieon_BQSR"];
+p128 [shape=point];
+p127 -> p128 [label="bam_sentieon_recal"];
+
+p127 [label="Sentieon_BQSR"];
+p167 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p127 -> p167 [label="bam_sentieon_deduped_table"];
+
+p127 [label="Sentieon_BQSR"];
+p129 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p127 -> p129 [label="tsv_sentieon"];
+
+p130 [shape=point,label="",fixedsize=true,width=0.1];
+p131 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p130 -> p131 [label="tsv_sentieon_deduped"];
+
+p131 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p132 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p131 -> p132;
+
+p132 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p133 [shape=point];
+p132 -> p133;
+
+p134 [shape=point,label="",fixedsize=true,width=0.1];
+p135 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p134 -> p135 [label="tsv_sentieon_deduped_sample"];
+
+p135 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p136 [shape=point];
+p135 -> p136;
+
+p137 [shape=point,label="",fixedsize=true,width=0.1];
+p138 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p137 -> p138 [label="tsv_sentieon_recal"];
+
+p138 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p139 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p138 -> p139;
+
+p139 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p140 [shape=point];
+p139 -> p140;
+
+p141 [shape=point,label="",fixedsize=true,width=0.1];
+p142 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p141 -> p142 [label="tsv_sentieon_recal_sample"];
+
+p142 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p143 [shape=point];
+p142 -> p143;
+
+p144 [shape=point,label="",fixedsize=true,width=0.1];
+p145 [label="MergeBamRecal"];
+p144 -> p145 [label="bam_recalibrated_to_merge"];
+
+p145 [label="MergeBamRecal"];
+p148 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p145 -> p148;
+
+p145 [label="MergeBamRecal"];
+p149 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p145 -> p149;
+
+p145 [label="MergeBamRecal"];
+p150 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p145 -> p150;
+
+p146 [shape=point,label="",fixedsize=true,width=0.1];
+p147 [label="IndexBamRecal"];
+p146 -> p147 [label="bam_recalibrated_to_index"];
+
+p147 [label="IndexBamRecal"];
+p148 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p147 -> p148 [label="bam_recalibrated_indexed"];
+
+p147 [label="IndexBamRecal"];
+p149 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p147 -> p149 [label="bam_recalibrated_no_int_qc"];
+
+p147 [label="IndexBamRecal"];
+p150 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p147 -> p150 [label="tsv_bam_recalibrated_no_int"];
+
+p148 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p166 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p148 -> p166 [label="bam_recalibrated"];
+
+p149 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p151 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p149 -> p151 [label="bam_recalibrated_qc"];
+
+p150 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p152 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p150 -> p152;
+
+p153 [shape=point,label="",fixedsize=true,width=0.1];
+p154 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p153 -> p154 [label="tsv_bam_recalibrated"];
+
+p154 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p155 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p154 -> p155;
+
+p155 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p156 [shape=point];
+p155 -> p156;
+
+p157 [shape=point,label="",fixedsize=true,width=0.1];
+p158 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p157 -> p158 [label="tsv_bam_recalibrated_sample"];
+
+p158 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p159 [shape=point];
+p158 -> p159;
+
+p160 [shape=point,label="",fixedsize=true,width=0.1];
+p161 [label="SamtoolsStats"];
+p160 -> p161 [label="bam_recalibrated_samtools_stats"];
+
+p161 [label="SamtoolsStats"];
+p409 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p161 -> p409 [label="samtoolsStatsReport"];
+
+p162 [shape=point,label="",fixedsize=true,width=0.1];
+p163 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p162 -> p163 [label="bam_recalibrated_bamqc"];
+
+p163 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p165 [label="BamQC"];
+p163 -> p165 [label="bamBamQC"];
+
+p164 [shape=point,label="",fixedsize=true,width=0.1];
+p165 [label="BamQC"];
+p164 -> p165 [label="targetBED"];
+
+p165 [label="BamQC"];
+p397 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p165 -> p397 [label="bamQCReport"];
+
+p168 [shape=point,label="",fixedsize=true,width=0.1];
+p170 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p168 -> p170 [label="bamHaplotypeCallerNoIntervals"];
+
+p169 [shape=point,label="",fixedsize=true,width=0.1];
+p170 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p169 -> p170 [label="intHaplotypeCaller"];
+
+p170 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p174 [label="HaplotypeCaller"];
+p170 -> p174 [label="bamHaplotypeCaller"];
+
+p171 [shape=point,label="",fixedsize=true,width=0.1];
+p173 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p171 -> p173 [label="bamFreebayesSingleNoIntervals"];
+
+p172 [shape=point,label="",fixedsize=true,width=0.1];
+p173 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p172 -> p173 [label="intFreebayesSingle"];
+
+p173 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p191 [label="FreebayesSingle"];
+p173 -> p191 [label="bamFreebayesSingle"];
+
+p16 [shape=point,label="",fixedsize=true,width=0.1];
+p174 [label="HaplotypeCaller"];
+p16 -> p174 [label="ch_dbsnp"];
+
+p17 [label="BuildDbsnpIndex"];
+p174 [label="HaplotypeCaller"];
+p17 -> p174 [label="dbsnp_tbi"];
+
+p14 [label="BuildDict"];
+p174 [label="HaplotypeCaller"];
+p14 -> p174 [label="dictBuilt"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p174 [label="HaplotypeCaller"];
+p12 -> p174 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p174 [label="HaplotypeCaller"];
+p15 -> p174 [label="ch_fai"];
+
+p174 [label="HaplotypeCaller"];
+p175 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p174 -> p175;
+
+p174 [label="HaplotypeCaller"];
+p176 [label="GenotypeGVCFs"];
+p174 -> p176 [label="gvcfGenotypeGVCFs"];
+
+p175 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p240 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p175 -> p240 [label="gvcfHaplotypeCaller"];
+
+p16 [shape=point,label="",fixedsize=true,width=0.1];
+p176 [label="GenotypeGVCFs"];
+p16 -> p176 [label="ch_dbsnp"];
+
+p17 [label="BuildDbsnpIndex"];
+p176 [label="GenotypeGVCFs"];
+p17 -> p176 [label="dbsnp_tbi"];
+
+p14 [label="BuildDict"];
+p176 [label="GenotypeGVCFs"];
+p14 -> p176 [label="dictBuilt"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p176 [label="GenotypeGVCFs"];
+p12 -> p176 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p176 [label="GenotypeGVCFs"];
+p15 -> p176 [label="ch_fai"];
+
+p176 [label="GenotypeGVCFs"];
+p177 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p176 -> p177;
+
+p177 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p240 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p177 -> p240 [label="vcfGenotypeGVCFs"];
+
+p178 [shape=point,label="",fixedsize=true,width=0.1];
+p179 [label="Sentieon_DNAseq"];
+p178 -> p179 [label="bam_sentieon_DNAseq"];
+
+p16 [shape=point,label="",fixedsize=true,width=0.1];
+p179 [label="Sentieon_DNAseq"];
+p16 -> p179 [label="ch_dbsnp"];
+
+p17 [label="BuildDbsnpIndex"];
+p179 [label="Sentieon_DNAseq"];
+p17 -> p179 [label="dbsnp_tbi"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p179 [label="Sentieon_DNAseq"];
+p12 -> p179 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p179 [label="Sentieon_DNAseq"];
+p15 -> p179 [label="ch_fai"];
+
+p179 [label="Sentieon_DNAseq"];
+p267 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p179 -> p267 [label="vcf_sentieon_DNAseq"];
+
+p180 [shape=point,label="",fixedsize=true,width=0.1];
+p181 [label="Sentieon_DNAscope"];
+p180 -> p181 [label="bam_sentieon_DNAscope"];
+
+p16 [shape=point,label="",fixedsize=true,width=0.1];
+p181 [label="Sentieon_DNAscope"];
+p16 -> p181 [label="ch_dbsnp"];
+
+p17 [label="BuildDbsnpIndex"];
+p181 [label="Sentieon_DNAscope"];
+p17 -> p181 [label="dbsnp_tbi"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p181 [label="Sentieon_DNAscope"];
+p12 -> p181 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p181 [label="Sentieon_DNAscope"];
+p15 -> p181 [label="ch_fai"];
+
+p181 [label="Sentieon_DNAscope"];
+p267 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p181 -> p267 [label="vcf_sentieon_DNAscope"];
+
+p181 [label="Sentieon_DNAscope"];
+p267 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p181 -> p267 [label="vcf_sentieon_DNAscope_SV"];
+
+p182 [shape=point,label="",fixedsize=true,width=0.1];
+p184 [label="StrelkaSingle"];
+p182 -> p184 [label="bamStrelkaSingle"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p184 [label="StrelkaSingle"];
+p12 -> p184 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p184 [label="StrelkaSingle"];
+p15 -> p184 [label="ch_fai"];
+
+p183 [shape=point,label="",fixedsize=true,width=0.1];
+p184 [label="StrelkaSingle"];
+p183 -> p184 [label="targetBED"];
+
+p184 [label="StrelkaSingle"];
+p345 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p184 -> p345 [label="vcfStrelkaSingle"];
+
+p185 [shape=point,label="",fixedsize=true,width=0.1];
+p187 [label="MantaSingle"];
+p185 -> p187 [label="bamMantaSingle"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p187 [label="MantaSingle"];
+p12 -> p187 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p187 [label="MantaSingle"];
+p15 -> p187 [label="ch_fai"];
+
+p186 [shape=point,label="",fixedsize=true,width=0.1];
+p187 [label="MantaSingle"];
+p186 -> p187 [label="targetBED"];
+
+p187 [label="MantaSingle"];
+p346 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p187 -> p346 [label="vcfMantaSingle"];
+
+p188 [shape=point,label="",fixedsize=true,width=0.1];
+p189 [label="TIDDIT"];
+p188 -> p189 [label="bamTIDDIT"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p189 [label="TIDDIT"];
+p12 -> p189 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p189 [label="TIDDIT"];
+p15 -> p189 [label="ch_fai"];
+
+p189 [label="TIDDIT"];
+p359 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p189 -> p359 [label="vcfTIDDIT"];
+
+p189 [label="TIDDIT"];
+p190 [shape=point];
+p189 -> p190 [label="tidditOut"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p191 [label="FreebayesSingle"];
+p12 -> p191 [label="ch_fasta"];
+
+p191 [label="FreebayesSingle"];
+p192 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p191 -> p192;
+
+p192 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p240 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p192 -> p240 [label="vcfFreebayesSingle"];
+
+p193 [shape=point,label="",fixedsize=true,width=0.1];
+p194 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p193 -> p194;
+
+p195 [shape=point,label="",fixedsize=true,width=0.1];
+p196 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p195 -> p196 [label="bamRecalAll"];
+
+p196 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p199 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="cross"];
+p196 -> p199 [label="bamNormal"];
+
+p196 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p197 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p196 -> p197;
+
+p198 [shape=point,label="",fixedsize=true,width=0.1];
+p199 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="cross"];
+p198 -> p199 [label="bamTumor"];
+
+p199 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="cross"];
+p200 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p199 -> p200;
+
+p200 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p201 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p200 -> p201;
+
+p202 [shape=point,label="",fixedsize=true,width=0.1];
+p204 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p202 -> p204 [label="bedIntervalsPair"];
+
+p203 [shape=point,label="",fixedsize=true,width=0.1];
+p204 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p203 -> p204 [label="pairBam"];
+
+p204 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p208 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p204 -> p208 [label="intervalPairBam"];
+
+p205 [shape=point,label="",fixedsize=true,width=0.1];
+p207 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p205 -> p207 [label="singleBamTumor"];
+
+p206 [shape=point,label="",fixedsize=true,width=0.1];
+p207 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p206 -> p207 [label="bedIntervalsSingle"];
+
+p207 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p209 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p207 -> p209 [label="intervalBam"];
+
+p210 [shape=point,label="",fixedsize=true,width=0.1];
+p212 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p210 -> p212 [label="intMpileup"];
+
+p211 [shape=point,label="",fixedsize=true,width=0.1];
+p212 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p211 -> p212;
+
+p212 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p302 [label="Mpileup"];
+p212 -> p302 [label="bamMpileup"];
+
+p213 [shape=point,label="",fixedsize=true,width=0.1];
+p214 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p213 -> p214 [label="bam_sentieon_all"];
+
+p214 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p215 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="cross"];
+p214 -> p215 [label="bam_sention_normal"];
+
+p214 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p215 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="cross"];
+p214 -> p215 [label="bam_sentieon_tumor"];
+
+p215 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="cross"];
+p216 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p215 -> p216;
+
+p216 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p266 [label="Sentieon_TNscope"];
+p216 -> p266 [label="bam_pair_sentieon_TNscope"];
+
+p217 [shape=point,label="",fixedsize=true,width=0.1];
+p218 [label="FreeBayes"];
+p217 -> p218 [label="pairBamFreeBayes"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p218 [label="FreeBayes"];
+p12 -> p218 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p218 [label="FreeBayes"];
+p15 -> p218 [label="ch_fai"];
+
+p218 [label="FreeBayes"];
+p219 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p218 -> p219;
+
+p219 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p240 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p219 -> p240 [label="vcfFreeBayes"];
+
+p220 [shape=point,label="",fixedsize=true,width=0.1];
+p225 [label="Mutect2"];
+p220 -> p225 [label="pairBamMutect2"];
+
+p14 [label="BuildDict"];
+p225 [label="Mutect2"];
+p14 -> p225 [label="dictBuilt"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p225 [label="Mutect2"];
+p12 -> p225 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p225 [label="Mutect2"];
+p15 -> p225 [label="ch_fai"];
+
+p221 [shape=point,label="",fixedsize=true,width=0.1];
+p225 [label="Mutect2"];
+p221 -> p225 [label="germlineResource"];
+
+p222 [shape=point,label="",fixedsize=true,width=0.1];
+p225 [label="Mutect2"];
+p222 -> p225 [label="germlineResourceIndex"];
+
+p29 [shape=point,label="",fixedsize=true,width=0.1];
+p225 [label="Mutect2"];
+p29 -> p225 [label="ch_intervals"];
+
+p223 [shape=point,label="",fixedsize=true,width=0.1];
+p225 [label="Mutect2"];
+p223 -> p225 [label="pon"];
+
+p224 [shape=point,label="",fixedsize=true,width=0.1];
+p225 [label="Mutect2"];
+p224 -> p225 [label="ponIndex"];
+
+p225 [label="Mutect2"];
+p226 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p225 -> p226;
+
+p225 [label="Mutect2"];
+p250 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p225 -> p250 [label="intervalStatsFilesPair"];
+
+p225 [label="Mutect2"];
+p227 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p225 -> p227;
+
+p226 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p243 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p226 -> p243 [label="mutect2PairOutput"];
+
+p227 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p236 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p227 -> p236 [label="mutect2StatsPair"];
+
+p228 [shape=point,label="",fixedsize=true,width=0.1];
+p233 [label="Mutect2Single"];
+p228 -> p233 [label="singleBamMutect2"];
+
+p14 [label="BuildDict"];
+p233 [label="Mutect2Single"];
+p14 -> p233 [label="dictBuilt"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p233 [label="Mutect2Single"];
+p12 -> p233 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p233 [label="Mutect2Single"];
+p15 -> p233 [label="ch_fai"];
+
+p229 [shape=point,label="",fixedsize=true,width=0.1];
+p233 [label="Mutect2Single"];
+p229 -> p233 [label="germlineResource"];
+
+p230 [shape=point,label="",fixedsize=true,width=0.1];
+p233 [label="Mutect2Single"];
+p230 -> p233 [label="germlineResourceIndex"];
+
+p29 [shape=point,label="",fixedsize=true,width=0.1];
+p233 [label="Mutect2Single"];
+p29 -> p233 [label="ch_intervals"];
+
+p231 [shape=point,label="",fixedsize=true,width=0.1];
+p233 [label="Mutect2Single"];
+p231 -> p233 [label="pon"];
+
+p232 [shape=point,label="",fixedsize=true,width=0.1];
+p233 [label="Mutect2Single"];
+p232 -> p233 [label="ponIndex"];
+
+p233 [label="Mutect2Single"];
+p234 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p233 -> p234;
+
+p233 [label="Mutect2Single"];
+p247 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p233 -> p247 [label="intervalStatsFilesSingle"];
+
+p233 [label="Mutect2Single"];
+p235 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p233 -> p235;
+
+p234 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p243 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p234 -> p243 [label="mutect2SingleOutput"];
+
+p235 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p236 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p235 -> p236 [label="mutect2StatsSingle"];
+
+p236 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p239 [label="MergeMutect2Stats"];
+p236 -> p239 [label="mutect2Stats"];
+
+p14 [label="BuildDict"];
+p239 [label="MergeMutect2Stats"];
+p14 -> p239 [label="dictBuilt"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p239 [label="MergeMutect2Stats"];
+p12 -> p239 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p239 [label="MergeMutect2Stats"];
+p15 -> p239 [label="ch_fai"];
+
+p237 [shape=point,label="",fixedsize=true,width=0.1];
+p239 [label="MergeMutect2Stats"];
+p237 -> p239 [label="germlineResource"];
+
+p238 [shape=point,label="",fixedsize=true,width=0.1];
+p239 [label="MergeMutect2Stats"];
+p238 -> p239 [label="germlineResourceIndex"];
+
+p29 [shape=point,label="",fixedsize=true,width=0.1];
+p239 [label="MergeMutect2Stats"];
+p29 -> p239 [label="ch_intervals"];
+
+p239 [label="MergeMutect2Stats"];
+p259 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p239 -> p259 [label="mergedStatsFile"];
+
+p240 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p242 [label="ConcatVCF"];
+p240 -> p242 [label="vcfConcatenateVCFs"];
+
+p15 [label="BuildFastaFai"];
+p242 [label="ConcatVCF"];
+p15 -> p242 [label="ch_fai"];
+
+p241 [shape=point,label="",fixedsize=true,width=0.1];
+p242 [label="ConcatVCF"];
+p241 -> p242 [label="targetBED"];
+
+p242 [label="ConcatVCF"];
+p343 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p242 -> p343 [label="vcfConcatenated"];
+
+p243 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p245 [label="ConcatVCF_Mutect2"];
+p243 -> p245 [label="mutect2Output"];
+
+p15 [label="BuildFastaFai"];
+p245 [label="ConcatVCF_Mutect2"];
+p15 -> p245 [label="ch_fai"];
+
+p244 [shape=point,label="",fixedsize=true,width=0.1];
+p245 [label="ConcatVCF_Mutect2"];
+p244 -> p245 [label="targetBED"];
+
+p245 [label="ConcatVCF_Mutect2"];
+p258 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p245 -> p258 [label="vcfConcatenatedForFilter"];
+
+p246 [shape=point,label="",fixedsize=true,width=0.1];
+p247 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p246 -> p247;
+
+p247 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p251 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p247 -> p251 [label="bamPileupSummariesSingle"];
+
+p248 [shape=point,label="",fixedsize=true,width=0.1];
+p249 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p248 -> p249;
+
+p249 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p250 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p249 -> p250;
+
+p250 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p251 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p250 -> p251;
+
+p251 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p254 [label="PileupSummariesForMutect2"];
+p251 -> p254 [label="bamPileupSummaries"];
+
+p252 [shape=point,label="",fixedsize=true,width=0.1];
+p254 [label="PileupSummariesForMutect2"];
+p252 -> p254 [label="germlineResource"];
+
+p253 [shape=point,label="",fixedsize=true,width=0.1];
+p254 [label="PileupSummariesForMutect2"];
+p253 -> p254 [label="germlineResourceIndex"];
+
+p254 [label="PileupSummariesForMutect2"];
+p255 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p254 -> p255;
+
+p255 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p256 [label="MergePileupSummaries"];
+p255 -> p256 [label="pileupSummaries"];
+
+p14 [label="BuildDict"];
+p256 [label="MergePileupSummaries"];
+p14 -> p256 [label="dictBuilt"];
+
+p256 [label="MergePileupSummaries"];
+p257 [label="CalculateContamination"];
+p256 -> p257 [label="mergedPileupFile"];
+
+p257 [label="CalculateContamination"];
+p260 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p257 -> p260 [label="contaminationTable"];
+
+p258 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p259 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p258 -> p259;
+
+p259 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p260 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p259 -> p260;
+
+p260 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p263 [label="FilterMutect2Calls"];
+p260 -> p263 [label="mutect2CallsToFilter"];
+
+p14 [label="BuildDict"];
+p263 [label="FilterMutect2Calls"];
+p14 -> p263 [label="dictBuilt"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p263 [label="FilterMutect2Calls"];
+p12 -> p263 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p263 [label="FilterMutect2Calls"];
+p15 -> p263 [label="ch_fai"];
+
+p261 [shape=point,label="",fixedsize=true,width=0.1];
+p263 [label="FilterMutect2Calls"];
+p261 -> p263 [label="germlineResource"];
+
+p262 [shape=point,label="",fixedsize=true,width=0.1];
+p263 [label="FilterMutect2Calls"];
+p262 -> p263 [label="germlineResourceIndex"];
+
+p29 [shape=point,label="",fixedsize=true,width=0.1];
+p263 [label="FilterMutect2Calls"];
+p29 -> p263 [label="ch_intervals"];
+
+p263 [label="FilterMutect2Calls"];
+p342 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p263 -> p342 [label="filteredMutect2Output"];
+
+p14 [label="BuildDict"];
+p266 [label="Sentieon_TNscope"];
+p14 -> p266 [label="dictBuilt"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p266 [label="Sentieon_TNscope"];
+p12 -> p266 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p266 [label="Sentieon_TNscope"];
+p15 -> p266 [label="ch_fai"];
+
+p16 [shape=point,label="",fixedsize=true,width=0.1];
+p266 [label="Sentieon_TNscope"];
+p16 -> p266 [label="ch_dbsnp"];
+
+p17 [label="BuildDbsnpIndex"];
+p266 [label="Sentieon_TNscope"];
+p17 -> p266 [label="dbsnp_tbi"];
+
+p264 [shape=point,label="",fixedsize=true,width=0.1];
+p266 [label="Sentieon_TNscope"];
+p264 -> p266 [label="pon"];
+
+p265 [shape=point,label="",fixedsize=true,width=0.1];
+p266 [label="Sentieon_TNscope"];
+p265 -> p266 [label="ponIndex"];
+
+p266 [label="Sentieon_TNscope"];
+p267 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p266 -> p267 [label="vcf_sentieon_TNscope"];
+
+p267 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p268 [label="CompressSentieonVCF"];
+p267 -> p268 [label="vcf_sentieon"];
+
+p268 [label="CompressSentieonVCF"];
+p344 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p268 -> p344 [label="vcf_sentieon_compressed"];
+
+p269 [shape=point,label="",fixedsize=true,width=0.1];
+p271 [label="Strelka"];
+p269 -> p271 [label="pairBamStrelka"];
+
+p14 [label="BuildDict"];
+p271 [label="Strelka"];
+p14 -> p271 [label="dictBuilt"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p271 [label="Strelka"];
+p12 -> p271 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p271 [label="Strelka"];
+p15 -> p271 [label="ch_fai"];
+
+p270 [shape=point,label="",fixedsize=true,width=0.1];
+p271 [label="Strelka"];
+p270 -> p271 [label="targetBED"];
+
+p271 [label="Strelka"];
+p338 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p271 -> p338 [label="vcfStrelka"];
+
+p272 [shape=point,label="",fixedsize=true,width=0.1];
+p274 [label="Manta"];
+p272 -> p274 [label="pairBamManta"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p274 [label="Manta"];
+p12 -> p274 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p274 [label="Manta"];
+p15 -> p274 [label="ch_fai"];
+
+p273 [shape=point,label="",fixedsize=true,width=0.1];
+p274 [label="Manta"];
+p273 -> p274 [label="targetBED"];
+
+p274 [label="Manta"];
+p340 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p274 -> p340 [label="vcfManta"];
+
+p274 [label="Manta"];
+p277 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p274 -> p277 [label="mantaToStrelka"];
+
+p275 [shape=point,label="",fixedsize=true,width=0.1];
+p276 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p275 -> p276;
+
+p276 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p277 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p276 -> p277;
+
+p277 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="join"];
+p278 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p277 -> p278;
+
+p278 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p280 [label="StrelkaBP"];
+p278 -> p280 [label="pairBamStrelkaBP"];
+
+p14 [label="BuildDict"];
+p280 [label="StrelkaBP"];
+p14 -> p280 [label="dictBuilt"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p280 [label="StrelkaBP"];
+p12 -> p280 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p280 [label="StrelkaBP"];
+p15 -> p280 [label="ch_fai"];
+
+p279 [shape=point,label="",fixedsize=true,width=0.1];
+p280 [label="StrelkaBP"];
+p279 -> p280 [label="targetBED"];
+
+p280 [label="StrelkaBP"];
+p339 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p280 -> p339 [label="vcfStrelkaBP"];
+
+p281 [shape=point,label="",fixedsize=true,width=0.1];
+p283 [label="CNVkit"];
+p281 -> p283 [label="pairBamCNVkit"];
+
+p282 [shape=point,label="",fixedsize=true,width=0.1];
+p283 [label="CNVkit"];
+p282 -> p283 [label="targetBED"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p283 [label="CNVkit"];
+p12 -> p283 [label="ch_fasta"];
+
+p283 [label="CNVkit"];
+p284 [shape=point];
+p283 -> p284 [label="cnvkitOut"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p285 [label="MSIsensor_scan"];
+p12 -> p285 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p285 [label="MSIsensor_scan"];
+p15 -> p285 [label="ch_fai"];
+
+p285 [label="MSIsensor_scan"];
+p287 [label="MSIsensor_msi"];
+p285 -> p287 [label="msi_scan_ch"];
+
+p286 [shape=point,label="",fixedsize=true,width=0.1];
+p287 [label="MSIsensor_msi"];
+p286 -> p287 [label="pairBamMsisensor"];
+
+p287 [label="MSIsensor_msi"];
+p288 [shape=point];
+p287 -> p288 [label="msisensor_out_ch"];
+
+p289 [shape=point,label="",fixedsize=true,width=0.1];
+p290 [label="MSIsensor_msiSingle"];
+p289 -> p290 [label="singleBamMsisensor"];
+
+p285 [label="MSIsensor_scan"];
+p290 [label="MSIsensor_msiSingle"];
+p285 -> p290 [label="msi_scan_ch"];
+
+p290 [label="MSIsensor_msiSingle"];
+p291 [shape=point];
+p290 -> p291 [label="msisensor_out_ch_single"];
+
+p292 [shape=point,label="",fixedsize=true,width=0.1];
+p294 [label="AlleleCounter"];
+p292 -> p294 [label="bamAscat"];
+
+p293 [shape=point,label="",fixedsize=true,width=0.1];
+p294 [label="AlleleCounter"];
+p293 -> p294 [label="acLoci"];
+
+p14 [label="BuildDict"];
+p294 [label="AlleleCounter"];
+p14 -> p294 [label="dictBuilt"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p294 [label="AlleleCounter"];
+p12 -> p294 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p294 [label="AlleleCounter"];
+p15 -> p294 [label="ch_fai"];
+
+p294 [label="AlleleCounter"];
+p295 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p294 -> p295;
+
+p295 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p296 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p295 -> p296 [label="alleleCountOutTumor"];
+
+p295 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p296 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p295 -> p296 [label="alleleCountOutNormal"];
+
+p296 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p297 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p296 -> p297;
+
+p297 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p298 [label="ConvertAlleleCounts"];
+p297 -> p298 [label="alleleCounterOut"];
+
+p298 [label="ConvertAlleleCounts"];
+p300 [label="Ascat"];
+p298 -> p300 [label="convertAlleleCountsOut"];
+
+p299 [shape=point,label="",fixedsize=true,width=0.1];
+p300 [label="Ascat"];
+p299 -> p300 [label="acLociGC"];
+
+p300 [label="Ascat"];
+p301 [shape=point];
+p300 -> p301 [label="ascatOut"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p302 [label="Mpileup"];
+p12 -> p302 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p302 [label="Mpileup"];
+p15 -> p302 [label="ch_fai"];
+
+p302 [label="Mpileup"];
+p312 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p302 -> p312;
+
+p302 [label="Mpileup"];
+p303 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p302 -> p303;
+
+p303 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p304 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p303 -> p304;
+
+p305 [shape=point,label="",fixedsize=true,width=0.1];
+p306 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p305 -> p306 [label="tsv_mpileup"];
+
+p306 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p307 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p306 -> p307;
+
+p307 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p308 [shape=point];
+p307 -> p308;
+
+p309 [shape=point,label="",fixedsize=true,width=0.1];
+p310 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p309 -> p310 [label="tsv_mpileup_sample"];
+
+p310 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p311 [shape=point];
+p310 -> p311;
+
+p312 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="groupTuple"];
+p314 [label="MergeMpileup"];
+p312 -> p314 [label="mpileupMerge"];
+
+p313 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+p315 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p313 -> p315 [label="mpileupNoInt"];
+
+p314 [label="MergeMpileup"];
+p315 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p314 -> p315;
+
+p315 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p316 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p315 -> p316;
+
+p316 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p317 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p316 -> p317;
+
+p316 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="choice"];
+p319 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p316 -> p319 [label="mpileupOutNormal"];
+
+p318 [shape=point,label="",fixedsize=true,width=0.1];
+p319 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p318 -> p319 [label="mpileupOutTumor"];
+
+p319 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="combine"];
+p320 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p319 -> p320;
+
+p320 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p325 [label="ControlFREEC"];
+p320 -> p325 [label="mpileupOut"];
+
+p321 [shape=point,label="",fixedsize=true,width=0.1];
+p325 [label="ControlFREEC"];
+p321 -> p325 [label="chrDir"];
+
+p322 [shape=point,label="",fixedsize=true,width=0.1];
+p325 [label="ControlFREEC"];
+p322 -> p325 [label="mappability"];
+
+p323 [shape=point,label="",fixedsize=true,width=0.1];
+p325 [label="ControlFREEC"];
+p323 -> p325 [label="chrLength"];
+
+p16 [shape=point,label="",fixedsize=true,width=0.1];
+p325 [label="ControlFREEC"];
+p16 -> p325 [label="ch_dbsnp"];
+
+p17 [label="BuildDbsnpIndex"];
+p325 [label="ControlFREEC"];
+p17 -> p325 [label="dbsnp_tbi"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p325 [label="ControlFREEC"];
+p12 -> p325 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p325 [label="ControlFREEC"];
+p15 -> p325 [label="ch_fai"];
+
+p324 [shape=point,label="",fixedsize=true,width=0.1];
+p325 [label="ControlFREEC"];
+p324 -> p325 [label="targetBED"];
+
+p325 [label="ControlFREEC"];
+p334 [label="ControlFreecViz"];
+p325 -> p334 [label="controlFreecViz"];
+
+p325 [label="ControlFREEC"];
+p326 [shape=point];
+p325 -> p326 [label="controlFreecOut"];
+
+p327 [shape=point,label="",fixedsize=true,width=0.1];
+p332 [label="ControlFREECSingle"];
+p327 -> p332 [label="mpileupOutSingle"];
+
+p328 [shape=point,label="",fixedsize=true,width=0.1];
+p332 [label="ControlFREECSingle"];
+p328 -> p332 [label="chrDir"];
+
+p329 [shape=point,label="",fixedsize=true,width=0.1];
+p332 [label="ControlFREECSingle"];
+p329 -> p332 [label="mappability"];
+
+p330 [shape=point,label="",fixedsize=true,width=0.1];
+p332 [label="ControlFREECSingle"];
+p330 -> p332 [label="chrLength"];
+
+p16 [shape=point,label="",fixedsize=true,width=0.1];
+p332 [label="ControlFREECSingle"];
+p16 -> p332 [label="ch_dbsnp"];
+
+p17 [label="BuildDbsnpIndex"];
+p332 [label="ControlFREECSingle"];
+p17 -> p332 [label="dbsnp_tbi"];
+
+p12 [shape=point,label="",fixedsize=true,width=0.1];
+p332 [label="ControlFREECSingle"];
+p12 -> p332 [label="ch_fasta"];
+
+p15 [label="BuildFastaFai"];
+p332 [label="ControlFREECSingle"];
+p15 -> p332 [label="ch_fai"];
+
+p331 [shape=point,label="",fixedsize=true,width=0.1];
+p332 [label="ControlFREECSingle"];
+p331 -> p332 [label="targetBED"];
+
+p332 [label="ControlFREECSingle"];
+p336 [label="ControlFreecVizSingle"];
+p332 -> p336 [label="controlFreecVizSingle"];
+
+p332 [label="ControlFREECSingle"];
+p333 [shape=point];
+p332 -> p333 [label="controlFreecOutSingle"];
+
+p334 [label="ControlFreecViz"];
+p335 [shape=point];
+p334 -> p335 [label="controlFreecVizOut"];
+
+p336 [label="ControlFreecVizSingle"];
+p337 [shape=point];
+p336 -> p337 [label="controlFreecVizOutSingle"];
+
+p341 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.empty"];
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p341 -> p360;
+
+p342 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p342 -> p360;
+
+p343 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p343 -> p360;
+
+p344 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p344 -> p360;
+
+p345 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p345 -> p360;
+
+p346 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p346 -> p360;
+
+p347 [shape=point,label="",fixedsize=true,width=0.1];
+p348 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p347 -> p348 [label="vcfMantaDiploidSV"];
+
+p348 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p348 -> p360;
+
+p349 [shape=point,label="",fixedsize=true,width=0.1];
+p350 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p349 -> p350 [label="vcfMantaSomaticSV"];
+
+p350 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p350 -> p360;
+
+p351 [shape=point,label="",fixedsize=true,width=0.1];
+p352 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p351 -> p352 [label="vcfStrelkaIndels"];
+
+p352 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p352 -> p360;
+
+p353 [shape=point,label="",fixedsize=true,width=0.1];
+p354 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p353 -> p354 [label="vcfStrelkaSNVS"];
+
+p354 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p354 -> p360;
+
+p355 [shape=point,label="",fixedsize=true,width=0.1];
+p356 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p355 -> p356 [label="vcfStrelkaBPIndels"];
+
+p356 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p356 -> p360;
+
+p357 [shape=point,label="",fixedsize=true,width=0.1];
+p358 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p357 -> p358 [label="vcfStrelkaBPSNVS"];
+
+p358 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p358 -> p360;
+
+p359 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p359 -> p360;
+
+p360 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p361 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p360 -> p361 [label="vcfKeep"];
+
+p362 [shape=point,label="",fixedsize=true,width=0.1];
+p363 [label="BcftoolsStats"];
+p362 -> p363 [label="vcfBCFtools"];
+
+p363 [label="BcftoolsStats"];
+p399 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p363 -> p399 [label="bcftoolsReport"];
+
+p364 [shape=point,label="",fixedsize=true,width=0.1];
+p365 [label="Vcftools"];
+p364 -> p365 [label="vcfVCFtools"];
+
+p365 [label="Vcftools"];
+p413 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p365 -> p413 [label="vcftoolsReport"];
+
+p366 [shape=point,label="",fixedsize=true,width=0.1];
+p367 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="into"];
+p366 -> p367 [label="vcfAnnotation"];
+
+p368 [shape=point,label="",fixedsize=true,width=0.1];
+p369 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p368 -> p369;
+
+p369 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+p381 [label="VEP"];
+p369 -> p381 [label="vcfVep"];
+
+p370 [shape=point,label="",fixedsize=true,width=0.1];
+p373 [label="Snpeff"];
+p370 -> p373 [label="vcfSnpeff"];
+
+p371 [shape=point,label="",fixedsize=true,width=0.1];
+p373 [label="Snpeff"];
+p371 -> p373 [label="dataDir"];
+
+p372 [shape=point,label="",fixedsize=true,width=0.1];
+p373 [label="Snpeff"];
+p372 -> p373 [label="ch_snpeff_db"];
+
+p373 [label="Snpeff"];
+p411 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p373 -> p411 [label="snpeffReport"];
+
+p373 [label="Snpeff"];
+p374 [label="CompressVCFsnpEff"];
+p373 -> p374 [label="snpeffVCF"];
+
+p374 [label="CompressVCFsnpEff"];
+p388 [label="VEPmerge"];
+p374 -> p388 [label="compressVCFsnpEffOut"];
+
+p376 [shape=point,label="",fixedsize=true,width=0.1];
+p381 [label="VEP"];
+p376 -> p381 [label="dataDir"];
+
+p375 [shape=point,label="",fixedsize=true,width=0.1];
+p381 [label="VEP"];
+p375 -> p381 [label="ch_vep_cache_version"];
+
+p377 [shape=point,label="",fixedsize=true,width=0.1];
+p381 [label="VEP"];
+p377 -> p381 [label="cadd_InDels"];
+
+p378 [shape=point,label="",fixedsize=true,width=0.1];
+p381 [label="VEP"];
+p378 -> p381 [label="cadd_InDels_tbi"];
+
+p379 [shape=point,label="",fixedsize=true,width=0.1];
+p381 [label="VEP"];
+p379 -> p381 [label="cadd_WG_SNVs"];
+
+p380 [shape=point,label="",fixedsize=true,width=0.1];
+p381 [label="VEP"];
+p380 -> p381 [label="cadd_WG_SNVs_tbi"];
+
+p381 [label="VEP"];
+p390 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p381 -> p390 [label="vepVCF"];
+
+p381 [label="VEP"];
+p382 [shape=point];
+p381 -> p382 [label="vepReport"];
+
+p383 [shape=point,label="",fixedsize=true,width=0.1];
+p388 [label="VEPmerge"];
+p383 -> p388 [label="dataDir"];
+
+p375 [shape=point,label="",fixedsize=true,width=0.1];
+p388 [label="VEPmerge"];
+p375 -> p388 [label="ch_vep_cache_version"];
+
+p384 [shape=point,label="",fixedsize=true,width=0.1];
+p388 [label="VEPmerge"];
+p384 -> p388 [label="cadd_InDels"];
+
+p385 [shape=point,label="",fixedsize=true,width=0.1];
+p388 [label="VEPmerge"];
+p385 -> p388 [label="cadd_InDels_tbi"];
+
+p386 [shape=point,label="",fixedsize=true,width=0.1];
+p388 [label="VEPmerge"];
+p386 -> p388 [label="cadd_WG_SNVs"];
+
+p387 [shape=point,label="",fixedsize=true,width=0.1];
+p388 [label="VEPmerge"];
+p387 -> p388 [label="cadd_WG_SNVs_tbi"];
+
+p388 [label="VEPmerge"];
+p390 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p388 -> p390 [label="vepVCFmerge"];
+
+p388 [label="VEPmerge"];
+p389 [shape=point];
+p388 -> p389 [label="vepReportMerge"];
+
+p390 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="mix"];
+p391 [label="CompressVCFvep"];
+p390 -> p391 [label="vcfCompressVCFvep"];
+
+p391 [label="CompressVCFvep"];
+p392 [shape=point];
+p391 -> p392 [label="compressVCFOutVEP"];
+
+p393 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p394 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p393 -> p394;
+
+p394 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p416 [label="MultiQC"];
+p394 -> p416;
+
+p11 [label="get_software_versions"];
+p395 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p11 -> p395 [label="ch_software_versions_yaml"];
+
+p395 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p416 [label="MultiQC"];
+p395 -> p416;
+
+p396 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p416 [label="MultiQC"];
+p396 -> p416;
+
+p397 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p398 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p397 -> p398;
+
+p398 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p416 [label="MultiQC"];
+p398 -> p416;
+
+p399 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p400 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p399 -> p400;
+
+p400 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p416 [label="MultiQC"];
+p400 -> p416;
+
+p401 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p402 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p401 -> p402;
+
+p402 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p416 [label="MultiQC"];
+p402 -> p416;
+
+p403 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p404 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p403 -> p404;
+
+p404 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p416 [label="MultiQC"];
+p404 -> p416;
+
+p405 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p406 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p405 -> p406;
+
+p406 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p416 [label="MultiQC"];
+p406 -> p416;
+
+p407 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p408 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p407 -> p408;
+
+p408 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p416 [label="MultiQC"];
+p408 -> p416;
+
+p409 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p410 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p409 -> p410;
+
+p410 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p416 [label="MultiQC"];
+p410 -> p416;
+
+p411 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p412 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p411 -> p412;
+
+p412 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p416 [label="MultiQC"];
+p412 -> p416;
+
+p413 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p414 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p413 -> p414;
+
+p414 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="ifEmpty"];
+p416 [label="MultiQC"];
+p414 -> p416;
+
+p415 [shape=point,label="",fixedsize=true,width=0.1];
+p416 [label="MultiQC"];
+p415 -> p416 [label="multiqcConfig"];
+
+p416 [label="MultiQC"];
+p417 [shape=point];
+p416 -> p417 [label="ch_multiqc_report"];
+
+p418 [shape=point,label="",fixedsize=true,width=0.1];
+p420 [label="Output_documentation"];
+p418 -> p420 [label="output_docs"];
+
+p419 [shape=point,label="",fixedsize=true,width=0.1];
+p420 [label="Output_documentation"];
+p419 -> p420 [label="images"];
+
+}

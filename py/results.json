@@ -1,0 +1,4754 @@
+{
+  "m5.large": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2998"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "13441.88"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "13001.17"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "12947.36"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "13234.21"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "13227.92"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "13300.31"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "13481.26"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "12988.48"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "13441.36"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "13410.79"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "497"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "135"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "1450"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "147114"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "912.715"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "11879.8"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "12849.3"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "13658.6"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "13577.4"
+    }
+  ],
+  "m5.xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2996"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "26518.16"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "24909.38"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "20600.30"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25522.25"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "24458.92"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "22175.07"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "24999.66"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "18783.00"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "25677.35"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "22667.18"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "464.2"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "56.5"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "24.4"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "2877"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "287411"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "462.423"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "22287.0"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "27189.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "27874.0"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "28028.8"
+    }
+  ],
+  "m5.2xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2996"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "27098.23"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "26004.74"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "20702.38"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "26279.63"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25235.34"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "22581.15"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "25792.94"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "19331.96"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "25441.82"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "23208.38"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "479"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "68.7"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "5794"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "583424"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "242.050"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "42568.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "48371.1"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "51294.5"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "51583.5"
+    }
+  ],
+  "m5a.large": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2998"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "18886.01"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "17254.48"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "15643.62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "15484.65"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "16530.90"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "18744.08"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "17017.49"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "15250.99"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "18055.96"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "17245.82"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "56.4"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "134"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "1439"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "47546"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "1185.445"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "17178.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "17403.2"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "17654.8"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "17709.7"
+    }
+  ],
+  "m5a.xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "21770.87"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "19516.51"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "18148.92"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "18694.22"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "19602.02"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "21826.11"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "19412.27"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "18246.82"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "21612.96"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "20280.51"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "60.2"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "113.8"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.1"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "2833"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "95099"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "599.895"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "17986.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "17698.6"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "19445.5"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "19403.2"
+    }
+  ],
+  "m5a.2xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "21712.87"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "19307.69"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "18196.08"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "18265.77"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "19306.72"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "21616.61"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "19309.40"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "18158.94"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "21320.81"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "19979.00"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "14.36"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "101.9"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "5835"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "190434"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "317.947"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "20130.0"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "19900.6"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "21917.5"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "21909.2"
+    }
+  ],
+  "m5zn.large": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2998"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "15425.29"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "15104.14"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "15041.13"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "15138.97"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "15195.53"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "15280.13"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "15110.24"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "14979.24"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "15213.84"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "15158.01"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "12281.5"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "13579.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "14143.3"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "14147.9"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "303"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "134"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "2109"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "207503"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "646.341"
+    }
+  ],
+  "m5zn.xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "28048.32"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "26447.18"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "21458.45"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "27338.05"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25884.12"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "23788.98"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "26544.16"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "20050.61"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "27573.27"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "24461.83"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "24463.1"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "26882.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "27718.9"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "27750.8"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "411.4"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "97.3"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.3"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "4204"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "409605"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "335.001"
+    }
+  ],
+  "m5zn.2xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2996"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2996"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "27011.98"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25477.48"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "20655.60"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "26253.32"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "24860.09"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "22990.84"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "25494.13"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "19411.64"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "26858.08"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "23650.76"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "47488.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "47902.0"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "50250.7"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "50182.1"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "262.4"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "48.5"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "8406"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "819200"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "175.648"
+    }
+  ],
+  "c5.xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2998"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "26409.61"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "24717.67"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "20851.53"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "26065.85"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "24531.18"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "22716.61"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "24679.94"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "19051.88"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "26271.01"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "23167.63"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "23185.6"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "25512.3"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "26293.6"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "26293.3"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "55.39"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "61.8"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "25.8"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "3171"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "355609"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "431.348"
+    }
+  ],
+  "c5.2xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2998"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25754.97"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "23771.78"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "20390.81"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25923.67"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "24031.19"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "22347.65"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "24265.84"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "18865.35"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "26135.96"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "23165.36"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "45967.5"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "47159.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "49238.1"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "49226.8"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "263"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "100.1"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.6"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "6338"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "710895"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "221.715"
+    }
+  ],
+  "c5a.xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2998"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2996"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "33539.53"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "30849.41"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "31057.68"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "33585.92"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "32269.12"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "33525.61"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "30786.53"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "30692.79"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "33433.17"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "32109.67"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "44119.6"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "32229.1"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "34287.0"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "34247.2"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "990"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "943"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "2770"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "197486"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "407.267"
+    }
+  ],
+  "c5a.2xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2995"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2998"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "33073.40"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "30492.75"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "30886.80"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "33853.48"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "32511.96"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "33687.14"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "31049.50"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "31054.91"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "33774.97"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "32369.73"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "44830.5"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "31892.5"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "33821.7"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "33823.7"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "914"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "708"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "5579"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "395425"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "207.309"
+    }
+  ],
+  "r5.large": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2996"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "13917.94"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "13461.60"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "13334.45"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "13558.15"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "13563.50"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "13681.13"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "13472.00"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "13289.41"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "13635.68"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "13550.92"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "374.2"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "85.4"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "32.9"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "1473"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "149696"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "898.385"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "11738.8"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "13165.2"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "13844.5"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "13840.1"
+    }
+  ],
+  "r5.xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2996"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2996"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25435.29"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "24059.61"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "19725.66"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "24849.28"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "23264.16"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "21192.20"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "23692.40"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "18143.79"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "25075.48"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "21866.35"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "253.7"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "65.0"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "22.1"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "2860"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "289154"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "480.027"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "22307.0"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "27415.9"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "28411.1"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "28417.6"
+    }
+  ],
+  "r5.2xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "27313.79"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25666.43"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "21221.41"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "26214.97"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25021.18"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "23040.51"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "25554.21"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "19613.12"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "26570.57"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "23828.31"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "906"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "285.6"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "22.1"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "5800"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "584331"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "236.962"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "43310.9"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "49005.6"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "50830.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "51256.2"
+    }
+  ],
+  "r5a.large": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2995"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2995"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "18468.47"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "16705.46"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "14965.46"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "15760.31"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "16472.08"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "18502.04"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "16697.04"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "15201.86"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "17754.78"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "17024.39"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "81.9"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "116.7"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.4"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "1459"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "47674"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "1170.391"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "15696.7"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "15888.1"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "16364.2"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "16587.2"
+    }
+  ],
+  "r5a.xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2996"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2996"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "16252.88"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "14540.40"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "13888.13"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "14926.83"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "14771.85"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "16197.93"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "14388.56"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "14426.09"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "16994.80"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "16067.09"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "242"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "135"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "2853"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "95300"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "643.281"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "16774.2"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "15937.9"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "17498.3"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "17812.6"
+    }
+  ],
+  "r5a.2xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "20123.11"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "17928.97"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "17343.43"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "18051.18"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "18432.12"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "20258.09"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "18184.35"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "17289.43"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "19961.70"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "18952.13"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "114.1"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "135"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "5728"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "188741"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "314.863"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "14888.6"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "14801.3"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "15938.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "15879.5"
+    }
+  ],
+  "d3.xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2998"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2998"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "27653.42"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25884.66"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "21919.96"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "27093.73"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25593.77"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "23709.84"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "25930.29"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "20251.24"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "27442.96"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "24313.83"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "35.94"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "64.0"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "24.6"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "2977"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "338005"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "446.975"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "22237.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "28169.6"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "28967.7"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "29115.2"
+    }
+  ],
+  "d3.2xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2995"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "27996.12"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "26790.56"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "22333.48"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "27455.36"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "26151.85"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "23847.26"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "26683.98"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "20588.70"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "27963.03"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "24739.27"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "222"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "1012"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "32.2"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "5954"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "656111"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "233.801"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "42692.1"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "52029.8"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "53826.9"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "53967.9"
+    }
+  ],
+  "i3.large": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.2"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "3056"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.2"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "3057"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "56.1"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "24"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "56.1"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "24"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "10098.50"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "9562.88"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "9318.31"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "10069.20"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "9759.68"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "10038.55"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "9568.83"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "9272.46"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "9929.48"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "9716.78"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "658"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "134"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "1188"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "75144"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "1215.417"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "18758.1"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "9643.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "10218.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "10254.9"
+    }
+  ],
+  "i3.xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.2"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "3056"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.1"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "3057"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "107"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "50"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "107"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "50"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "14079.20"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "12261.92"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "12586.15"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "13777.46"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "13178.86"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "13842.37"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "12287.61"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "12576.42"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "14152.24"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "13224.75"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "60.8"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "135"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "2370"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "150054"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "639.218"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "17010.0"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "17769.2"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "19098.7"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "19105.2"
+    }
+  ],
+  "i3.2xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.2"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "3056"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "3056"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "133"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "63"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "133"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "63"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "19475.92"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "16632.84"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "17242.59"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "18943.39"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "17985.56"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "19046.36"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "16721.44"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "17251.73"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "19037.60"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "17997.27"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1096"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "1093"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "4744"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "299708"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "309.599"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "31720.7"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "29864.0"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "33168.6"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "32839.5"
+    }
+  ],
+  "z1d.large": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2996"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "14766.40"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "14419.22"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "14283.72"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "14483.68"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "14503.38"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "14590.55"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "14365.98"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "14286.29"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "14554.02"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "14467.17"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "12052.9"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "13533.4"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "14035.1"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "13973.6"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "242.6"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "64.2"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "32.5"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "1873"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "195793"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "719.485"
+    }
+  ],
+  "z1d.xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2996"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "27031.91"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25396.48"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "20891.77"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "26555.96"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25002.44"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "23061.27"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "25484.68"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "19356.77"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "26755.51"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "23731.10"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "23750.1"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "25934.8"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "26765.8"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "26747.0"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "18.83"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "93.5"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.7"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "3743"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "390314"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "365.273"
+    }
+  ],
+  "z1d.2xlarge": [
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Read - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2996"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "MB/s",
+      "result": "11.7"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Random Write - Block Size: 4KB",
+      "units": "IOPS",
+      "result": "2997"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Read - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "MB/s",
+      "result": "131"
+    },
+    {
+      "test": "fio",
+      "arguments": "Type: Sequential Write - Block Size: 2MB",
+      "units": "IOPS",
+      "result": "62"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "27774.32"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25934.22"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "21136.66"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "27056.73"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Integer",
+      "units": "MB/s",
+      "result": "25520.10"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Add - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "23504.03"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Copy - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "26186.08"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Scale - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "19646.87"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Triad - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "27363.88"
+    },
+    {
+      "test": "ramspeed",
+      "arguments": "Type: Average - Benchmark: Floating Point",
+      "units": "MB/s",
+      "result": "24005.61"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Copy",
+      "units": "MB/s",
+      "result": "46604.9"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Scale",
+      "units": "MB/s",
+      "result": "47315.6"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Triad",
+      "units": "MB/s",
+      "result": "49840.1"
+    },
+    {
+      "test": "stream",
+      "arguments": "Type: Add",
+      "units": "MB/s",
+      "result": "49786.6"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "930"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 1",
+      "units": "Mbits/sec",
+      "result": "1.05"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: TCP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "485.9"
+    },
+    {
+      "test": "iperf",
+      "arguments": "Test: UDP - Parallel: 32",
+      "units": "Mbits/sec",
+      "result": "33.3"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: Blowfish",
+      "units": "Real C/S",
+      "result": "7489"
+    },
+    {
+      "test": "john-the-ripper",
+      "arguments": "Test: MD5",
+      "units": "Real C/S",
+      "result": "780629"
+    },
+    {
+      "test": "build-linux-kernel",
+      "arguments": "Time To Compile",
+      "units": "Seconds",
+      "result": "194.167"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+strict digraph "" {
+	get_software_versions -> MultiQC;
+	BuildDict -> BaseRecalibrator;
+	BuildDict -> GatherBQSRReports;
+	BuildDict -> ApplyBQSR;
+	BuildDict -> MultiQC;
+	BaseRecalibrator -> GatherBQSRReports;
+	BaseRecalibrator -> ApplyBQSR;
+	BaseRecalibrator -> MultiQC;
+	FastQCFQ -> MultiQC;
+	MarkDuplicates -> MultiQC;
+	GatherBQSRReports -> ApplyBQSR;
+	GatherBQSRReports -> MultiQC;
+	BamQC -> MultiQC;
+}

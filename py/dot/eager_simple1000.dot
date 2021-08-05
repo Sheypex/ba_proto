@@ -1,0 +1,12 @@
+strict digraph "" {
+	makeSeqDict -> multiqc;
+	fastqc -> multiqc;
+	fastqc_after_clipping -> multiqc;
+	markduplicates -> damageprofiler;
+	markduplicates -> qualimap;
+	markduplicates -> multiqc;
+	damageprofiler -> multiqc;
+	qualimap -> multiqc;
+	output_documentation;
+	get_software_versions -> multiqc;
+}

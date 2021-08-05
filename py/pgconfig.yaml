@@ -1,0 +1,18 @@
+pg_db_tables:
+- nodeBenchmarkRankingAgg
+- initialRuntimes
+- nodeBenchmarks
+- fixingTmp
+- nodeBenchmarkRankings
+- nodeConfigs
+- taskRuntimes
+- help
+- taskRuntimeAverages
+- initialRuntimeAverages
+- nodeBenchmarkTransposedRankings
+postgres_credentials:
+  dbname: ba
+  host: localhost
+  password: anon
+  port: 5432
+  user: anon
