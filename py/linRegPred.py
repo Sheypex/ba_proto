@@ -111,7 +111,7 @@ def main():
             raise Exception(f"Couldn't open csv file {cliArgs.csvPath!r} or {(cliArgs.csvPath + '.csv')!r}")
     else:
         with db_actions.connect() as conn:
-            dF = pds.read_sql("SELECT * FROM \"averageRuntimesPredictionBase\" WHERE realtime > 1000", conn)
+            dF = pds.read_sql("SELECT * FROM \"averageRuntimesPredictionBase1000\"", conn)
     # print(dF)
     # X = dF[
     #     ["nodeConfig",

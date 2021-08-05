@@ -130,7 +130,7 @@ def main():
         runningTasks: List[Process] = list()
         availableInstances: List[int] = instances
         # schedule = []  # prob unnecessary
-        #  
+        #
         workflowGraph: NX.DiGraph = NX.drawing.nx_agraph.read_dot(f"dot/{wfShortName}_simple1000.dot")
         nodeToProcess = {n: Process(n) for n in workflowGraph.nodes()}
         processes = list(nodeToProcess.values())

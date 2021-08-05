@@ -11,3 +11,4 @@ inv.aws_ec2.yaml
 *.org*
 *.old*
 *.log
+*.dot.svg

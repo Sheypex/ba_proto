@@ -12,7 +12,7 @@ def main():
     wfNames = ['chipseq', 'eager', 'methylseq', 'sarek', 'viralrecon']
     with db_actions.connect() as conn:
         dF = pds.read_sql(
-            "select distinct \"taskName\", \"wfName\" from \"taskRuntimeAverages\" where realtime > 1000",
+            "select distinct \"taskName\", \"wfName\" from \"averageRuntimesPredictionBase1000\"",
             conn)
     for wfName in wfNames:
         wfTasks = dF[dF.wfName.str.contains(wfName)]
@@ -39,7 +39,7 @@ def main():
                 edges.append((b, a))
         expo.add_nodes_from(dep.keys())
         expo.add_edges_from(edges)
-        NX.drawing.nx_agraph.write_dot(expo, f"dot/{wfName}_simple1000.dot")
+        NX.drawing.nx_agraph.write_dot(expo, f"dot/{wfName}_1k.dot")
 
 
 if __name__ == "__main__":

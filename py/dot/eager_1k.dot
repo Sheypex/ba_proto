@@ -7,6 +7,5 @@ strict digraph "" {
 	markduplicates -> multiqc;
 	damageprofiler -> multiqc;
 	qualimap -> multiqc;
-	output_documentation;
 	get_software_versions -> multiqc;
 }
