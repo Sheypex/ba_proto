@@ -1,0 +1,124 @@
+---
+- name: apt update; - upgrade
+  gather_facts: true
+  hosts: all
+  become: true
+  strategy: free
+  tasks:
+    - name: update, upgrade
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: Update all packages to their latest version
+      apt:
+        name: "*"
+        state: latest
+
+    - name: Remove useless packages from the cache
+      apt:
+        autoclean: yes
+
+    - name: Remove dependencies that are no longer required
+      apt:
+        autoremove: yes
+
+- name: setup phoronix
+  hosts: benchmark
+  gather_facts: false
+  become: true
+  strategy: free
+  tasks:
+    - name: install phoronix
+      block:
+        - name: install phoronix
+          block:
+            - name: get xz-utils
+              apt:
+                name: xz-utils
+                state: present
+
+            - name: install phoronix.deb
+              apt:
+                deb: http://phoronix-test-suite.com/releases/repo/pts.debian/files/phoronix-test-suite_10.4.0_all.deb
+
+    - name: install phoronix' dependencies and expect
+      block:
+        - name: install expect
+          apt:
+            name: expect
+            state: present
+
+        - name: php and -addons
+          apt:
+            pkg:
+              - php-cli
+              - php-xml
+              - php-zip
+
+# unnecessary to accept ToS since Pho-T-S will not ask root user to accept them
+# this means all tests should be run as root -> become: true
+# - name: misc.
+#   gather_facts: false
+#   hosts: all
+#   become: true
+#   tasks:
+#     - name: accept phoronix ToS
+#       register: out
+#       shell: |
+#         set timeout -1
+#         spawn phoronix-test-suite help
+
+#         expect 'User Agreement'
+#         expect 'proceed (y/n):'
+#         send 'y\r'
+#         send 'n\r'
+#         expect eof
+#         exit 0
+#       args:
+#         executable: /usr/bin/expect
+#     - debug: var=out.stdout_lines
+
+- name: setup iperf server
+  gather_facts: false
+  hosts: iperfserver
+  become: true
+  strategy: free
+  tasks:
+    - name: check for flag setup complete
+      stat:
+        path: ~/setupComplete
+      register: iperfSetupComplete
+
+    - name: install iperf3
+      apt:
+        name: iperf3
+        state: present
+
+    - name: adduser
+      shell: adduser iperf --disabled-login --gecos iperf
+      when: not iperfSetupComplete.stat.exists
+
+    - name: setup server service
+      shell: |
+        echo "[Unit]\\nDescription=iperf3 server on port %i\\nAfter=syslog.target network.target\\n\\n[Service]\\nExecStart=/usr/bin/iperf3 -s -1 -p %i\\nRestart=always\\nRuntimeMaxSec=3600\\nUser=iperf\\n\\n[Install]\\nWantedBy=multi-user.target\\nDefaultInstance=5201" > /etc/systemd/system/iperf3-server@.service
+      when: not iperfSetupComplete.stat.exists
+
+    - name: daemon reload
+      shell: systemctl daemon-reload
+      when: not iperfSetupComplete.stat.exists
+
+    - name: launch server
+      shell: for p in $(seq 9200 9240); do systemctl enable iperf3-server@$p ; done
+      when: not iperfSetupComplete.stat.exists
+
+    - name: reboot
+      reboot:
+        post_reboot_delay: 5
+        reboot_timeout: 600
+      when: not iperfSetupComplete.stat.exists
+
+    - name: flag setup complete
+      file:
+        path: ~/setupComplete
+        state: touch

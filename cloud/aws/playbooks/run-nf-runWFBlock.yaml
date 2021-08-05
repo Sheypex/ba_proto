@@ -1,0 +1,19 @@
+---
+- name: Run number
+  debug:
+    msg: "Test run #{{ item }} started at {{ lookup('pipe', 'date +%H:%M:%S') }}"
+
+- name: chipseq (subsequent/test runs)
+  shell: "nf-fork run nf-core/chipseq -profile test,docker --nodeConfigId {{ nodeConfigIdLookup[inventory_hostname] }} --dbTableName taskRuntimes --psqlIp {{hostvars['psql']['private_ip_address']}}"
+
+- name: eager (subsequent/test runs)
+  shell: "nf-fork run nf-core/eager -profile test_tsv,docker --nodeConfigId {{ nodeConfigIdLookup[inventory_hostname] }} --dbTableName taskRuntimes --psqlIp {{hostvars['psql']['private_ip_address']}}"
+
+- name: methylseq (subsequent/test runs)
+  shell: "nf-fork run nf-core/methylseq -profile test,docker --nodeConfigId {{ nodeConfigIdLookup[inventory_hostname] }} --dbTableName taskRuntimes --psqlIp {{hostvars['psql']['private_ip_address']}}"
+
+- name: sarek (subsequent/test runs)
+  shell: "nf-fork run nf-core/sarek -profile test,docker --nodeConfigId {{ nodeConfigIdLookup[inventory_hostname] }} --dbTableName taskRuntimes --psqlIp {{hostvars['psql']['private_ip_address']}}"
+
+- name: viralrecon (subsequent/test runs)
+  shell: "nf-fork run nf-core/viralrecon -profile test,docker --nodeConfigId {{ nodeConfigIdLookup[inventory_hostname] }} --dbTableName taskRuntimes --psqlIp {{hostvars['psql']['private_ip_address']}}"

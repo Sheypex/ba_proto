@@ -1,0 +1,173 @@
+---
+- name: apt update; - upgrade, install expect
+  gather_facts: true
+  hosts: all
+  become: true
+  tasks:
+    - name: apt
+      block:
+        - name: update, upgrade
+          apt:
+            upgrade: yes
+            update_cache: yes
+
+        - name: Update all packages to their latest version
+          apt:
+            name: "*"
+            state: latest
+
+        - name: Remove useless packages from the cache
+          apt:
+            autoclean: yes
+
+        - name: Remove dependencies that are no longer required
+          apt:
+            autoremove: yes
+
+    - name: expect
+      block:
+        - name: install expect
+          apt:
+            name: expect
+            state: present
+
+- name: setup nf
+  hosts: benchmark
+  gather_facts: false
+  become: true
+  strategy: free
+  tasks:
+    - name: install nf
+      block:
+        - name: get java
+          apt:
+            name: default-jre
+            state: present
+
+        - name: get docker
+          apt:
+            name: docker.io
+            state: present
+
+        - name: install nf (copy nf-fork from local master)
+          copy:
+            dest: /usr/bin/nf-fork
+            src: nf-fork
+            mode: preserve # aka make executable
+
+# psql install
+# pg_hba.conf ändern
+# /etc/init.d/postgresql reload
+# sudo -u postgres
+# createuser anon -a -D -P (pw: anon)
+# su root
+# psql anon -d postgres (pw: anon)
+# create database ba; grant all privileges on database ba to anon;
+# <create table(s) -- s.o.>
+
+- name: setup psql server
+  gather_facts: false
+  hosts: psqlserver
+  become: true
+  tasks:
+    - name: get postgres
+      apt:
+        name: postgresql
+        state: present
+
+    - name: fix pg_hba.conf
+      copy:
+        src: pg_hba.conf
+        dest: /etc/postgresql/12/main/pg_hba.conf
+
+    - name: fix postgresql.conf
+      copy:
+        src: postgresql.conf
+        dest: /etc/postgresql/12/main/postgresql.conf
+
+    - name: /etc/init.d/postgresql reload
+      shell: /etc/init.d/postgresql reload
+
+    - name: systemctl restart postgresql
+      shell: systemctl restart postgresql
+
+    - name: createuser anon
+      shell: |
+        set timeout -1
+        spawn sudo -u postgres createuser anon -s -e -P
+        match_max 100000
+        expect "Enter password for new role: "
+        send -- "anon\r"
+        expect "Enter it again: "
+        send -- "anon\r"
+        expect eof
+      args:
+        executable: /usr/bin/expect
+
+    - name: make DB
+      shell: |
+        set timeout -1
+        spawn psql -U anon -d postgres -c "create database ba;"
+        match_max 100000
+        expect -exact "Password for user anon: "
+        send -- "anon\r"
+        expect eof
+      args:
+        executable: /usr/bin/expect
+
+    - name: DB privileges
+      shell: |
+        set timeout -1
+        spawn psql -U anon -d postgres -c "grant all privileges on database ba to anon;"
+        match_max 100000
+        expect -exact "Password for user anon: "
+        send -- "anon\r"
+        expect eof
+      args:
+        executable: /usr/bin/expect
+
+    - name: create DB tables
+      block:
+        - name: initialRuntimes (create DB tables)
+          shell: |
+            set timeout -1
+            spawn psql -U anon -d ba -c {create table "initialRuntimes" ("nodeConfig" integer, "taskName" text, "pCpu" real, cpus integer, rss bigint, vmem bigint, rchar bigint, wchar bigint, syscr bigint, syscw bigint, realtime bigint, "runName" text, "wfName" text);}
+            match_max 100000
+            expect -exact "Password for user anon: "
+            send -- "anon\r"
+            expect eof
+          args:
+            executable: /usr/bin/expect
+
+        - name: ownership (create DB tables)
+          shell: |
+            set timeout -1
+            spawn psql -U anon -d ba -c "alter table "initialRuntimes" owner to anon;"
+            match_max 100000
+            expect -exact "Password for user anon: "
+            send -- "anon\r"
+            expect eof
+          args:
+            executable: /usr/bin/expect
+
+        - name: taskRuntimes (create DB tables)
+          shell: |
+            set timeout -1
+            spawn psql -U anon -d ba -c {create table "taskRuntimes" ("nodeConfig" integer, "taskName" text, "pCpu" real, cpus integer, rss bigint, vmem bigint, rchar bigint, wchar bigint, syscr bigint, syscw bigint, realtime bigint, "runName" text, "wfName" text);}
+            match_max 100000
+            expect -exact "Password for user anon: "
+            send -- "anon\r"
+            expect eof
+          args:
+            executable: /usr/bin/expect
+
+        - name: ownership (create DB tables)
+          shell: |
+            set timeout -1
+            spawn psql -U anon -d ba -c "alter table "taskRuntimes" owner to anon;"
+            match_max 100000
+            expect -exact "Password for user anon: "
+            send -- "anon\r"
+            expect eof
+          args:
+            executable: /usr/bin/expect

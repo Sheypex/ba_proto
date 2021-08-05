@@ -1,0 +1,104 @@
+---
+# WFs:
+# chipseq
+# eager
+# methylseq
+# sarek
+# viralrecon
+
+# watch -n 1 -d "psql -d ba -c 'select \"nodeConfig\", count(*) as done, cast(100.0 * count(*) / 2230.0 as decimal(7,2)) as percentdone from \"taskRuntimes\" group by \"nodeConfig\" order by done desc;'"
+
+- name: run WFs
+  gather_facts: true
+  hosts: benchmark
+  become: true
+  vars_files: [nodeConfigIdLookup.yaml]
+  tasks:
+    - name: run WFs (initial runs)
+      block:
+        - name: Timestamp
+          debug:
+            msg: "Initial runs started at {{ lookup('pipe', 'date +%H:%M:%S') }}"
+
+        - name: chipseq (initial runs)
+          shell: "nf-fork run nf-core/chipseq -profile test,docker --nodeConfigId {{ nodeConfigIdLookup[inventory_hostname] }} --dbTableName initialRuntimes --psqlIp {{hostvars['psql']['private_ip_address']}}"
+
+        - name: eager (initial runs)
+          shell: "nf-fork run nf-core/eager -profile test_tsv,docker --nodeConfigId {{ nodeConfigIdLookup[inventory_hostname] }} --dbTableName initialRuntimes --psqlIp {{hostvars['psql']['private_ip_address']}}"
+
+        - name: methylseq (initial runs)
+          shell: "nf-fork run nf-core/methylseq -profile test,docker --nodeConfigId {{ nodeConfigIdLookup[inventory_hostname] }} --dbTableName initialRuntimes --psqlIp {{hostvars['psql']['private_ip_address']}}"
+
+        - name: sarek (initial runs)
+          shell: "nf-fork run nf-core/sarek -profile test,docker --nodeConfigId {{ nodeConfigIdLookup[inventory_hostname] }} --dbTableName initialRuntimes --psqlIp {{hostvars['psql']['private_ip_address']}}"
+
+        - name: viralrecon (initial runs)
+          shell: "nf-fork run nf-core/viralrecon -profile test,docker --nodeConfigId {{ nodeConfigIdLookup[inventory_hostname] }} --dbTableName initialRuntimes --psqlIp {{hostvars['psql']['private_ip_address']}}"
+
+    - name: run WFs (subsequent/test runs)
+      include_tasks: run-nf-runWFBlock.yaml
+      loop:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+
+    - name: Timestamp
+      debug:
+        msg: "Test runs done at {{ lookup('pipe', 'date +%H:%M:%S') }}"
+
+- name: get results
+  gather_facts: true
+  hosts: psqlserver
+  become: true
+  tasks:
+    - name: download results
+      block:
+        - name: list inventory_hostnames to var
+          set_fact:
+            inv: "{{ inv }} + ['{{ item }}']"
+          with_inventory_hostnames:
+            - benchmark
+          vars:
+            inv: []
+
+        - name: join inventory_hostnames
+          set_fact:
+            inv: "{{ inv | join('-') }}"
+
+        - name: dump DBs (initialRuntimes)
+          shell: |
+            set timeout -1
+            spawn pg_dump -a -f {{ 'initialRuntimes-' + inv + '-.dump' }} -Fc -d ba -U anon -t {"initialRuntimes"}
+            match_max 100000
+            expect "Password"
+            send -- "anon\r"
+            expect eof
+          args:
+            executable: /usr/bin/expect
+            chdir: /root
+
+        - name: dump DBs (taskRuntimes)
+          shell: |
+            set timeout -1
+            spawn pg_dump -a -f {{ 'taskRuntimes-' + inv + '-.dump' }} -Fc -d ba -U anon -t {"taskRuntimes"}
+            match_max 100000
+            expect "Password"
+            send -- "anon\r"
+            expect eof
+          args:
+            executable: /usr/bin/expect
+            chdir: /root
+
+        - name: download dumps (initialRuntimes)
+          fetch:
+            src: "/root/{{ 'initialRuntimes-' + inv + '-.dump' }}"
+            dest: "../dumps/{{ 'initialRuntimes-' + inv + '-.dump' }}"
+            flat: yes
+
+        - name: download dumps (taskRuntimes)
+          fetch:
+            src: "/root/{{ 'taskRuntimes-' + inv + '-.dump' }}"
+            dest: "../dumps/{{ 'taskRuntimes-' + inv + '-.dump' }}"
+            flat: yes
