@@ -1,0 +1,26 @@
+locals {
+  iperf = {
+    arch          = "amd"
+    instance_type = "t2.micro"
+  }
+}
+
+resource "aws_instance" "iperf" {
+  ami           = local.iperf.arch == "arm" ? data.aws_ami.ubuntu_arm.id : data.aws_ami.ubuntu_x86.id
+  instance_type = local.iperf.instance_type
+
+  subnet_id       = aws_subnet.dflt.id
+  vpc_security_group_ids = [aws_security_group.ssh-in.id, aws_security_group.all-egress.id, aws_security_group.all-internal-ingress.id]
+  
+  root_block_device {
+    volume_size = 10
+    volume_type = "gp3"
+  }
+
+  key_name = aws_key_pair.dflt.id
+  tags = {
+    "name"    = "iperf"
+    "iperf"   = true
+    "testing" = false
+  }
+}

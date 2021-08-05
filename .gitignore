@@ -1,0 +1,13 @@
+.idea/
+__pycache__/
+.*~
+.terraform/
+.terraform*
+terraform.tfstate*
+id_rsa*
+inv.aws_ec2.yaml
+*.backup*
+*.bck*
+*.org*
+*.old*
+*.log
