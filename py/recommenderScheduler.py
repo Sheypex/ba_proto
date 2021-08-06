@@ -80,7 +80,7 @@ def main():
         wfNames = list(pds.read_sql("select distinct \"wfName\" from \"averageRuntimesPredictionBase\"",
                                     conn).wfName.values)  # ['nfcore/chipseq:1.2.2', 'nfcore/eager:2.3.5', 'nfcore/methylseq:1.6.1', 'nfcore/sarek:2.7.1', 'nfcore/viralrecon:2.1']
         predBase = pds.read_sql(
-            "SELECT * FROM \"averageRuntimesPredictionBase\" WHERE realtime > 1000",
+            "SELECT * FROM \"averageRuntimesPredictionBase1000\"",
             conn)
         taskRuntimes = pds.read_sql(
             "SELECT * FROM \"taskRuntimeAverages\" WHERE realtime > 1000",
