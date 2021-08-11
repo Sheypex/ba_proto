@@ -5,7 +5,7 @@ import re
 from collections import namedtuple
 from dataclasses import dataclass
 from typing import List
-
+from multiprocessing import Pool
 import networkx as NX
 from db_actions import db_actions
 import pandas as pds
@@ -28,6 +28,7 @@ import sys
 from db_actions import db_actions
 import numpy as np
 from my_yaml import yaml_load, yaml_dump
+from alive_progress import alive_bar
 
 
 class Process:
@@ -103,7 +104,7 @@ def recommenderSchedulerV1(workflowGraph: NX.DiGraph, instances: List[int], rank
                 if len(availableInstances) > 0:
                     runningTasks.append(p)
                     predictedRanks = {}
-                    for inst in availableInstances:
+                    for inst in list(set(availableInstances)):
                         predictedRanks[inst] = rankLookup.at[inst, p.name]
                     bestInst: int = [n for n, r in predictedRanks.items() if
                                      r == min([pr for pr in predictedRanks.values()])][
@@ -154,7 +155,7 @@ def recommenderSchedulerV1H1(workflowGraph: NX.DiGraph, instances: List[int], ra
                 if len(availableInstances) > 0:
                     runningTasks.append(p)
                     predictedRanks = {}
-                    for inst in availableInstances:
+                    for inst in list(set(availableInstances)):
                         predictedRanks[inst] = rankLookup.at[inst, p.name]
                     bestInst: int = [n for n, r in predictedRanks.items() if
                                      r == min([pr for pr in predictedRanks.values()])][
@@ -205,7 +206,7 @@ def recommenderSchedulerV1H2(workflowGraph: NX.DiGraph, instances: List[int], ra
                 if len(availableInstances) > 0:
                     runningTasks.append(p)
                     predictedRanks = {}
-                    for inst in availableInstances:
+                    for inst in list(set(availableInstances)):
                         predictedRanks[inst] = rankLookup.at[inst, p.name]
                     bestInst: int = [n for n, r in predictedRanks.items() if
                                      r == min([pr for pr in predictedRanks.values()])][
@@ -259,15 +260,14 @@ def recommenderSchedulerV1H3(workflowGraph: NX.DiGraph, instances: List[int], ra
         ready: List[int] = [r for r in ready if
                             r not in [p.name for p in runningTasks]]  # all ready tasks that aren't running yet
         if len(ready) > 0 and len(availableInstances) > 0:
-            ready.sort(
-                key=tmpSort)
+            ready.sort(key=tmpSort)  # H3
             readyProcs: List[Process] = [nodeToProcess[r] for r in ready]
             for p in readyProcs:
                 # find best instance
                 if len(availableInstances) > 0:
                     runningTasks.append(p)
                     predictedRanks = {}
-                    for inst in availableInstances:
+                    for inst in list(set(availableInstances)):
                         predictedRanks[inst] = rankLookup.at[inst, p.name]
                     bestInst: int = [n for n, r in predictedRanks.items() if
                                      r == min([pr for pr in predictedRanks.values()])][
@@ -354,6 +354,187 @@ def recommenderSchedulerV2(workflowGraph: NX.DiGraph, instances: List[int], rank
     return time, trace
 
 
+def recommenderSchedulerV2H1(workflowGraph: NX.DiGraph, instances: List[int], rankLookup, realtimeLookup):
+    # Version #2: check all ready tasks for instance rankings before dispatching to get lowest sum of rankings on concurrent tasks
+    # Heuristic #1: prioritize ready tasks with many direct descendants
+    time: float = 0.0
+    runningTasks: List[Process] = list()
+    availableInstances: List[int] = instances
+    trace: List[List[Process]] = list()
+    #
+    nodeToProcess = {n: Process(n) for n in workflowGraph.nodes()}
+    processes = list(nodeToProcess.values())
+    # schedule = []
+    while len(list(workflowGraph.nodes())) > 0:
+        ready: List[int] = [t[0] for t in list(workflowGraph.in_degree()) if
+                            t[1] == 0]  # all tasks that are ready to run
+        ready: List[int] = [r for r in ready if
+                            r not in [p.name for p in runningTasks]]  # all ready tasks that aren't running yet
+        if len(ready) > 0 and len(availableInstances) > 0:
+            ready.sort(key=lambda x: -workflowGraph.out_degree(x))  # H1
+            readyProcs: List[Process] = [nodeToProcess[r] for r in ready]
+            procComb = [readyProcs[0:min([len(availableInstances), len(readyProcs)])]]
+            instComb = itertools.combinations(availableInstances, min([len(availableInstances), len(readyProcs)]))
+            mappings = list(itertools.product(list(procComb), list(instComb)))
+            mappings = [list(zip(m[0], m[1])) for m in mappings]
+            for i, m in enumerate(mappings):
+                r = []
+                for j, x in enumerate(m):
+                    p, inst = x
+                    r.append((p, inst, rankLookup.at[inst, p.name]))
+                mappings[i] = tuple(r)
+            for i, m in enumerate(mappings):
+                s = sum([x[2] for x in m])
+                mappings[i] = (m, s)
+            mappings.sort(key=lambda x: x[1])
+            bestMapping = mappings[0]
+            for y in bestMapping[0]:
+                p, inst, _ = y
+                # find corresponding duration on that best instance
+                taskDurOnBestInst = realtimeLookup.at[inst, p.name]
+                # make instance unavailable
+                availableInstances.remove(inst)
+                # start process with correct duration
+                p.startProcess(time, dur=taskDurOnBestInst, runningOnInst=inst)
+                runningTasks.append(p)
+        else:
+            earliest = min([p.end for p in runningTasks])
+            finishedProcs = [a for a in runningTasks if a.end == earliest]
+            time = earliest
+            for p in finishedProcs:
+                runningTasks.remove(p)
+                availableInstances.append(p.runningOnInst)  # make instance the task ran on available again
+                workflowGraph.remove_node(p.name)
+        trace.append(runningTasks.copy())
+    trace = [t for t in trace if
+             len(t) > 0]  # strip empty runningTasks | happens whenever in one step all running tasks end and only in the next step some new task(s) are scheduled to run
+    return time, trace
+
+
+def recommenderSchedulerV2H2(workflowGraph: NX.DiGraph, instances: List[int], rankLookup, realtimeLookup):
+    # Version #2: check all ready tasks for instance rankings before dispatching to get lowest sum of rankings on concurrent tasks
+    # Heuristic #2: prioritize ready tasks with many total descendants
+    time: float = 0.0
+    runningTasks: List[Process] = list()
+    availableInstances: List[int] = instances
+    trace: List[List[Process]] = list()
+    #
+    nodeToProcess = {n: Process(n) for n in workflowGraph.nodes()}
+    processes = list(nodeToProcess.values())
+    # schedule = []
+    while len(list(workflowGraph.nodes())) > 0:
+        ready: List[int] = [t[0] for t in list(workflowGraph.in_degree()) if
+                            t[1] == 0]  # all tasks that are ready to run
+        ready: List[int] = [r for r in ready if
+                            r not in [p.name for p in runningTasks]]  # all ready tasks that aren't running yet
+        if len(ready) > 0 and len(availableInstances) > 0:
+            ready.sort(key=lambda x: -(len(NX.algorithms.dag.descendants(workflowGraph, x))))  # H2
+            readyProcs: List[Process] = [nodeToProcess[r] for r in ready]
+            procComb = [readyProcs[0:min([len(availableInstances), len(readyProcs)])]]
+            instComb = itertools.combinations(availableInstances, min([len(availableInstances), len(readyProcs)]))
+            mappings = list(itertools.product(list(procComb), list(instComb)))
+            mappings = [list(zip(m[0], m[1])) for m in mappings]
+            for i, m in enumerate(mappings):
+                r = []
+                for j, x in enumerate(m):
+                    p, inst = x
+                    r.append((p, inst, rankLookup.at[inst, p.name]))
+                mappings[i] = tuple(r)
+            for i, m in enumerate(mappings):
+                s = sum([x[2] for x in m])
+                mappings[i] = (m, s)
+            mappings.sort(key=lambda x: x[1])
+            bestMapping = mappings[0]
+            for y in bestMapping[0]:
+                p, inst, _ = y
+                # find corresponding duration on that best instance
+                taskDurOnBestInst = realtimeLookup.at[inst, p.name]
+                # make instance unavailable
+                availableInstances.remove(inst)
+                # start process with correct duration
+                p.startProcess(time, dur=taskDurOnBestInst, runningOnInst=inst)
+                runningTasks.append(p)
+        else:
+            earliest = min([p.end for p in runningTasks])
+            finishedProcs = [a for a in runningTasks if a.end == earliest]
+            time = earliest
+            for p in finishedProcs:
+                runningTasks.remove(p)
+                availableInstances.append(p.runningOnInst)  # make instance the task ran on available again
+                workflowGraph.remove_node(p.name)
+        trace.append(runningTasks.copy())
+    trace = [t for t in trace if
+             len(t) > 0]  # strip empty runningTasks | happens whenever in one step all running tasks end and only in the next step some new task(s) are scheduled to run
+    return time, trace
+
+
+def recommenderSchedulerV2H3(workflowGraph: NX.DiGraph, instances: List[int], rankLookup, realtimeLookup):
+    # Version #2: check all ready tasks for instance rankings before dispatching to get lowest sum of rankings on concurrent tasks
+    # Heuristic #3: prioritize ready tasks by maximum length of chains of descendants
+    time: float = 0.0
+    runningTasks: List[Process] = list()
+    availableInstances: List[int] = instances
+    trace: List[List[Process]] = list()
+    #
+    nodeToProcess = {n: Process(n) for n in workflowGraph.nodes()}
+    processes = list(nodeToProcess.values())
+    #
+    sinks = [t[0] for t in list(workflowGraph.out_degree()) if
+             t[1] == 0]
+
+    def tmpSort(x):
+        if x not in sinks:
+            return -max([len(a) for a in list(NX.algorithms.all_simple_paths(workflowGraph, x, sinks))])
+        else:
+            return 0
+
+    #
+    while len(list(workflowGraph.nodes())) > 0:
+        ready: List[int] = [t[0] for t in list(workflowGraph.in_degree()) if
+                            t[1] == 0]  # all tasks that are ready to run
+        ready: List[int] = [r for r in ready if
+                            r not in [p.name for p in runningTasks]]  # all ready tasks that aren't running yet
+        if len(ready) > 0 and len(availableInstances) > 0:
+            ready.sort(key=tmpSort)  # H3
+            readyProcs: List[Process] = [nodeToProcess[r] for r in ready]
+            procComb = [readyProcs[0:min([len(availableInstances), len(readyProcs)])]]
+            instComb = itertools.combinations(availableInstances, min([len(availableInstances), len(readyProcs)]))
+            mappings = list(itertools.product(list(procComb), list(instComb)))
+            mappings = [list(zip(m[0], m[1])) for m in mappings]
+            for i, m in enumerate(mappings):
+                r = []
+                for j, x in enumerate(m):
+                    p, inst = x
+                    r.append((p, inst, rankLookup.at[inst, p.name]))
+                mappings[i] = tuple(r)
+            for i, m in enumerate(mappings):
+                s = sum([x[2] for x in m])
+                mappings[i] = (m, s)
+            mappings.sort(key=lambda x: x[1])
+            bestMapping = mappings[0]
+            for y in bestMapping[0]:
+                p, inst, _ = y
+                # find corresponding duration on that best instance
+                taskDurOnBestInst = realtimeLookup.at[inst, p.name]
+                # make instance unavailable
+                availableInstances.remove(inst)
+                # start process with correct duration
+                p.startProcess(time, dur=taskDurOnBestInst, runningOnInst=inst)
+                runningTasks.append(p)
+        else:
+            earliest = min([p.end for p in runningTasks])
+            finishedProcs = [a for a in runningTasks if a.end == earliest]
+            time = earliest
+            for p in finishedProcs:
+                runningTasks.remove(p)
+                availableInstances.append(p.runningOnInst)  # make instance the task ran on available again
+                workflowGraph.remove_node(p.name)
+        trace.append(runningTasks.copy())
+    trace = [t for t in trace if
+             len(t) > 0]  # strip empty runningTasks | happens whenever in one step all running tasks end and only in the next step some new task(s) are scheduled to run
+    return time, trace
+
+
 def randomSchedulerV1(workflowGraph: NX.DiGraph, instances: List[int], realtimeLookup):
     time: float = 0.0
     runningTasks: List[Process] = list()
@@ -402,6 +583,79 @@ def randomSchedulerV1(workflowGraph: NX.DiGraph, instances: List[int], realtimeL
     return time, trace
 
 
+def multipleRandomSchedulerV1Execs(workflowGraph: NX.DiGraph, instances: List[int], realtimeLookup, n=1000):
+    res = []
+    for _ in range(n):
+        res.append(randomSchedulerV1(workflowGraph.copy(), instances.copy(), realtimeLookup))
+    res.sort(key=lambda x: x[0])
+    times = [x[0] for x in res]
+    medianTime = statistics.median(times)
+    medianDiff = [abs(medianTime - x) for x in times]
+    minMedianDiff = min(medianDiff)
+    median = [r for r in res if abs(medianTime - r[0]) == minMedianDiff][0]
+    meanTime = statistics.mean(times)
+    meanDiff = [abs(meanTime - x) for x in times]
+    minMeanDiff = min(meanDiff)
+    mean = [r for r in res if abs(meanTime - r[0]) == minMeanDiff][0]
+
+    Results = namedtuple('Results', ['best', 'mean', 'median', 'worst', 'all'])
+    return Results(res[0],
+                   mean,
+                   median,
+                   res[-1],
+                   res)
+
+
+def scheduleCluster(cluster, predBase, regModel, scale, poly, scale2, wfNames):
+    instances = cluster
+    # filter for instances we have available (probably should rather do this in the sql query(ies) above)
+    # predBase.query("nodeConfig in @instances", inplace=True)
+    #
+    for wfName in wfNames:
+        predBaseFilt = predBase.query(
+            "(nodeConfig in @instances) and (wfName == @wfName)")
+        predBaseFilt = predBaseFilt.reset_index(drop=True)
+        predRankRes = regModel.predict(scale2.transform(poly.transform(scale.transform(
+            predBaseFilt.drop(['wfName', 'taskName', 'nodeConfig', 'realtime', 'rank'], axis=1)))))
+        predRankRes = pds.DataFrame(predRankRes, columns=['rank'])
+        predRankRes = pds.concat([predBaseFilt[['taskName', 'nodeConfig']], predRankRes], axis=1)
+        rankLookup = pds.DataFrame(index=list(set(instances)), columns=predBaseFilt['taskName'].unique())
+        for row in predRankRes.itertuples():
+            rankLookup.at[row.nodeConfig, row.taskName] = row.rank
+        #
+        predRealtime = predBaseFilt[['nodeConfig', 'taskName', 'realtime']]
+        realtimeLookup = pds.DataFrame(index=list(set(instances)), columns=predBaseFilt['taskName'].unique())
+        for row in predRealtime.itertuples():
+            realtimeLookup.at[row.nodeConfig, row.taskName] = row.realtime
+        #
+        wfShortName = re.compile("nfcore/(\w+):.*").match(wfName).group(1)
+        # print(f"{'-=' * 5}{wfShortName:^{len(wfShortName) + 4}}{'=-' * 5}")
+        #
+        workflowGraph: NX.DiGraph = NX.drawing.nx_agraph.read_dot(f"dot/{wfShortName}_1k.dot")
+        #
+        methods = [recommenderSchedulerV1, recommenderSchedulerV1H1, recommenderSchedulerV1H2, recommenderSchedulerV1H3,
+                   recommenderSchedulerV2, recommenderSchedulerV2H1, recommenderSchedulerV2H2, recommenderSchedulerV2H3]
+        #
+        times = {}
+        traces = {}
+        for fun in methods:
+            time, trace = fun(workflowGraph.copy(), instances.copy(), rankLookup, realtimeLookup)
+            times[fun.__name__] = time
+            traces[fun.__name__] = trace
+        randomRes = multipleRandomSchedulerV1Execs(workflowGraph.copy(), instances.copy(), realtimeLookup, 1000)
+        times[randomSchedulerV1.__name__ + " best"] = randomRes.best[0]
+        traces[randomSchedulerV1.__name__ + " best"] = randomRes.best[1]
+        times[randomSchedulerV1.__name__ + " mean"] = randomRes.mean[0]
+        traces[randomSchedulerV1.__name__ + " mean"] = randomRes.mean[1]
+        times[randomSchedulerV1.__name__ + " median"] = randomRes.median[0]
+        traces[randomSchedulerV1.__name__ + " median"] = randomRes.median[1]
+        times[randomSchedulerV1.__name__ + " worst"] = randomRes.worst[0]
+        traces[randomSchedulerV1.__name__ + " worst"] = randomRes.worst[1]
+        # pprint(times)
+        # print(max([max([len(x) for x in t]) for t in traces.values()]))  # find highest amount of concurrently used instances across all WFs and scheduling methods
+        return times, traces
+
+
 def main():
     regModel: linear_model.LinearRegression = pickle.load(open('models/tetModel.Linear.pickle', 'br'))[1]
     with db_actions.connect() as conn:
@@ -421,75 +675,31 @@ def main():
     allInstances = list(range(165, 194))
     allInstances.remove(174)
     allInstances.remove(177)
-    # TODO: get these as CLArgs
-    instances = [191, 176, 187, 193, 166, 172, 171, 192, 181,
-                 175]  # https://www.random.org/integers/?num=10&min=165&max=193&col=10&base=10&format=html&rnd=new
-    # filter for instances we have available (probably should rather do this in the sql query(ies) above)
-    predBase.query("nodeConfig in @instances", inplace=True)
-    #
-    for wfName in wfNames:
-        predBaseFilt = predBase.query(
-            "(nodeConfig in @instances) and (wfName == @wfName)")
-        predBaseFilt = predBaseFilt.reset_index(drop=True)
-        predRankRes = regModel.predict(scale2.transform(poly.transform(scale.transform(
-            predBaseFilt.drop(['wfName', 'taskName', 'nodeConfig', 'realtime', 'rank'], axis=1)))))
-        predRankRes = pds.DataFrame(predRankRes, columns=['rank'])
-        predRankRes = pds.concat([predBaseFilt[['taskName', 'nodeConfig']], predRankRes], axis=1)
-        rankLookup = pds.DataFrame(index=instances, columns=predBaseFilt['taskName'].unique())
-        for row in predRankRes.itertuples():
-            rankLookup.at[row.nodeConfig, row.taskName] = row.rank
-        #
-        predRealtime = predBaseFilt[['nodeConfig', 'taskName', 'realtime']]
-        realtimeLookup = pds.DataFrame(index=instances, columns=predBaseFilt['taskName'].unique())
-        for row in predRealtime.itertuples():
-            realtimeLookup.at[row.nodeConfig, row.taskName] = row.realtime
-        #
-        wfShortName = re.compile("nfcore/(\w+):.*").match(wfName).group(1)
-        print(f"{'-=' * 5}{wfShortName:^{len(wfShortName) + 4}}{'=-' * 5}")
-        #
-        workflowGraph: NX.DiGraph = NX.drawing.nx_agraph.read_dot(f"dot/{wfShortName}_1k.dot")
-        #
-        methods = [recommenderSchedulerV1, recommenderSchedulerV1H1, recommenderSchedulerV1H2, recommenderSchedulerV1H3,
-                   recommenderSchedulerV2]
+    targetNumClusters = 100
+    clusters = []
+    with alive_bar(targetNumClusters, f"Generating {targetNumClusters} different clusters") as bar:
+        while len(clusters) < targetNumClusters:
+            inst = [random.choice(allInstances) for _ in range(random.randint(2, 20))]
+            if inst not in clusters:
+                clusters.append(inst)
+                bar()
+    times = {}
+    with alive_bar(len(clusters), f"Scheduling on {len(clusters)} different clusters") as bar:
+        def makeCallback(cluster_):
+            def cllbck(res):
+                clusterTimes, clusterTraces = res
+                times[tuple(cluster_)] = clusterTimes
+                bar()
 
-        def multipleRandomSchedulerV1Execs(n=1000):
-            res = []
-            for _ in range(n):
-                res.append(randomSchedulerV1(workflowGraph.copy(), instances.copy(), realtimeLookup))
-            res.sort(key=lambda x: x[0])
-            times = [x[0] for x in res]
-            medianTime = statistics.median(times)
-            medianDiff = [abs(medianTime - x) for x in times]
-            minMedianDiff = min(medianDiff)
-            median = [r for r in res if abs(medianTime - r[0]) == minMedianDiff][0]
-            meanTime = statistics.mean(times)
-            meanDiff = [abs(meanTime - x) for x in times]
-            minMeanDiff = min(meanDiff)
-            mean = [r for r in res if abs(meanTime - r[0]) == minMeanDiff][0]
+            return cllbck
 
-            Results = namedtuple('Results', ['best', 'mean', 'median', 'worst'])
-            return Results(res[0],
-                           mean,
-                           median,
-                           res[-1])
-
-        #
-        times = {}
-        traces = {}
-        for fun in methods:
-            time, trace = fun(workflowGraph.copy(), instances.copy(), rankLookup, realtimeLookup)
-            times[fun.__name__] = time
-            traces[fun.__name__] = trace
-        randomRes = multipleRandomSchedulerV1Execs()
-        times[randomSchedulerV1.__name__ + " best"] = randomRes.best[0]
-        traces[randomSchedulerV1.__name__ + " best"] = randomRes.best[1]
-        times[randomSchedulerV1.__name__ + " mean"] = randomRes.mean[0]
-        traces[randomSchedulerV1.__name__ + " mean"] = randomRes.mean[1]
-        times[randomSchedulerV1.__name__ + " median"] = randomRes.median[0]
-        traces[randomSchedulerV1.__name__ + " median"] = randomRes.median[1]
-        times[randomSchedulerV1.__name__ + " worst"] = randomRes.worst[0]
-        traces[randomSchedulerV1.__name__ + " worst"] = randomRes.worst[1]
-        pprint(times)
+        with Pool() as pool:
+            for cluster in clusters:
+                pool.apply_async(scheduleCluster, (cluster, predBase.query("nodeConfig in @cluster"), regModel,
+                                                   scale, poly, scale2, wfNames), callback=makeCallback(cluster))
+            pool.close()
+            pool.join()
+    pprint(times)
 
 
 if __name__ == "__main__":
