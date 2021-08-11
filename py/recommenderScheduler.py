@@ -3,25 +3,20 @@ import pickle
 import pstats
 import re
 from collections import namedtuple
-from dataclasses import dataclass
 from typing import List
 from multiprocessing import Pool
 import networkx as NX
-from db_actions import db_actions
 import pandas as pds
 import matplotlib.pyplot as plt
 import itertools
 import math
 import re
 import statistics
-from functools import reduce
 from pprint import pprint
-from log_symbols import LogSymbols
-from sklearn import linear_model, metrics, preprocessing, model_selection, svm
+from sklearn import linear_model, preprocessing
 from tabulate import tabulate
 from pathlib import Path
 import pickle
-from halo import Halo
 import random
 import argparse
 import sys
@@ -606,7 +601,7 @@ def multipleRandomSchedulerV1Execs(workflowGraph: NX.DiGraph, instances: List[in
                    res)
 
 
-def scheduleCluster(cluster, predBase, regModel, scale, poly, scale2, wfNames):
+def scheduleCluster(cluster, predBase, regModel, scale, poly, scale2, wfNames, numRandomExecs=1000):
     instances = cluster
     # filter for instances we have available (probably should rather do this in the sql query(ies) above)
     # predBase.query("nodeConfig in @instances", inplace=True)
@@ -642,7 +637,8 @@ def scheduleCluster(cluster, predBase, regModel, scale, poly, scale2, wfNames):
             time, trace = fun(workflowGraph.copy(), instances.copy(), rankLookup, realtimeLookup)
             times[fun.__name__] = time
             traces[fun.__name__] = trace
-        randomRes = multipleRandomSchedulerV1Execs(workflowGraph.copy(), instances.copy(), realtimeLookup, 1000)
+        randomRes = multipleRandomSchedulerV1Execs(workflowGraph.copy(), instances.copy(), realtimeLookup,
+                                                   numRandomExecs)
         times[randomSchedulerV1.__name__ + " best"] = randomRes.best[0]
         traces[randomSchedulerV1.__name__ + " best"] = randomRes.best[1]
         times[randomSchedulerV1.__name__ + " mean"] = randomRes.mean[0]
@@ -657,13 +653,35 @@ def scheduleCluster(cluster, predBase, regModel, scale, poly, scale2, wfNames):
 
 
 def main():
-    regModel: linear_model.LinearRegression = pickle.load(open('models/tetModel.Linear.pickle', 'br'))[1]
-    with db_actions.connect() as conn:
-        wfNames = list(pds.read_sql("select distinct \"wfName\" from \"averageRuntimesPredictionBase1000\"",
-                                    conn).wfName.values)  # ['nfcore/chipseq:1.2.2', 'nfcore/eager:2.3.5', 'nfcore/methylseq:1.6.1', 'nfcore/sarek:2.7.1', 'nfcore/viralrecon:2.1']
-        predBase = pds.read_sql(
-            "SELECT * FROM \"averageRuntimesPredictionBase1000\"",
-            conn)
+    argp = argparse.ArgumentParser()
+    argp.add_argument('targetNumClusters', type=int, action='store', default=100, nargs='?')
+    argp.add_argument('--numRandomExecs', type=int, action='store', default=1000)
+    argp.add_argument('--csv', type=str, action='store', dest='csvPath')
+    argp.add_argument('--regModel', action='store', dest='regModelPath', default='best')
+    cliArgs = argp.parse_args(sys.argv[1:])
+    if cliArgs.regModelPath == "best":
+        cliArgs.regModelPath = 'models/tetModel.Linear.pickle'
+    try:
+        regModel: linear_model.LinearRegression = pickle.load(open(cliArgs.regModelPath, 'br'))[1]
+    except Exception as e:
+        print(f"Could not load regModel from pickle at {cliArgs.regModelPath!r} with error: {e}", file=sys.stderr)
+        exit(1)
+    if cliArgs.csvPath:
+        predBase = None
+        try:
+            predBase = pds.read_csv(open(cliArgs.csvPath, 'r'))  # already filtered for realtime > 1000)
+        except:
+            pass
+        try:
+            predBase = pds.read_csv(open(cliArgs.csvPath + '.csv', 'r'))
+        except:
+            pass
+        if predBase is None:
+            raise Exception(f"Couldn't open csv file {cliArgs.csvPath!r} or {(cliArgs.csvPath + '.csv')!r}")
+    else:
+        with db_actions.connect() as conn:
+            predBase = pds.read_sql("SELECT * FROM \"averageRuntimesPredictionBase1000\"", conn)
+    wfNames = list(predBase['wfName'].unique())
     scale = preprocessing.StandardScaler().fit(
         predBase.drop(['wfName', 'taskName', 'nodeConfig', 'realtime', 'rank'], axis=1))
     poly = preprocessing.PolynomialFeatures(degree=4, interaction_only=True, include_bias=True).fit(
@@ -675,10 +693,10 @@ def main():
     allInstances = list(range(165, 194))
     allInstances.remove(174)
     allInstances.remove(177)
-    targetNumClusters = 100
     clusters = []
-    with alive_bar(targetNumClusters, f"Generating {targetNumClusters} different clusters") as bar:
-        while len(clusters) < targetNumClusters:
+    with alive_bar(cliArgs.targetNumClusters, f"Generating {cliArgs.targetNumClusters} different clusters") as bar:
+        while len(
+                clusters) < cliArgs.targetNumClusters:  # TODO this does not take into consideration that --targetNumClusters may exceed the maximum number of generateable clusters
             inst = [random.choice(allInstances) for _ in range(random.randint(2, 20))]
             if inst not in clusters:
                 clusters.append(inst)
@@ -696,15 +714,16 @@ def main():
         with Pool() as pool:
             for cluster in clusters:
                 pool.apply_async(scheduleCluster, (cluster, predBase.query("nodeConfig in @cluster"), regModel,
-                                                   scale, poly, scale2, wfNames), callback=makeCallback(cluster))
+                                                   scale, poly, scale2, wfNames, cliArgs.numRandomExecs),
+                                 callback=makeCallback(cluster))
             pool.close()
             pool.join()
     pprint(times)
 
 
 if __name__ == "__main__":
-    with cProfile.Profile() as pr:
-        main()
-    stats = pstats.Stats(pr)
-    stats.sort_stats(pstats.SortKey.TIME)
-    stats.dump_stats('perf.prof')
+    # with cProfile.Profile() as pr:
+    main()
+    # stats = pstats.Stats(pr)
+    # stats.sort_stats(pstats.SortKey.TIME)
+    # stats.dump_stats('perf.prof')

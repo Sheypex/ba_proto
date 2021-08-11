@@ -65,6 +65,7 @@ def main():
     argp.add_argument('--models', action='store', dest='modelsPath', default='models')
     argp.add_argument('--WFCV', action='store', type=int, choices=[0, 1, 2, 3, 4], default=0, dest='cvSize')
     argp.add_argument('--sanity-check', action='store_true', dest='sanityCheck', default=False)
+    argp.add_argument('--saveBest', action='store_true', dest='saveBest', default=False)
     cliArgs = argp.parse_args(sys.argv[1:])
     doDegree = cliArgs.polyDeg
     doPoly = doDegree > 1
@@ -149,7 +150,7 @@ def main():
         t = list(t)
         assert all(k == t[i][j] for i, x in enumerate(X.values.tolist()) for j, k in enumerate(x))
 
-    print(len(X), len(y))
+    # print(len(X), len(y))
 
     # cv split
     if cliArgs.cvSize > 0:
@@ -171,8 +172,8 @@ def main():
                     y_train.append(d)
                 else:
                     y_test.append(d)
-            print(len(X_train), len(y_train))
-            print(len(X_test), len(y_test))
+            # print(len(X_train), len(y_train))
+            # print(len(X_test), len(y_test))
             Xc = poly.transform(scale.transform(X))
             scale2 = preprocessing.StandardScaler().fit(Xc)
             X_train = scale.transform(X_train)
@@ -190,12 +191,12 @@ def main():
                 assert m
                 cvShortnames.append(m.group(1))
             for _ in range(cliArgs.numRepeats):
-                doModels = fit_models(X_train, y_train, X_test, y_test,
+                doModels = fit_models(X_train, y_train, X_test, y_test, doDegree,
                                       picklePrefix=f"CV{picklePrefixes[doDegree - 1]}Model.",
                                       randomOrder=True, notRecompute=not cliArgs.recompute, maxiter=cliArgs.maxiter,
                                       modelsToProduce=cliArgs.models, onlyImprove=cliArgs.improve,
-                                      showDone=cliArgs.showDone, cvPostfix="_" + "+".join(cvShortnames),
-                                      modelsPath=cliArgs.modelsPath)
+                                      showDone=cliArgs.showDone, cvPostfix="_" + "+".join(cvShortnames), sanityCheck=cliArgs.sanityCheck,
+                                      modelsPath=cliArgs.modelsPath, saveBest=cliArgs.saveBest)
             allFolds.append((doModels, cvwfs))
             showResults((doModels, cvwfs), doDegree, cvSize=cliArgs.cvSize, cvSummary=False, latex=cliArgs.latex)
         showResults(allFolds, doDegree, cvSize=cliArgs.cvSize, cvSummary=True, latex=cliArgs.latex)
@@ -212,11 +213,11 @@ def main():
         doModels = None
         picklePrefixes = ['lin', 'quad', 'cube', 'tet', 'pen']
         for _ in range(cliArgs.numRepeats):
-            doModels = fit_models(X_train, y_train, X_test, y_test,
+            doModels = fit_models(X_train, y_train, X_test, y_test, doDegree,
                                   picklePrefix=f"{picklePrefixes[doDegree - 1]}Model.",
                                   randomOrder=True, notRecompute=not cliArgs.recompute, maxiter=cliArgs.maxiter,
-                                  modelsToProduce=cliArgs.models, onlyImprove=cliArgs.improve,
-                                  showDone=cliArgs.showDone, modelsPath=cliArgs.modelsPath)
+                                  modelsToProduce=cliArgs.models, onlyImprove=cliArgs.improve, sanityCheck=cliArgs.sanityCheck,
+                                  showDone=cliArgs.showDone, modelsPath=cliArgs.modelsPath, saveBest=cliArgs.saveBest)
         showResults(doModels, doDegree, latex=cliArgs.latex)
 
 
@@ -529,9 +530,9 @@ def iround(num):
     return int(round(num, 0))
 
 
-def fit_models(X_train, y_train, X_test, y_test, models=None, picklePrefix='', randomOrder=False, notRecompute=True,
+def fit_models(X_train, y_train, X_test, y_test, polyDeg, models=None, picklePrefix='', randomOrder=False, notRecompute=True,
                maxiter=-1, onlyImprove=False, modelsToProduce=None, showDone=False, cvPostfix=None, modelsPath=None,
-               sanityCheck=False):
+               sanityCheck=False, saveBest=False):
     if modelsPath is None:
         modelsPath = "./models"
     if cvPostfix is None:
@@ -593,9 +594,9 @@ def fit_models(X_train, y_train, X_test, y_test, models=None, picklePrefix='', r
                 regr.fit(X_train, y_train)
                 confidence = regr.score(X_test, y_test)
                 if params is not None:
-                    toDump = (longname, regr.best_estimator_, confidence)
+                    toDump = (longname, regr.best_estimator_, confidence, polyDeg)
                 else:
-                    toDump = (longname, regr, confidence)
+                    toDump = (longname, regr, confidence, polyDeg)
                 if onlyImprove:
                     printInfo(f"Trying to improve {fullname}", 1)
                     if not pFile.is_file():
@@ -605,14 +606,21 @@ def fit_models(X_train, y_train, X_test, y_test, models=None, picklePrefix='', r
                     else:
                         loaded = pickle.load(open(pFile, 'br'))
                         if sanityCheck:
-                            name, loadedRegr, conf = loaded
+                            try:
+                                name, loadedRegr, conf, deg = loaded
+                            except:
+                                name, loadedRegr, conf = loaded
+                                deg = polyDeg
                             comp = loadedRegr.score(X_test, y_test)
-                            assert conf == comp, f"Sanity check failed for {name}:\t{conf} =/= {comp}"
+                            if not abs(conf - comp) <= 1e-5:
+                                printWarn(f"Sanity check failed for {name}:\t{conf} =/= {comp} | {abs(conf - comp)}")
+                            pickle.dump((name, loadedRegr, comp, deg), open(pFile, 'bw'))
+                            loaded = (name, loadedRegr, comp, deg)
                         if confidence >= loaded[2]:
+                            pickle.dump(toDump, open(pFile, 'bw'))
                             printInfo(
                                 f"Improved (or matched) {fullname} (over {pickleName}.pickle): {loaded[2]} < {confidence}\t(+{confidence - loaded[2]})",
                                 1)
-                            pickle.dump(toDump, open(pFile, 'bw'))
                             trained.append(toDump)
                         else:
                             printInfo(
@@ -620,8 +628,8 @@ def fit_models(X_train, y_train, X_test, y_test, models=None, picklePrefix='', r
                                 1)
                             trained.append(loaded)
                 else:
-                    printInfo(f"Saved {fullname} (to {pickleName}.pickle)", 1)
                     pickle.dump(toDump, open(pFile, 'bw'))
+                    printInfo(f"Saved {fullname} (to {pickleName}.pickle)", 1)
                     trained.append(toDump)
                 # spinner.succeed(f"Finished fitting {fullName}")
                 printSucc(f"Finished fitting {fullname}", 1)
@@ -633,24 +641,56 @@ def fit_models(X_train, y_train, X_test, y_test, models=None, picklePrefix='', r
         else:
             if showDone:
                 if not pFile.is_file():
-                    trained.append((longname, None, None))
+                    trained.append((longname, None, None, polyDeg))
                 else:
                     loaded = pickle.load(open(pFile, 'br'))
                     if sanityCheck:
-                        name, loadedRegr, conf = loaded
+                        try:
+                            name, loadedRegr, conf, deg = loaded
+                        except:
+                            name, loadedRegr, conf = loaded
+                            deg = polyDeg
                         comp = loadedRegr.score(X_test, y_test)
-                        assert conf == comp, f"Sanity check failed for {name}:\t{conf} =/= {comp}"
+                        if not abs(conf - comp) <= 1e-5:
+                            printWarn(f"Sanity check failed for {name}:\t{conf} =/= {comp} | {abs(conf - comp)}")
+                        pickle.dump((name, loadedRegr, comp, deg), open(pFile, 'bw'))
+                        loaded = (name, loadedRegr, comp, deg)
                     trained.append(loaded)
             else:
                 printInfo(f"{fullname}:")
                 loaded = pickle.load(open(pFile, 'br'))
                 if sanityCheck:
-                    name, loadedRegr, conf = loaded
+                    try:
+                        name, loadedRegr, conf, deg = loaded
+                    except:
+                        name, loadedRegr, conf = loaded
+                        deg = polyDeg
                     comp = loadedRegr.score(X_test, y_test)
-                    assert conf == comp, f"Sanity check failed for {name}:\t{conf} =/= {comp}"
+                    if not abs(conf - comp) <= 1e-5:
+                        printWarn(f"Sanity check failed for {name}:\t{conf} =/= {comp} | {abs(conf - comp)}")
+                    pickle.dump((name, loadedRegr, comp, deg), open(pFile, 'bw'))
+                    loaded = (name, loadedRegr, comp, deg)
                 trained.append(loaded)
                 # spinner.succeed(f"Found pickle for {fullName}")
                 printSucc(f"Found pickle for {fullname} at {pickleName}.pickle", 1)
+    #
+    if saveBest:
+        bestModelPath = Path(f"{modelsPath}/bestModel.pickle")
+        if bestModelPath.exists():
+            bestModel = list(pickle.load(open(bestModelPath, 'br')))
+        else:
+            bestModel = list(trained[0])
+        for t in trained:
+            if t[2] is not None:
+                if t[2] > bestModel[2]:
+                    bestModel = list(t)
+        try:
+            name, loadedRegr, conf, deg = bestModel
+        except:
+            name, loadedRegr, conf = bestModel
+            deg = polyDeg
+        pickle.dump((name, loadedRegr, conf, deg), open(f"{modelsPath}/bestModel.pickle", 'bw'))
+    #
     return trained
 
 
