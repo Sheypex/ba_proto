@@ -660,9 +660,10 @@ def main():
     argp.add_argument('--regModel', action='store', dest='regModelPath', default='best')
     cliArgs = argp.parse_args(sys.argv[1:])
     if cliArgs.regModelPath == "best":
-        cliArgs.regModelPath = 'models/tetModel.Linear.pickle'
+        cliArgs.regModelPath = 'models/bestModel.pickle'
     try:
-        regModel: linear_model.LinearRegression = pickle.load(open(cliArgs.regModelPath, 'br'))[1]
+        loaded = pickle.load(open(cliArgs.regModelPath, 'br'))
+        _, regModel, _, polyDeg = loaded
     except Exception as e:
         print(f"Could not load regModel from pickle at {cliArgs.regModelPath!r} with error: {e}", file=sys.stderr)
         exit(1)
@@ -684,7 +685,7 @@ def main():
     wfNames = list(predBase['wfName'].unique())
     scale = preprocessing.StandardScaler().fit(
         predBase.drop(['wfName', 'taskName', 'nodeConfig', 'realtime', 'rank'], axis=1))
-    poly = preprocessing.PolynomialFeatures(degree=4, interaction_only=True, include_bias=True).fit(
+    poly = preprocessing.PolynomialFeatures(degree=polyDeg, interaction_only=True, include_bias=polyDeg > 1).fit(
         predBase.drop(['wfName', 'taskName', 'nodeConfig', 'realtime', 'rank'], axis=1))  # TODO: depends on model used!
     scale2 = preprocessing.StandardScaler().fit(
         poly.transform(scale.transform(predBase.drop(['wfName', 'taskName', 'nodeConfig', 'realtime', 'rank'],
