@@ -719,6 +719,7 @@ def main():
             pool.close()
             pool.join()
     pprint(times)
+    pickle.dump(times, open("recSchedTimes.pickle", 'bw'))
 
 
 if __name__ == "__main__":
