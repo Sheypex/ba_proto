@@ -601,55 +601,44 @@ def multipleRandomSchedulerV1Execs(workflowGraph: NX.DiGraph, instances: List[in
                    res)
 
 
-def scheduleCluster(cluster, predBase, regModel, scale, poly, scale2, wfNames, numRandomExecs=1000):
+def scheduleCluster(cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, numRandomExecs=1000):
     instances = cluster
     # filter for instances we have available (probably should rather do this in the sql query(ies) above)
     # predBase.query("nodeConfig in @instances", inplace=True)
     #
+    times = {}
+    traces = {}
     for wfName in wfNames:
-        predBaseFilt = predBase.query(
-            "(nodeConfig in @instances) and (wfName == @wfName)")
-        predBaseFilt = predBaseFilt.reset_index(drop=True)
-        predRankRes = regModel.predict(scale2.transform(poly.transform(scale.transform(
-            predBaseFilt.drop(['wfName', 'taskName', 'nodeConfig', 'realtime', 'rank'], axis=1)))))
-        predRankRes = pds.DataFrame(predRankRes, columns=['rank'])
-        predRankRes = pds.concat([predBaseFilt[['taskName', 'nodeConfig']], predRankRes], axis=1)
-        rankLookup = pds.DataFrame(index=list(set(instances)), columns=predBaseFilt['taskName'].unique())
-        for row in predRankRes.itertuples():
-            rankLookup.at[row.nodeConfig, row.taskName] = row.rank
+        rankLookup = rankLookups[wfName]
         #
-        predRealtime = predBaseFilt[['nodeConfig', 'taskName', 'realtime']]
-        realtimeLookup = pds.DataFrame(index=list(set(instances)), columns=predBaseFilt['taskName'].unique())
-        for row in predRealtime.itertuples():
-            realtimeLookup.at[row.nodeConfig, row.taskName] = row.realtime
+        realtimeLookup = realtimeLookups[wfName]
         #
-        wfShortName = re.compile("nfcore/(\w+):.*").match(wfName).group(1)
-        # print(f"{'-=' * 5}{wfShortName:^{len(wfShortName) + 4}}{'=-' * 5}")
-        #
-        workflowGraph: NX.DiGraph = NX.drawing.nx_agraph.read_dot(f"dot/{wfShortName}_1k.dot")
+        workflowGraph: NX.DiGraph = wfGraphs[wfName]
         #
         methods = [recommenderSchedulerV1, recommenderSchedulerV1H1, recommenderSchedulerV1H2, recommenderSchedulerV1H3,
                    recommenderSchedulerV2, recommenderSchedulerV2H1, recommenderSchedulerV2H2, recommenderSchedulerV2H3]
         #
-        times = {}
-        traces = {}
+        wfTimes = {}
+        wfTraces = {}
         for fun in methods:
             time, trace = fun(workflowGraph.copy(), instances.copy(), rankLookup, realtimeLookup)
-            times[fun.__name__] = time
-            traces[fun.__name__] = trace
+            wfTimes[fun.__name__] = time
+            wfTraces[fun.__name__] = trace
         randomRes = multipleRandomSchedulerV1Execs(workflowGraph.copy(), instances.copy(), realtimeLookup,
                                                    numRandomExecs)
-        times[randomSchedulerV1.__name__ + " best"] = randomRes.best[0]
-        traces[randomSchedulerV1.__name__ + " best"] = randomRes.best[1]
-        times[randomSchedulerV1.__name__ + " mean"] = randomRes.mean[0]
-        traces[randomSchedulerV1.__name__ + " mean"] = randomRes.mean[1]
-        times[randomSchedulerV1.__name__ + " median"] = randomRes.median[0]
-        traces[randomSchedulerV1.__name__ + " median"] = randomRes.median[1]
-        times[randomSchedulerV1.__name__ + " worst"] = randomRes.worst[0]
-        traces[randomSchedulerV1.__name__ + " worst"] = randomRes.worst[1]
-        # pprint(times)
-        # print(max([max([len(x) for x in t]) for t in traces.values()]))  # find highest amount of concurrently used instances across all WFs and scheduling methods
-        return times, traces
+        wfTimes[randomSchedulerV1.__name__ + " best"] = randomRes.best[0]
+        wfTraces[randomSchedulerV1.__name__ + " best"] = randomRes.best[1]
+        wfTimes[randomSchedulerV1.__name__ + " mean"] = randomRes.mean[0]
+        wfTraces[randomSchedulerV1.__name__ + " mean"] = randomRes.mean[1]
+        wfTimes[randomSchedulerV1.__name__ + " median"] = randomRes.median[0]
+        wfTraces[randomSchedulerV1.__name__ + " median"] = randomRes.median[1]
+        wfTimes[randomSchedulerV1.__name__ + " worst"] = randomRes.worst[0]
+        wfTraces[randomSchedulerV1.__name__ + " worst"] = randomRes.worst[1]
+        # pprint(wfTimes)
+        # print(max([max([len(x) for x in t]) for t in wfTraces.values()]))  # find highest amount of concurrently used instances across all WFs and scheduling methods
+        times[wfName] = wfTimes
+        traces[wfName] = wfTraces
+    return times, traces
 
 
 def main():
@@ -661,6 +650,7 @@ def main():
     cliArgs = argp.parse_args(sys.argv[1:])
     if cliArgs.regModelPath == "best":
         cliArgs.regModelPath = 'models/bestModel.pickle'
+    #
     try:
         loaded = pickle.load(open(cliArgs.regModelPath, 'br'))
         _, regModel, _, polyDeg = loaded
@@ -682,6 +672,7 @@ def main():
     else:
         with db_actions.connect() as conn:
             predBase = pds.read_sql("SELECT * FROM \"averageRuntimesPredictionBase1000\"", conn)
+    #
     wfNames = list(predBase['wfName'].unique())
     scale = preprocessing.StandardScaler().fit(
         predBase.drop(['wfName', 'taskName', 'nodeConfig', 'realtime', 'rank'], axis=1))
@@ -694,6 +685,35 @@ def main():
     allInstances = list(range(165, 194))
     allInstances.remove(174)
     allInstances.remove(177)
+    #
+    rankLookups = dict()
+    realtimeLookups = dict()
+    wfGraphs = dict()
+    for wfName in wfNames:
+        predBaseFilt = predBase.query(
+            "(wfName == @wfName)")
+        predBaseFilt = predBaseFilt.reset_index(drop=True)
+        predRankRes = regModel.predict(scale2.transform(poly.transform(scale.transform(
+            predBaseFilt.drop(['wfName', 'taskName', 'nodeConfig', 'realtime', 'rank'], axis=1)))))
+        predRankRes = pds.DataFrame(predRankRes, columns=['rank'])
+        predRankRes = pds.concat([predBaseFilt[['taskName', 'nodeConfig']], predRankRes], axis=1)
+        rankLookup = pds.DataFrame(index=list(set(allInstances)), columns=predBaseFilt['taskName'].unique())
+        for row in predRankRes.itertuples():
+            rankLookup.at[row.nodeConfig, row.taskName] = row.rank
+        rankLookups[wfName] = rankLookup
+        #
+        predRealtime = predBaseFilt[['nodeConfig', 'taskName', 'realtime']]
+        realtimeLookup = pds.DataFrame(index=list(set(allInstances)), columns=predBaseFilt['taskName'].unique())
+        for row in predRealtime.itertuples():
+            realtimeLookup.at[row.nodeConfig, row.taskName] = row.realtime
+        realtimeLookups[wfName] = realtimeLookup
+        #
+        wfShortName = re.compile("nfcore/(\w+):.*").match(wfName).group(1)
+        # print(f"{'-=' * 5}{wfShortName:^{len(wfShortName) + 4}}{'=-' * 5}")
+        #
+        workflowGraph: NX.DiGraph = NX.drawing.nx_agraph.read_dot(f"dot/{wfShortName}_1k.dot")
+        wfGraphs[wfName] = workflowGraph
+    #
     clusters = []
     with alive_bar(cliArgs.targetNumClusters, f"Generating {cliArgs.targetNumClusters} different clusters") as bar:
         while len(
@@ -714,12 +734,10 @@ def main():
 
         with Pool() as pool:
             for cluster in clusters:
-                pool.apply_async(scheduleCluster, (cluster, predBase.query("nodeConfig in @cluster"), regModel,
-                                                   scale, poly, scale2, wfNames, cliArgs.numRandomExecs),
-                                 callback=makeCallback(cluster))
+                pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeCallback(cluster))
             pool.close()
             pool.join()
-    pprint(times)
+    # pprint(times)
     pickle.dump(times, open("recSchedTimes.pickle", 'bw'))
 
 
