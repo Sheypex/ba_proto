@@ -647,9 +647,15 @@ def main():
     argp.add_argument('--numRandomExecs', type=int, action='store', default=1000)
     argp.add_argument('--csv', type=str, action='store', dest='csvPath')
     argp.add_argument('--regModel', action='store', dest='regModelPath', default='best')
+    # argp.add_argument('--extend', action='store_true', dest='extend', default=False)
+    argp.add_argument('--saveLoc', type=str, action="store", dest="saveLoc", default="\0")
+    argp.add_argument('--saveSuffix', type=str, action="store", dest="saveSuffix", default="recSchedTimes")
     cliArgs = argp.parse_args(sys.argv[1:])
     if cliArgs.regModelPath == "best":
         cliArgs.regModelPath = 'models/bestModel.pickle'
+    #
+    if cliArgs.saveLoc == "\0":
+        cliArgs.saveLoc = re.match("(.*/)*(.*?).pickle", cliArgs.regModelPath).group(2)
     #
     try:
         loaded = pickle.load(open(cliArgs.regModelPath, 'br'))
@@ -723,11 +729,13 @@ def main():
                 clusters.append(inst)
                 bar()
     times = {}
+    traces = {}
     with alive_bar(len(clusters), f"Scheduling on {len(clusters)} different clusters") as bar:
         def makeCallback(cluster_):
             def cllbck(res):
                 clusterTimes, clusterTraces = res
                 times[tuple(cluster_)] = clusterTimes
+                traces[tuple(cluster_)] = clusterTraces
                 bar()
 
             return cllbck
@@ -738,7 +746,8 @@ def main():
             pool.close()
             pool.join()
     # pprint(times)
-    pickle.dump(times, open("recSchedTimes.pickle", 'bw'))
+    pickle.dump(times, open(f"{cliArgs.saveLoc}.{cliArgs.saveSuffix}.pickle", 'bw'))
+    # pickle.dump(traces, open("recSchedTraces.pickle", 'bw'))
 
 
 if __name__ == "__main__":

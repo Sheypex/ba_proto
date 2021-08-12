@@ -242,24 +242,37 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
         m.sort(key=tmpsort)
         if latex:
             data = []
+            #
+            svrs = [model for model in m if "SVR" in model[0]]
+            svrs.sort(key=tmpsort)
+            bestSvr = svrs[0]
+            svrs.remove(bestSvr)
+            svrs = [s[0] for s in svrs]
+            bestSvr = bestSvr[0]
+            #
             for d in [['', x[0], x[2]] for x in m]:
                 _, name, conf = d
+                if name in svrs:
+                    continue
                 if conf is not None:
                     conf = f"{conf:.4f}"
                 if name == "Linear Regression":
                     name = "Ordinary Least Squares"
                 name = name.replace("Regression", "")
                 name = name.replace("Regressor", "")
+                if "SVR" in name:
+                    name = "SVR"
                 data.append(['', name, conf])
-            for m in ["Lasso", "Elastic Net", "Ridge"]:
-                b = [x for x in data if x[1] == m][0]
-                c = [x for x in data if x[1] == f"{m} CV"][0]
+            for model in ["Lasso", "Elastic Net", "Ridge"]:
+                b = [x for x in data if x[1] == model][0]
+                c = [x for x in data if x[1] == f"{model} CV"][0]
                 if b[2] > c[2]:
                     data.remove(c)
-                    b[1] = m
+                    b[1] = model
                 else:
                     data.remove(b)
-                    c[1] = m
+                    c[1] = model
+
             if degree == 1:
                 data[0][0] = "Linear"
             else:
@@ -278,12 +291,26 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
         for n in get_model_names(longname=True):
             for i, x in enumerate(m):
                 for r in x:
-                    name, _, conf = r
+                    name, _, conf, deg = r
                     if name == n:
                         if name not in res.keys():
                             res[name] = [(conf, cvName[i])]
                         else:
                             res[name].append((conf, cvName[i]))
+        for model in ["Lasso", "Elastic Net", "Ridge"]:
+            r = res[model]
+            rcv = res[model + " CV"]
+            c = 0
+            for cv in cvName:
+                c += [x for x in r if x[1]==cv][0] >= [y for y in rcv if x[1]==cv][0]
+            a = res.pop(model, None)
+            b = res.pop(model + "CV", None)
+            if c >= math.ceil(len(cvName)/2):
+                pass
+            else:
+                t = res
+            res[model] = None
+            res.pop(model + " CV", None)
         data = []
         for n in get_model_names(longname=True):
             if n in res.keys():
