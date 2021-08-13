@@ -1,3 +1,4 @@
+import functools
 import itertools
 import math
 import re
@@ -302,21 +303,37 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
             rcv = res[model + " CV"]
             c = 0
             for cv in cvName:
-                c += [x for x in r if x[1]==cv][0] >= [y for y in rcv if x[1]==cv][0]
+                a = [x for x in r if x[1] == cv][0]
+                b = [y for y in rcv if y[1] == cv][0]
+                if a is not None and b is not None:
+                    c += int(a[0] >= b[0])
+                elif a is not None and b is None:
+                    c += 1
+
             a = res.pop(model, None)
-            b = res.pop(model + "CV", None)
-            if c >= math.ceil(len(cvName)/2):
-                pass
+            b = res.pop(model + " CV", None)
+            if c >= math.ceil(len(cvName) / 2):
+                res[model] = a
             else:
-                t = res
-            res[model] = None
-            res.pop(model + " CV", None)
+                res[model] = b
+        #
+        svrs = dict()
+        for n in list(res.keys()).copy():
+            if "SVR" in n:
+                svrs[n] = res.pop(n)
+        svrComp = dict()
+        for s in svrs.keys():
+            svr = svrs[s]
+            prod = functools.reduce(lambda x, y: x * y, [x[0] for x in svr], 1)
+            svrComp[s] = prod
+        bestSvr = [svr for n, svr in svrs.items() if svrComp[n] == max([a for a in svrComp.values()])][0]
+        res["SVR"] = bestSvr
+        #
         data = []
-        for n in get_model_names(longname=True):
-            if n in res.keys():
-                for r in res[n]:
-                    conf, cv = r
-                    data.append(['', n, conf, cv])
+        for n in res.keys():
+            for r in res[n]:
+                conf, cv = r
+                data.append(['', n, conf, cv])
         for i, d in enumerate(data):
             p, name, conf, cv = d
             if conf is not None:
@@ -348,6 +365,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                 else:
                     g[i] = [p, name, conf, '', cv]
             grouped[j] = g
+        grouped.sort(key=lambda x: float(x[math.floor(len(g) / 2)][3]) if x[math.floor(len(g) / 2)][3] is not None else None, reverse=True)
         data = [d for g in grouped for d in g]
         fmt = 'simple'
         numparse = False
