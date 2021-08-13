@@ -734,8 +734,8 @@ def main():
                 pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeCallback(cluster))
             pool.close()
             pool.join()
-    pprint(times)
     pickle.dump(times, open(f"{cliArgs.saveLoc}.{cliArgs.saveSuffix}.pickle", 'bw'))
+    print(f"Saved to {cliArgs.saveLoc}.{cliArgs.saveSuffix}.pickle")
     # pickle.dump(traces, open("recSchedTraces.pickle", 'bw'))
 
 
