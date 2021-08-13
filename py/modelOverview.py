@@ -19,15 +19,7 @@ def main():
     models.sort(key=lambda x: -x[2])
     # print(tabulate([[m[3] if len(m) >= 4 else None, m[0], m[2]] for m in models], headers=["degree", "name", "conf"], missingval='N/A', showindex=True))
 
-    def tmp(i):
-        ret = int(round(len(models) - 1 - i * (len(models) - 1), 0))
-        if ret < 0:
-            ret = 0
-        if ret > 53:
-            ret = 53
-        return ret
-
-    indices = [tmp(x) for x in [a / 10 for a in range(0, 11)]]
+    indices = [int(round(len(models) - 1 - x * (len(models) - 1), 0)) for x in [a / 10 for a in range(0, 11)]]
     # print(indices)
     models = [m for i, m in enumerate(models) if i in indices]
     # print(tabulate([[m[3] if len(m) >= 4 else None, m[0], m[2]] for m in models], headers=["degree", "name", "conf"], missingval='N/A', showindex=True))

@@ -584,21 +584,11 @@ def multipleRandomSchedulerV1Execs(workflowGraph: NX.DiGraph, instances: List[in
         res.append(randomSchedulerV1(workflowGraph.copy(), instances.copy(), realtimeLookup))
     res.sort(key=lambda x: x[0])
     times = [x[0] for x in res]
-    medianTime = statistics.median(times)
-    medianDiff = [abs(medianTime - x) for x in times]
-    minMedianDiff = min(medianDiff)
-    median = [r for r in res if abs(medianTime - r[0]) == minMedianDiff][0]
-    meanTime = statistics.mean(times)
-    meanDiff = [abs(meanTime - x) for x in times]
-    minMeanDiff = min(meanDiff)
-    mean = [r for r in res if abs(meanTime - r[0]) == minMeanDiff][0]
-
-    Results = namedtuple('Results', ['best', 'mean', 'median', 'worst', 'all'])
-    return Results(res[0],
-                   mean,
-                   median,
-                   res[-1],
-                   res)
+    if len(times) > 10:
+        indices = [int(round(len(times) - 1 - x * (len(times) - 1), 0)) for x in [a / 10 for a in range(0, 11)]]
+        return [x for i, x in enumerate(times) if i in indices]
+    else:
+        return times
 
 
 def scheduleCluster(cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, numRandomExecs=1000):
@@ -624,16 +614,7 @@ def scheduleCluster(cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, nu
             time, trace = fun(workflowGraph.copy(), instances.copy(), rankLookup, realtimeLookup)
             wfTimes[fun.__name__] = time
             wfTraces[fun.__name__] = trace
-        randomRes = multipleRandomSchedulerV1Execs(workflowGraph.copy(), instances.copy(), realtimeLookup,
-                                                   numRandomExecs)
-        wfTimes[randomSchedulerV1.__name__ + " best"] = randomRes.best[0]
-        wfTraces[randomSchedulerV1.__name__ + " best"] = randomRes.best[1]
-        wfTimes[randomSchedulerV1.__name__ + " mean"] = randomRes.mean[0]
-        wfTraces[randomSchedulerV1.__name__ + " mean"] = randomRes.mean[1]
-        wfTimes[randomSchedulerV1.__name__ + " median"] = randomRes.median[0]
-        wfTraces[randomSchedulerV1.__name__ + " median"] = randomRes.median[1]
-        wfTimes[randomSchedulerV1.__name__ + " worst"] = randomRes.worst[0]
-        wfTraces[randomSchedulerV1.__name__ + " worst"] = randomRes.worst[1]
+        wfTimes[randomSchedulerV1.__name__] = multipleRandomSchedulerV1Execs(workflowGraph.copy(), instances.copy(), realtimeLookup, numRandomExecs)
         # pprint(wfTimes)
         # print(max([max([len(x) for x in t]) for t in wfTraces.values()]))  # find highest amount of concurrently used instances across all WFs and scheduling methods
         times[wfName] = wfTimes
@@ -753,7 +734,7 @@ def main():
                 pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeCallback(cluster))
             pool.close()
             pool.join()
-    # pprint(times)
+    pprint(times)
     pickle.dump(times, open(f"{cliArgs.saveLoc}.{cliArgs.saveSuffix}.pickle", 'bw'))
     # pickle.dump(traces, open("recSchedTraces.pickle", 'bw'))
 
