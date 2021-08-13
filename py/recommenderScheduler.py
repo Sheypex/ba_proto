@@ -650,12 +650,20 @@ def main():
     # argp.add_argument('--extend', action='store_true', dest='extend', default=False)
     argp.add_argument('--saveLoc', type=str, action="store", dest="saveLoc", default="\0")
     argp.add_argument('--saveSuffix', type=str, action="store", dest="saveSuffix", default="recSchedTimes")
+    argp.add_argument('--noRandom', action='store_true', dest='noRandom', default=False)
     cliArgs = argp.parse_args(sys.argv[1:])
     if cliArgs.regModelPath == "best":
         cliArgs.regModelPath = 'models/bestModel.pickle'
     #
     if cliArgs.saveLoc == "\0":
         cliArgs.saveLoc = re.match("(.*/)*(.*?).pickle", cliArgs.regModelPath).group(2)
+    pFile = Path(cliArgs.saveLoc)
+    if pFile.exists() and pFile.is_dir():
+        pFile = pFile.joinpath(re.match("(.*/)*(.*?).pickle", cliArgs.regModelPath).group(2))
+        cliArgs.saveLoc = pFile.as_posix()
+    #
+    if cliArgs.noRandom:
+        random.seed(0)
     #
     try:
         loaded = pickle.load(open(cliArgs.regModelPath, 'br'))
