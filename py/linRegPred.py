@@ -161,18 +161,18 @@ def main():
             print(cvwfs)
             X_train = []
             y_train = []
-            X_test = []
-            y_test = []
+            X_test = X
+            y_test = y
             for i, d in enumerate(X.values.tolist()):
                 if dF['wfName'][i] not in cvwfs:
                     X_train.append(d)
-                else:
-                    X_test.append(d)
+                # else:
+                #     X_test.append(d)
             for i, d in enumerate(y):
                 if dF['wfName'][i] not in cvwfs:
                     y_train.append(d)
-                else:
-                    y_test.append(d)
+                # else:
+                #     y_test.append(d)
             # print(len(X_train), len(y_train))
             # print(len(X_test), len(y_test))
             Xc = poly.transform(scale.transform(X))
@@ -365,7 +365,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                 else:
                     g[i] = [p, name, conf, '', cv]
             grouped[j] = g
-        grouped.sort(key=lambda x: float(x[math.floor(len(g) / 2)][3]) if x[math.floor(len(g) / 2)][3] is not None else None, reverse=True)
+        grouped.sort(key=lambda x: float(x[math.floor(len(g) / 2)][3]) if x[math.floor(len(g) / 2)][3] is not None else float('-inf'), reverse=True)
         data = [d for g in grouped for d in g]
         fmt = 'simple'
         numparse = False
