@@ -591,22 +591,25 @@ def fit_models(X_train, y_train, X_test, y_test, polyDeg, models=None, picklePre
     for model in models:
         modelName, regr, params, longname, halvingParams = model
         if params is not None:
-            baseRes = 10
-            numTurns = 6
-            prelimRounds = 2
-            lastRoundRes = iround(len(X_train) * 0.8)
-            fact = (lastRoundRes / baseRes) ** (1 / numTurns)
-            numCand = iround(4 * (fact ** (numTurns + prelimRounds - 1)))
-            cv = 4
+            cv = ScistatsNormBetween(2, 4, cond=(lambda x: 2 <= x <= 5), toint=True).rvs()
             if halvingParams is not None:
-                if 'skipPreElim' in halvingParams.keys() and halvingParams['skipPreElim']:
-                    numCand /= fact ** (
-                        prelimRounds)  # 3 prelim rounds for (8,6) ~> would normally take 9 total rounds
-                    numCand = iround(numCand)
                 if 'cv' in halvingParams.keys():
                     cv = halvingParams['cv']
                     if cv is None or cv <= 1:
                         cv = 2
+            baseRes = ScistatsNormBetween(8, 20, cond=(lambda x: x >= 2 * cv + 1), toint=True).rvs()
+            numTurns = ScistatsNormBetween(cv / 2, 4 * cv, cond=(lambda x: 2 <= x <= 20), toint=True).rvs()
+            prelimRounds = ScistatsNormBetween(0, cv / 2, cond=(lambda x: 0 <= x <= 3), toint=True).rvs()
+            if halvingParams is not None:
+                if 'skipPreElim' in halvingParams.keys() and halvingParams['skipPreElim']:
+                    prelimRounds = 0
+            if numTurns >= 15:
+                prelimRounds = 0
+            lastRoundResPercent = ScistatsNormBetween(0.8, 1.0, cond=(lambda x: 0.75 <= x <= 1.0)).rvs()
+            lastRoundRes = iround(len(X_train) * lastRoundResPercent)
+            fact = (lastRoundRes / baseRes) ** (1 / numTurns)
+            lastRoundNumCand = ScistatsNormBetween(1, 10, cond=(lambda x: x >= 1), toint=True).rvs()
+            numCand = iround(lastRoundNumCand * (fact ** (numTurns + prelimRounds - 1)))
             searchParams = {
                 'estimator'             : regr,
                 'param_distributions'   : params,
