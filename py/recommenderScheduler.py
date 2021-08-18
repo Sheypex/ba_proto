@@ -593,8 +593,9 @@ def multipleRandomSchedulerV1Execs(workflowGraph: NX.DiGraph, instances: List[in
 
 def scheduleCluster(cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, numRandomExecs=1000):
     instances = cluster
-    # filter for instances we have available (probably should rather do this in the sql query(ies) above)
-    # predBase.query("nodeConfig in @instances", inplace=True)
+    #
+    methods = [recommenderSchedulerV1, recommenderSchedulerV1H1, recommenderSchedulerV1H2, recommenderSchedulerV1H3,
+               recommenderSchedulerV2, recommenderSchedulerV2H1, recommenderSchedulerV2H2, recommenderSchedulerV2H3]
     #
     times = {}
     traces = {}
@@ -604,9 +605,6 @@ def scheduleCluster(cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, nu
         realtimeLookup = realtimeLookups[wfName]
         #
         workflowGraph: NX.DiGraph = wfGraphs[wfName]
-        #
-        methods = [recommenderSchedulerV1, recommenderSchedulerV1H1, recommenderSchedulerV1H2, recommenderSchedulerV1H3,
-                   recommenderSchedulerV2, recommenderSchedulerV2H1, recommenderSchedulerV2H2, recommenderSchedulerV2H3]
         #
         wfTimes = {}
         wfTraces = {}
@@ -639,7 +637,9 @@ def main():
     if cliArgs.saveLoc == "\0":
         cliArgs.saveLoc = re.match("(.*/)*(.*?).pickle", cliArgs.regModelPath).group(2)
     pFile = Path(cliArgs.saveLoc)
-    if pFile.exists() and pFile.is_dir():
+    if not pFile.exists():
+        pFile.mkdir()
+    if pFile.is_dir():
         pFile = pFile.joinpath(re.match("(.*/)*(.*?).pickle", cliArgs.regModelPath).group(2))
         cliArgs.saveLoc = pFile.as_posix()
     #

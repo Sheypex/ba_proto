@@ -1,0 +1,15 @@
+cvmodels/CVcubeModel.BayesianRidge_chipseq.pickle
+cvmodels/CVcubeModel.BayesianRidge_methylseq.pickle
+cvmodels/CVcubeModel.BayesianRidge_sarek.pickle
+cvmodels/CVcubeModel.BayesianRidge_viralrecon.pickle
+cvmodels/CVcubeModel.BayesianRidge_eager.pickle
+cvmodels/CVlinModel.SVR-linear_eager.pickle
+cvmodels/CVlinModel.SVR-linear_viralrecon.pickle
+cvmodels/CVlinModel.SVR-linear_sarek.pickle
+cvmodels/CVlinModel.SVR-linear_methylseq.pickle
+cvmodels/CVlinModel.SVR-linear_chipseq.pickle
+cvmodels/CVquadModel.ElasticNet_viralrecon.pickle
+cvmodels/CVquadModel.ElasticNet_sarek.pickle
+cvmodels/CVquadModel.ElasticNet_methylseq.pickle
+cvmodels/CVquadModel.ElasticNet_eager.pickle
+cvmodels/CVquadModel.ElasticNet_chipseq.pickle
