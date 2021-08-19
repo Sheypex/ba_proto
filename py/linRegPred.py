@@ -363,13 +363,14 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
         for n in list(res.keys()).copy():
             if "SVR" in n:
                 svrs[n] = res.pop(n)
-        svrComp = dict()
-        for s in svrs.keys():
-            svr = svrs[s]
-            # prod = functools.reduce(lambda x, y: x * y, [x[0] for x in svr], 1)
-            svrComp[s] = jamGeomean([x[0] for x in svr])
-        bestSvr = [svr for n, svr in svrs.items() if svrComp[n] == max([a for a in svrComp.values()])][0]
-        res["SVR"] = bestSvr
+        if len(svrs) > 0:
+            svrComp = dict()
+            for s in svrs.keys():
+                svr = svrs[s]
+                # prod = functools.reduce(lambda x, y: x * y, [x[0] for x in svr], 1)
+                svrComp[s] = jamGeomean([x[0] for x in svr])
+            bestSvr = [svr for n, svr in svrs.items() if svrComp[n] == max([a for a in svrComp.values()])][0]
+            res["SVR"] = bestSvr
         #
         data = []
         for n in res.keys():
