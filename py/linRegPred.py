@@ -376,7 +376,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
             for s in svrs.keys():
                 svr = svrs[s]
                 # prod = functools.reduce(lambda x, y: x * y, [x[0] for x in svr], 1)
-                svrComp[s] = jamGeomean([x[0] for x in svr])
+                svrComp[s] = jamGeomean([x[0] for x in svr if x[0] is not None]) if len([x[0] for x in svr if x[0] is not None]) > 0 else float("-inf")
             bestSvr = [svr for n, svr in svrs.items() if svrComp[n] == max([a for a in svrComp.values()])][0]
             res["SVR"] = bestSvr
         #
