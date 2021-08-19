@@ -225,7 +225,6 @@ def main():
                 allFolds[cvwfs] = doModels
                 showResults((doModels, cvwfs), doDegree, cvSize=cliArgs.cvSize, cvSummary=False, latex=cliArgs.latex)
             showResults([(doM, cvs) for cvs, doM in allFolds.items()], doDegree, cvSize=cliArgs.cvSize, cvSummary=True, latex=cliArgs.latex)
-        showResults([(doM, cvs) for cvs, doM in allFolds.items()], doDegree, cvSize=cliArgs.cvSize, cvSummary=True, latex=cliArgs.latex)
     else:
         X_train = X_full
         X_test = X_full
