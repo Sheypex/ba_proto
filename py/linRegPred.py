@@ -704,15 +704,17 @@ def fit_models(X_train, y_train, X_test, y_test, X_full, y_full, polyDeg, models
                         loaded = pickle.load(open(pFile, 'br'))
                         if sanityCheck:
                             loaded = sanity_check(pFile, X_test, y_test, X_full, y_full, loaded)
-                        if test_confidence * full_confidence >= loaded[2] * loaded[4]:
+                        newGeo = jamGeomean([test_confidence, full_confidence])
+                        loadedGeo = jamGeomean(loaded[2], loaded[4])
+                        if newGeo >= loadedGeo:
                             pickle.dump(toDump, open(pFile, 'bw'))
                             printInfo(
-                                f"Improved (or matched) {fullname} (over {pickleName}.pickle): {loaded[2]} * {loaded[4]} < {test_confidence} * {full_confidence}\t(+{test_confidence - loaded[2]})",
+                                f"Improved (or matched) {fullname} (over {pickleName}.pickle): ({loaded[2]}, {loaded[4]}) | {loadedGeo} < {newGeo} | ({test_confidence}, {full_confidence})\t(+{newGeo - loadedGeo})",
                                 1)
                             trained.append(toDump)
                         else:
                             printInfo(
-                                f"Did not improve {fullname} (over {pickleName}.pickle): {loaded[2]} * {loaded[4]} > {test_confidence} * {full_confidence}\t({test_confidence - loaded[2]})",
+                                f"Did not improve {fullname} (over {pickleName}.pickle): ({loaded[2]}, {loaded[4]}) | {loadedGeo} > {newGeo} | ({test_confidence}, {full_confidence})\t({newGeo - loadedGeo})",
                                 1)
                             trained.append(loaded)
                 else:
