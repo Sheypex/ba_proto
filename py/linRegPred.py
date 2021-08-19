@@ -341,7 +341,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                         else:
                             res[name].append((gconf, cvName[i]))
         for model in ["Lasso", "Elastic Net", "Ridge"]:
-            if model in res.keys():
+            if model in res.keys() and model + " CV" in res.keys():
                 r = res[model]
                 rcv = res[model + " CV"]
                 c = 0
@@ -358,6 +358,13 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                 if c >= math.ceil(len(cvName) / 2):
                     res[model] = a
                 else:
+                    res[model] = b
+            else:
+                a = res.pop(model, None)
+                b = res.pop(model + " CV", None)
+                if a is not None:
+                    res[model] = a
+                elif b is not None:
                     res[model] = b
         #
         svrs = dict()
