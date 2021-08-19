@@ -180,7 +180,9 @@ def main():
         wfs = dF.wfName.unique()
         allFolds = dict()
         cvSplits = dict()
-        for cvwfs in itertools.combinations(wfs, cliArgs.cvSize):
+        cvCombs = list(itertools.combinations(wfs, cliArgs.cvSize))
+        random.shuffle(cvCombs)
+        for cvwfs in cvCombs:
             X_train = []
             y_train = []
             X_test = []
@@ -207,7 +209,7 @@ def main():
             cvSplits[cvwfs] = (X_train, y_train, X_test, y_test)
 
         for _ in range(cliArgs.numRepeats):
-            for cvwfs in itertools.combinations(wfs, cliArgs.cvSize):
+            for cvwfs in cvCombs:
                 print(cvwfs)
                 X_train, y_train, X_test, y_test = cvSplits[cvwfs]
                 picklePrefixes = ['lin', 'quad', 'cube', 'tet', 'pen']
