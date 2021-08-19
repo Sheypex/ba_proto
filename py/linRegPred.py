@@ -340,23 +340,24 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                         else:
                             res[name].append((gconf, cvName[i]))
         for model in ["Lasso", "Elastic Net", "Ridge"]:
-            r = res[model]
-            rcv = res[model + " CV"]
-            c = 0
-            for cv in cvName:
-                a = [x for x in r if x[1] == cv][0]
-                b = [y for y in rcv if y[1] == cv][0]
-                if a is not None and b is not None:
-                    c += int(a[0] >= b[0])
-                elif a is not None and b is None:
-                    c += 1
+            if model in res.keys():
+                r = res[model]
+                rcv = res[model + " CV"]
+                c = 0
+                for cv in cvName:
+                    a = [x for x in r if x[1] == cv][0]
+                    b = [y for y in rcv if y[1] == cv][0]
+                    if a is not None and b is not None:
+                        c += int(a[0] >= b[0])
+                    elif a is not None and b is None:
+                        c += 1
 
-            a = res.pop(model, None)
-            b = res.pop(model + " CV", None)
-            if c >= math.ceil(len(cvName) / 2):
-                res[model] = a
-            else:
-                res[model] = b
+                a = res.pop(model, None)
+                b = res.pop(model + " CV", None)
+                if c >= math.ceil(len(cvName) / 2):
+                    res[model] = a
+                else:
+                    res[model] = b
         #
         svrs = dict()
         for n in list(res.keys()).copy():
