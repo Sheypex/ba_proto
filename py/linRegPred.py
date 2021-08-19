@@ -181,7 +181,6 @@ def main():
         allFolds = dict()
         cvSplits = dict()
         cvCombs = list(itertools.combinations(wfs, cliArgs.cvSize))
-        random.shuffle(cvCombs)
         for cvwfs in cvCombs:
             X_train = []
             y_train = []
@@ -209,6 +208,7 @@ def main():
             cvSplits[cvwfs] = (X_train, y_train, X_test, y_test)
 
         for _ in range(cliArgs.numRepeats):
+            random.shuffle(cvCombs)
             for cvwfs in cvCombs:
                 print(cvwfs)
                 X_train, y_train, X_test, y_test = cvSplits[cvwfs]
