@@ -51,6 +51,24 @@ def printWarn(txt, indent=0):
     printStat(txt, LogSymbols.WARNING.value, indent)
 
 
+# jamGeomean <- function
+# (x,
+#  na.rm=TRUE,
+#  ...)
+# {
+#    ## Purpose is to calculate geometric mean while allowing for
+#    ## positive and negative values
+#    x2 <- mean(log2(1+abs(x))*sign(x));
+#    sign(x2)*(2^abs(x2)-1);
+# }
+# taken from: https://jmw86069.github.io/splicejam/reference/jamGeomean.html
+def jamGeomean(iterable):
+    assert len(iterable) > 0
+    step1 = [math.log(1 + abs(x), 2) * math.copysign(1, x) for x in iterable]
+    m = statistics.mean(step1)
+    return math.copysign(1, m) * ((2 ** abs(m)) - 1)
+
+
 def main():
     argp = argparse.ArgumentParser()
     argp.add_argument('polyDeg', type=int, choices=[1, 2, 3, 4, 5], action='store', default=1)
@@ -266,16 +284,16 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                     continue
                 if len(b) > 0:
                     b = b[0]
+                    if b[2] is None:
+                        data.remove(b)
                 else:
-                    b = (None, None, None)
+                    b = [None, None, None]
                 if len(c) > 0:
                     c = c[0]
+                    if c[2] is None:
+                        data.remove(c)
                 else:
-                    c = (None, None, None)
-                if b[2] is None:
-                    data.remove(b)
-                if c[2] is None:
-                    data.remove(c)
+                    c = [None, None, None]
                 if b[2] is not None and c[2] is not None:
                     if b[2] > c[2]:
                         data.remove(c)
@@ -297,19 +315,23 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
             fmt = 'simple'
             numparse = False
         if cvSize > 0:
-            data[0][0] += f"\n{', '.join([re.compile('nfcore/(.*?):.*').match(cv).group(1) for cv in cvName])}"
+            data[0][0] = data[0][0] + f"\n{', '.join([re.compile('nfcore/(.*?):.*').match(cv).group(1) for cv in cvName])}"
         tableHeaders = (f"degree={degree}", 'model', 'confidence')
     else:
         res = {}
         for n in get_model_names(longname=True):
             for i, x in enumerate(m):
                 for r in x:
-                    name, _, conf, deg = r
+                    name, _, conf, deg, full_conf = r
                     if name == n:
-                        if name not in res.keys():
-                            res[name] = [(conf, cvName[i])]
+                        if conf is not None and full_conf is not None:
+                            gconf = jamGeomean([conf, full_conf])
                         else:
-                            res[name].append((conf, cvName[i]))
+                            gconf = None
+                        if name not in res.keys():
+                            res[name] = [(gconf, cvName[i])]
+                        else:
+                            res[name].append((gconf, cvName[i]))
         for model in ["Lasso", "Elastic Net", "Ridge"]:
             r = res[model]
             rcv = res[model + " CV"]
@@ -336,8 +358,8 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
         svrComp = dict()
         for s in svrs.keys():
             svr = svrs[s]
-            prod = functools.reduce(lambda x, y: x * y, [x[0] for x in svr], 1)
-            svrComp[s] = prod
+            # prod = functools.reduce(lambda x, y: x * y, [x[0] for x in svr], 1)
+            svrComp[s] = jamGeomean([x[0] for x in svr])
         bestSvr = [svr for n, svr in svrs.items() if svrComp[n] == max([a for a in svrComp.values()])][0]
         res["SVR"] = bestSvr
         #
@@ -367,7 +389,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
         for j, g in enumerate(grouped):
             v = [float(d[2]) for d in g if d[2] is not None]
             if len(v):
-                avg = statistics.mean(v)
+                avg = jamGeomean(v)
             else:
                 avg = None
             for i, d in enumerate(g):
@@ -707,7 +729,7 @@ def fit_models(X_train, y_train, X_test, y_test, X_full, y_full, polyDeg, models
         else:
             if showDone:
                 if not pFile.is_file():
-                    trained.append((longname, None, None, polyDeg))
+                    trained.append((longname, None, None, polyDeg, None))
                 else:
                     loaded = pickle.load(open(pFile, 'br'))
                     if sanityCheck:
