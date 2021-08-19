@@ -178,9 +178,9 @@ def main():
     # cv split
     if cliArgs.cvSize > 0:
         wfs = dF.wfName.unique()
-        allFolds = []
+        allFolds = dict()
+        cvSplits = dict()
         for cvwfs in itertools.combinations(wfs, cliArgs.cvSize):
-            print(cvwfs)
             X_train = []
             y_train = []
             X_test = []
@@ -203,22 +203,29 @@ def main():
             X_test = scale.transform(X_test)
             X_test = poly.transform(X_test)
             X_test = scale2.transform(X_test)
-            doModels = None
-            picklePrefixes = ['lin', 'quad', 'cube', 'tet', 'pen']
-            cvShortnames = []
-            for w in cvwfs:
-                subReg = re.compile("nfcore/(\w+):.*")
-                m = subReg.match(w)
-                assert m
-                cvShortnames.append(m.group(1))
-            for _ in range(cliArgs.numRepeats):
+            #
+            cvSplits[cvwfs] = (X_train, y_train, X_test, y_test)
+
+        for _ in range(cliArgs.numRepeats):
+            for cvwfs in itertools.combinations(wfs, cliArgs.cvSize):
+                print(cvwfs)
+                X_train, y_train, X_test, y_test = cvSplits[cvwfs]
+                picklePrefixes = ['lin', 'quad', 'cube', 'tet', 'pen']
+                cvShortnames = []
+                for w in cvwfs:
+                    subReg = re.compile("nfcore/(\w+):.*")
+                    m = subReg.match(w)
+                    assert m
+                    cvShortnames.append(m.group(1))
                 doModels = fit_models(X_train, y_train, X_test, y_test, X_full, y_full, doDegree, picklePrefix=f"CV{picklePrefixes[doDegree - 1]}Model.", randomOrder=True,
                                       notRecompute=not cliArgs.recompute, maxiter=cliArgs.maxiter, onlyImprove=cliArgs.improve, modelsToProduce=cliArgs.models,
                                       showDone=cliArgs.showDone, cvPostfix="_" + "+".join(cvShortnames), modelsPath=cliArgs.modelsPath, sanityCheck=cliArgs.sanityCheck,
                                       saveBest=cliArgs.saveBest)
-            allFolds.append((doModels, cvwfs))
-            showResults((doModels, cvwfs), doDegree, cvSize=cliArgs.cvSize, cvSummary=False, latex=cliArgs.latex)
-        showResults(allFolds, doDegree, cvSize=cliArgs.cvSize, cvSummary=True, latex=cliArgs.latex)
+                # allFolds.append((doModels, cvwfs))
+                allFolds[cvwfs] = doModels
+                showResults((doModels, cvwfs), doDegree, cvSize=cliArgs.cvSize, cvSummary=False, latex=cliArgs.latex)
+            showResults([(doM, cvs) for cvs, doM in allFolds.items()], doDegree, cvSize=cliArgs.cvSize, cvSummary=True, latex=cliArgs.latex)
+        showResults([(doM, cvs) for cvs, doM in allFolds.items()], doDegree, cvSize=cliArgs.cvSize, cvSummary=True, latex=cliArgs.latex)
     else:
         X_train = X_full
         X_test = X_full
