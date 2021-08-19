@@ -705,7 +705,7 @@ def fit_models(X_train, y_train, X_test, y_test, X_full, y_full, polyDeg, models
                         if sanityCheck:
                             loaded = sanity_check(pFile, X_test, y_test, X_full, y_full, loaded)
                         newGeo = jamGeomean([test_confidence, full_confidence])
-                        loadedGeo = jamGeomean(loaded[2], loaded[4])
+                        loadedGeo = jamGeomean([loaded[2], loaded[4]])
                         if newGeo >= loadedGeo:
                             pickle.dump(toDump, open(pFile, 'bw'))
                             printInfo(
