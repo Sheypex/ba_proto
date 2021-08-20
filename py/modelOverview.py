@@ -75,7 +75,7 @@ def main():
         df = df.join(m, on=["degree", "name"], rsuffix="_m")
         df.sort_values(by=["gconf_m"], ascending=False, inplace=True)
         df = df.reset_index(drop=True)
-        print(df)
+        # print(df)
         #
         numGroups = len(df) / 5
         indices = [int(round(((numGroups - 1) - x * (numGroups - 1)), 0) * 5) for x in [a / 10 for a in range(0, 11, 5)]]
