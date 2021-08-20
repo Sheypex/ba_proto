@@ -648,7 +648,7 @@ def main():
     #
     try:
         loaded = pickle.load(open(cliArgs.regModelPath, 'br'))
-        _, regModel, _, polyDeg = loaded
+        _, regModel, _, polyDeg, _ = loaded
     except Exception as e:
         print(f"Could not load regModel from pickle at {cliArgs.regModelPath!r} with error: {e}", file=sys.stderr)
         exit(1)
