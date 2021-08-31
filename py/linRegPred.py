@@ -247,7 +247,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
         if x[2] is not None:
             return -x[2]
         else:
-            return 10000
+            return float("inf")
 
     assert cvSize >= 0
     assert not (cvSize == 0 and cvSummary)
@@ -340,45 +340,47 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                             res[name] = [(gconf, cvName[i])]
                         else:
                             res[name].append((gconf, cvName[i]))
-        for model in ["Lasso", "Elastic Net", "Ridge"]:
-            if model in res.keys() and model + " CV" in res.keys():
-                r = res[model]
-                rcv = res[model + " CV"]
-                c = 0
-                for cv in cvName:
-                    a = [x for x in r if x[1] == cv][0]
-                    b = [y for y in rcv if y[1] == cv][0]
-                    if a is not None and b is not None:
-                        c += int(a[0] >= b[0])
-                    elif a is not None and b is None:
-                        c += 1
-
-                a = res.pop(model, None)
-                b = res.pop(model + " CV", None)
-                if c >= math.ceil(len(cvName) / 2):
-                    res[model] = a
-                else:
-                    res[model] = b
-            else:
-                a = res.pop(model, None)
-                b = res.pop(model + " CV", None)
-                if a is not None:
-                    res[model] = a
-                elif b is not None:
-                    res[model] = b
         #
-        svrs = dict()
-        for n in list(res.keys()).copy():
-            if "SVR" in n:
-                svrs[n] = res.pop(n)
-        if len(svrs) > 0:
-            svrComp = dict()
-            for s in svrs.keys():
-                svr = svrs[s]
-                # prod = functools.reduce(lambda x, y: x * y, [x[0] for x in svr], 1)
-                svrComp[s] = jamGeomean([x[0] for x in svr if x[0] is not None]) if len([x[0] for x in svr if x[0] is not None]) > 0 else float("-inf")
-            bestSvr = [svr for n, svr in svrs.items() if svrComp[n] == max([a for a in svrComp.values()])][0]
-            res["SVR"] = bestSvr
+        if latex:
+            for model in ["Lasso", "Elastic Net", "Ridge"]:
+                if model in res.keys() and model + " CV" in res.keys():
+                    r = res[model]
+                    rcv = res[model + " CV"]
+                    c = 0
+                    for cv in cvName:
+                        a = [x for x in r if x[1] == cv][0]
+                        b = [y for y in rcv if y[1] == cv][0]
+                        if a is not None and b is not None:
+                            c += int(a[0] >= b[0])
+                        elif a is not None and b is None:
+                            c += 1
+
+                    a = res.pop(model, None)
+                    b = res.pop(model + " CV", None)
+                    if c >= math.ceil(len(cvName) / 2):
+                        res[model] = a
+                    else:
+                        res[model] = b
+                else:
+                    a = res.pop(model, None)
+                    b = res.pop(model + " CV", None)
+                    if a is not None:
+                        res[model] = a
+                    elif b is not None:
+                        res[model] = b
+            #
+            svrs = dict()
+            for n in list(res.keys()).copy():
+                if "SVR" in n:
+                    svrs[n] = res.pop(n)
+            if len(svrs) > 0:
+                svrComp = dict()
+                for s in svrs.keys():
+                    svr = svrs[s]
+                    # prod = functools.reduce(lambda x, y: x * y, [x[0] for x in svr], 1)
+                    svrComp[s] = jamGeomean([x[0] for x in svr if x[0] is not None]) if len([x[0] for x in svr if x[0] is not None]) > 0 else float("-inf")
+                bestSvr = [svr for n, svr in svrs.items() if svrComp[n] == max([a for a in svrComp.values()])][0]
+                res["SVR"] = bestSvr
         #
         data = []
         for n in res.keys():
@@ -389,10 +391,11 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
             p, name, conf, cv = d
             if conf is not None:
                 conf = f"{conf:.4f}"
-            if name == "Linear Regression":
-                name = "Ordinary Least Squares"
-            name = name.replace("Regression", "")
-            name = name.replace("Regressor", "")
+            if latex:
+                if name == "Linear Regression":
+                    name = "Ordinary Least Squares"
+                name = name.replace("Regression", "")
+                name = name.replace("Regressor", "")
             cv = ', '.join([re.compile('nfcore/(.*?):.*').match(c).group(1) for c in cv])
             data[i] = [p, name, conf, cv]
         grouped = {}
@@ -402,6 +405,8 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                 grouped[name] = [d]
             else:
                 grouped[name].append(d)
+        for n, g in grouped.items():
+            g.sort(key=lambda x: x[3])
         grouped = list(grouped.values())
         for j, g in enumerate(grouped):
             v = [float(d[2]) for d in g if d[2] is not None]
@@ -418,7 +423,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
             grouped[j] = g
         grouped.sort(key=lambda x: float(x[math.floor(len(g) / 2)][3]) if x[math.floor(len(g) / 2)][3] is not None else float('-inf'), reverse=True)
         data = [d for g in grouped for d in g]
-        fmt = 'simple'
+        fmt = 'latex' if latex else 'simple'
         numparse = False
         tableHeaders = (f"degree={degree}", 'model', 'confidence', 'average', 'cv fold')
     print(tabulate(data, headers=tableHeaders,
