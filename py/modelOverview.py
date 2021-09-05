@@ -53,6 +53,16 @@ def main():
             models[i] = (name, f"{float(conf):.4f}", deg)
         print(tabulate([(x[2], x[0], x[1]) for x in models], headers=("degree", "name", "conf"), tablefmt='latex', disable_numparse=True))
     #
+    if True:
+        pModels = list()
+        with open("percentileModels", "r") as pModelsF:
+            for line in pModelsF:
+                # print(line)
+                with open(line.strip(), "br") as f:
+                    name, _, test_conf, deg, full_conf = pickle.load(f)
+                    pModels.append((deg, name, f"{test_conf:.4f}"))
+        print(tabulate(pModels, headers=("Degree", "Name", "Conf"), tablefmt="latex", disable_numparse=True))
+    #
     if False:
         cvmodels = []
         for f in os.listdir("cvmodels"):
