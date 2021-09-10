@@ -5,11 +5,15 @@ import re
 import statistics
 from functools import reduce
 from pprint import pprint
+
+from alive_progress import alive_bar
+from tqdm import tqdm, trange
 from log_symbols import LogSymbols
 
 import overrides as overrides
 import pandas as pds
 import tabulate as tabulate
+from collections import namedtuple
 from sklearn import linear_model, metrics, preprocessing, model_selection, svm
 from tabulate import tabulate
 from pathlib import Path
@@ -21,9 +25,12 @@ import sys
 from sklearn.experimental import enable_halving_search_cv
 from sklearn.model_selection import HalvingGridSearchCV, RandomizedSearchCV, HalvingRandomSearchCV
 import scipy.stats as scistats
+from data_types import PickleOut
 
 from db_actions import db_actions
 import numpy as np
+
+TrainTestUnknownSplit = namedtuple("TrainTestUnknownSplit", ["X_train", "y_train", "X_test", "y_test", "X_unknown", "y_unknown", "X_trans", "ukwfs", "cvwfs"])
 
 
 def printStat(txt, stat=LogSymbols.INFO.value, indent=0):
@@ -51,6 +58,12 @@ def printWarn(txt, indent=0):
     printStat(txt, LogSymbols.WARNING.value, indent)
 
 
+def printBox(message, borderTopBot='#', borderSides='#'):
+    print(f"{borderTopBot * (len(message) + 4)}")
+    print(f'{borderSides} ' + message + f' {borderSides}')
+    print(f"{borderTopBot * (len(message) + 4)}")
+
+
 # jamGeomean <- function
 # (x,
 #  na.rm=TRUE,
@@ -69,6 +82,77 @@ def jamGeomean(iterable):
     return math.copysign(1, m) * ((2 ** abs(m)) - 1)
 
 
+def getTransformers(X, polyDeg):
+    scale = preprocessing.StandardScaler().fit(X)
+    if polyDeg > 1:
+        poly = preprocessing.PolynomialFeatures(degree=polyDeg, interaction_only=True).fit(X)
+    else:
+        poly = preprocessing.PolynomialFeatures(degree=polyDeg, interaction_only=True, include_bias=False).fit(X)
+    scale2 = preprocessing.StandardScaler().fit(poly.transform(scale.transform(X)))
+    return scale, poly, scale2
+
+
+def applyTransformers(X, scale, poly, scale2):
+    return scale2.transform(poly.transform(scale.transform(X)))
+
+
+def getNumSplits(dF, cvSize=0, unknownSize=0, wfs=None):
+    if wfs is None:
+        wfs = dF.wfName.unique()
+    nSplits = 0
+    #
+    unknownCombs = [(list(ukwfs), [wf for wf in wfs if wf not in ukwfs]) for ukwfs in itertools.combinations(wfs, unknownSize)]
+    for ukSplit in unknownCombs:
+        ukwfs, kwfs = ukSplit
+        #
+        cvCombs = [(list(cvwfs), [wf for wf in kwfs if wf not in cvwfs]) for cvwfs in itertools.combinations(kwfs, cvSize)]
+        for cvSplit in cvCombs:
+            nSplits += 1
+    return nSplits
+
+
+def getSplits(dF, polyDeg, x_cols, y_cols, cvSize=0, unknownSize=0, wfs=None, randomOrder=True):
+    assert 1 <= polyDeg <= 5
+    assert 0 <= cvSize <= 4
+    assert 0 <= unknownSize <= 4
+    assert 0 <= cvSize + unknownSize <= 4
+    #
+    if wfs is None:
+        wfs = dF.wfName.unique()
+    #
+    splits = list()
+    #
+    unknownCombs = [(list(ukwfs), [wf for wf in wfs if wf not in ukwfs]) for ukwfs in itertools.combinations(wfs, unknownSize)]
+    for ukSplit in unknownCombs:
+        ukwfs, kwfs = ukSplit
+        #
+        cvCombs = [(list(cvwfs), [wf for wf in kwfs if wf not in cvwfs]) for cvwfs in itertools.combinations(kwfs, cvSize)]
+        for cvSplit in cvCombs:
+            cvwfs, trainwfs = cvSplit
+            splits.append((ukwfs, kwfs, cvwfs, trainwfs))
+    #
+    if randomOrder:
+        random.shuffle(splits)
+    #
+    for split in splits:
+        ukwfs, kwfs, cvwfs, trainwfs = split
+        #
+        rows_known = dF.query("wfName in @kwfs")
+        rows_unknown = dF.query("wfName in @ukwfs")
+        X_trans = getTransformers(rows_known[x_cols], polyDeg)
+        X_scale, X_poly, X_scale2 = X_trans
+        #
+        X_train = applyTransformers(rows_known.query("wfName in @trainwfs")[x_cols], X_scale, X_poly, X_scale2)
+        X_test = X_train if len(cvwfs) == 0 else applyTransformers(rows_known.query("wfName in @cvwfs")[x_cols], X_scale, X_poly, X_scale2)
+        X_unknown = list() if len(ukwfs) == 0 else applyTransformers(rows_unknown[x_cols], X_scale, X_poly, X_scale2)
+        #
+        y_train = rows_known.query("wfName in @trainwfs")[y_cols]
+        y_test = y_train if len(cvwfs) == 0 else rows_known.query("wfName in @cvwfs")[y_cols]
+        y_unknown = list() if len(ukwfs) == 0 else rows_unknown[y_cols]
+        #
+        yield TrainTestUnknownSplit(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_trans, ukwfs, cvwfs)
+
+
 def main():
     argp = argparse.ArgumentParser()
     argp.add_argument('polyDeg', type=int, choices=[1, 2, 3, 4, 5], action='store', default=1)
@@ -83,6 +167,7 @@ def main():
     argp.add_argument('--showDone', action='store_true', dest='showDone', default=False)
     argp.add_argument('--models', action='store', dest='modelsPath', default='models')
     argp.add_argument('--WFCV', action='store', type=int, choices=[0, 1, 2, 3, 4], default=0, dest='cvSize')
+    argp.add_argument('--WFU', action='store', type=int, choices=[0, 1, 2, 3, 4], default=0, dest='unknownSize')
     argp.add_argument('--sanity-check', action='store_true', dest='sanityCheck', default=False)
     argp.add_argument('--saveBest', action='store_true', dest='saveBest', default=False)
     cliArgs = argp.parse_args(sys.argv[1:])
@@ -113,6 +198,7 @@ def main():
     if p.exists() and not p.is_dir():
         raise FileExistsError(
             f"The path {p} exists but is not a directory. It is an invalid location for storing models.")
+    assert cliArgs.cvSize + cliArgs.unknownSize <= 4, f"The sum of workflows used in the cv folds and tested as unknowns may not exceed 4: {cliArgs.cvSize=} and {cliArgs.unknownSize=} were supplied."
     # print cli config
     # printInfo(f"Running with command line arguments: {cliArgs.__dict__}")
     #
@@ -133,113 +219,53 @@ def main():
         with db_actions.connect() as conn:
             dF = pds.read_sql("SELECT * FROM \"averageRuntimesPredictionBase1000\"", conn)
     # print(dF)
-    # X = dF[
-    #     ["nodeConfig",
-    #     "build-linux-kernel1",
-    #     "fio2", "fio3", "fio4", "fio5", "fio6", "fio7", "fio8", "fio9",
-    #     "iperf10", "iperf11", "iperf12", "iperf13",
-    #     "john-the-ripper14", "john-the-ripper15",
-    #     "ramspeed16", "ramspeed17", "ramspeed18", "ramspeed19", "ramspeed20", "ramspeed21", "ramspeed22",
-    #     "ramspeed23", "ramspeed24", "ramspeed25",
-    #      "stream26", "stream27", "stream28", "stream29",
-    #      "taskName", "wfName", "pCpu", "cpus", "rss", "vmem", "rchar", "wchar", "syscr", "syscw",
-    #      "realtime", "rank"]]
-    # dF = dF.sample(frac=1)  # shuffle rows
-    X = dF[
-        ["build-linux-kernel1",
-         "fio2", "fio3", "fio4", "fio5", "fio6", "fio7", "fio8", "fio9",
-         "iperf10", "iperf11", "iperf12", "iperf13",
-         "john-the-ripper14", "john-the-ripper15",
-         "ramspeed16", "ramspeed17", "ramspeed18", "ramspeed19", "ramspeed20", "ramspeed21", "ramspeed22",
-         "ramspeed23", "ramspeed24", "ramspeed25",
-         "stream26", "stream27", "stream28", "stream29",
-         "pCpu", "cpus", "rss", "vmem", "rchar", "wchar", "syscr", "syscw"]]
-    y = dF['rank']
-
-    # scale data
-    scale = preprocessing.StandardScaler().fit(X)
-    if doDegree > 1:
-        poly = preprocessing.PolynomialFeatures(degree=doDegree, interaction_only=True).fit(X)
-    else:
-        poly = preprocessing.PolynomialFeatures(degree=doDegree, interaction_only=True, include_bias=False).fit(X)
-    # X = scale.fit_transform(X)
-
-    if doDegree == 1:
-        t = poly.transform(X)
-        t = list(t)
-        assert all(k == t[i][j] for i, x in enumerate(X.values.tolist()) for j, k in enumerate(x))
-
-    # print(len(X), len(y))
-    X_full = scale.transform(X)
-    X_full = poly.transform(X_full)
-    scale2 = preprocessing.StandardScaler().fit(X_full)
-    X_full = scale2.transform(X_full)
+    x_cols = ["build-linux-kernel1",
+              "fio2", "fio3", "fio4", "fio5", "fio6", "fio7", "fio8", "fio9",
+              "iperf10", "iperf11", "iperf12", "iperf13",
+              "john-the-ripper14", "john-the-ripper15",
+              "ramspeed16", "ramspeed17", "ramspeed18", "ramspeed19", "ramspeed20", "ramspeed21", "ramspeed22", "ramspeed23", "ramspeed24", "ramspeed25",
+              "stream26", "stream27", "stream28", "stream29",
+              "pCpu", "cpus", "rss", "vmem", "rchar", "wchar", "syscr", "syscw"]
+    y_cols = 'rank'
+    #
+    wfs = dF.wfName.unique()
+    wfShortnamesLUT = {wf: re.compile("nfcore/(\w+):.*").match(wf).group(1) for wf in wfs}
+    wfLongnamesLUT = {short: long for long, short in wfShortnamesLUT.items()}
+    picklePrefixes = {1: 'lin', 2: 'quad', 3: 'cube', 4: 'tet', 5: 'pen'}
+    #
+    X = dF[x_cols]
+    y = dF[y_cols]
+    full_scale, full_poly, full_scale2 = getTransformers(X, doDegree)
+    X_full = applyTransformers(X, full_scale, full_poly, full_scale2)
     y_full = y
-    # cv split
-    if cliArgs.cvSize > 0:
-        wfs = dF.wfName.unique()
-        allFolds = dict()
-        cvSplits = dict()
-        cvCombs = list(itertools.combinations(wfs, cliArgs.cvSize))
-        for cvwfs in cvCombs:
-            X_train = []
-            y_train = []
-            X_test = []
-            y_test = []
-            for i, d in enumerate(X.values.tolist()):
-                if dF['wfName'][i] not in cvwfs:
-                    X_train.append(d)
+    #
+    numSplits = getNumSplits(dF, cliArgs.cvSize, cliArgs.unknownSize, wfs)
+    numModels = len(get_models())
+    with alive_bar(cliArgs.numRepeats * numSplits * numModels, f"Fitting {numModels} models on {numSplits} splits for {cliArgs.numRepeats} repeats",
+                   enrich_print=False) as progressBar:
+        for iReps in range(cliArgs.numRepeats):
+            printBox(f"Repeat number {iReps + 1}")
+            splits = getSplits(dF, doDegree, x_cols, y_cols, cliArgs.cvSize, cliArgs.unknownSize, wfs)
+            for split in splits:
+                X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_trans, ukwfs, cvwfs = split
+                assert len(X_train) == len(y_train)
+                assert len(X_test) == len(y_test)
+                assert len(X_unknown) == len(y_unknown)
+                printBox(f"{ukwfs=}, {cvwfs=}: {len(X_train)=}, {len(X_test)=}, {len(X_unknown)=}", '-', '|')
+                if len(cvwfs) > 0:
+                    cvsName = "+".join([wfShortnamesLUT[cv] for cv in cvwfs])
                 else:
-                    X_test.append(d)
-            for i, d in enumerate(y):
-                if dF['wfName'][i] not in cvwfs:
-                    y_train.append(d)
+                    cvsName = "None"
+                if len(ukwfs) > 0:
+                    uksName = "+".join([wfShortnamesLUT[cv] for cv in ukwfs])
                 else:
-                    y_test.append(d)
-            # print(len(X_train), len(y_train))
-            # print(len(X_test), len(y_test))
-            X_train = scale.transform(X_train)
-            X_train = poly.transform(X_train)
-            X_train = scale2.transform(X_train)
-            X_test = scale.transform(X_test)
-            X_test = poly.transform(X_test)
-            X_test = scale2.transform(X_test)
-            #
-            cvSplits[cvwfs] = (X_train, y_train, X_test, y_test)
-
-        for _ in range(cliArgs.numRepeats):
-            random.shuffle(cvCombs)
-            for cvwfs in cvCombs:
-                print(cvwfs)
-                X_train, y_train, X_test, y_test = cvSplits[cvwfs]
-                picklePrefixes = ['lin', 'quad', 'cube', 'tet', 'pen']
-                cvShortnames = []
-                for w in cvwfs:
-                    subReg = re.compile("nfcore/(\w+):.*")
-                    m = subReg.match(w)
-                    assert m
-                    cvShortnames.append(m.group(1))
-                doModels = fit_models(X_train, y_train, X_test, y_test, X_full, y_full, doDegree, picklePrefix=f"CV{picklePrefixes[doDegree - 1]}Model.", randomOrder=True,
+                    uksName = "None"
+                doModels = fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y_full, doDegree, picklePrefix=f"{picklePrefixes[doDegree]}Model.",
+                                      randomOrder=True,
                                       notRecompute=not cliArgs.recompute, maxiter=cliArgs.maxiter, onlyImprove=cliArgs.improve, modelsToProduce=cliArgs.models,
-                                      showDone=cliArgs.showDone, cvPostfix="_" + "+".join(cvShortnames), modelsPath=cliArgs.modelsPath, sanityCheck=cliArgs.sanityCheck,
-                                      saveBest=cliArgs.saveBest)
-                # allFolds.append((doModels, cvwfs))
-                allFolds[cvwfs] = doModels
-                showResults((doModels, cvwfs), doDegree, cvSize=cliArgs.cvSize, cvSummary=False, latex=cliArgs.latex)
-            showResults([(doM, cvs) for cvs, doM in allFolds.items()], doDegree, cvSize=cliArgs.cvSize, cvSummary=True, latex=cliArgs.latex)
-    else:
-        X_train = X_full
-        X_test = X_full
-        y_train = y
-        y_test = y
-
-        doModels = None
-        picklePrefixes = ['lin', 'quad', 'cube', 'tet', 'pen']
-        for _ in range(cliArgs.numRepeats):
-            doModels = fit_models(X_train, y_train, X_test, y_test, X_full, y_full, doDegree, picklePrefix=f"{picklePrefixes[doDegree - 1]}Model.", randomOrder=True,
-                                  notRecompute=not cliArgs.recompute, maxiter=cliArgs.maxiter, onlyImprove=cliArgs.improve, modelsToProduce=cliArgs.models,
-                                  showDone=cliArgs.showDone, modelsPath=cliArgs.modelsPath, sanityCheck=cliArgs.sanityCheck, saveBest=cliArgs.saveBest)
-        showResults(doModels, doDegree, latex=cliArgs.latex)
+                                      showDone=cliArgs.showDone, cvPostfix=f"_CV-{cvsName}_U-{uksName}",
+                                      modelsPath=cliArgs.modelsPath, sanityCheck=cliArgs.sanityCheck,
+                                      saveBest=cliArgs.saveBest, progressBar=progressBar)
 
 
 def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
@@ -631,23 +657,25 @@ def iround(num):
     return int(round(num, 0))
 
 
-def sanity_check(pFile, X_test, y_test, X_full, y_full, loaded=None):
+def sanity_check(pFile, X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y_full, bonusPickleInfo=None, loaded=None):
     if loaded is None:
         loaded = pickle.load(open(pFile, 'br'))
     try:
-        name, loadedRegr, conf, deg, full_conf = loaded
+        longname, regr, test_confidence, deg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo = loaded
     except:
-        name, loadedRegr, conf, deg = loaded
-        full_conf = loadedRegr.score(X_full, y_full)
-    comp = loadedRegr.score(X_test, y_test)
-    full_comp = loadedRegr.score(X_full, y_full)
-    checked = (name, loadedRegr, comp, deg, full_comp)
-    pickle.dump(checked, open(pFile, 'bw'))
-    return checked
+        longname, regr, test_confidence, deg, full_conf = loaded
+    train_confidence = regr.score(X_train, y_train)
+    test_confidence = regr.score(X_test, y_test)
+    full_confidence = regr.score(X_full, y_full)
+    unknown_confidence = regr.score(X_unknown, y_unknown) if len(X_unknown) > 0 else None
+    toDump = PickleOut(longname, regr, test_confidence, deg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo)
+    with open(pFile, "bw") as f:
+        pickle.dump(toDump, f)
+    return toDump
 
 
-def fit_models(X_train, y_train, X_test, y_test, X_full, y_full, polyDeg, models=None, picklePrefix='', randomOrder=False, notRecompute=True, maxiter=-1, onlyImprove=False,
-               modelsToProduce=None, showDone=False, cvPostfix=None, modelsPath=None, sanityCheck=False, saveBest=False):
+def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y_full, polyDeg, models=None, picklePrefix='', randomOrder=False, notRecompute=True, maxiter=-1,
+               onlyImprove=False, modelsToProduce=None, showDone=False, cvPostfix=None, modelsPath=None, sanityCheck=False, saveBest=False, bonusPickleInfo=None, progressBar=None):
     if modelsPath is None:
         modelsPath = "./models"
     if cvPostfix is None:
@@ -710,12 +738,16 @@ def fit_models(X_train, y_train, X_test, y_test, X_full, y_full, polyDeg, models
                 printInfo("Recomputing", 1)
             try:
                 regr.fit(X_train, y_train)
+                train_confidence = regr.score(X_train, y_train)
                 test_confidence = regr.score(X_test, y_test)
                 full_confidence = regr.score(X_full, y_full)
+                unknown_confidence = regr.score(X_unknown, y_unknown) if len(X_unknown) > 0 else None
                 if params is not None:
-                    toDump = (longname, regr.best_estimator_, test_confidence, polyDeg, full_confidence)
+                    # toDump = (longname, regr.best_estimator_, test_confidence, polyDeg, full_confidence)
+                    toDump = PickleOut(longname, regr.best_estimator_, test_confidence, polyDeg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo)
                 else:
-                    toDump = (longname, regr, test_confidence, polyDeg, full_confidence)
+                    # toDump = (longname, regr, test_confidence, polyDeg, full_confidence)
+                    toDump = PickleOut(longname, regr, test_confidence, polyDeg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo)
                 if onlyImprove:
                     printInfo(f"Trying to improve {fullname}", 1)
                     if not pFile.is_file():
@@ -725,18 +757,18 @@ def fit_models(X_train, y_train, X_test, y_test, X_full, y_full, polyDeg, models
                     else:
                         loaded = pickle.load(open(pFile, 'br'))
                         if sanityCheck:
-                            loaded = sanity_check(pFile, X_test, y_test, X_full, y_full, loaded)
-                        newGeo = jamGeomean([test_confidence, full_confidence])
-                        loadedGeo = jamGeomean([loaded[2], loaded[4]])
+                            loaded = sanity_check(pFile, X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y_full, bonusPickleInfo, loaded)
+                        newGeo = jamGeomean([test_confidence, full_confidence, train_confidence])
+                        loadedGeo = jamGeomean([loaded.test_confidence, loaded.full_confidence, loaded.train_confidence])
                         if newGeo >= loadedGeo:
                             pickle.dump(toDump, open(pFile, 'bw'))
                             printInfo(
-                                f"Improved (or matched) {fullname} (over {pickleName}.pickle): ({loaded[2]}, {loaded[4]}) | {loadedGeo} < {newGeo} | ({test_confidence}, {full_confidence})\t(+{newGeo - loadedGeo})",
+                                f"Improved (or matched) {fullname} (over {pickleName}.pickle): ({loaded.test_confidence=}, {loaded.full_confidence=}, {loaded.train_confidence}) | {loadedGeo} < {newGeo} | ({test_confidence=}, {full_confidence=}, {train_confidence=})\t(+{newGeo - loadedGeo})",
                                 1)
                             trained.append(toDump)
                         else:
                             printInfo(
-                                f"Did not improve {fullname} (over {pickleName}.pickle): ({loaded[2]}, {loaded[4]}) | {loadedGeo} > {newGeo} | ({test_confidence}, {full_confidence})\t({newGeo - loadedGeo})",
+                                f"Did not improve {fullname} (over {pickleName}.pickle): ({loaded.test_confidence=}, {loaded.full_confidence=}, {loaded.train_confidence}) | {loadedGeo} > {newGeo} | ({test_confidence=}, {full_confidence=}, {train_confidence=})\t({newGeo - loadedGeo})",
                                 1)
                             trained.append(loaded)
                 else:
@@ -751,22 +783,30 @@ def fit_models(X_train, y_train, X_test, y_test, X_full, y_full, polyDeg, models
                 print(e)
                 exit(1)
         else:
+            printInfo(f"{fullname}:")
+            if not pFile.is_file():
+                printInfo("Found no pickle", 1)
+            else:
+                printInfo("Found pickle", 1)
             if showDone:
                 if not pFile.is_file():
-                    trained.append((longname, None, None, polyDeg, None))
+                    trained.append(PickleOut(longname, None, None, polyDeg, None, None, None, None))
                 else:
                     loaded = pickle.load(open(pFile, 'br'))
                     if sanityCheck:
-                        loaded = sanity_check(pFile, X_test, y_test, X_full, y_full, loaded)
+                        loaded = sanity_check(pFile, X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y_full, bonusPickleInfo, loaded)
                     trained.append(loaded)
             else:
                 printInfo(f"{fullname}:")
                 loaded = pickle.load(open(pFile, 'br'))
                 if sanityCheck:
-                    loaded = sanity_check(pFile, X_test, y_test, X_full, y_full, loaded)
+                    loaded = sanity_check(pFile, X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y_full, bonusPickleInfo, loaded)
                 trained.append(loaded)
                 # spinner.succeed(f"Found pickle for {fullName}")
                 printSucc(f"Found pickle for {fullname} at {pickleName}.pickle", 1)
+        #
+        if progressBar is not None:
+            progressBar()
     #
     if saveBest:
         bestModelPath = Path(f"{modelsPath}/bestModel.pickle")

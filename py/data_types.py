@@ -1,8 +1,11 @@
 from dataclasses import dataclass, field
 from enum import Enum, auto
 from typing import Union
+from collections import namedtuple
 
 import my_yaml
+
+PickleOut = namedtuple("PickleOut", ["longname", "regr", "test_confidence", "polyDeg", "full_confidence", "unknown_confidence", "train_confidence", "bonusPickleInfo"])
 
 
 class AutoNameEnum(Enum):
