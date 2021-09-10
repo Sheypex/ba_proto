@@ -8,6 +8,7 @@ from pprint import pprint
 from scipy import stats as scistats
 from tabulate import tabulate
 import statistics
+from data_types import PickleOut
 
 
 # jamGeomean <- function
@@ -29,7 +30,7 @@ def jamGeomean(iterable):
 
 
 def main():
-    if True:
+    if False:
         models = []
         for f in os.listdir("models"):
             if re.match(".*\.pickle$", f) and f != "bestModel.pickle":
@@ -53,7 +54,7 @@ def main():
             models[i] = (name, f"{float(conf):.4f}", deg)
         print(tabulate([(x[2], x[0], x[1]) for x in models], headers=("degree", "name", "conf"), tablefmt='latex', disable_numparse=True))
     #
-    if True:
+    if False:
         pModels = list()
         with open("percentileModels", "r") as pModelsF:
             for line in pModelsF:
@@ -63,17 +64,25 @@ def main():
                     pModels.append((deg, name, f"{test_conf:.4f}"))
         print(tabulate(pModels, headers=("Degree", "Name", "Conf"), tablefmt="latex", disable_numparse=True))
     #
-    if False:
+    if True:
         cvmodels = []
         for f in os.listdir("cvmodels"):
             if re.match(".*\.pickle$", f) and f != "bestModel.pickle":
-                l = pickle.load(open(f"cvmodels/{f}", "br"))
-                name, regr, test_conf, deg, full_conf = l
-                cv = re.match(".*_(.*?)\.pickle", f).groups(1)
-                if test_conf >= -1 and full_conf >= -1:
-                    cvmodels.append((name, jamGeomean([test_conf, full_conf]), deg, f"cvmodels/{f}", cv, test_conf, full_conf))
+                l: PickleOut = pickle.load(open(f"cvmodels/{f}", "br"))
+                name, _, test_confidence, deg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo = l
+                cv = re.match(".*_CV-(.*?)_U-(.*)\.pickle$", f).groups(1)
+                if test_confidence >= -1 and full_confidence >= -1:
+                    cvmodels.append((name,
+                                     jamGeomean([test_confidence, full_confidence, train_confidence, unknown_confidence]),
+                                     deg,
+                                     f"cvmodels/{f}",
+                                     cv,
+                                     test_confidence,
+                                     full_confidence,
+                                     train_confidence,
+                                     unknown_confidence))
         # cvmodels.sort(key=lambda x: -x[2])
-        df = pds.DataFrame(cvmodels, columns=["name", "gconf", "degree", "path", "cv", "test_conf", "full_conf"])
+        df = pds.DataFrame(cvmodels, columns=["name", "gconf", "degree", "path", "cv", "test_conf", "full_conf", "train_conf", "uk_conf"])
         # print(tabulate([[m[3] if len(m) >= 4 else None, m[0], m[5], m[2]] for m in cvmodels], headers=["degree", "name", "cv", "conf"], missingval='N/A', showindex=True))
         with pds.option_context('display.max_rows', None,
                                 'display.max_columns', None,

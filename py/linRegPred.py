@@ -760,17 +760,21 @@ def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y
                             loaded = sanity_check(pFile, X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y_full, bonusPickleInfo, loaded)
                         newGeo = jamGeomean([test_confidence, full_confidence, train_confidence])
                         loadedGeo = jamGeomean([loaded.test_confidence, loaded.full_confidence, loaded.train_confidence])
+                        table = tabulate([["old:", loaded.test_confidence, loaded.full_confidence, loaded.train_confidence, loadedGeo],
+                                          ["new:", test_confidence, full_confidence, train_confidence, newGeo]],
+                                         headers=["", "test_conf", "full_conf", "train_conf", "geo_mean"])
                         if newGeo >= loadedGeo:
                             pickle.dump(toDump, open(pFile, 'bw'))
                             printInfo(
-                                f"Improved (or matched) {fullname} (over {pickleName}.pickle): ({loaded.test_confidence=}, {loaded.full_confidence=}, {loaded.train_confidence}) | {loadedGeo} < {newGeo} | ({test_confidence=}, {full_confidence=}, {train_confidence=})\t(+{newGeo - loadedGeo})",
+                                f"Improved (or matched) {fullname} (over {pickleName}.pickle): (+{newGeo - loadedGeo})",
                                 1)
                             trained.append(toDump)
                         else:
                             printInfo(
-                                f"Did not improve {fullname} (over {pickleName}.pickle): ({loaded.test_confidence=}, {loaded.full_confidence=}, {loaded.train_confidence}) | {loadedGeo} > {newGeo} | ({test_confidence=}, {full_confidence=}, {train_confidence=})\t({newGeo - loadedGeo})",
+                                f"Did not improve {fullname} (over {pickleName}.pickle): ({newGeo - loadedGeo})",
                                 1)
                             trained.append(loaded)
+                        print("\n".join(["\t" + row for row in table.split("\n")]))
                 else:
                     pickle.dump(toDump, open(pFile, 'bw'))
                     printInfo(f"Saved {fullname} (to {pickleName}.pickle)", 1)

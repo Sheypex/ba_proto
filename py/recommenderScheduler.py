@@ -17,6 +17,7 @@ from sklearn import linear_model, preprocessing
 from tabulate import tabulate
 from pathlib import Path
 import pickle
+from data_types import PickleOut
 import random
 import argparse
 import sys
@@ -647,8 +648,8 @@ def main():
         random.seed(0)
     #
     try:
-        loaded = pickle.load(open(cliArgs.regModelPath, 'br'))
-        _, regModel, _, polyDeg, _ = loaded
+        loaded: PickleOut = pickle.load(open(cliArgs.regModelPath, 'br'))
+        name, regModel, test_confidence, polyDeg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo = loaded
     except Exception as e:
         print(f"Could not load regModel from pickle at {cliArgs.regModelPath!r} with error: {e}", file=sys.stderr)
         exit(1)
