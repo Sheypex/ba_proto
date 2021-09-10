@@ -8,4 +8,5 @@
 * $ conda config --add channels conda-forge
 * $ conda create -n py --file dependencies.conda
 * $ conda activate py
+* $ apt install libpq-dev graphviz graphviz-dev
 * $ python linRegPred.py ...
