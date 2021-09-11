@@ -787,19 +787,18 @@ def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y
                 print(e)
                 exit(1)
         else:
-            printInfo(f"{fullname}:")
-            if not pFile.is_file():
-                printInfo("Found no pickle", 1)
-            else:
-                printInfo("Found pickle", 1)
             if showDone:
+                printInfo(f"{fullname}:")
                 if not pFile.is_file():
+                    printInfo("Found no pickle", 1)
                     trained.append(PickleOut(longname, None, None, polyDeg, None, None, None, None))
                 else:
+                    printInfo("Found pickle", 1)
                     loaded = pickle.load(open(pFile, 'br'))
                     if sanityCheck:
                         loaded = sanity_check(pFile, X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y_full, bonusPickleInfo, loaded)
                     trained.append(loaded)
+                    printSucc("Sanity checked", 1)
             else:
                 printInfo(f"{fullname}:")
                 loaded = pickle.load(open(pFile, 'br'))

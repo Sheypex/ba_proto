@@ -66,30 +66,33 @@ def main():
     #
     if True:
         cvmodels = []
-        for f in os.listdir("cvmodels"):
+        cvmodelDir = "tmp"
+        for f in os.listdir(cvmodelDir):
             if re.match(".*\.pickle$", f) and f != "bestModel.pickle":
-                l: PickleOut = pickle.load(open(f"cvmodels/{f}", "br"))
+                l: PickleOut = pickle.load(open(f"{cvmodelDir}/{f}", "br"))
                 name, _, test_confidence, deg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo = l
-                cv = re.match(".*_CV-(.*?)_U-(.*)\.pickle$", f).groups(1)
+                m = re.match(".*_CV-(.*?)_U-(.*?)\.pickle$", f)
+                cv, unknown = m.group(1, 2)
                 if test_confidence >= -1 and full_confidence >= -1:
                     cvmodels.append((name,
                                      jamGeomean([test_confidence, full_confidence, train_confidence, unknown_confidence]),
                                      deg,
-                                     f"cvmodels/{f}",
+                                     f"{cvmodelDir}/{f}",
                                      cv,
+                                     unknown,
                                      test_confidence,
                                      full_confidence,
                                      train_confidence,
                                      unknown_confidence))
         # cvmodels.sort(key=lambda x: -x[2])
-        df = pds.DataFrame(cvmodels, columns=["name", "gconf", "degree", "path", "cv", "test_conf", "full_conf", "train_conf", "uk_conf"])
+        df = pds.DataFrame(cvmodels, columns=["name", "gconf", "degree", "path", "cv", "uk", "test_conf", "full_conf", "train_conf", "uk_conf"])
         # print(tabulate([[m[3] if len(m) >= 4 else None, m[0], m[5], m[2]] for m in cvmodels], headers=["degree", "name", "cv", "conf"], missingval='N/A', showindex=True))
         with pds.option_context('display.max_rows', None,
                                 'display.max_columns', None,
                                 'display.width', None,
                                 'display.precision', 4, ):
             df.sort_values(by="path", inplace=True, ignore_index=True)
-            hasAllCVs = df.groupby(["degree", "name"])["cv"].agg(lambda c: len(c) == 5)
+            hasAllCVs = df.groupby(["degree", "name"])["cv"].agg(lambda c: len(c) == 20)
             # print(hasAllCVs)
             # print(df)
             df = df.join(hasAllCVs, on=["degree", "name"], rsuffix="_p")
@@ -104,12 +107,12 @@ def main():
             df = df.reset_index(drop=True)
             # print(df)
             #
-            numGroups = len(df) / 5
-            indices = [int(round(((numGroups - 1) - x * (numGroups - 1)), 0) * 5) for x in [a / 10 for a in range(0, 11, 5)]]
-            indices = [x for i in indices for x in [i, i + 1, i + 2, i + 3, i + 4]]
+            numGroups = len(df) / 20
+            indices = [int(round(((numGroups - 1) - x * (numGroups - 1)), 0) * 20) for x in [a / 10 for a in range(0, 11, 5)]]
+            indices = [x for i in indices for x in [i + o for o in range(0, 20)]]
             # print(indices)
             cvmodels = [m for i, m in enumerate(df.values) if i in indices]
-            # print(tabulate([[m[3] if len(m) >= 4 else None, m[4], m[2]] for m in cvmodels], headers=["degree", "name", "gconf"], missingval='N/A', showindex=True))
+            # print(tabulate([[m[2], m[3], m[1], m[10]] for m in cvmodels], headers=["degree", "name", "gconf", "gconf_m"], missingval='N/A', showindex=True))
             [print(x[3]) for x in cvmodels]
 
 
