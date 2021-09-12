@@ -675,6 +675,14 @@ def sanity_check(pFile, X_train, y_train, X_test, y_test, X_unknown, y_unknown, 
 
 def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y_full, polyDeg, models=None, picklePrefix='', randomOrder=False, notRecompute=True, maxiter=-1,
                onlyImprove=False, modelsToProduce=None, showDone=False, cvPostfix=None, modelsPath=None, sanityCheck=False, saveBest=False, bonusPickleInfo=None, progressBar=None):
+    def custom_scoring(est, X, y):
+        train_confidence = est.score(X, y)
+        test_confidence = est.score(X_test, y_test)
+        full_confidence = est.score(X_full, y_full)
+        newGeo = jamGeomean([test_confidence, full_confidence, train_confidence])
+        return newGeo
+
+    #
     if modelsPath is None:
         modelsPath = "./models"
     if cvPostfix is None:
@@ -717,6 +725,7 @@ def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y
                 'aggressive_elimination': True,
                 'refit'                 : True,
                 # 'return_train_score'    : True,
+                'scoring'               : custom_scoring,
                 'error_score'           : 0,
                 'cv'                    : cv,
                 'verbose'               : 1
