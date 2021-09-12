@@ -725,7 +725,7 @@ def main():
             def cllbck(res):
                 clusterTimes, clusterTraces = res
                 times[tuple(cluster_)] = clusterTimes
-                traces[tuple(cluster_)] = clusterTraces
+                # traces[tuple(cluster_)] = clusterTraces
                 bar()
 
             return cllbck
