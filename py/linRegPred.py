@@ -173,8 +173,7 @@ def main():
     cliArgs = argp.parse_args(sys.argv[1:])
     doDegree = cliArgs.polyDeg
     doPoly = doDegree > 1
-    assert not (
-            cliArgs.recompute and cliArgs.improve), '--recompute and --improve are mutually exclusive'  # mutually exclusive
+    assert not (cliArgs.recompute and cliArgs.improve), '--recompute and --improve are mutually exclusive'  # mutually exclusive
     if type(cliArgs.models) is str:  # in case only one model or 'all' is given make sure its still in the format of a list
         cliArgs.models = [cliArgs.models]
     modelsToProduce = set(cliArgs.models)  # parse 'all'
@@ -457,6 +456,8 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
 
 class ScistatsNormBetween():
     def __init__(self, small, large, cond=None, div=2, toint=False, clip=False, hardClip=False):
+        self.lower = small
+        self.upper = large
         if clip:
             if hardClip:
                 clip_cond = lambda x: small < x < large
@@ -498,7 +499,7 @@ def get_model_names(longname=False):
 
 def get_models(randomOrder=False, maxiter=-1, restrict=None):
     if maxiter <= 0:
-        maxiterPos = 100000
+        maxiterPos = 100_000
     else:
         maxiterPos = maxiter
     models = [
@@ -568,8 +569,13 @@ def get_models(randomOrder=False, maxiter=-1, restrict=None):
             'tol'  : ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True)
         }, "Ridge", None),
         ("RidgeCV",
-         linear_model.RidgeCV(cv=4, alphas=ScistatsNormAround(1, 100, cond=(lambda x: x > 0)).rvs(size=100)), None,
-         "Ridge CV", None),  # TODO improvable
+         linear_model.RidgeCV(alphas=ScistatsNormAround(1, 100, cond=(lambda x: x > 0)).rvs(size=5)), {
+             'cv': ScistatsNormBetween(2, 4, clip=True, toint=True)
+         },
+         "Ridge CV", {
+             'skipPreElim': True,
+             'cv'         : 1
+         }),
         ("ElasticNet", linear_model.ElasticNet(max_iter=maxiterPos), {
             'alpha'    : ScistatsNormAround(1, 10, cond=(lambda x: x >= 0.1)),
             'l1_ratio' : ScistatsNormBetween(0, 1, clip=True),
@@ -591,7 +597,8 @@ def get_models(randomOrder=False, maxiter=-1, restrict=None):
              'skipPreElim': True,
              'cv'         : 1
          }),
-        ("BayesianRidge", linear_model.BayesianRidge(n_iter=maxiterPos), {
+        ("BayesianRidge", linear_model.BayesianRidge(), {
+            'n_iter'     : ScistatsNormAround(300, 200, cond=(lambda x: x >= 100), toint=True),
             'alpha_1'    : ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
             'alpha_2'    : ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
             'lambda_1'   : ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
@@ -675,6 +682,7 @@ def sanity_check(pFile, X_train, y_train, X_test, y_test, X_unknown, y_unknown, 
 
 def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y_full, polyDeg, models=None, picklePrefix='', randomOrder=False, notRecompute=True, maxiter=-1,
                onlyImprove=False, modelsToProduce=None, showDone=False, cvPostfix=None, modelsPath=None, sanityCheck=False, saveBest=False, bonusPickleInfo=None, progressBar=None):
+    # TODO: fix this https://stats.stackexchange.com/questions/431883/lasso-regression-doesnt-converge-in-case-of-zero-y-vector in sklearn
     def custom_scoring(est, X, y):
         portion = len(X) / len(X_train)
         portion = math.sqrt(portion)
@@ -716,19 +724,25 @@ def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y
         modelName, regr, params, longname, halvingParams = model
         if params is not None:
             cv = ScistatsNormBetween(2, 4, cond=(lambda x: 2 <= x <= 5), toint=True).rvs()
+            regrcv = ScistatsNormBetween(1, 1)  # this is pretty ugly and only needed because of the baseRes cond
+            if params is not None:
+                if 'cv' in params.keys():
+                    regrcv = params['cv']
             if halvingParams is not None:
                 if 'cv' in halvingParams.keys():
                     cv = halvingParams['cv']
                     if cv is None or cv <= 1:
                         cv = 2
-            baseRes = ScistatsNormBetween(8, 20, cond=(lambda x: x >= 2 * cv + 1), toint=True).rvs()
-            numTurns = ScistatsNormBetween(cv / 2, 4 * cv, cond=(lambda x: 2 <= x <= 20), toint=True).rvs()
-            prelimRounds = ScistatsNormBetween(0, cv / 2, cond=(lambda x: 0 <= x <= 3), toint=True).rvs()
+            maxBaseRes = iround(0.02 * len(X_train))
+            baseRes = ScistatsNormBetween(8, maxBaseRes if maxBaseRes >= 8 else 8, cond=(lambda x: x > 2 * cv * regrcv.upper),
+                                          toint=True).rvs()  # TODO: x>=9 is kind of arbitrary, whenever the regr also does CV, x must be bigger than 2*cv*<cv of regr> --> for x>=9 this should be the case but not all models require x>=9 so its a dirty fix for now
+            numTurns = ScistatsNormBetween(cv / 2, 4 * cv, cond=(lambda x: 3 <= x <= 10), toint=True).rvs()
+            prelimRounds = ScistatsNormBetween(0, cv / 2, cond=(lambda x: 0 <= x <= 2), toint=True).rvs()
             if halvingParams is not None:
                 if 'skipPreElim' in halvingParams.keys() and halvingParams['skipPreElim']:
                     prelimRounds = 0
-            if numTurns >= 15:
-                prelimRounds = 0
+            # if numTurns >= 15:
+            #     prelimRounds = 0
             lastRoundResPercent = ScistatsNormBetween(0.8, 1.0, cond=(lambda x: 0.75 <= x <= 1.0)).rvs()
             lastRoundRes = iround(len(X_train) * lastRoundResPercent)
             fact = (lastRoundRes / baseRes) ** (1 / numTurns)
