@@ -240,8 +240,7 @@ def main():
     y_full = y
     #
     numSplits = getNumSplits(dF, cliArgs.cvSize, cliArgs.unknownSize, wfs)
-    numModels = len(get_models())
-    with alive_bar(cliArgs.numRepeats * numSplits * numModels, f"Fitting {numModels} models on {numSplits} splits for {cliArgs.numRepeats} repeats",
+    with alive_bar(cliArgs.numRepeats * numSplits * len(cliArgs.models), f"Fitting {len(cliArgs.models)} models on {numSplits} splits for {cliArgs.numRepeats} repeats",
                    enrich_print=False) as progressBar:
         for iReps in range(cliArgs.numRepeats):
             printBox(f"Repeat number {iReps + 1}")
