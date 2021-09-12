@@ -676,9 +676,14 @@ def sanity_check(pFile, X_train, y_train, X_test, y_test, X_unknown, y_unknown, 
 def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y_full, polyDeg, models=None, picklePrefix='', randomOrder=False, notRecompute=True, maxiter=-1,
                onlyImprove=False, modelsToProduce=None, showDone=False, cvPostfix=None, modelsPath=None, sanityCheck=False, saveBest=False, bonusPickleInfo=None, progressBar=None):
     def custom_scoring(est, X, y):
+        portion = len(X) / len(X_train)
+        portion = math.sqrt(portion)
+        #
+        test_samples = random.sample(range(len(X_test)), iround(portion * len(X_test)))
+        full_samples = random.sample(range(len(X_full)), iround(portion * len(X_full)))
         train_confidence = est.score(X, y)
-        test_confidence = est.score(X_test, y_test)
-        full_confidence = est.score(X_full, y_full)
+        test_confidence = est.score([t for i, t in enumerate(X_test) if i in test_samples], [t for i, t in enumerate(y_test) if i in test_samples])
+        full_confidence = est.score([t for i, t in enumerate(X_full) if i in full_samples], [t for i, t in enumerate(y_full) if i in full_samples])
         newGeo = jamGeomean([test_confidence, full_confidence, train_confidence])
         return newGeo
 
