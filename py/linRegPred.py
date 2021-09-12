@@ -678,13 +678,21 @@ def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y
     def custom_scoring(est, X, y):
         portion = len(X) / len(X_train)
         portion = math.sqrt(portion)
+        if portion < 0.05:
+            portion = 0.05
+        if portion > 0.8:
+            portion = 0.8
         #
         test_portion = iround(portion * len(X_test))
         if test_portion > len(X_test):
             test_portion = len(X_test)
+        if test_portion < 2:
+            test_portion = 2
         full_portion = iround(portion * len(X_full))
         if full_portion > len(X_full):
             full_portion = len(X_full)
+        if full_portion < 2:
+            full_portion = 2
         test_samples = random.sample(range(len(X_test)), test_portion)
         full_samples = random.sample(range(len(X_full)), full_portion)
         train_confidence = est.score(X, y)
