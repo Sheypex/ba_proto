@@ -679,8 +679,14 @@ def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y
         portion = len(X) / len(X_train)
         portion = math.sqrt(portion)
         #
-        test_samples = random.sample(range(len(X_test)), iround(portion * len(X_test)))
-        full_samples = random.sample(range(len(X_full)), iround(portion * len(X_full)))
+        test_portion = iround(portion * len(X_test))
+        if test_portion > len(X_test):
+            test_portion = len(X_test)
+        full_portion = iround(portion * len(X_full))
+        if full_portion > len(X_full):
+            full_portion = len(X_full)
+        test_samples = random.sample(range(len(X_test)), test_portion)
+        full_samples = random.sample(range(len(X_full)), full_portion)
         train_confidence = est.score(X, y)
         test_confidence = est.score([t for i, t in enumerate(X_test) if i in test_samples], [t for i, t in enumerate(y_test) if i in test_samples])
         full_confidence = est.score([t for i, t in enumerate(X_full) if i in full_samples], [t for i, t in enumerate(y_full) if i in full_samples])
