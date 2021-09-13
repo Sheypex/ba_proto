@@ -728,7 +728,13 @@ def main():
         while len(
                 clusters) < cliArgs.targetNumClusters:  # TODO this does not take into consideration that --targetNumClusters may exceed the maximum number of generateable clusters
             inst = [random.choice(allInstances) for _ in range(random.randint(2, 20))]
-            if all([not list_compare(inst, c) for c in clusters]):
+            inst.sort()
+            skip = False
+            for c in clusters:
+                if list_compare(inst, c):
+                    skip = True
+                    break
+            if not skip:
                 clusters.append(inst)
                 bar()
     times = {}
@@ -750,11 +756,13 @@ def main():
             prevKnownClusters = 0
             with Pool() as pool:
                 for cluster in clusters:
-                    if any([list_compare(cluster, list(c)) for c in prevRes.keys()]):
-                        # print(f"- known cluster {cluster}")
-                        times[tuple(cluster)] = prevRes[tuple(cluster)]
-                        prevKnownClusters += 1
-                        bar()
+                    for c in prevRes.keys():
+                        if list_compare(cluster, sorted(list(c))):
+                            # print(f"- known cluster {cluster}")
+                            times[tuple(cluster)] = prevRes[c]
+                            prevKnownClusters += 1
+                            bar()
+                            break
                     else:
                         # print(f"+ unknown cluster {cluster}")
                         pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeCallback(cluster))
