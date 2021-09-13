@@ -621,6 +621,19 @@ def scheduleCluster(cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, nu
     return times, traces
 
 
+def list_compare(a, b):
+    if type(a) != type(b):
+        return False
+    if type(a) != list:
+        return a == b
+    if len(a) != len(b):
+        return False
+    for a_, b_ in zip(a, b):
+        if not list_compare(a_, b_):
+            return False
+    return True
+
+
 def main():
     argp = argparse.ArgumentParser()
     argp.add_argument('targetNumClusters', type=int, action='store', default=100, nargs='?')
@@ -715,12 +728,12 @@ def main():
         while len(
                 clusters) < cliArgs.targetNumClusters:  # TODO this does not take into consideration that --targetNumClusters may exceed the maximum number of generateable clusters
             inst = [random.choice(allInstances) for _ in range(random.randint(2, 20))]
-            if inst not in clusters:
+            if all([not list_compare(inst, c) for c in clusters]):
                 clusters.append(inst)
                 bar()
     times = {}
     traces = {}
-    with alive_bar(len(clusters), f"Scheduling on {len(clusters)} different clusters") as bar:
+    with alive_bar(len(clusters), f"Scheduling on {len(clusters)} different clusters", enrich_print=False) as bar:
         def makeCallback(cluster_):
             def cllbck(res):
                 clusterTimes, clusterTraces = res
@@ -730,13 +743,33 @@ def main():
 
             return cllbck
 
-        with Pool() as pool:
-            for cluster in clusters:
-                pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeCallback(cluster))
-            pool.close()
-            pool.join()
-    pickle.dump(times, open(f"{cliArgs.saveLoc}.{cliArgs.saveSuffix}.pickle", 'bw'))
-    print(f"Saved to {cliArgs.saveLoc}.{cliArgs.saveSuffix}.pickle")
+        pFile = Path(f"{cliArgs.saveLoc}.{cliArgs.saveSuffix}.pickle")
+        if pFile.is_file():
+            print(f"Extending previous results at {pFile}")
+            prevRes = pickle.load(open(pFile, "br"))
+            prevKnownClusters = 0
+            with Pool() as pool:
+                for cluster in clusters:
+                    if any([list_compare(cluster, list(c)) for c in prevRes.keys()]):
+                        # print(f"- known cluster {cluster}")
+                        times[tuple(cluster)] = prevRes[tuple(cluster)]
+                        prevKnownClusters += 1
+                        bar()
+                    else:
+                        # print(f"+ unknown cluster {cluster}")
+                        pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeCallback(cluster))
+                pool.close()
+                pool.join()
+                print(f"{prevKnownClusters} known clusters and {cliArgs.targetNumClusters - prevKnownClusters} new results")
+        else:
+            print(f"No previous results found at {pFile}")
+            with Pool() as pool:
+                for cluster in clusters:
+                    pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeCallback(cluster))
+                pool.close()
+                pool.join()
+    pickle.dump(times, open(pFile, 'bw'))
+    print(f"Saved to {pFile}")
     # pickle.dump(traces, open("recSchedTraces.pickle", 'bw'))
 
 
