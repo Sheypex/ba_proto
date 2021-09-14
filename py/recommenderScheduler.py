@@ -25,6 +25,8 @@ from db_actions import db_actions
 import numpy as np
 from my_yaml import yaml_load, yaml_dump
 from alive_progress import alive_bar
+from rich.console import Console
+import atexit
 
 
 class Process:
@@ -53,7 +55,7 @@ class Process:
         else:
             assert self.dur is not None
             self.end = time + self.dur
-        # print(f"Started {self!r}")
+        # CL.print(f"Started {self!r}")
 
     def isDone(self, time):
         return time >= self.end
@@ -286,12 +288,12 @@ def recommenderSchedulerV1H3(workflowGraph: NX.DiGraph, instances: List[int], ra
                 availableInstances.append(p.runningOnInst)  # make instance the task ran on available again
                 workflowGraph.remove_node(p.name)
             trace.append(runningTasks.copy())
-    # print(time)
+    # CL.print(time)
     trace = [t for t in trace if
              len(t) > 0]  # strip empty runningTasks | happens whenever in one step all running tasks end and only in the next step some new task(s) are scheduled to run
     # for i, t in enumerate(trace):
-    #     print(f"{i}\t", end='')
-    #     pprint(t)
+    #     CL.print(f"{i}\t", end='')
+    #     CL.print(t)
     return time, trace
 
 
@@ -570,12 +572,12 @@ def randomSchedulerV1(workflowGraph: NX.DiGraph, instances: List[int], realtimeL
                 availableInstances.append(p.runningOnInst)  # make instance the task ran on available again
                 workflowGraph.remove_node(p.name)
             trace.append(runningTasks.copy())
-    # print(time)
+    # CL.print(time)
     trace = [t for t in trace if
              len(t) > 0]  # strip empty runningTasks | happens whenever in one step all running tasks end and only in the next step some new task(s) are scheduled to run
     # for i, t in enumerate(trace):
-    #     print(f"{i}\t", end='')
-    #     pprint(t)
+    #     CL.print(f"{i}\t", end='')
+    #     CL.print(t)
     return time, trace
 
 
@@ -614,8 +616,8 @@ def scheduleCluster(cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, nu
             wfTimes[fun.__name__] = time
             wfTraces[fun.__name__] = trace
         wfTimes[randomSchedulerV1.__name__] = multipleRandomSchedulerV1Execs(workflowGraph.copy(), instances.copy(), realtimeLookup, numRandomExecs)
-        # pprint(wfTimes)
-        # print(max([max([len(x) for x in t]) for t in wfTraces.values()]))  # find highest amount of concurrently used instances across all WFs and scheduling methods
+        # CL.print(wfTimes)
+        # CL.print(max([max([len(x) for x in t]) for t in wfTraces.values()]))  # find highest amount of concurrently used instances across all WFs and scheduling methods
         times[wfName] = wfTimes
         traces[wfName] = wfTraces
     return times, traces
@@ -635,6 +637,8 @@ def list_compare(a, b):
 
 
 def main():
+    CL = Console()
+    #
     argp = argparse.ArgumentParser()
     argp.add_argument('targetNumClusters', type=int, action='store', default=100, nargs='?')
     argp.add_argument('--numRandomExecs', type=int, action='store', default=1000)
@@ -664,7 +668,7 @@ def main():
         loaded: PickleOut = pickle.load(open(cliArgs.regModelPath, 'br'))
         name, regModel, test_confidence, polyDeg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo = loaded
     except Exception as e:
-        print(f"Could not load regModel from pickle at {cliArgs.regModelPath!r} with error: {e}", file=sys.stderr)
+        CL.log(f"Could not load regModel from pickle at {cliArgs.regModelPath!r} with error: {e}", file=sys.stderr)
         exit(1)
     if cliArgs.csvPath:
         predBase = None
@@ -718,7 +722,7 @@ def main():
         realtimeLookups[wfName] = realtimeLookup
         #
         wfShortName = re.compile("nfcore/(\w+):.*").match(wfName).group(1)
-        # print(f"{'-=' * 5}{wfShortName:^{len(wfShortName) + 4}}{'=-' * 5}")
+        # CL.print(f"{'-=' * 5}{wfShortName:^{len(wfShortName) + 4}}{'=-' * 5}")
         #
         workflowGraph: NX.DiGraph = NX.drawing.nx_agraph.read_dot(f"dot/{wfShortName}_1k.dot")
         wfGraphs[wfName] = workflowGraph
@@ -739,6 +743,15 @@ def main():
                 bar()
     times = {}
     traces = {}
+
+    #
+    def dumpResults():
+        with open(pFile, 'bw') as f:
+            pickle.dump(times, f)
+        CL.log(f"Saved to {pFile}")
+
+    atexit.register(dumpResults)
+    #
     with alive_bar(len(clusters), f"Scheduling on {len(clusters)} different clusters", enrich_print=False) as bar:
         def makeCallback(cluster_):
             def cllbck(res):
@@ -751,34 +764,32 @@ def main():
 
         pFile = Path(f"{cliArgs.saveLoc}.{cliArgs.saveSuffix}.pickle")
         if pFile.is_file():
-            print(f"Extending previous results at {pFile}")
+            CL.log(f"Extending previous results at {pFile}")
             prevRes = pickle.load(open(pFile, "br"))
             prevKnownClusters = 0
             with Pool() as pool:
                 for cluster in clusters:
                     for c in prevRes.keys():
                         if list_compare(cluster, sorted(list(c))):
-                            # print(f"- known cluster {cluster}")
+                            # CL.print(f"- known cluster {cluster}")
                             times[tuple(cluster)] = prevRes[c]
                             prevKnownClusters += 1
                             bar()
                             break
                     else:
-                        # print(f"+ unknown cluster {cluster}")
+                        # CL.print(f"+ unknown cluster {cluster}")
                         pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeCallback(cluster))
                 pool.close()
                 pool.join()
-                print(f"{prevKnownClusters} known clusters and {cliArgs.targetNumClusters - prevKnownClusters} new results")
+                CL.log(f"{prevKnownClusters} known clusters and {cliArgs.targetNumClusters - prevKnownClusters} new results")
         else:
-            print(f"No previous results found at {pFile}")
+            CL.log(f"No previous results found at {pFile}")
             with Pool() as pool:
                 for cluster in clusters:
                     pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeCallback(cluster))
                 pool.close()
                 pool.join()
-    pickle.dump(times, open(pFile, 'bw'))
-    print(f"Saved to {pFile}")
-    # pickle.dump(traces, open("recSchedTraces.pickle", 'bw'))
+    dumpResults()
 
 
 if __name__ == "__main__":
