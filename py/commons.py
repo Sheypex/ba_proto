@@ -1,10 +1,12 @@
 import math
 import statistics
+from datetime import timedelta
 
 import rich.progress
 from rich.progress import Progress as rProgress
 from rich.traceback import install as niceTracebacks
 from rich.console import Console
+from rich.text import Text
 
 ########
 niceTracebacks(show_locals=True)
@@ -31,7 +33,56 @@ def jamGeomean(iterable):
     return math.copysign(1, m) * ((2 ** abs(m)) - 1)
 
 
+def iround(num):
+    return int(round(num, 0))
+
+
+def roundToFirstSignificant(num, max=3):
+    return roundToFirstSignificantDigits(num, 1, max)
+
+
+def roundToFirstSignificantDigits(num, digits=1, max=3):
+    assert digits >= 1
+    firstSigDigit = 0
+    if num != 0:
+        while round(num, firstSigDigit) == 0.0:
+            firstSigDigit += 1
+    roundTo = firstSigDigit + digits - 1
+    roundTo = max if roundTo > max else roundTo
+    return round(num, roundTo)
+
+
+class ItemsPerSecondColumn(rich.progress.ProgressColumn):
+    def render(self, task: "rich.progress.Task") -> Text:
+        """Show time remaining."""
+        if task.completed == 0:
+            return Text("(0.0/s)", style="progress.elapsed")
+        #
+        elapsed = task.finished_time if task.finished else task.elapsed
+        if elapsed is None:
+            return Text("(0.0/s)", style="progress.elapsed")
+        #
+        itemsPS = roundToFirstSignificantDigits(task.completed / elapsed, 3, 3)
+        return Text(f"({itemsPS}/s)", style="progress.elapsed")
+
+
+class SecondsPerItemColumn(rich.progress.ProgressColumn):
+    def render(self, task: "rich.progress.Task") -> Text:
+        """Show time remaining."""
+        if task.completed == 0:
+            return Text("(0.0s/item)", style="progress.elapsed")
+        #
+        elapsed = task.finished_time if task.finished else task.elapsed
+        if elapsed is None:
+            return Text("(0.0s/item)", style="progress.elapsed")
+        #
+        secPerItem = roundToFirstSignificantDigits(elapsed / task.completed, 3, 3)
+        return Text(f"({secPerItem}s/item)", style="progress.elapsed")
+
+
 def stdProgress(console=None):
+    if console is None:
+        console = rc
     return rProgress(
         "[progress.description]{task.description}",
         rich.progress.BarColumn(),
@@ -40,4 +91,6 @@ def stdProgress(console=None):
         rich.progress.TimeElapsedColumn(),
         "eta:",
         rich.progress.TimeRemainingColumn(),
-        console=rc, transient=False)
+        ItemsPerSecondColumn(),
+        SecondsPerItemColumn(),
+        console=console, transient=False)

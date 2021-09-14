@@ -246,7 +246,6 @@ def main():
                 assert len(X_train) == len(y_train)
                 assert len(X_test) == len(y_test)
                 assert len(X_unknown) == len(y_unknown)
-                # printBox(f"{ukwfs=}, {cvwfs=}: {len(X_train)=}, {len(X_test)=}, {len(X_unknown)=}", '-', '|')
                 rc.print(rich.panel.Panel(f"{ukwfs=}, {cvwfs=}: {len(X_train)=}, {len(X_test)=}, {len(X_unknown)=}", title="Split", title_align="left"))
                 if len(cvwfs) > 0:
                     cvsName = "+".join([wfShortnamesLUT[cv] for cv in cvwfs])
@@ -484,7 +483,7 @@ class ScistatsNormBetween():
             while True:
                 r = self.norm.rvs(*args, **kwargs)
                 if self.toint:
-                    r = iround(r)
+                    r = commons.iround(r)
                 if self.cond(r):
                     break
             return r
@@ -664,8 +663,6 @@ def get_models(randomOrder=False, maxiter=-1, restrict=None):
     return models
 
 
-def iround(num):
-    return int(round(num, 0))
 
 
 def sanity_check(pFile, X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y_full, bonusPickleInfo=None, loaded=None):
@@ -696,12 +693,12 @@ def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y
         if portion > 0.8:
             portion = 0.8
         #
-        test_portion = iround(portion * len(X_test))
+        test_portion = commons.iround(portion * len(X_test))
         if test_portion > len(X_test):
             test_portion = len(X_test)
         if test_portion < 2:
             test_portion = 2
-        full_portion = iround(portion * len(X_full))
+        full_portion = commons.iround(portion * len(X_full))
         if full_portion > len(X_full):
             full_portion = len(X_full)
         if full_portion < 2:
@@ -738,7 +735,7 @@ def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y
                     cv = halvingParams['cv']
                     if cv is None or cv <= 1:
                         cv = 2
-            maxBaseRes = iround(0.02 * len(X_train))
+            maxBaseRes = commons.iround(0.02 * len(X_train))
             baseRes = ScistatsNormBetween(8, maxBaseRes if maxBaseRes >= 8 else 8, cond=(lambda x: x > 2 * cv * regrcv.upper),
                                           toint=True).rvs()  # TODO: x>=9 is kind of arbitrary, whenever the regr also does CV, x must be bigger than 2*cv*<cv of regr> --> for x>=9 this should be the case but not all models require x>=9 so its a dirty fix for now
             numTurns = ScistatsNormBetween(cv / 2, 4 * cv, cond=(lambda x: 3 <= x <= 8), toint=True).rvs()
@@ -749,10 +746,10 @@ def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y
             # if numTurns >= 15:
             #     prelimRounds = 0
             lastRoundResPercent = ScistatsNormBetween(0.8, 1.0, cond=(lambda x: 0.75 <= x <= 1.0)).rvs()
-            lastRoundRes = iround(len(X_train) * lastRoundResPercent)
+            lastRoundRes = commons.iround(len(X_train) * lastRoundResPercent)
             fact = (lastRoundRes / baseRes) ** (1 / numTurns)
             lastRoundNumCand = ScistatsNormBetween(1, 10, cond=(lambda x: x >= 1), toint=True).rvs()
-            numCand = iround(lastRoundNumCand * (fact ** (numTurns + prelimRounds - 1)))
+            numCand = commons.iround(lastRoundNumCand * (fact ** (numTurns + prelimRounds - 1)))
             searchParams = {
                 'estimator'             : regr,
                 'param_distributions'   : params,

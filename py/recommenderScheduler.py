@@ -748,15 +748,7 @@ def main():
                 clusters.append(inst)
                 prog.advance(genClusterProg)
     #
-    with rProgress(
-            "[progress.description]{task.description}",
-            rich.progress.BarColumn(),
-            "[progress.percentage]{task.percentage:>3.0f}%",
-            "({task.completed}/{task.total})",
-            rich.progress.TimeElapsedColumn(),
-            "eta:",
-            rich.progress.TimeRemainingColumn(),
-            console=rc, transient=False) as prog:
+    with commons.stdProgress(rc) as prog:
         #
         times = {}
         traces = {}
