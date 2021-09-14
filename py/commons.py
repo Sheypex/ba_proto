@@ -43,10 +43,13 @@ def roundToFirstSignificant(num, max=3):
 
 def roundToFirstSignificantDigits(num, digits=1, max=3):
     assert digits >= 1
+    assert max >= 0
+    if round(num, max) == 0:
+        return 0.0
+    #
     firstSigDigit = 0
-    if num != 0:
-        while round(num, firstSigDigit) == 0.0:
-            firstSigDigit += 1
+    while round(num, firstSigDigit) == 0.0:
+        firstSigDigit += 1
     roundTo = firstSigDigit + digits - 1
     roundTo = max if roundTo > max else roundTo
     return round(num, roundTo)
@@ -73,7 +76,7 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
             return Text("(0.0s/item)", style="progress.elapsed")
         #
         if task.completed == 0:
-            return Text(f"({elapsed}s/item)", style="progress.elapsed")
+            return Text(f"({roundToFirstSignificantDigits(elapsed, 3, 3)}s/item)", style="progress.elapsed")
         #
         secPerItem = roundToFirstSignificantDigits(elapsed / task.completed, 3, 3)
         return Text(f"({secPerItem}s/item)", style="progress.elapsed")
