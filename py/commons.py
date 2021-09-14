@@ -68,13 +68,12 @@ class ItemsPerSecondColumn(rich.progress.ProgressColumn):
 
 class SecondsPerItemColumn(rich.progress.ProgressColumn):
     def render(self, task: "rich.progress.Task") -> Text:
-        """Show time remaining."""
-        if task.completed == 0:
-            return Text("(0.0s/item)", style="progress.elapsed")
-        #
         elapsed = task.finished_time if task.finished else task.elapsed
         if elapsed is None:
             return Text("(0.0s/item)", style="progress.elapsed")
+        #
+        if task.completed == 0:
+            return Text(f"({elapsed}s/item)", style="progress.elapsed")
         #
         secPerItem = roundToFirstSignificantDigits(elapsed / task.completed, 3, 3)
         return Text(f"({secPerItem}s/item)", style="progress.elapsed")
