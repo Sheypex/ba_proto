@@ -6,6 +6,7 @@ import statistics
 from functools import reduce
 from pprint import pprint
 
+import rich.panel
 from alive_progress import alive_bar
 from tqdm import tqdm, trange
 from log_symbols import LogSymbols
@@ -25,12 +26,19 @@ import sys
 from sklearn.experimental import enable_halving_search_cv
 from sklearn.model_selection import HalvingGridSearchCV, RandomizedSearchCV, HalvingRandomSearchCV
 import scipy.stats as scistats
+
+import commons
 from data_types import PickleOut
+from rich.traceback import install as niceTracebacks
 
 from db_actions import db_actions
 import numpy as np
 
+########
 TrainTestUnknownSplit = namedtuple("TrainTestUnknownSplit", ["X_train", "y_train", "X_test", "y_test", "X_unknown", "y_unknown", "X_trans", "ukwfs", "cvwfs"])
+
+
+########
 
 
 def printStat(txt, stat=LogSymbols.INFO.value, indent=0):
@@ -62,24 +70,6 @@ def printBox(message, borderTopBot='#', borderSides='#'):
     print(f"{borderTopBot * (len(message) + 4)}")
     print(f'{borderSides} ' + message + f' {borderSides}')
     print(f"{borderTopBot * (len(message) + 4)}")
-
-
-# jamGeomean <- function
-# (x,
-#  na.rm=TRUE,
-#  ...)
-# {
-#    ## Purpose is to calculate geometric mean while allowing for
-#    ## positive and negative values
-#    x2 <- mean(log2(1+abs(x))*sign(x));
-#    sign(x2)*(2^abs(x2)-1);
-# }
-# taken from: https://jmw86069.github.io/splicejam/reference/jamGeomean.html
-def jamGeomean(iterable):
-    assert len(iterable) > 0
-    step1 = [math.log(1 + abs(x), 2) * math.copysign(1, x) for x in iterable]
-    m = statistics.mean(step1)
-    return math.copysign(1, m) * ((2 ** abs(m)) - 1)
 
 
 def getTransformers(X, polyDeg):
@@ -154,6 +144,8 @@ def getSplits(dF, polyDeg, x_cols, y_cols, cvSize=0, unknownSize=0, wfs=None, ra
 
 
 def main():
+    rc = commons.rc
+    #
     argp = argparse.ArgumentParser()
     argp.add_argument('polyDeg', type=int, choices=[1, 2, 3, 4, 5], action='store', default=1)
     argp.add_argument('--csv', type=str, action='store', dest='csvPath')
@@ -239,17 +231,23 @@ def main():
     y_full = y
     #
     numSplits = getNumSplits(dF, cliArgs.cvSize, cliArgs.unknownSize, wfs)
-    with alive_bar(cliArgs.numRepeats * numSplits * len(cliArgs.models), f"Fitting {len(cliArgs.models)} models on {numSplits} splits for {cliArgs.numRepeats} repeats",
-                   enrich_print=False) as progressBar:
+    with commons.stdProgress(rc) as prog:
+        # with alive_bar(cliArgs.numRepeats * numSplits * len(cliArgs.models), f"Fitting {len(cliArgs.models)} models on {numSplits} splits for {cliArgs.numRepeats} repeats", enrich_print=False) as progressBar:
+        totalProg = prog.add_task("Total", total=cliArgs.numRepeats * numSplits * len(cliArgs.models))
+        repProg = prog.add_task("Repeats", total=cliArgs.numRepeats)
+        splitProg = prog.add_task("Splits", total=numSplits)
+        modelProg = prog.add_task("Models", total=len(get_models(restrict=cliArgs.models)))
         for iReps in range(cliArgs.numRepeats):
-            printBox(f"Repeat number {iReps + 1}")
+            rc.rule(f"Repeat {iReps + 1}")
             splits = getSplits(dF, doDegree, x_cols, y_cols, cliArgs.cvSize, cliArgs.unknownSize, wfs)
+            splitsDone = 0
             for split in splits:
                 X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_trans, ukwfs, cvwfs = split
                 assert len(X_train) == len(y_train)
                 assert len(X_test) == len(y_test)
                 assert len(X_unknown) == len(y_unknown)
-                printBox(f"{ukwfs=}, {cvwfs=}: {len(X_train)=}, {len(X_test)=}, {len(X_unknown)=}", '-', '|')
+                # printBox(f"{ukwfs=}, {cvwfs=}: {len(X_train)=}, {len(X_test)=}, {len(X_unknown)=}", '-', '|')
+                rc.print(rich.panel.Panel(f"{ukwfs=}, {cvwfs=}: {len(X_train)=}, {len(X_test)=}, {len(X_unknown)=}", title="Split", title_align="left"))
                 if len(cvwfs) > 0:
                     cvsName = "+".join([wfShortnamesLUT[cv] for cv in cvwfs])
                 else:
@@ -263,7 +261,14 @@ def main():
                                       notRecompute=not cliArgs.recompute, maxiter=cliArgs.maxiter, onlyImprove=cliArgs.improve, modelsToProduce=cliArgs.models,
                                       showDone=cliArgs.showDone, cvPostfix=f"_CV-{cvsName}_U-{uksName}",
                                       modelsPath=cliArgs.modelsPath, sanityCheck=cliArgs.sanityCheck,
-                                      saveBest=cliArgs.saveBest, progressBar=progressBar)
+                                      saveBest=cliArgs.saveBest, progressBar=[(prog, modelProg), (prog, totalProg)])
+                prog.advance(splitProg)
+                splitsDone += 1
+                if not splitsDone == numSplits:
+                    prog.reset(modelProg)
+            prog.advance(repProg)
+            if not prog.finished:
+                prog.reset(splitProg)
 
 
 def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
@@ -357,7 +362,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                     name, _, conf, deg, full_conf = r
                     if name == n:
                         if conf is not None and full_conf is not None:
-                            gconf = jamGeomean([conf, full_conf])
+                            gconf = commons.jamGeomean([conf, full_conf])
                         else:
                             gconf = None
                         if name not in res.keys():
@@ -402,7 +407,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                 for s in svrs.keys():
                     svr = svrs[s]
                     # prod = functools.reduce(lambda x, y: x * y, [x[0] for x in svr], 1)
-                    svrComp[s] = jamGeomean([x[0] for x in svr if x[0] is not None]) if len([x[0] for x in svr if x[0] is not None]) > 0 else float("-inf")
+                    svrComp[s] = commons.jamGeomean([x[0] for x in svr if x[0] is not None]) if len([x[0] for x in svr if x[0] is not None]) > 0 else float("-inf")
                 bestSvr = [svr for n, svr in svrs.items() if svrComp[n] == max([a for a in svrComp.values()])][0]
                 res["SVR"] = bestSvr
         #
@@ -435,7 +440,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
         for j, g in enumerate(grouped):
             v = [float(d[2]) for d in g if d[2] is not None]
             if len(v):
-                avg = jamGeomean(v)
+                avg = commons.jamGeomean(v)
             else:
                 avg = None
             for i, d in enumerate(g):
@@ -706,7 +711,7 @@ def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y
         train_confidence = est.score(X, y)
         test_confidence = est.score([t for i, t in enumerate(X_test) if i in test_samples], [t for i, t in enumerate(y_test) if i in test_samples])
         full_confidence = est.score([t for i, t in enumerate(X_full) if i in full_samples], [t for i, t in enumerate(y_full) if i in full_samples])
-        newGeo = jamGeomean([test_confidence, full_confidence, train_confidence])
+        newGeo = commons.jamGeomean([test_confidence, full_confidence, train_confidence])
         return newGeo
 
     #
@@ -799,8 +804,8 @@ def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y
                         loaded = pickle.load(open(pFile, 'br'))
                         if sanityCheck:
                             loaded = sanity_check(pFile, X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y_full, bonusPickleInfo, loaded)
-                        newGeo = jamGeomean([test_confidence, full_confidence, train_confidence])
-                        loadedGeo = jamGeomean([loaded.test_confidence, loaded.full_confidence, loaded.train_confidence])
+                        newGeo = commons.jamGeomean([test_confidence, full_confidence, train_confidence])
+                        loadedGeo = commons.jamGeomean([loaded.test_confidence, loaded.full_confidence, loaded.train_confidence])
                         table = tabulate([["old:", loaded.test_confidence, loaded.full_confidence, loaded.train_confidence, loadedGeo],
                                           ["new:", test_confidence, full_confidence, train_confidence, newGeo]],
                                          headers=["", "test_conf", "full_conf", "train_conf", "geo_mean"])
@@ -848,9 +853,14 @@ def fit_models(X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_full, y
                 trained.append(loaded)
                 # spinner.succeed(f"Found pickle for {fullName}")
                 printSucc(f"Found pickle for {fullname} at {pickleName}.pickle", 1)
-        #
         if progressBar is not None:
-            progressBar()
+            if type(progressBar) is list:
+                for p in progressBar:
+                    prog, bar = p
+                    prog.advance(bar)
+            else:
+                prog, bar = progressBar
+                prog.advance(bar)
     #
     if saveBest:
         bestModelPath = Path(f"{modelsPath}/bestModel.pickle")

@@ -10,28 +10,11 @@ from tabulate import tabulate
 import statistics
 from data_types import PickleOut
 from rich.console import Console
-
-
-# jamGeomean <- function
-# (x,
-#  na.rm=TRUE,
-#  ...)
-# {
-#    ## Purpose is to calculate geometric mean while allowing for
-#    ## positive and negative values
-#    x2 <- mean(log2(1+abs(x))*sign(x));
-#    sign(x2)*(2^abs(x2)-1);
-# }
-# taken from: https://jmw86069.github.io/splicejam/reference/jamGeomean.html
-def jamGeomean(iterable):
-    assert len(iterable) > 0
-    step1 = [math.log(1 + abs(x), 2) * math.copysign(1, x) for x in iterable]
-    m = statistics.mean(step1)
-    return math.copysign(1, m) * ((2 ** abs(m)) - 1)
+import commons
 
 
 def main():
-    CL = Console()
+    rc = commons.rc
     #
     if False:
         models = []
@@ -125,7 +108,7 @@ def main():
             # print(indices)
             cvmodels = [m for i, m in enumerate(df.values) if i in indices]
             # CL.print(tabulate([[m[2], m[3], m[1], m[10]] for m in cvmodels], headers=["degree", "name", "gconf", "gconf_m"], missingval='N/A', showindex=True))
-            [CL.print(x[3]) for x in cvmodels]
+            [rc.print(x[3]) for x in cvmodels]
 
 
 if __name__ == '__main__':
