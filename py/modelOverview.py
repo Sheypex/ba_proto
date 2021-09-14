@@ -9,6 +9,7 @@ from scipy import stats as scistats
 from tabulate import tabulate
 import statistics
 from data_types import PickleOut
+from rich.console import Console
 
 
 # jamGeomean <- function
@@ -30,6 +31,8 @@ def jamGeomean(iterable):
 
 
 def main():
+    CL = Console()
+    #
     if False:
         models = []
         for f in os.listdir("models"):
@@ -66,16 +69,17 @@ def main():
     #
     if True:
         cvmodels = []
-        cvmodelDir = "tmp"
+        cvmodelDir = "cvmodels"
         for f in os.listdir(cvmodelDir):
             if re.match(".*\.pickle$", f) and f != "bestModel.pickle":
-                l: PickleOut = pickle.load(open(f"{cvmodelDir}/{f}", "br"))
+                with open(f"{cvmodelDir}/{f}", "br") as pF:
+                    l: PickleOut = pickle.load(pF)
                 name, _, test_confidence, deg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo = l
                 m = re.match(".*_CV-(.*?)_U-(.*?)\.pickle$", f)
                 cv, unknown = m.group(1, 2)
-                if test_confidence >= -1 and full_confidence >= -1:
+                if (test_confidence >= -1 and full_confidence >= -10 and train_confidence >= 0) or False:
                     cvmodels.append((name,
-                                     jamGeomean([test_confidence, full_confidence, train_confidence, unknown_confidence]),
+                                     jamGeomean([test_confidence, full_confidence, train_confidence]),
                                      deg,
                                      f"{cvmodelDir}/{f}",
                                      cv,
@@ -84,6 +88,14 @@ def main():
                                      full_confidence,
                                      train_confidence,
                                      unknown_confidence))
+                del l
+                del name
+                del test_confidence
+                del deg
+                del full_confidence
+                del unknown_confidence
+                del train_confidence
+                del bonusPickleInfo
         # cvmodels.sort(key=lambda x: -x[2])
         df = pds.DataFrame(cvmodels, columns=["name", "gconf", "degree", "path", "cv", "uk", "test_conf", "full_conf", "train_conf", "uk_conf"])
         # print(tabulate([[m[3] if len(m) >= 4 else None, m[0], m[5], m[2]] for m in cvmodels], headers=["degree", "name", "cv", "conf"], missingval='N/A', showindex=True))
@@ -112,8 +124,8 @@ def main():
             indices = [x for i in indices for x in [i + o for o in range(0, 20)]]
             # print(indices)
             cvmodels = [m for i, m in enumerate(df.values) if i in indices]
-            # print(tabulate([[m[2], m[3], m[1], m[10]] for m in cvmodels], headers=["degree", "name", "gconf", "gconf_m"], missingval='N/A', showindex=True))
-            [print(x[3]) for x in cvmodels]
+            # CL.print(tabulate([[m[2], m[3], m[1], m[10]] for m in cvmodels], headers=["degree", "name", "gconf", "gconf_m"], missingval='N/A', showindex=True))
+            [CL.print(x[3]) for x in cvmodels]
 
 
 if __name__ == '__main__':
