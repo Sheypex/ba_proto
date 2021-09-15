@@ -56,30 +56,41 @@ def roundToFirstSignificantDigits(num, digits=1, max=3):
 
 
 class ItemsPerSecondColumn(rich.progress.ProgressColumn):
+    def __init__(self):
+        super().__init__()
+        self.seen = 0
+        self.itemsPS = 0.0
+
     def render(self, task: "rich.progress.Task") -> Text:
-        """Show time remaining."""
-        if task.completed == 0:
-            return Text("(0.0/s)", style="progress.elapsed")
-        #
-        elapsed = task.finished_time if task.finished else task.elapsed
-        if elapsed is None:
-            return Text("(0.0/s)", style="progress.elapsed")
-        #
-        itemsPS = roundToFirstSignificantDigits(task.completed / elapsed, 3, 3)
-        return Text(f"({itemsPS}/s)", style="progress.elapsed")
+        if self.seen < task.completed:
+            elapsed = task.finished_time if task.finished else task.elapsed
+            if elapsed is None:
+                return Text("(0.0/s)", style="progress.elapsed")
+            #
+            self.itemsPS = roundToFirstSignificantDigits(task.completed / elapsed, 3, 3)
+            self.seen = task.completed
+        return Text(f"({self.itemsPS}/s)", style="progress.elapsed")
 
 
 class SecondsPerItemColumn(rich.progress.ProgressColumn):
+    def __init__(self):
+        super().__init__()
+        self.seen = 0
+        self.secPerItem = 0.0
+
     def render(self, task: "rich.progress.Task") -> Text:
         elapsed = task.finished_time if task.finished else task.elapsed
         if elapsed is None:
             return Text("(0.0s/item)", style="progress.elapsed")
         #
         if task.completed == 0:
-            return Text(f"({roundToFirstSignificantDigits(elapsed, 3, 3)}s/item)", style="progress.elapsed")
+            self.secPerItem = roundToFirstSignificantDigits(elapsed, 3, 3)
+            return Text(f"({self.secPerItem}s/item)", style="progress.elapsed")
         #
-        secPerItem = roundToFirstSignificantDigits(elapsed / task.completed, 3, 3)
-        return Text(f"({secPerItem}s/item)", style="progress.elapsed")
+        if self.seen < task.completed:
+            self.secPerItem = roundToFirstSignificantDigits(elapsed / task.completed, 3, 3)
+            self.seen = task.completed
+        return Text(f"({self.secPerItem}s/item)", style="progress.elapsed")
 
 
 def stdProgress(console=None):
