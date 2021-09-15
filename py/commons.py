@@ -4,15 +4,18 @@ from datetime import timedelta
 
 import rich.progress
 from rich.progress import Progress as rProgress
-from rich.traceback import install as niceTracebacks
+import rich.traceback
 from rich.console import Console
 from rich.text import Text
+import rich.pretty
 
 ########
-niceTracebacks(show_locals=True)
-########
-
 rc = Console()
+rich.pretty.install(console=rc, indent_guides=True, max_length=2, expand_all=True)
+rich.traceback.install(console=rc, show_locals=True)
+
+
+########
 
 
 # jamGeomean <- function
