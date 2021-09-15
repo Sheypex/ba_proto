@@ -758,8 +758,8 @@ def main():
         #
         def dumpResults():  # TODO this needs to perform a sanit-check on the data that is to be dumped since this also runs on error so the results may be corrupted!
             rc.log(f"Going to save to {pFile}")
-            with open(pFile, 'bw') as f:
-                pickle.dump(times, f)
+            with open(pFile, 'bw') as f2:
+                pickle.dump(times, f2)
             rc.log("oh no no no no")
             rc.log(f"Saved to {pFile}")
 
