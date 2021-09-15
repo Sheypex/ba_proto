@@ -678,7 +678,7 @@ def main():
         exit(1)
     if cliArgs.csvPath:
         predBase = None
-        try:
+        try:  # TODO i believe an error while opening prevents the context manager from closing the file, leading to "f" being a bricked variable..?
             with open(cliArgs.csvPath, 'r') as f:
                 predBase = pds.read_csv(f)  # already filtered for realtime > 1000)
         except:
@@ -757,10 +757,11 @@ def main():
 
         #
         def dumpResults():  # TODO this needs to perform a sanit-check on the data that is to be dumped since this also runs on error so the results may be corrupted!
-            rc.log(f"Going to save to {pFile}")
+            rc.log(f"Going to save to {pFile}", log_locals=True)
             with open(pFile, 'bw') as f2:
+                rc.log("opened file")
                 pickle.dump(times, f2)
-            rc.log("oh no no no no")
+                rc.log("dumped")
             rc.log(f"Saved to {pFile}")
 
         atexit.register(dumpResults)
