@@ -33,6 +33,19 @@ def jamGeomean(iterable):
     return math.copysign(1, m) * ((2 ** abs(m)) - 1)
 
 
+def list_compare(a, b):
+    if type(a) != type(b):
+        return False
+    if type(a) != list:
+        return a == b
+    if len(a) != len(b):
+        return False
+    for a_, b_ in zip(a, b):
+        if not list_compare(a_, b_):
+            return False
+    return True
+
+
 def iround(num):
     return int(round(num, 0))
 
@@ -56,6 +69,7 @@ def roundToFirstSignificantDigits(num, digits=1, max=3):
 
 
 def ema(x, mu=None, alpha=0.3):
+    # taken from https://github.com/timwedde/rich-utils/blob/master/rich_utils/progress.py
     """
     Exponential moving average: smoothing to give progressively lower
     weights to older values.

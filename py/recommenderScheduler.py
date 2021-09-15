@@ -32,6 +32,10 @@ import atexit
 from rich.traceback import install as niceTracebacks
 from rich.progress import Progress as rProgress
 import commons
+import rich.pretty
+import rich.panel
+
+rc = commons.rc
 
 
 class Process:
@@ -84,19 +88,6 @@ class Process:
 
     def __str__(self):
         return self.__repr__()
-
-
-def list_compare(a, b):
-    if type(a) != type(b):
-        return False
-    if type(a) != list:
-        return a == b
-    if len(a) != len(b):
-        return False
-    for a_, b_ in zip(a, b):
-        if not list_compare(a_, b_):
-            return False
-    return True
 
 
 def recommenderSchedulerV1(workflowGraph: NX.DiGraph, instances: List[int], rankLookup, realtimeLookup):
@@ -612,11 +603,15 @@ def multipleRandomSchedulerV1Execs(workflowGraph: NX.DiGraph, instances: List[in
         return times
 
 
+def getMethods():
+    return [recommenderSchedulerV1, recommenderSchedulerV1H1, recommenderSchedulerV1H2, recommenderSchedulerV1H3,
+            recommenderSchedulerV2, recommenderSchedulerV2H1, recommenderSchedulerV2H2, recommenderSchedulerV2H3]
+
+
 def scheduleCluster(cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, numRandomExecs=1000):
     instances = cluster
     #
-    methods = [recommenderSchedulerV1, recommenderSchedulerV1H1, recommenderSchedulerV1H2, recommenderSchedulerV1H3,
-               recommenderSchedulerV2, recommenderSchedulerV2H1, recommenderSchedulerV2H2, recommenderSchedulerV2H3]
+    methods = getMethods()
     #
     times = {}
     traces = {}
@@ -641,9 +636,78 @@ def scheduleCluster(cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, nu
     return times, traces
 
 
-def main():
-    rc = commons.rc
+def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: list = None, compare: dict = None):
+    for c in clusterData.values():
+        if not sanitycheckCluster(c, methods, wfs):
+            return False
     #
+    if compare is not None:
+        for c, v in compare.items():
+            other: dict = clusterData.get(c, None)
+            if other is None:
+                return False
+            #
+            for wfName, wf in v.items():
+                if wfName not in other.keys():
+                    return False
+                otherwf = other[wfName]
+                for methodName, res in wf.items():
+                    if methodName not in otherwf.keys():
+                        return False
+                    otherRes = otherwf[methodName]
+                    if type(res) is list:
+                        return commons.list_compare(res, otherRes)
+                    else:
+                        tol = 1e-3
+                        return abs(res - otherRes) <= tol
+
+
+def sanitycheckCluster(clusterData: dict = None, methods: list = None, wfs: list = None):
+    # rc.log("checking cluster")
+    # rc.log(rich.panel.Panel(rich.pretty.Pretty(locals(), max_length=2)))
+    #
+    assert methods is not None, "methods must not be None"
+    assert type(methods) is list, "methods must be a list"
+    assert wfs is not None, "wfs must not be None"
+    assert type(wfs) is list, "wfs must be a list"
+    #
+    if clusterData is None:
+        rc.log("cluster data was None")
+        return False
+    assert type(clusterData) is dict, "clusterData must be a dict"
+    for wf in wfs:
+        if wf not in clusterData.keys():
+            rc.log(f"cluster data was missing workflow {wf}")
+            return False
+    if len(wfs) != len(clusterData.items()):
+        rc.log(f"cluster data had incorrect number of workflows: {len(wfs)=} != {len(clusterData.items())=}")
+        return False
+    #
+    for wfName, wf in clusterData.items():
+        for m in methods:
+            if m.__name__ not in wf.keys():
+                rc.log(f"cluster data was missing method {m.__name__}")
+                return False
+        if len(wf.items()) != len(methods) + 1:
+            rc.log(f"cluster data had incorrect number of methods: {len(wf.items())=} != {len(methods)+1=}")
+            return False
+        #
+        for methodName, res in wf.items():
+            if res is None:
+                rc.log("cluster data contained a None result")
+                return False
+            if type(res) is list:
+                correctRandomRes = len(res) == 11
+                if not correctRandomRes:
+                    rc.log(f"cluster data had too few random results {len(res)=} != 11")
+                return correctRandomRes
+            else:
+                return True
+    rc.log(f"cluster data triggered default case")
+    return False
+
+
+def main():
     argp = argparse.ArgumentParser()
     argp.add_argument('targetNumClusters', type=int, action='store', default=100, nargs='?')
     argp.add_argument('--numRandomExecs', type=int, action='store', default=1000)
@@ -653,6 +717,7 @@ def main():
     argp.add_argument('--saveLoc', type=str, action="store", dest="saveLoc", default="\0")
     argp.add_argument('--saveSuffix', type=str, action="store", dest="saveSuffix", default="recSchedTimes")
     argp.add_argument('--noRandom', action='store_true', dest='noRandom', default=False)
+    argp.add_argument('--fullSanityCheck', action='store_true', dest='fullSanityCheck', default=False)
     cliArgs = argp.parse_args(sys.argv[1:])
     if cliArgs.regModelPath == "best":
         cliArgs.regModelPath = 'models/bestModel.pickle'
@@ -775,16 +840,31 @@ def main():
 
             return cllbck
 
+        sanityComp = {}
+
+        def makeSanityCallback(cluster_):
+            def cllbck(res):
+                clusterTimes, clusterTraces = res
+                sanityComp[tuple(cluster_)] = clusterTimes
+                # traces[tuple(cluster_)] = clusterTraces
+                prog.advance(sanityProg)
+
+            return cllbck
+
         pFile = Path(f"{cliArgs.saveLoc}.{cliArgs.saveSuffix}.pickle")
         if pFile.is_file():
             rc.log(f"Extending previous results at {pFile}")
-            prevRes: dict = pickle.load(open(pFile, "br"))
-            prevRes = dict.fromkeys([tuple(sorted(list(k))) for k in prevRes.keys()], list(prevRes.values()))  # make sure the keys are sorted clusters
+            with open(pFile, "br") as f:
+                prevRes: dict = pickle.load(f)
+            # rc.log(rich.panel.Panel(rich.pretty.Pretty(prevRes, max_length=2)))
+            prevRes = {tuple(sorted(list(k))): v for k, v in prevRes.items()}
+            # rc.log(rich.panel.Panel(rich.pretty.Pretty(prevRes, max_length=2)))
+            # dict.fromkeys([tuple(sorted(list(k))) for k in prevRes.keys()], list(prevRes.values()))  # make sure the keys are sorted clusters
             prevKnownClusters = 0
             with Pool() as pool:
                 for cluster in clusters:
                     prev = prevRes.get(tuple(cluster), None)
-                    if prev is None:
+                    if prev is None or not sanitycheckCluster(prev, getMethods(), wfNames):
                         # CL.print(f"+ unknown cluster {cluster}")
                         pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeCallback(cluster))
                     else:
@@ -802,6 +882,18 @@ def main():
                     pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeCallback(cluster))
                 pool.close()
                 pool.join()
+        #
+        if cliArgs.fullSanityCheck:
+            sanityProg = prog.add_task("Full Sanity Check", total=max(commons.iround(len(clusters) * 1 / 100), 1))
+            with Pool() as pool:
+                for cluster in random.sample(clusters, max(commons.iround(len(clusters) * 1 / 100), 1)):
+                    pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeSanityCallback(cluster))
+                pool.close()
+                pool.join()
+            if sanitycheckAllClusters(times, getMethods(), wfNames, sanityComp):
+                rc.log("Passed full sanity check")
+            else:
+                rc.log("Failed full sanity check")
         dumpResults()
 
 
