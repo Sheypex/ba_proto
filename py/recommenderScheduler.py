@@ -670,21 +670,24 @@ def main():
         random.seed(0)
     #
     try:
-        loaded: PickleOut = pickle.load(open(cliArgs.regModelPath, 'br'))
+        with open(cliArgs.regModelPath, 'br') as f:
+            loaded: PickleOut = pickle.load(f)
         name, regModel, test_confidence, polyDeg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo = loaded
     except Exception as e:
         rc.log(f"Could not load regModel from pickle at {cliArgs.regModelPath!r} with error: {e}", file=sys.stderr)
         exit(1)
     if cliArgs.csvPath:
         predBase = None
-        try:
-            predBase = pds.read_csv(open(cliArgs.csvPath, 'r'))  # already filtered for realtime > 1000)
-        except:
-            pass
-        try:
-            predBase = pds.read_csv(open(cliArgs.csvPath + '.csv', 'r'))
-        except:
-            pass
+        with open(cliArgs.csvPath, 'r') as f:
+            try:
+                predBase = pds.read_csv(f)  # already filtered for realtime > 1000)
+            except:
+                pass
+        with open(cliArgs.csvPath + '.csv', 'r') as f:
+            try:
+                predBase = pds.read_csv(f)
+            except:
+                pass
         if predBase is None:
             raise Exception(f"Couldn't open csv file {cliArgs.csvPath!r} or {(cliArgs.csvPath + '.csv')!r}")
     else:
@@ -731,6 +734,10 @@ def main():
         #
         workflowGraph: NX.DiGraph = NX.drawing.nx_agraph.read_dot(f"dot/{wfShortName}_1k.dot")
         wfGraphs[wfName] = workflowGraph
+    # clean up
+    del predBaseFilt, predRankRes, rankLookup, row, predRealtime, realtimeLookup, wfShortName, workflowGraph
+    del predBase
+    del name, regModel, test_confidence, polyDeg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo, loaded
     #
     with commons.stdProgress(rc) as prog:
         clusters = []
@@ -761,7 +768,6 @@ def main():
 
         atexit.register(dumpResults)
         #
-        # with alive_bar(len(clusters), f"Scheduling on {len(clusters)} different clusters", enrich_print=False) as bar:
         simProg = prog.add_task(f"Scheduling on {len(clusters)} different clusters", total=len(clusters))
 
         def makeCallback(cluster_):
