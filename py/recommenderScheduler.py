@@ -891,9 +891,9 @@ def main():
                 pool.close()
                 pool.join()
             if sanitycheckAllClusters(times, getMethods(), wfNames, sanityComp):
-                rc.log("Passed full sanity check")
+                rc.log("Passed full sanity check", style="bold green")
             else:
-                rc.log("Failed full sanity check")
+                rc.log("Failed full sanity check", style="bold white on red")
         dumpResults()
 
 
