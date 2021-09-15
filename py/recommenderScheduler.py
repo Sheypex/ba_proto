@@ -639,27 +639,42 @@ def scheduleCluster(cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, nu
 def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: list = None, compare: dict = None):
     for c in clusterData.values():
         if not sanitycheckCluster(c, methods, wfs):
+            rc.log("Failed sanity check on a cluster")
             return False
     #
     if compare is not None:
         for c, v in compare.items():
             other: dict = clusterData.get(c, None)
             if other is None:
+                rc.log("A cluster was missing")
                 return False
             #
             for wfName, wf in v.items():
                 if wfName not in other.keys():
+                    rc.log("A workflow was missing")
                     return False
                 otherwf = other[wfName]
                 for methodName, res in wf.items():
                     if methodName not in otherwf.keys():
+                        rc.log("A method was missing")
                         return False
                     otherRes = otherwf[methodName]
                     if type(res) is list:
-                        return commons.list_compare(res, otherRes)
+                        same = commons.list_compare(res, otherRes)
+                        if not same:
+                            rc.log("Random results were different")
+                        return same
                     else:
                         tol = 1e-3
-                        return abs(res - otherRes) <= tol
+                        same = res == otherRes
+                        if not same:
+                            acceptable = abs(res - otherRes) <= tol
+                            if not acceptable:
+                                rc.log(f"Results differed by more than tolerable ({tol}: {res=}, {otherRes=})")
+                                pass
+                            else:
+                                return acceptable
+                        return same
 
 
 def sanitycheckCluster(clusterData: dict = None, methods: list = None, wfs: list = None):
