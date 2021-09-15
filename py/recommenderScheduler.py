@@ -678,16 +678,16 @@ def main():
         exit(1)
     if cliArgs.csvPath:
         predBase = None
-        with open(cliArgs.csvPath, 'r') as f:
-            try:
+        try:
+            with open(cliArgs.csvPath, 'r') as f:
                 predBase = pds.read_csv(f)  # already filtered for realtime > 1000)
-            except:
-                pass
-        with open(cliArgs.csvPath + '.csv', 'r') as f:
-            try:
+        except:
+            pass
+        try:
+            with open(cliArgs.csvPath + '.csv', 'r') as f:
                 predBase = pds.read_csv(f)
-            except:
-                pass
+        except:
+            pass
         if predBase is None:
             raise Exception(f"Couldn't open csv file {cliArgs.csvPath!r} or {(cliArgs.csvPath + '.csv')!r}")
     else:
