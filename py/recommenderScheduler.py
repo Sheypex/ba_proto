@@ -781,7 +781,7 @@ def main():
         if pFile.is_file():
             rc.log(f"Extending previous results at {pFile}")
             prevRes: dict = pickle.load(open(pFile, "br"))
-            prevRes = dict.fromkeys([tuple(sorted(list(k))) for k in prevRes.keys()], prevRes.values())  # make sure the keys are sorted clusters
+            prevRes = dict.fromkeys([tuple(sorted(list(k))) for k in prevRes.keys()], list(prevRes.values()))  # make sure the keys are sorted clusters
             prevKnownClusters = 0
             with Pool() as pool:
                 for cluster in clusters:
