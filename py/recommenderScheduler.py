@@ -760,6 +760,7 @@ def main():
             rc.log(f"Going to save to {pFile}")
             with open(pFile, 'bw') as f:
                 pickle.dump(times, f)
+            rc.log("oh no no no no")
             rc.log(f"Saved to {pFile}")
 
         atexit.register(dumpResults)
