@@ -55,6 +55,24 @@ def roundToFirstSignificantDigits(num, digits=1, max=3):
     return round(num, roundTo)
 
 
+def ema(x, mu=None, alpha=0.3):
+    """
+    Exponential moving average: smoothing to give progressively lower
+    weights to older values.
+    Parameters
+    ----------
+    x  : float
+        New value to include in EMA.
+    mu  : float, optional
+        Previous EMA value.
+    alpha  : float, optional
+        Smoothing factor in range [0, 1], [default: 0.3].
+        Increase to give more weight to recent values.
+        Ranges from 0 (yields mu) to 1 (yields x).
+    """
+    return x if mu is None else (alpha * x) + (1 - alpha) * mu
+
+
 class ItemsPerSecondColumn(rich.progress.ProgressColumn):
     max_refresh = 0.5
 
@@ -64,17 +82,18 @@ class ItemsPerSecondColumn(rich.progress.ProgressColumn):
         self.itemsPS = dict()
 
     def render(self, task: "rich.progress.Task") -> Text:
+        elapsed = task.finished_time if task.finished else task.elapsed
+        if elapsed is None:
+            self.seen[task.id] = 0
+            self.itemsPS[task.id] = 0.0
+            return Text("(0.0/s)", style="progress.elapsed")
+        if task.finished:
+            return Text(f"({roundToFirstSignificantDigits(task.completed / elapsed, 3, 3)}/s)", style="progress.elapsed")
         if task.completed == 0:
             self.seen[task.id] = 0
             self.itemsPS[task.id] = 0.0
         if self.seen[task.id] < task.completed:
-            elapsed = task.finished_time if task.finished else task.elapsed
-            if elapsed is None:
-                self.seen[task.id] = 0
-                self.itemsPS[task.id] = 0.0
-                return Text("(0.0/s)", style="progress.elapsed")
-            #
-            self.itemsPS[task.id] = roundToFirstSignificantDigits(task.completed / elapsed, 3, 3)
+            self.itemsPS[task.id] = roundToFirstSignificantDigits(ema(roundToFirstSignificantDigits(task.completed / elapsed, 3, 3), self.itemsPS[task.id]), 3, 3)
             self.seen[task.id] = task.completed
         return Text(f"({self.itemsPS[task.id]}/s)", style="progress.elapsed")
 
@@ -93,6 +112,8 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
             self.seen[task.id] = 0
             self.secPerItem[task.id] = 0.0
             return Text("(0.0s/item)", style="progress.elapsed")
+        if task.finished:
+            return Text(f"({roundToFirstSignificantDigits(elapsed / task.completed, 3, 3)}s/item)", style="progress.elapsed")
         #
         if task.completed == 0:
             self.seen[task.id] = 0
@@ -100,7 +121,7 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
             return Text(f"({self.secPerItem[task.id]}s/item)", style="progress.elapsed")
         #
         if self.seen[task.id] < task.completed:
-            self.secPerItem[task.id] = roundToFirstSignificantDigits(elapsed / task.completed, 3, 3)
+            self.secPerItem[task.id] = roundToFirstSignificantDigits(ema(roundToFirstSignificantDigits(elapsed / task.completed, 3, 3), self.secPerItem[task.id]), 3, 3)
             self.seen[task.id] = task.completed
         return Text(f"({self.secPerItem[task.id]}s/item)", style="progress.elapsed")
 

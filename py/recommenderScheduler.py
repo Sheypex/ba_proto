@@ -740,20 +740,15 @@ def main():
     del name, regModel, test_confidence, polyDeg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo, loaded
     #
     with commons.stdProgress(rc) as prog:
-        clusters = []
+        clusters = dict()
         genClusterProg = prog.add_task(f"Generating {cliArgs.targetNumClusters} different clusters", total=cliArgs.targetNumClusters)
         while len(
-                clusters) < cliArgs.targetNumClusters:  # TODO this does not take into consideration that --targetNumClusters may exceed the maximum number of generateable clusters
+                clusters.keys()) < cliArgs.targetNumClusters:  # TODO this does not take into consideration that --targetNumClusters may exceed the maximum number of generateable clusters
             inst = [random.choice(allInstances) for _ in range(random.randint(2, 20))]
             inst.sort()
-            skip = False
-            for c in clusters:
-                if list_compare(inst, c):
-                    skip = True
-                    break
-            if not skip:
-                clusters.append(inst)
-                prog.advance(genClusterProg)
+            clusters[tuple(inst)] = inst
+            prog.update(genClusterProg, completed=len(clusters.keys()))
+    clusters = list(clusters.values())
     #
     with commons.stdProgress(rc) as prog:
         #
@@ -761,7 +756,7 @@ def main():
         traces = {}
 
         #
-        def dumpResults():
+        def dumpResults():  # TODO this needs to perform a sanit-check on the data that is to be dumped since this also runs on error so the results may be corrupted!
             with open(pFile, 'bw') as f:
                 pickle.dump(times, f)
             rc.log(f"Saved to {pFile}")
@@ -782,20 +777,20 @@ def main():
         pFile = Path(f"{cliArgs.saveLoc}.{cliArgs.saveSuffix}.pickle")
         if pFile.is_file():
             rc.log(f"Extending previous results at {pFile}")
-            prevRes = pickle.load(open(pFile, "br"))
+            prevRes: dict = pickle.load(open(pFile, "br"))
+            prevRes = dict.fromkeys([tuple(sorted(list(k))) for k in prevRes.keys()], prevRes.values())  # make sure the keys are sorted clusters
             prevKnownClusters = 0
             with Pool() as pool:
                 for cluster in clusters:
-                    for c in prevRes.keys():
-                        if list_compare(cluster, sorted(list(c))):
-                            # CL.print(f"- known cluster {cluster}")
-                            times[tuple(cluster)] = prevRes[c]
-                            prevKnownClusters += 1
-                            prog.advance(simProg)
-                            break
-                    else:
+                    prev = prevRes.get(tuple(cluster), None)
+                    if prev is None:
                         # CL.print(f"+ unknown cluster {cluster}")
                         pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeCallback(cluster))
+                    else:
+                        times[tuple(cluster)] = prev
+                        prevKnownClusters += 1
+                        prog.advance(simProg)
+                del prevRes, prev  # clean up
                 pool.close()
                 pool.join()
                 rc.log(f"{prevKnownClusters} known clusters and {cliArgs.targetNumClusters - prevKnownClusters} new results")
