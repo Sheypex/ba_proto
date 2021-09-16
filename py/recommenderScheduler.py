@@ -677,7 +677,7 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
             if (a := addBadness("sanityFail", False)) is not None:
                 return a
     #
-    tol = 0.1
+    tol = 1
     if compare is not None:
         for c, v in compare.items():
             other: dict = clusterData.get(c, None)
@@ -700,24 +700,26 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
                                 if type(res) is list:
                                     same = commons.list_compare(res, otherRes)
                                     if not same:
-                                        acceptable = all([abs(r - otherR) <= tol for r, otherR in zip(res, otherRes)])
+                                        diffs = [abs(r - oR) / r * 100 for r, oR in zip(res, otherRes)]
+                                        acceptable = all([d <= tol for d in diffs])
                                         if not acceptable:
                                             for r, oR in zip(res, otherRes):
-                                                ok = abs(r - oR) <= tol
+                                                ok = abs(r - oR) / r * 100 <= tol
                                                 if not ok:
                                                     if (a := addBadness("differentRandomResults", False, False)) is not None:
                                                         return a
                                             if (a := addBadness("differentRandomResults", False, fields=[
-                                                str(statistics.mean([abs(r - otherR) for r, otherR in zip(res, otherRes)])),
-                                                str(sum([0 if abs(r - otherR) <= tol else 1 for r, otherR in zip(res, otherRes)]))
+                                                str(statistics.mean(diffs)),
+                                                str(sum([0 if d <= tol else 1 for d in diffs]))
                                             ])) is not None:
                                                 return a
                                 else:
                                     same = res == otherRes
                                     if not same:
-                                        acceptable = abs(res - otherRes) <= tol
+                                        diff = abs(res - otherRes) / res * 100
+                                        acceptable = diff <= tol
                                         if not acceptable:
-                                            if (a := addBadness("differentResults", False, fields=[str(otherRes), str(res), str(abs(res - otherRes))])) is not None:
+                                            if (a := addBadness("differentResults", False, fields=[str(otherRes), str(res), str(diff)])) is not None:
                                                 return a
     if badness == 0:
         rc.log("Passed full sanity check", style="bold green")
