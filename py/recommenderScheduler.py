@@ -34,6 +34,8 @@ from rich.progress import Progress as rProgress
 import commons
 import rich.pretty
 import rich.panel
+import rich.table
+import rich.text
 
 rc = commons.rc
 
@@ -636,45 +638,82 @@ def scheduleCluster(cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, nu
     return times, traces
 
 
-def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: list = None, compare: dict = None):
+def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: list = None, compare: dict = None, checkAll=True):
+    badnesses = {
+        "sanityFail"            : 10_000,
+        "missingCluster"        : 1_000,
+        "missingWorkflow"       : 1_000,
+        "missingMethod"         : 1_000,
+        "differentRandomResults": 10,
+        "differentResults"      : 100
+    }
+    badnessesLog = {
+        "sanityFail"            : "Failed [bold red]sanity check[/] on a cluster",
+        "missingCluster"        : "A [bold red]cluster[/] was missing",
+        "missingWorkflow"       : "A [bold red]workflow[/] was missing",
+        "missingMethod"         : "A [bold red]method[/] was missing",
+        "differentRandomResults": "[bold red]Random results[/] differed by more than tolerable",
+        "differentResults"      : "[bold red]Results[/] differed by more than tolerable"
+    }
+    badness = 0
+
+    def addBadness(key, default):
+        nonlocal badness
+        rc.log(badnessesLog[key])
+        if checkAll:
+            badness += badnesses[key]
+            return None
+        else:
+            return default
+
     for c in clusterData.values():
         if not sanitycheckCluster(c, methods, wfs):
-            rc.log("Failed sanity check on a cluster")
-            return False
+            if (a := addBadness("sanityFail", False)) is not None:
+                return a
     #
+    tol = 0.1
     if compare is not None:
         for c, v in compare.items():
             other: dict = clusterData.get(c, None)
             if other is None:
-                rc.log("A cluster was missing")
-                return False
-            #
-            for wfName, wf in v.items():
-                if wfName not in other.keys():
-                    rc.log("A workflow was missing")
-                    return False
-                otherwf = other[wfName]
-                for methodName, res in wf.items():
-                    if methodName not in otherwf.keys():
-                        rc.log("A method was missing")
-                        return False
-                    otherRes = otherwf[methodName]
-                    if type(res) is list:
-                        same = commons.list_compare(res, otherRes)
-                        if not same:
-                            rc.log("Random results were different")
-                        return same
+                if (a := addBadness("missingCluster", False)) is not None:
+                    return a
+            else:
+                for wfName, wf in v.items():
+                    otherwf: dict = other.get(wfName, None)
+                    if otherwf is None:
+                        if (a := addBadness("missingWorkflow", False)) is not None:
+                            return a
                     else:
-                        tol = 1e-3
-                        same = res == otherRes
-                        if not same:
-                            acceptable = abs(res - otherRes) <= tol
-                            if not acceptable:
-                                rc.log(f"Results differed by more than tolerable ({tol}: {res=}, {otherRes=})")
-                                pass
+                        for methodName, res in wf.items():
+                            otherRes = otherwf.get(methodName, None)
+                            if otherRes is None:
+                                if (a := addBadness("missingMethod", False)) is not None:
+                                    return a
                             else:
-                                return acceptable
-                        return same
+                                if type(res) is list:
+                                    same = commons.list_compare(res, otherRes)
+                                    if not same:
+                                        acceptable = all([abs(r - otherR) <= tol for r, otherR in zip(res, otherRes)])
+                                        if not acceptable:
+                                            t = rich.table.Table()
+                                            t.add_row("Given", *[str(oR) for oR in otherRes])
+                                            t.add_row("Compared to", *[str(r) for r in res])
+                                            t.add_row("Difference", *[str(abs(r - oR)) for r, oR in zip(res, otherRes)])
+                                            rc.log(t)
+                                            if (a := addBadness("differentRandomResults", False)) is not None:
+                                                return a
+                                else:
+                                    same = res == otherRes
+                                    if not same:
+                                        acceptable = abs(res - otherRes) <= tol
+                                        if not acceptable:
+                                            t = rich.table.Table("Given", "Compared to", "Difference")
+                                            t.add_row(str(otherRes), str(res), str(abs(res - otherRes)))
+                                            rc.log(t)
+                                            if (a := addBadness("differentResults", False)) is not None:
+                                                return a
+    return badness == 0, badness
 
 
 def sanitycheckCluster(clusterData: dict = None, methods: list = None, wfs: list = None):
@@ -830,22 +869,24 @@ def main():
             prog.update(genClusterProg, completed=len(clusters.keys()))
     clusters = list(clusters.values())
     #
+    times = {}
+    traces = {}
+
+    #
+    def dumpResults():  # TODO this needs to perform a sanit-check on the data that is to be dumped since this also runs on error so the results may be corrupted!
+        rc.log(f"Going to save to {pFile}")
+        with open(pFile, 'bw') as f2:
+            pickle.dump(times, f2)
+        rc.log(f"Saved to {pFile}")
+
+    atexit.register(dumpResults)
+    #
+    pFile = Path(f"{cliArgs.saveLoc}.{cliArgs.saveSuffix}.pickle")
+    #
     with commons.stdProgress(rc) as prog:
-        #
-        times = {}
-        traces = {}
-
-        #
-        def dumpResults():  # TODO this needs to perform a sanit-check on the data that is to be dumped since this also runs on error so the results may be corrupted!
-            rc.log(f"Going to save to {pFile}")
-            with open(pFile, 'bw') as f2:
-                pickle.dump(times, f2)
-            rc.log(f"Saved to {pFile}")
-
-        atexit.register(dumpResults)
-        #
         simProg = prog.add_task(f"Scheduling on {len(clusters)} different clusters", total=len(clusters))
 
+        #
         def makeCallback(cluster_):
             def cllbck(res):
                 clusterTimes, clusterTraces = res
@@ -855,18 +896,6 @@ def main():
 
             return cllbck
 
-        sanityComp = {}
-
-        def makeSanityCallback(cluster_):
-            def cllbck(res):
-                clusterTimes, clusterTraces = res
-                sanityComp[tuple(cluster_)] = clusterTimes
-                # traces[tuple(cluster_)] = clusterTraces
-                prog.advance(sanityProg)
-
-            return cllbck
-
-        pFile = Path(f"{cliArgs.saveLoc}.{cliArgs.saveSuffix}.pickle")
         if pFile.is_file():
             rc.log(f"Extending previous results at {pFile}")
             with open(pFile, "br") as f:
@@ -897,19 +926,35 @@ def main():
                     pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeCallback(cluster))
                 pool.close()
                 pool.join()
-        #
-        if cliArgs.fullSanityCheck:
+    #
+    if cliArgs.fullSanityCheck:
+        with commons.stdProgress(rc) as prog:
+            sanityComp = {}
+
+            def makeSanityCallback(cluster_):
+                def cllbck(res):
+                    clusterTimes, clusterTraces = res
+                    sanityComp[tuple(cluster_)] = clusterTimes
+                    # traces[tuple(cluster_)] = clusterTraces
+                    prog.advance(sanityProg)
+
+                return cllbck
+
+            #
             sanityProg = prog.add_task("Full Sanity Check", total=max(commons.iround(len(clusters) * 1 / 100), 1))
             with Pool() as pool:
                 for cluster in random.sample(clusters, max(commons.iround(len(clusters) * 1 / 100), 1)):
                     pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeSanityCallback(cluster))
                 pool.close()
                 pool.join()
-            if sanitycheckAllClusters(times, getMethods(), wfNames, sanityComp):
+            isSane, badness = sanitycheckAllClusters(times, getMethods(), wfNames, sanityComp)
+            if isSane:
                 rc.log("Passed full sanity check", style="bold green")
             else:
-                rc.log("Failed full sanity check", style="bold white on red")
-        dumpResults()
+                rc.log(f"Failed full sanity check with {badness=}", style="bold white on red")
+    #
+    dumpResults()
+    atexit.unregister(dumpResults)
 
 
 if __name__ == "__main__":
