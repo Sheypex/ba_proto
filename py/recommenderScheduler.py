@@ -667,7 +667,7 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
             prev = report.get(key, None)
             if prev is None:
                 report[key] = []
-            prev[key].append(fields)
+            report[key].append(fields)
             return None
         else:
             return default
@@ -724,12 +724,13 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
     else:
         if checkAll:
             for k, r in report.items():
-                rc.log(f"{len(r)}x {badnessesLog[k]}")
-                t = rich.table.Table()
-                for f in r:
-                    if f is not None:
-                        t.add_row(*f)
-                rc.log(t)
+                if len(r) > 0:
+                    rc.log(f"{len(r)}x {badnessesLog[k]}")
+                    t = rich.table.Table()
+                    for f in r:
+                        if f is not None:
+                            t.add_row(*f)
+                    rc.log(t)
         rc.log(f"Failed full sanity check with {badness=}", style="bold white on red")
     return badness == 0
 
