@@ -657,9 +657,10 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
     }
     badness = 0
 
-    def addBadness(key, default):
+    def addBadness(key, default, log=True):
         nonlocal badness
-        rc.log(badnessesLog[key])
+        if log:
+            rc.log(badnessesLog[key])
         if checkAll:
             badness += badnesses[key]
             return None
@@ -696,11 +697,13 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
                                     if not same:
                                         acceptable = all([abs(r - otherR) <= tol for r, otherR in zip(res, otherRes)])
                                         if not acceptable:
-                                            t = rich.table.Table()
-                                            t.add_row("Given", *[str(oR) for oR in otherRes])
-                                            t.add_row("Compared to", *[str(r) for r in res])
-                                            t.add_row("Difference", *[str(abs(r - oR)) for r, oR in zip(res, otherRes)])
-                                            rc.log(t)
+                                            for r, oR in zip(res, otherRes):
+                                                ok = abs(r - oR) <= tol
+                                                if not ok:
+                                                    if (a := addBadness("differentRandomResults", False, False)) is not None:
+                                                        return a
+                                            rc.log(
+                                                f"Mean difference: {statistics.mean([abs(r - otherR) for r, otherR in zip(res, otherRes)])}, over {sum([0 if abs(r - otherR) <= tol else 1 for r, otherR in zip(res, otherRes)])} different")
                                             if (a := addBadness("differentRandomResults", False)) is not None:
                                                 return a
                                 else:
