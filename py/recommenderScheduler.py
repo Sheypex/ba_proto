@@ -719,7 +719,7 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
                                         diff = abs(res - otherRes) / res * 100
                                         acceptable = diff <= tol
                                         if not acceptable:
-                                            if (a := addBadness("differentResults", False, fields=[methodName, str(res), str(otherRes), str(diff)])) is not None:
+                                            if (a := addBadness("differentResults", False, fields=[methodName, len(c), str(res), str(otherRes), str(diff)])) is not None:
                                                 return a
     if badness == 0:
         rc.log("Passed full sanity check", style="bold green")
@@ -821,7 +821,8 @@ def main():
             loaded: PickleOut = pickle.load(f)
         name, regModel, test_confidence, polyDeg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo = loaded
     except Exception as e:
-        rc.log(f"Could not load regModel from pickle at {cliArgs.regModelPath!r} with error: {e}", file=sys.stderr)
+        rc.log(f"Could not load regModel from pickle at {cliArgs.regModelPath!r} with error: {e}")
+        rc.print_exception()
         exit(1)
     if cliArgs.csvPath:
         predBase = None
