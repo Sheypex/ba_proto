@@ -719,7 +719,7 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
                                         diff = abs(res - otherRes) / res * 100
                                         acceptable = diff <= tol
                                         if not acceptable:
-                                            if (a := addBadness("differentResults", False, fields=[str(otherRes), str(res), str(diff)])) is not None:
+                                            if (a := addBadness("differentResults", False, fields=[methodName, str(res), str(otherRes), str(diff)])) is not None:
                                                 return a
     if badness == 0:
         rc.log("Passed full sanity check", style="bold green")
@@ -731,9 +731,10 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
                     t = rich.table.Table()
                     r = [i for i in r if i is not None]
                     trunced = False
-                    if len(r) > 10:
-                        r = random.sample(r, 10)
-                        trunced = True
+                    if k == "differentRandomResults":
+                        if len(r) > 10:
+                            r = random.sample(r, 10)
+                            trunced = True
                     for f in r:
                         if f is not None:
                             t.add_row(*f)
