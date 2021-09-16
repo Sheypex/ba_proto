@@ -656,11 +656,15 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
         "differentResults"      : "[bold red]Results[/] differed by more than tolerable"
     }
     badness = 0
+    report = {}
 
-    def addBadness(key, default, log=True):
+    def addBadness(key, default, log=not checkAll, fields=None):
         nonlocal badness
         if log:
-            rc.log(badnessesLog[key])
+            prev = report.get(key, None)
+            if prev is None:
+                report[key] = []
+            prev[key].append(fields)
         if checkAll:
             badness += badnesses[key]
             return None
@@ -702,21 +706,30 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
                                                 if not ok:
                                                     if (a := addBadness("differentRandomResults", False, False)) is not None:
                                                         return a
-                                            rc.log(
-                                                f"Mean difference: {statistics.mean([abs(r - otherR) for r, otherR in zip(res, otherRes)])}, over {sum([0 if abs(r - otherR) <= tol else 1 for r, otherR in zip(res, otherRes)])} different")
-                                            if (a := addBadness("differentRandomResults", False)) is not None:
+                                            if (a := addBadness("differentRandomResults", False, fields=[
+                                                str(statistics.mean([abs(r - otherR) for r, otherR in zip(res, otherRes)])),
+                                                str(sum([0 if abs(r - otherR) <= tol else 1 for r, otherR in zip(res, otherRes)]))
+                                            ])) is not None:
                                                 return a
                                 else:
                                     same = res == otherRes
                                     if not same:
                                         acceptable = abs(res - otherRes) <= tol
                                         if not acceptable:
-                                            t = rich.table.Table("Given", "Compared to", "Difference")
-                                            t.add_row(str(otherRes), str(res), str(abs(res - otherRes)))
-                                            rc.log(t)
-                                            if (a := addBadness("differentResults", False)) is not None:
+                                            if (a := addBadness("differentResults", False, fields=[str(otherRes), str(res), str(abs(res - otherRes))])) is not None:
                                                 return a
-    return badness == 0, badness
+    if badness == 0:
+        rc.log("Passed full sanity check", style="bold green")
+    else:
+        if checkAll:
+            for k, r in report.items():
+                rc.log(f"{len(r)}x {badnessesLog[k]}")
+                t = rich.table.Table()
+                for f in r:
+                    if f is not None:
+                        t.add_row(*f)
+        rc.log(f"Failed full sanity check with {badness=}", style="bold white on red")
+    return badness == 0
 
 
 def sanitycheckCluster(clusterData: dict = None, methods: list = None, wfs: list = None):
@@ -950,11 +963,7 @@ def main():
                     pool.apply_async(scheduleCluster, (cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, cliArgs.numRandomExecs), callback=makeSanityCallback(cluster))
                 pool.close()
                 pool.join()
-            isSane, badness = sanitycheckAllClusters(times, getMethods(), wfNames, sanityComp)
-            if isSane:
-                rc.log("Passed full sanity check", style="bold green")
-            else:
-                rc.log(f"Failed full sanity check with {badness=}", style="bold white on red")
+            sanitycheckAllClusters(times, getMethods(), wfNames, sanityComp)
     #
     dumpResults()
     atexit.unregister(dumpResults)
