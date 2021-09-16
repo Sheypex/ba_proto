@@ -661,12 +661,13 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
     def addBadness(key, default, log=not checkAll, fields=None):
         nonlocal badness
         if log:
+            rc.log(badnessesLog[key])
+        if checkAll:
+            badness += badnesses[key]
             prev = report.get(key, None)
             if prev is None:
                 report[key] = []
             prev[key].append(fields)
-        if checkAll:
-            badness += badnesses[key]
             return None
         else:
             return default
@@ -728,6 +729,7 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
                 for f in r:
                     if f is not None:
                         t.add_row(*f)
+                rc.log(t)
         rc.log(f"Failed full sanity check with {badness=}", style="bold white on red")
     return badness == 0
 
