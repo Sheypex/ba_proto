@@ -727,9 +727,16 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
                 if len(r) > 0:
                     rc.log(f"{len(r)}x {badnessesLog[k]}")
                     t = rich.table.Table()
+                    r = [i for i in r if i is not None]
+                    trunced = False
+                    if len(r) > 10:
+                        r = random.sample(r, 10)
+                        trunced = True
                     for f in r:
                         if f is not None:
                             t.add_row(*f)
+                    if trunced and len(r) > 0:
+                        t.add_row(*(["..."] * len(r[0])))
                     rc.log(t)
         rc.log(f"Failed full sanity check with {badness=}", style="bold white on red")
     return badness == 0
