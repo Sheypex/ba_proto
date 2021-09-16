@@ -638,13 +638,13 @@ def scheduleCluster(cluster, rankLookups, realtimeLookups, wfGraphs, wfNames, nu
     return times, traces
 
 
-def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: list = None, compare: dict = None, checkAll=True):
+def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: list = None, compare: dict = None, checkAll=True, rs=None):
     badnesses = {
         "sanityFail"            : 10_000,
         "missingCluster"        : 1_000,
         "missingWorkflow"       : 1_000,
         "missingMethod"         : 1_000,
-        "differentRandomResults": 10,
+        "differentRandomResults": 0,
         "differentResults"      : 100
     }
     badnessesLog = {
@@ -731,10 +731,9 @@ def sanitycheckAllClusters(clusterData: dict = None, methods: list = None, wfs: 
                     t = rich.table.Table()
                     r = [i for i in r if i is not None]
                     trunced = False
-                    if k == "differentRandomResults":
-                        if len(r) > 10:
-                            r = random.sample(r, 10)
-                            trunced = True
+                    if len(r) > 10:
+                        r = random.sample(r, 10)
+                        trunced = True
                     for f in r:
                         if f is not None:
                             t.add_row(*f)
