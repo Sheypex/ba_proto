@@ -12,3 +12,4 @@ inv.aws_ec2.yaml
 *.old*
 *.log
 *.dot.svg
+.ipynb_checkpoints
