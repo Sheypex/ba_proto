@@ -64,11 +64,7 @@ class TrainTestUnknownSplit(NamedTuple):
     y_test: List[List[float]]
     X_unknown: List[List[float]]
     y_unknown: List[List[float]]
-    X_trans: (
-        preprocessing.StandardScaler,
-        preprocessing.PolynomialFeatures,
-        preprocessing.StandardScaler,
-    )
+    X_trans: Tuple[preprocessing.StandardScaler, preprocessing.PolynomialFeatures, preprocessing.StandardScaler]
     ukwfs: List[str]
     cvwfs: List[str]
 
@@ -110,9 +106,7 @@ def printBox(message: str, borderTopBot: str = "#", borderSides: str = "#") -> N
 def getTransformers(
     X: pds.DataFrame, polyDeg: int
 ) -> Tuple[
-    preprocessing.StandardScaler,
-    preprocessing.PolynomialFeatures,
-    preprocessing.StandardScaler,
+    preprocessing.StandardScaler, preprocessing.PolynomialFeatures, preprocessing.StandardScaler,
 ]:
     scale: preprocessing.StandardScaler = preprocessing.StandardScaler().fit(X)
     if polyDeg > 1:
@@ -123,9 +117,7 @@ def getTransformers(
         poly: preprocessing.PolynomialFeatures = preprocessing.PolynomialFeatures(
             degree=polyDeg, interaction_only=True, include_bias=False
         ).fit(X)
-    scale2: preprocessing.StandardScaler = preprocessing.StandardScaler().fit(
-        poly.transform(scale.transform(X))
-    )
+    scale2: preprocessing.StandardScaler = preprocessing.StandardScaler().fit(poly.transform(scale.transform(X)))
     return scale, poly, scale2
 
 
@@ -138,26 +130,19 @@ def applyTransformers(
     return scale2.transform(poly.transform(scale.transform(X)))
 
 
-def getNumSplits(
-    dF: pds.DataFrame,
-    cvSize: int = 0,
-    unknownSize: int = 0,
-    wfs: Optional[List[str]] = None,
-) -> int:
+def getNumSplits(dF: pds.DataFrame, cvSize: int = 0, unknownSize: int = 0, wfs: Optional[List[str]] = None,) -> int:
     if wfs is None:
         wfs = dF.wfName.unique()
     nSplits = 0
     #
     unknownCombs = [
-        (list(ukwfs), [wf for wf in wfs if wf not in ukwfs])
-        for ukwfs in itertools.combinations(wfs, unknownSize)
+        (list(ukwfs), [wf for wf in wfs if wf not in ukwfs]) for ukwfs in itertools.combinations(wfs, unknownSize)
     ]
     for ukSplit in unknownCombs:
         ukwfs, kwfs = ukSplit
         #
         cvCombs = [
-            (list(cvwfs), [wf for wf in kwfs if wf not in cvwfs])
-            for cvwfs in itertools.combinations(kwfs, cvSize)
+            (list(cvwfs), [wf for wf in kwfs if wf not in cvwfs]) for cvwfs in itertools.combinations(kwfs, cvSize)
         ]
         for cvSplit in cvCombs:
             nSplits += 1
@@ -185,15 +170,13 @@ def getSplits(
     splits = list()
     #
     unknownCombs: List[Tuple[List[str], List[str]]] = [
-        (list(ukwfs), [wf for wf in wfs if wf not in ukwfs])
-        for ukwfs in itertools.combinations(wfs, unknownSize)
+        (list(ukwfs), [wf for wf in wfs if wf not in ukwfs]) for ukwfs in itertools.combinations(wfs, unknownSize)
     ]
     for ukSplit in unknownCombs:
         ukwfs, kwfs = ukSplit
         #
         cvCombs: List[Tuple[List[str], List[str]]] = [
-            (list(cvwfs), [wf for wf in kwfs if wf not in cvwfs])
-            for cvwfs in itertools.combinations(kwfs, cvSize)
+            (list(cvwfs), [wf for wf in kwfs if wf not in cvwfs]) for cvwfs in itertools.combinations(kwfs, cvSize)
         ]
         for cvSplit in cvCombs:
             cvwfs, trainwfs = cvSplit
@@ -210,38 +193,20 @@ def getSplits(
         X_trans = getTransformers(rows_known[x_cols], polyDeg)
         X_scale, X_poly, X_scale2 = X_trans
         #
-        X_train = applyTransformers(
-            rows_known.query("wfName in @trainwfs")[x_cols], X_scale, X_poly, X_scale2
-        )
+        X_train = applyTransformers(rows_known.query("wfName in @trainwfs")[x_cols], X_scale, X_poly, X_scale2)
         X_test = (
             X_train
             if len(cvwfs) == 0
-            else applyTransformers(
-                rows_known.query("wfName in @cvwfs")[x_cols], X_scale, X_poly, X_scale2
-            )
+            else applyTransformers(rows_known.query("wfName in @cvwfs")[x_cols], X_scale, X_poly, X_scale2)
         )
-        X_unknown = (
-            list()
-            if len(ukwfs) == 0
-            else applyTransformers(rows_unknown[x_cols], X_scale, X_poly, X_scale2)
-        )
+        X_unknown = list() if len(ukwfs) == 0 else applyTransformers(rows_unknown[x_cols], X_scale, X_poly, X_scale2)
         #
         y_train = rows_known.query("wfName in @trainwfs")[y_cols]
-        y_test = (
-            y_train if len(cvwfs) == 0 else rows_known.query("wfName in @cvwfs")[y_cols]
-        )
+        y_test = y_train if len(cvwfs) == 0 else rows_known.query("wfName in @cvwfs")[y_cols]
         y_unknown = list() if len(ukwfs) == 0 else rows_unknown[y_cols]
         #
         yield TrainTestUnknownSplit(
-            X_train,
-            y_train,
-            X_test,
-            y_test,
-            X_unknown,
-            y_unknown,
-            X_trans,
-            ukwfs,
-            cvwfs,
+            X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_trans, ukwfs, cvwfs,
         )
 
 
@@ -249,13 +214,9 @@ def main():
     rc = commons.rc
     #
     argp = argparse.ArgumentParser()
-    argp.add_argument(
-        "polyDeg", type=int, choices=[1, 2, 3, 4, 5], action="store", default=1
-    )
+    argp.add_argument("polyDeg", type=int, choices=[1, 2, 3, 4, 5], action="store", default=1)
     argp.add_argument("--csv", type=str, action="store", dest="csvPath")
-    argp.add_argument(
-        "--recompute", action="store_true", dest="recompute", default=False
-    )
+    argp.add_argument("--recompute", action="store_true", dest="recompute", default=False)
     argp.add_argument("--improve", action="store_true", dest="improve", default=False)
     argp.add_argument("--maxiter", type=int, action="store", dest="maxiter", default=-1)
     argp.add_argument(
@@ -265,31 +226,17 @@ def main():
         default="all",
         choices=["all"] + get_model_names() + [f"_{x}" for x in get_model_names()],
     )
-    argp.add_argument(
-        "--repeat", action="store", type=int, dest="numRepeats", default=1
-    )
+    argp.add_argument("--repeat", action="store", type=int, dest="numRepeats", default=1)
     argp.add_argument("--latex", action="store_true", dest="latex", default=False)
     argp.add_argument("--showDone", action="store_true", dest="showDone", default=False)
     argp.add_argument("--models", action="store", dest="modelsPath", default="models")
     argp.add_argument(
-        "--WFCV",
-        action="store",
-        type=int,
-        choices=[0, 1, 2, 3, 4],
-        default=0,
-        dest="cvSize",
+        "--WFCV", action="store", type=int, choices=[0, 1, 2, 3, 4], default=0, dest="cvSize",
     )
     argp.add_argument(
-        "--WFU",
-        action="store",
-        type=int,
-        choices=[0, 1, 2, 3, 4],
-        default=0,
-        dest="unknownSize",
+        "--WFU", action="store", type=int, choices=[0, 1, 2, 3, 4], default=0, dest="unknownSize",
     )
-    argp.add_argument(
-        "--sanity-check", action="store_true", dest="sanityCheck", default=False
-    )
+    argp.add_argument("--sanity-check", action="store_true", dest="sanityCheck", default=False)
     argp.add_argument("--saveBest", action="store_true", dest="saveBest", default=False)
     cliArgs = argp.parse_args(sys.argv[1:])
     doDegree = cliArgs.polyDeg
@@ -333,9 +280,7 @@ def main():
     if cliArgs.csvPath:
         dF = None
         try:
-            dF = pds.read_csv(
-                open(cliArgs.csvPath, "r")
-            )  # already filtered for realtime > 1000)
+            dF = pds.read_csv(open(cliArgs.csvPath, "r"))  # already filtered for realtime > 1000)
         except:
             pass
         try:
@@ -343,9 +288,7 @@ def main():
         except:
             pass
         if dF is None:
-            raise Exception(
-                f"Couldn't open csv file {cliArgs.csvPath!r} or {(cliArgs.csvPath + '.csv')!r}"
-            )
+            raise Exception(f"Couldn't open csv file {cliArgs.csvPath!r} or {(cliArgs.csvPath + '.csv')!r}")
     else:
         with db_actions.connect() as conn:
             dF = pds.read_sql('SELECT * FROM "averageRuntimesPredictionBase1000"', conn)
@@ -392,9 +335,7 @@ def main():
     y_cols = "rank"
     #
     wfs = dF.wfName.unique()
-    wfShortnamesLUT = {
-        wf: re.compile("nfcore/(\w+):.*").match(wf).group(1) for wf in wfs
-    }
+    wfShortnamesLUT = {wf: re.compile("nfcore/(\w+):.*").match(wf).group(1) for wf in wfs}
     wfLongnamesLUT = {short: long for long, short in wfShortnamesLUT.items()}
     picklePrefixes = {1: "lin", 2: "quad", 3: "cube", 4: "tet", 5: "pen"}
     #
@@ -407,35 +348,18 @@ def main():
     numSplits = getNumSplits(dF, cliArgs.cvSize, cliArgs.unknownSize, wfs)
     with commons.stdProgress(rc) as prog:
         totalProg = prog.add_task(
-            "Total",
-            total=cliArgs.numRepeats
-            * numSplits
-            * len(get_models(restrict=cliArgs.models)),
+            "Total", total=cliArgs.numRepeats * numSplits * len(get_models(restrict=cliArgs.models)),
         )
         repProg = prog.add_task("Repeats", total=cliArgs.numRepeats)
         splitProg = prog.add_task("Splits", total=numSplits)
-        modelProg = prog.add_task(
-            "Models", total=len(get_models(restrict=cliArgs.models))
-        )
+        modelProg = prog.add_task("Models", total=len(get_models(restrict=cliArgs.models)))
         #
         for iReps in range(cliArgs.numRepeats):
             rc.rule(f"Repeat {iReps + 1}")
-            splits = getSplits(
-                dF, doDegree, x_cols, y_cols, cliArgs.cvSize, cliArgs.unknownSize, wfs
-            )
+            splits = getSplits(dF, doDegree, x_cols, y_cols, cliArgs.cvSize, cliArgs.unknownSize, wfs)
             splitsDone = 0
             for split in splits:
-                (
-                    X_train,
-                    y_train,
-                    X_test,
-                    y_test,
-                    X_unknown,
-                    y_unknown,
-                    X_trans,
-                    ukwfs,
-                    cvwfs,
-                ) = split
+                (X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_trans, ukwfs, cvwfs,) = split
                 assert len(X_train) == len(y_train)
                 assert len(X_test) == len(y_test)
                 assert len(X_unknown) == len(y_unknown)
@@ -569,8 +493,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
             numparse = False
         if cvSize > 0:
             data[0][0] = (
-                data[0][0]
-                + f"\n{', '.join([re.compile('nfcore/(.*?):.*').match(cv).group(1) for cv in cvName])}"
+                data[0][0] + f"\n{', '.join([re.compile('nfcore/(.*?):.*').match(cv).group(1) for cv in cvName])}"
             )
         tableHeaders = (f"degree={degree}", "model", "confidence")
     else:
@@ -631,11 +554,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                         if len([x[0] for x in svr if x[0] is not None]) > 0
                         else float("-inf")
                     )
-                bestSvr = [
-                    svr
-                    for n, svr in svrs.items()
-                    if svrComp[n] == max([a for a in svrComp.values()])
-                ][0]
+                bestSvr = [svr for n, svr in svrs.items() if svrComp[n] == max([a for a in svrComp.values()])][0]
                 res["SVR"] = bestSvr
         #
         data = []
@@ -652,9 +571,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                     name = "Ordinary Least Squares"
                 name = name.replace("Regression", "")
                 name = name.replace("Regressor", "")
-            cv = ", ".join(
-                [re.compile("nfcore/(.*?):.*").match(c).group(1) for c in cv]
-            )
+            cv = ", ".join([re.compile("nfcore/(.*?):.*").match(c).group(1) for c in cv])
             data[i] = [p, name, conf, cv]
         grouped = {}
         for d in data:
@@ -695,15 +612,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
         fmt = "latex" if latex else "simple"
         numparse = False
         tableHeaders = (f"degree={degree}", "model", "confidence", "average", "cv fold")
-    print(
-        tabulate(
-            data,
-            headers=tableHeaders,
-            tablefmt=fmt,
-            missingval="N/A",
-            disable_numparse=not numparse,
-        )
-    )
+    print(tabulate(data, headers=tableHeaders, tablefmt=fmt, missingval="N/A", disable_numparse=not numparse,))
 
 
 class ScistatsNormBetween:
@@ -730,9 +639,7 @@ class ScistatsNormBetween:
             self.cond = lambda x: True and clip_cond(x)
         else:
             self.cond = lambda x: cond(x) and clip_cond(x)
-        self.norm = scistats.norm(
-            loc=(large + small) / 2, scale=(large - small) / (div * 2)
-        )
+        self.norm = scistats.norm(loc=(large + small) / 2, scale=(large - small) / (div * 2))
         self.toint = toint
 
     def rvs(self, size: int = 1, *args, **kwargs) -> Union[float, List[float]]:
@@ -759,9 +666,7 @@ class ScistatsNormAround(ScistatsNormBetween):
         clip: Optional[bool] = False,
         hardClip: Optional[bool] = False,
     ) -> None:
-        super(ScistatsNormAround, self).__init__(
-            center - dist, center + dist, cond, div, toint, clip, hardClip
-        )
+        super(ScistatsNormAround, self).__init__(center - dist, center + dist, cond, div, toint, clip, hardClip)
 
 
 def get_model_names(longname: bool = False) -> List[str]:
@@ -773,23 +678,13 @@ def get_model_names(longname: bool = False) -> List[str]:
 
 def get_models(
     randomOrder: bool = False, maxiter: int = -1, restrict: Optional[List[str]] = None
-) -> List[
-    Tuple[str, Any, Union[None, Dict[str, Any]], str, Union[None, Dict[str, Any]]]
-]:
+) -> List[Tuple[str, Any, Union[None, Dict[str, Any]], str, Union[None, Dict[str, Any]]]]:
     if maxiter <= 0:
         maxiterPos = 100_000
     else:
         maxiterPos = maxiter
-    models: List[
-        Tuple[str, Any, Union[None, Dict[str, Any]], str, Union[None, Dict[str, Any]]]
-    ] = [
-        (
-            "Linear",
-            linear_model.LinearRegression(n_jobs=-1),
-            None,
-            "Linear Regression",
-            None,
-        ),
+    models: List[Tuple[str, Any, Union[None, Dict[str, Any]], str, Union[None, Dict[str, Any]]]] = [
+        ("Linear", linear_model.LinearRegression(n_jobs=-1), None, "Linear Regression", None,),
         (
             "SVR-linear",
             svm.SVR(max_iter=maxiter, cache_size=1000),
@@ -797,9 +692,7 @@ def get_models(
                 "kernel": ["linear"],
                 "C": ScistatsNormBetween(0, 1e2, cond=(lambda x: x > 0)),
                 "epsilon": ScistatsNormBetween(0, 10, cond=(lambda x: x >= 0.1)),
-                "tol": ScistatsNormAround(
-                    0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True
-                ),
+                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
             },
             "SVR - linear",
             None,
@@ -813,9 +706,7 @@ def get_models(
                 "gamma": ScistatsNormBetween(0, 1, cond=(lambda x: x > 0)),
                 "C": ScistatsNormBetween(0, 1e2, cond=(lambda x: x > 0)),
                 "epsilon": ScistatsNormBetween(0, 10, cond=(lambda x: x >= 0.1)),
-                "tol": ScistatsNormAround(
-                    0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True
-                ),
+                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
                 "coef0": ScistatsNormAround(0, 10),
             },
             "SVR - poly",
@@ -829,9 +720,7 @@ def get_models(
                 "gamma": ScistatsNormBetween(0, 1, cond=(lambda x: x > 0)),
                 "C": ScistatsNormBetween(0, 1e2, cond=(lambda x: x > 0)),
                 "epsilon": ScistatsNormBetween(0, 10, cond=(lambda x: x >= 0.1)),
-                "tol": ScistatsNormAround(
-                    0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True
-                ),
+                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
             },
             "SVR - rbf",
             None,
@@ -844,9 +733,7 @@ def get_models(
                 "gamma": ScistatsNormBetween(0, 1, cond=(lambda x: x > 0)),
                 "C": ScistatsNormBetween(0, 1e2, cond=(lambda x: x > 0)),
                 "epsilon": ScistatsNormBetween(0, 10, cond=(lambda x: x >= 0.1)),
-                "tol": ScistatsNormAround(
-                    0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True
-                ),
+                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
                 "coef0": ScistatsNormAround(0, 10),
             },
             "SVR - sigmoid",
@@ -857,9 +744,7 @@ def get_models(
             linear_model.Lasso(max_iter=maxiterPos),
             {
                 "alpha": ScistatsNormAround(1, 10, cond=(lambda x: x >= 0.1)),
-                "tol": ScistatsNormAround(
-                    0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True
-                ),
+                "tol": ScistatsNormAround(0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True),
                 "selection": ["random"]  # , 'cyclic']
                 # 'warm_start': [True, False]
             },
@@ -871,12 +756,8 @@ def get_models(
             linear_model.LassoCV(max_iter=maxiterPos, n_jobs=-1),
             {
                 "eps": ScistatsNormBetween(1e-4, 1e-2, cond=(lambda x: x > 0)),
-                "n_alphas": ScistatsNormBetween(
-                    10, 1000, cond=(lambda x: x >= 10), toint=True
-                ),
-                "tol": ScistatsNormAround(
-                    0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True
-                ),
+                "n_alphas": ScistatsNormBetween(10, 1000, cond=(lambda x: x >= 10), toint=True),
+                "tol": ScistatsNormAround(0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True),
                 "cv": ScistatsNormBetween(2, 4, clip=True, toint=True),
                 "selection": ["random"]  # , 'cyclic']
                 # 'warm_start': [True, False]
@@ -889,18 +770,14 @@ def get_models(
             linear_model.Ridge(),
             {
                 "alpha": ScistatsNormAround(1, 10, cond=(lambda x: x > 0)),
-                "tol": ScistatsNormAround(
-                    0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True
-                ),
+                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
             },
             "Ridge",
             None,
         ),
         (
             "RidgeCV",
-            linear_model.RidgeCV(
-                alphas=ScistatsNormAround(1, 100, cond=(lambda x: x > 0)).rvs(size=5)
-            ),
+            linear_model.RidgeCV(alphas=ScistatsNormAround(1, 100, cond=(lambda x: x > 0)).rvs(size=5)),
             {"cv": ScistatsNormBetween(2, 4, clip=True, toint=True)},
             "Ridge CV",
             {"skipPreElim": True, "cv": 1},
@@ -911,9 +788,7 @@ def get_models(
             {
                 "alpha": ScistatsNormAround(1, 10, cond=(lambda x: x >= 0.1)),
                 "l1_ratio": ScistatsNormBetween(0, 1, clip=True),
-                "tol": ScistatsNormAround(
-                    0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True
-                ),
+                "tol": ScistatsNormAround(0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True),
                 "selection": ["random"]  # , 'cyclic']
                 # 'warm_start': [True, False]
             },
@@ -926,12 +801,8 @@ def get_models(
             {
                 "l1_ratio": ScistatsNormBetween(0, 1, clip=True),
                 "eps": ScistatsNormBetween(1e-4, 1e-2, cond=(lambda x: x > 0)),
-                "n_alphas": ScistatsNormBetween(
-                    10, 1000, cond=(lambda x: x >= 10), toint=True
-                ),
-                "tol": ScistatsNormAround(
-                    0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True
-                ),
+                "n_alphas": ScistatsNormBetween(10, 1000, cond=(lambda x: x >= 10), toint=True),
+                "tol": ScistatsNormAround(0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True),
                 "cv": ScistatsNormBetween(2, 4, clip=True, toint=True),
                 "selection": ["random"]  # , 'cyclic']
                 # 'warm_start': [True, False]
@@ -943,18 +814,14 @@ def get_models(
             "BayesianRidge",
             linear_model.BayesianRidge(),
             {
-                "n_iter": ScistatsNormAround(
-                    300, 200, cond=(lambda x: x >= 100), toint=True
-                ),
+                "n_iter": ScistatsNormAround(300, 200, cond=(lambda x: x >= 100), toint=True),
                 "alpha_1": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
                 "alpha_2": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
                 "lambda_1": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
                 "lambda_2": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
                 "alpha_init": ScistatsNormBetween(0, 1, cond=(lambda x: 0 <= x <= 1)),
                 "lambda_init": ScistatsNormAround(1, 10, cond=(lambda x: x > 0)),
-                "tol": ScistatsNormAround(
-                    0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True
-                ),
+                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
             },
             "Bayesian Ridge",
             None,
@@ -963,12 +830,8 @@ def get_models(
             "ARD",
             linear_model.ARDRegression(),
             {
-                "n_iter": ScistatsNormAround(
-                    300, 200, cond=(lambda x: x >= 100), toint=True
-                ),
-                "tol": ScistatsNormAround(
-                    0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True
-                ),
+                "n_iter": ScistatsNormAround(300, 200, cond=(lambda x: x >= 100), toint=True),
+                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
                 "alpha_1": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
                 "alpha_2": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
                 "lambda_1": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
@@ -982,28 +845,17 @@ def get_models(
             "SGD",
             linear_model.SGDRegressor(max_iter=maxiterPos),
             {
-                "loss": [
-                    "squared_loss",
-                    "huber",
-                    "epsilon_insensitive",
-                    "squared_epsilon_insensitive",
-                ],
+                "loss": ["squared_loss", "huber", "epsilon_insensitive", "squared_epsilon_insensitive",],
                 "penalty": ["l2", "l1", "elasticnet"],
                 "alpha": ScistatsNormAround(0, 1e-1, cond=(lambda x: 0 < x <= 1e-1)),
-                "l1_ratio": ScistatsNormBetween(
-                    0, 1, cond=(lambda x: 0 <= x <= 1)
-                ),  # only for penalty=elasticnet
+                "l1_ratio": ScistatsNormBetween(0, 1, cond=(lambda x: 0 <= x <= 1)),  # only for penalty=elasticnet
                 "epsilon": ScistatsNormBetween(1e-3, 10, cond=(lambda x: x > 0)),
                 # for loss=huber, epsilon_insensitive, squared_epsilon_insensitive
                 "learning_rate": ["constant", "optimal", "invscaling", "adaptive"],
                 "eta0": ScistatsNormBetween(1e-3, 1e-1, cond=(lambda x: x > 0)),
-                "tol": ScistatsNormAround(
-                    0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True
-                ),
+                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
                 # for learning_rate=constant, invscaling, adaptive
-                "power_t": ScistatsNormBetween(
-                    0, 1, cond=(lambda x: 0 < x < 1)
-                ),  # for learning_rate=invscaling
+                "power_t": ScistatsNormBetween(0, 1, cond=(lambda x: 0 < x < 1)),  # for learning_rate=invscaling
             },
             "Stochastic Gradient Descent",
             None,
@@ -1013,9 +865,7 @@ def get_models(
             linear_model.PassiveAggressiveRegressor(max_iter=maxiterPos),
             {
                 "C": ScistatsNormAround(0, 1e3, cond=(lambda x: x > 0)),
-                "tol": ScistatsNormAround(
-                    0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True
-                ),
+                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
                 "loss": ["epsilon_insensitive", "squared_epsilon_insensitive"],
                 "epsilon": ScistatsNormAround(0.1, 10, cond=(lambda x: x >= 1e-2))
                 # 'warm_start': [True, False]
@@ -1029,9 +879,7 @@ def get_models(
             {
                 "epsilon": ScistatsNormAround(1, 10, cond=(lambda x: x > 1)),
                 "alpha": ScistatsNormAround(0, 1e-1, cond=(lambda x: 0 < x <= 1e-1)),
-                "tol": ScistatsNormAround(
-                    0, 1e-3, cond=(lambda x: x >= 1e-5), clip=True
-                )
+                "tol": ScistatsNormAround(0, 1e-3, cond=(lambda x: x >= 1e-5), clip=True)
                 # 'warm_start': [True, False]
             },
             "Huber Regressor",
@@ -1042,9 +890,7 @@ def get_models(
             linear_model.TheilSenRegressor(
                 n_jobs=-1,
                 max_iter=maxiterPos,
-                tol=ScistatsNormAround(
-                    0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True
-                ).rvs(),
+                tol=ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True).rvs(),
             ),
             None,
             "Theil Sen",
@@ -1089,18 +935,9 @@ def sanity_check(
     train_confidence = regr.score(X_train, y_train)
     test_confidence = regr.score(X_test, y_test)
     full_confidence = regr.score(X_full, y_full)
-    unknown_confidence = (
-        regr.score(X_unknown, y_unknown) if len(X_unknown) > 0 else None
-    )
+    unknown_confidence = regr.score(X_unknown, y_unknown) if len(X_unknown) > 0 else None
     toDump = PickleOut(
-        longname,
-        regr,
-        test_confidence,
-        deg,
-        full_confidence,
-        unknown_confidence,
-        train_confidence,
-        bonusPickleInfo,
+        longname, regr, test_confidence, deg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo,
     )
     with open(pFile, "bw") as f:
         pickle.dump(toDump, f)
@@ -1117,13 +954,7 @@ def fit_models(
     X_full: List[List[float]],
     y_full: List[List[float]],
     polyDeg: int,
-    models: Optional[
-        List[
-            Tuple[
-                str, Any, Union[None, Dict[str, Any]], str, Union[None, Dict[str, Any]]
-            ]
-        ]
-    ] = None,
+    models: Optional[List[Tuple[str, Any, Union[None, Dict[str, Any]], str, Union[None, Dict[str, Any]]]]] = None,
     picklePrefix: Optional[str] = "",
     randomOrder: Optional[bool] = False,
     notRecompute: Optional[bool] = True,
@@ -1136,16 +967,10 @@ def fit_models(
     sanityCheck: Optional[bool] = False,
     saveBest: Optional[bool] = False,
     bonusPickleInfo: Optional[Any] = None,
-    progressBar: Optional[
-        Union[
-            Tuple[rich.progress.Progress, int], List[Tuple[rich.progress.Progress, int]]
-        ]
-    ] = None,
+    progressBar: Optional[Union[Tuple[rich.progress.Progress, int], List[Tuple[rich.progress.Progress, int]]]] = None,
 ) -> List[PickleOut]:
     # TODO: fix this https://stats.stackexchange.com/questions/431883/lasso-regression-doesnt-converge-in-case-of-zero-y-vector in sklearn
-    def custom_scoring(
-        est: sklearn.base.RegressorMixin, X: List[List[float]], y: List[List[float]]
-    ) -> float:
+    def custom_scoring(est: sklearn.base.RegressorMixin, X: List[List[float]], y: List[List[float]]) -> float:
         portion = len(X) / len(X_train)
         portion = math.sqrt(portion)
         if portion < 0.05:
@@ -1174,9 +999,7 @@ def fit_models(
             [t for i, t in enumerate(X_full) if i in full_samples],
             [t for i, t in enumerate(y_full) if i in full_samples],
         )
-        newGeo = commons.jamGeomean(
-            [test_confidence, full_confidence, train_confidence]
-        )
+        newGeo = commons.jamGeomean([test_confidence, full_confidence, train_confidence])
         return newGeo
 
     #
@@ -1187,9 +1010,7 @@ def fit_models(
     if modelsToProduce is None:
         modelsToProduce = get_model_names()
     if models is None:
-        models: list[
-            tuple[str, Any, Optional[dict[str, Any]], str, Optional[dict[str, Any]]]
-        ] = get_models(
+        models: list[tuple[str, Any, Optional[dict[str, Any]], str, Optional[dict[str, Any]]]] = get_models(
             randomOrder=randomOrder, maxiter=maxiter, restrict=modelsToProduce
         )
     # printInfo(f"Processing models: {[x[3] for x in models]}")
@@ -1197,12 +1018,8 @@ def fit_models(
     for model in models:
         modelName, regr, params, longname, halvingParams = model
         if params is not None:
-            cv = ScistatsNormBetween(
-                2, 4, cond=(lambda x: 2 <= x <= 5), toint=True
-            ).rvs()
-            regrcv = ScistatsNormBetween(
-                1, 1
-            )  # this is pretty ugly and only needed because of the baseRes cond
+            cv = ScistatsNormBetween(2, 4, cond=(lambda x: 2 <= x <= 5), toint=True).rvs()
+            regrcv = ScistatsNormBetween(1, 1)  # this is pretty ugly and only needed because of the baseRes cond
             if params is not None:
                 if "cv" in params.keys():
                     regrcv = params["cv"]
@@ -1213,36 +1030,20 @@ def fit_models(
                         cv = 2
             maxBaseRes = commons.iround(0.02 * len(X_train))
             baseRes = ScistatsNormBetween(
-                8,
-                maxBaseRes if maxBaseRes >= 8 else 8,
-                cond=(lambda x: x > 2 * cv * regrcv.upper),
-                toint=True,
+                8, maxBaseRes if maxBaseRes >= 8 else 8, cond=(lambda x: x > 2 * cv * regrcv.upper), toint=True,
             ).rvs()  # TODO: x>=9 is kind of arbitrary, whenever the regr also does CV, x must be bigger than 2*cv*<cv of regr> --> for x>=9 this should be the case but not all models require x>=9 so its a dirty fix for now
-            numTurns = ScistatsNormBetween(
-                cv / 2, 4 * cv, cond=(lambda x: 3 <= x <= 8), toint=True
-            ).rvs()
-            prelimRounds = ScistatsNormBetween(
-                0, cv / 2, cond=(lambda x: 0 <= x <= 2), toint=True
-            ).rvs()
+            numTurns = ScistatsNormBetween(cv / 2, 4 * cv, cond=(lambda x: 3 <= x <= 8), toint=True).rvs()
+            prelimRounds = ScistatsNormBetween(0, cv / 2, cond=(lambda x: 0 <= x <= 2), toint=True).rvs()
             if halvingParams is not None:
-                if (
-                    "skipPreElim" in halvingParams.keys()
-                    and halvingParams["skipPreElim"]
-                ):
+                if "skipPreElim" in halvingParams.keys() and halvingParams["skipPreElim"]:
                     prelimRounds = 0
             # if numTurns >= 15:
             #     prelimRounds = 0
-            lastRoundResPercent = ScistatsNormBetween(
-                0.8, 1.0, cond=(lambda x: 0.75 <= x <= 1.0)
-            ).rvs()
+            lastRoundResPercent = ScistatsNormBetween(0.8, 1.0, cond=(lambda x: 0.75 <= x <= 1.0)).rvs()
             lastRoundRes = commons.iround(len(X_train) * lastRoundResPercent)
             fact = (lastRoundRes / baseRes) ** (1 / numTurns)
-            lastRoundNumCand = ScistatsNormBetween(
-                1, cv, cond=(lambda x: x >= 1), toint=True
-            ).rvs()
-            numCand = commons.iround(
-                lastRoundNumCand * (fact ** (numTurns + prelimRounds - 1))
-            )
+            lastRoundNumCand = ScistatsNormBetween(1, cv, cond=(lambda x: x >= 1), toint=True).rvs()
+            numCand = commons.iround(lastRoundNumCand * (fact ** (numTurns + prelimRounds - 1)))
             searchParams = {
                 "estimator": regr,
                 "param_distributions": params,
@@ -1277,9 +1078,7 @@ def fit_models(
                 train_confidence = regr.score(X_train, y_train)
                 test_confidence = regr.score(X_test, y_test)
                 full_confidence = regr.score(X_full, y_full)
-                unknown_confidence = (
-                    regr.score(X_unknown, y_unknown) if len(X_unknown) > 0 else None
-                )
+                unknown_confidence = regr.score(X_unknown, y_unknown) if len(X_unknown) > 0 else None
                 if params is not None:
                     # toDump = (longname, regr.best_estimator_, test_confidence, polyDeg, full_confidence)
                     toDump = PickleOut(
@@ -1308,8 +1107,7 @@ def fit_models(
                     printInfo(f"Trying to improve {fullname}", 1)
                     if not pFile.is_file():
                         printWarn(
-                            f"There was no pickle found for {fullname} (at {pickleName}.pickle) to improve",
-                            1,
+                            f"There was no pickle found for {fullname} (at {pickleName}.pickle) to improve", 1,
                         )
                         pickle.dump(toDump, open(pFile, "bw"))
                         trained.append(toDump)
@@ -1329,15 +1127,9 @@ def fit_models(
                                 bonusPickleInfo,
                                 loaded,
                             )
-                        newGeo = commons.jamGeomean(
-                            [test_confidence, full_confidence, train_confidence]
-                        )
+                        newGeo = commons.jamGeomean([test_confidence, full_confidence, train_confidence])
                         loadedGeo = commons.jamGeomean(
-                            [
-                                loaded.test_confidence,
-                                loaded.full_confidence,
-                                loaded.train_confidence,
-                            ]
+                            [loaded.test_confidence, loaded.full_confidence, loaded.train_confidence,]
                         )
                         table = tabulate(
                             [
@@ -1348,21 +1140,9 @@ def fit_models(
                                     loaded.train_confidence,
                                     loadedGeo,
                                 ],
-                                [
-                                    "new:",
-                                    test_confidence,
-                                    full_confidence,
-                                    train_confidence,
-                                    newGeo,
-                                ],
+                                ["new:", test_confidence, full_confidence, train_confidence, newGeo,],
                             ],
-                            headers=[
-                                "",
-                                "test_conf",
-                                "full_conf",
-                                "train_conf",
-                                "geo_mean",
-                            ],
+                            headers=["", "test_conf", "full_conf", "train_conf", "geo_mean",],
                         )
                         if newGeo >= loadedGeo:
                             pickle.dump(toDump, open(pFile, "bw"))
@@ -1373,8 +1153,7 @@ def fit_models(
                             trained.append(toDump)
                         else:
                             printInfo(
-                                f"Did not improve {fullname} (over {pickleName}.pickle): ({newGeo - loadedGeo})",
-                                1,
+                                f"Did not improve {fullname} (over {pickleName}.pickle): ({newGeo - loadedGeo})", 1,
                             )
                             trained.append(loaded)
                         print("\n".join(["\t" + row for row in table.split("\n")]))
@@ -1394,9 +1173,7 @@ def fit_models(
                 printInfo(f"{fullname}:")
                 if not pFile.is_file():
                     printInfo("Found no pickle", 1)
-                    trained.append(
-                        PickleOut(longname, None, None, polyDeg, None, None, None, None)
-                    )
+                    trained.append(PickleOut(longname, None, None, polyDeg, None, None, None, None))
                 else:
                     printInfo("Found pickle", 1)
                     loaded = pickle.load(open(pFile, "br"))
@@ -1460,9 +1237,7 @@ def fit_models(
         except:
             name, loadedRegr, conf = bestModel
             deg = polyDeg
-        pickle.dump(
-            (name, loadedRegr, conf, deg), open(f"{modelsPath}/bestModel.pickle", "bw")
-        )
+        pickle.dump((name, loadedRegr, conf, deg), open(f"{modelsPath}/bestModel.pickle", "bw"))
     #
     return trained
 
