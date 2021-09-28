@@ -170,8 +170,7 @@ class SmartTimeRemainingColumn(rich.progress.ProgressColumn):
     def __init__(self, *args, **kwargs):
         self.seen = dict()
         self.avg_remaining_seconds = dict()
-        self.smoothing = kwargs.get("smoothing", 0.3)
-        del kwargs["smoothing"]
+        self.smoothing = kwargs.pop("smoothing", 0.3)
         super().__init__(*args, **kwargs)
 
     def render(self, task):
