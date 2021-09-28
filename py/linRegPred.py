@@ -15,8 +15,8 @@ from typing import (
     Any,
     Dict,
     Union,
-    Callable,
-)
+    Callable, Iterable,
+    )
 
 import rich.panel
 import sklearn.base
@@ -158,7 +158,7 @@ def getSplits(
     unknownSize: int = 0,
     wfs: Optional[List[str]] = None,
     randomOrder: bool = True,
-) -> Generator[TrainTestUnknownSplit]:
+) -> Iterable[TrainTestUnknownSplit]:
     assert 1 <= polyDeg <= 5
     assert 0 <= cvSize <= 4
     assert 0 <= unknownSize <= 4
