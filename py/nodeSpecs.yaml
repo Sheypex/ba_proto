@@ -1,0 +1,189 @@
+165:
+  disk_type: ssd
+  gpu: false
+  name: m5.large
+  ram: 8
+  storage_type: ebs
+  vcpus: 2
+166:
+  disk_type: ssd
+  gpu: false
+  name: m5.xlarge
+  ram: 16
+  storage_type: ebs
+  vcpus: 4
+167:
+  disk_type: ssd
+  gpu: false
+  name: m5.2xlarge
+  ram: 32
+  storage_type: ebs
+  vcpus: 8
+168:
+  disk_type: ssd
+  gpu: false
+  name: m5a.large
+  ram: 8
+  storage_type: ebs
+  vcpus: 2
+169:
+  disk_type: ssd
+  gpu: false
+  name: m5a.xlarge
+  ram: 16
+  storage_type: ebs
+  vcpus: 4
+170:
+  disk_type: ssd
+  gpu: false
+  name: m5a.2xlarge
+  ram: 32
+  storage_type: ebs
+  vcpus: 8
+171:
+  disk_type: ssd
+  gpu: false
+  name: m5zn.large
+  ram: 8
+  storage_type: ebs
+  vcpus: 2
+172:
+  disk_type: ssd
+  gpu: false
+  name: m5zn.xlarge
+  ram: 16
+  storage_type: ebs
+  vcpus: 4
+173:
+  disk_type: ssd
+  gpu: false
+  name: m5zn.2xlarge
+  ram: 32
+  storage_type: ebs
+  vcpus: 8
+175:
+  disk_type: ssd
+  gpu: false
+  name: c5.xlarge
+  ram: 8
+  storage_type: ebs
+  vcpus: 4
+176:
+  disk_type: ssd
+  gpu: false
+  name: c5.2xlarge
+  ram: 16
+  storage_type: ebs
+  vcpus: 8
+178:
+  disk_type: ssd
+  gpu: false
+  name: c5a.xlarge
+  ram: 8
+  storage_type: ebs
+  vcpus: 4
+179:
+  disk_type: ssd
+  gpu: false
+  name: c5a.2xlarge
+  ram: 16
+  storage_type: ebs
+  vcpus: 8
+180:
+  disk_type: ssd
+  gpu: false
+  name: r5.large
+  ram: 16
+  storage_type: ebs
+  vcpus: 2
+181:
+  disk_type: ssd
+  gpu: false
+  name: r5.xlarge
+  ram: 32
+  storage_type: ebs
+  vcpus: 4
+182:
+  disk_type: ssd
+  gpu: false
+  name: r5.2xlarge
+  ram: 64
+  storage_type: ebs
+  vcpus: 8
+183:
+  disk_type: ssd
+  gpu: false
+  name: r5a.large
+  ram: 16
+  storage_type: ebs
+  vcpus: 2
+184:
+  disk_type: ssd
+  gpu: false
+  name: r5a.xlarge
+  ram: 32
+  storage_type: ebs
+  vcpus: 4
+185:
+  disk_type: ssd
+  gpu: false
+  name: r5a.2xlarge
+  ram: 64
+  storage_type: ebs
+  vcpus: 8
+186:
+  disk_type: hdd
+  gpu: false
+  name: d3.xlarge
+  ram: 32
+  storage_type: physical
+  vcpus: 4
+187:
+  disk_type: hdd
+  gpu: false
+  name: d3.2xlarge
+  ram: 64
+  storage_type: physical
+  vcpus: 8
+188:
+  disk_type: ssd
+  gpu: false
+  name: i3.large
+  ram: 15.25
+  storage_type: physical
+  vcpus: 2
+189:
+  disk_type: ssd
+  gpu: false
+  name: i3.xlarge
+  ram: 30.5
+  storage_type: physical
+  vcpus: 4
+190:
+  disk_type: ssd
+  gpu: false
+  name: i3.2xlarge
+  ram: 61
+  storage_type: physical
+  vcpus: 8
+191:
+  disk_type: ssd
+  gpu: false
+  name: z1d.large
+  ram: 16
+  storage_type: physical
+  vcpus: 2
+192:
+  disk_type: ssd
+  gpu: false
+  name: z1d.xlarge
+  ram: 32
+  storage_type: physical
+  vcpus: 4
+193:
+  disk_type: ssd
+  gpu: false
+  name: z1d.2xlarge
+  ram: 64
+  storage_type: physical
+  vcpus: 8
