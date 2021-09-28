@@ -172,6 +172,8 @@ class SmartTimeRemainingColumn(rich.progress.ProgressColumn):
             self.seen[task.id] = 0
             self.avg_remaining_seconds[task.id] = 0.0
             return Text("-:--:--", style="progress.remaining")
+        if task.completed == 0:
+            return Text("-:--:--", style="progress.remaining")
         speed = elapsed / task.completed
         remaining = (task.total - task.completed) * speed
         #
