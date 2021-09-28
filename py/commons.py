@@ -135,7 +135,7 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
             return Text("(0.0s/item)", style="progress.elapsed")
         if task.finished:
             trueSPI = roundToFirstSignificantDigits(elapsed / task.completed, 3, 3)
-            if trueSPI < 60:
+            if trueSPI <= 60:
                 return Text(f"({trueSPI}s/item)", style="progress.elapsed",)
             else:
                 return Text(f"({timedelta(seconds=trueSPI)}/item)", style="progress.elapsed",)
@@ -143,7 +143,10 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
         if task.completed == 0:
             self.seen[task.id] = 0
             self.secPerItem[task.id] = roundToFirstSignificantDigits(elapsed, 3, 3)
-            return Text(f"({self.secPerItem[task.id]}s/item)", style="progress.elapsed")
+            if self.secPerItem[task.id] <= 60:
+                return Text(f"({self.secPerItem[task.id]}s/item)", style="progress.elapsed")
+            else:
+                return Text(f"({timedelta(seconds=self.secPerItem[task.id])}/item)", style="progress.elapsed")
         #
         if self.seen[task.id] < task.completed:
             self.secPerItem[task.id] = roundToFirstSignificantDigits(
