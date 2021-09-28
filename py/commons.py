@@ -105,12 +105,22 @@ class ItemsPerSecondColumn(rich.progress.ProgressColumn):
             self.itemsPS[task.id] = 0.0
             return Text("(0.0/s)", style="progress.elapsed")
         if task.finished:
-            return Text(f"({roundToFirstSignificantDigits(task.completed / elapsed, 3, 3)}/s)", style="progress.elapsed")
+            return Text(
+                f"({roundToFirstSignificantDigits(task.completed / elapsed, 3, 3)}/s)",
+                style="progress.elapsed",
+            )
         if task.completed == 0:
             self.seen[task.id] = 0
             self.itemsPS[task.id] = 0.0
         if self.seen[task.id] < task.completed:
-            self.itemsPS[task.id] = roundToFirstSignificantDigits(ema(roundToFirstSignificantDigits(task.completed / elapsed, 3, 3), self.itemsPS[task.id]), 3, 3)
+            self.itemsPS[task.id] = roundToFirstSignificantDigits(
+                ema(
+                    roundToFirstSignificantDigits(task.completed / elapsed, 3, 3),
+                    self.itemsPS[task.id],
+                ),
+                3,
+                3,
+            )
             self.seen[task.id] = task.completed
         return Text(f"({self.itemsPS[task.id]}/s)", style="progress.elapsed")
 
@@ -130,7 +140,10 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
             self.secPerItem[task.id] = 0.0
             return Text("(0.0s/item)", style="progress.elapsed")
         if task.finished:
-            return Text(f"({roundToFirstSignificantDigits(elapsed / task.completed, 3, 3)}s/item)", style="progress.elapsed")
+            return Text(
+                f"({roundToFirstSignificantDigits(elapsed / task.completed, 3, 3)}s/item)",
+                style="progress.elapsed",
+            )
         #
         if task.completed == 0:
             self.seen[task.id] = 0
@@ -138,9 +151,37 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
             return Text(f"({self.secPerItem[task.id]}s/item)", style="progress.elapsed")
         #
         if self.seen[task.id] < task.completed:
-            self.secPerItem[task.id] = roundToFirstSignificantDigits(ema(roundToFirstSignificantDigits(elapsed / task.completed, 3, 3), self.secPerItem[task.id]), 3, 3)
+            self.secPerItem[task.id] = roundToFirstSignificantDigits(
+                ema(
+                    roundToFirstSignificantDigits(elapsed / task.completed, 3, 3),
+                    self.secPerItem[task.id],
+                ),
+                3,
+                3,
+            )
             self.seen[task.id] = task.completed
         return Text(f"({self.secPerItem[task.id]}s/item)", style="progress.elapsed")
+
+
+# taken from https://github.com/timwedde/rich-utils/blob/master/rich_utils/progress.py
+class SmartTimeRemainingColumn(rich.progress.ProgressColumn):
+    max_refresh = 0.5
+    avg_remaining_seconds = 0
+
+    def __init__(self, *args, **kwargs):
+        self.smoothing = kwargs.get("smoothing", 0.3)
+        del kwargs["smoothing"]
+        super().__init__(*args, **kwargs)
+
+    def render(self, task):
+        remaining = task.time_remaining
+        if remaining is None:
+            return Text("-:--:--", style="progress.remaining")
+        self.avg_remaining_seconds = ema(
+            remaining, self.avg_remaining_seconds, self.smoothing
+        )
+        remaining_delta = timedelta(seconds=int(self.avg_remaining_seconds))
+        return Text(str(remaining_delta), style="progress.remaining")
 
 
 def stdProgress(console=None):
@@ -153,7 +194,9 @@ def stdProgress(console=None):
         "({task.completed}/{task.total})",
         rich.progress.TimeElapsedColumn(),
         "eta:",
-        rich.progress.TimeRemainingColumn(),
+        SmartTimeRemainingColumn(),
         ItemsPerSecondColumn(),
         SecondsPerItemColumn(),
-        console=console, transient=False)
+        console=console,
+        transient=False,
+    )
