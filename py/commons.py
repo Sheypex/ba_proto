@@ -166,9 +166,10 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
 # taken from https://github.com/timwedde/rich-utils/blob/master/rich_utils/progress.py
 class SmartTimeRemainingColumn(rich.progress.ProgressColumn):
     max_refresh = 0.5
-    avg_remaining_seconds = 0
 
     def __init__(self, *args, **kwargs):
+        self.seen = dict()
+        self.avg_remaining_seconds = dict()
         self.smoothing = kwargs.get("smoothing", 0.3)
         del kwargs["smoothing"]
         super().__init__(*args, **kwargs)
@@ -176,12 +177,23 @@ class SmartTimeRemainingColumn(rich.progress.ProgressColumn):
     def render(self, task):
         remaining = task.time_remaining
         if remaining is None:
+            self.seen[task.id] = 0
+            self.avg_remaining_seconds[task.id] = 0.0
             return Text("-:--:--", style="progress.remaining")
-        self.avg_remaining_seconds = ema(
-            remaining, self.avg_remaining_seconds, self.smoothing
+        #
+        if task.completed == 0:
+            self.seen[task.id] = 0
+            self.avg_remaining_seconds[task.id] = remaining
+        #
+        if self.seen[task.id] < task.completed:
+            self.avg_remaining_seconds[task.id] = ema(
+                remaining, self.avg_remaining_seconds[task.id], self.smoothing
+            )
+            self.seen[task.id] = task.completed
+        return Text(
+            str(timedelta(seconds=int(self.avg_remaining_seconds[task.id]))),
+            style="progress.remaining",
         )
-        remaining_delta = timedelta(seconds=int(self.avg_remaining_seconds))
-        return Text(str(remaining_delta), style="progress.remaining")
 
 
 def stdProgress(console=None):
