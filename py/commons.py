@@ -91,7 +91,7 @@ def ema(x, mu=None, alpha=0.3):
 
 
 class ItemsPerSecondColumn(rich.progress.ProgressColumn):
-    max_refresh = 0.5
+    max_refresh = 1
 
     def __init__(self):
         super().__init__()
@@ -120,7 +120,7 @@ class ItemsPerSecondColumn(rich.progress.ProgressColumn):
 
 
 class SecondsPerItemColumn(rich.progress.ProgressColumn):
-    max_refresh = 0.5
+    max_refresh = 1
 
     def __init__(self):
         super().__init__()
@@ -138,7 +138,7 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
             if trueSPI <= 60:
                 return Text(f"({trueSPI}s/item)", style="progress.elapsed",)
             else:
-                return Text(f"({timedelta(seconds=trueSPI)}/item)", style="progress.elapsed",)
+                return Text(f"({timedelta(seconds=int(trueSPI))}/item)", style="progress.elapsed",)
         #
         if task.completed == 0:
             self.seen[task.id] = 0
@@ -146,7 +146,7 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
             if self.secPerItem[task.id] <= 60:
                 return Text(f"({self.secPerItem[task.id]}s/item)", style="progress.elapsed")
             else:
-                return Text(f"({timedelta(seconds=self.secPerItem[task.id])}/item)", style="progress.elapsed")
+                return Text(f"({timedelta(seconds=int(self.secPerItem[task.id]))}/item)", style="progress.elapsed")
         #
         if self.seen[task.id] < task.completed:
             self.secPerItem[task.id] = roundToFirstSignificantDigits(
@@ -156,7 +156,7 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
         if self.secPerItem[task.id] <= 60:
             return Text(f"({self.secPerItem[task.id]}s/item)", style="progress.elapsed")
         else:
-            return Text(f"({timedelta(seconds=self.secPerItem[task.id])}/item)", style="progress.elapsed")
+            return Text(f"({timedelta(seconds=int(self.secPerItem[task.id]))}/item)", style="progress.elapsed")
 
 
 # taken from https://github.com/timwedde/rich-utils/blob/master/rich_utils/progress.py
