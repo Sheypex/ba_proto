@@ -174,6 +174,8 @@ class SmartTimeRemainingColumn(rich.progress.ProgressColumn):
         super().__init__(*args, **kwargs)
 
     def render(self, task):
+        if task.finished:
+            return Text("-:--:--", style="progress.remaining")
         elapsed = task.finished_time if task.finished else task.elapsed
         if elapsed is None:
             self.seen[task.id] = 0
