@@ -99,6 +99,8 @@ class ItemsPerSecondColumn(rich.progress.ProgressColumn):
         self.itemsPS = dict()
 
     def render(self, task: "rich.progress.Task") -> Text:
+        if task.id not in self.seen.keys():
+            self.seen[task.id] = 0.0
         elapsed = task.finished_time if task.finished else task.elapsed
         if elapsed is None:
             self.seen[task.id] = 0
