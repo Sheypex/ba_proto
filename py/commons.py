@@ -165,7 +165,7 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
 
 # taken from https://github.com/timwedde/rich-utils/blob/master/rich_utils/progress.py
 class SmartTimeRemainingColumn(rich.progress.ProgressColumn):
-    max_refresh = 0.5
+    max_refresh = 1
 
     def __init__(self, *args, **kwargs):
         self.seen = dict()
@@ -186,7 +186,7 @@ class SmartTimeRemainingColumn(rich.progress.ProgressColumn):
         speed = elapsed / task.completed
         remaining = (task.total - task.completed) * speed
         if self.seen[task.id] > task.completed:
-            self.seen = 0
+            self.seen[task.id] = 0
             self.avg_remaining_seconds[task.id] = remaining
         #
         if True:  # self.seen[task.id] < task.completed:
