@@ -1004,7 +1004,7 @@ def get_models(
             "DTC",
             tree.DecisionTreeClassifier(),
             {
-                "criterion": ["sqared_error", "mse", "friedman_mse", "absolute_error", "mae", "poisson"],
+                "criterion": ["gini", "entropy"],
                 "splitter": ["best", "random"],
                 "max_features": ["auto", "sqrt", "log2"],
             },
