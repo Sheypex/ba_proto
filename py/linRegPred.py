@@ -962,7 +962,9 @@ def get_models(
         ),
         (
             "NNClass",
-            neural_network.MLPClassifier(max_iter=maxiterPos,),
+            neural_network.MLPClassifier(
+                    #max_iter=maxiterPos,
+                    ),
             {
                 "hidden_layer_sizes": SciStatsNormBetweenRandTuple(50, 200, (1, 5), clip=True, center=100, toint=True),
                 "activation": ["identity", "logistic", "tanh", "relu"],
