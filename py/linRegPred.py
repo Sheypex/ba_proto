@@ -40,7 +40,7 @@ import random
 import argparse
 import sys
 from sklearn.experimental import enable_halving_search_cv
-from sklearn import neural_network
+from sklearn import neural_network, tree
 from sklearn.model_selection import (
     HalvingGridSearchCV,
     RandomizedSearchCV,
@@ -942,7 +942,7 @@ def get_models(
             None,
         ),
         (
-            "NNReg",
+            "NNR",
             neural_network.MLPRegressor(max_iter=maxiterPos,),
             {
                 "hidden_layer_sizes": SciStatsNormBetweenRandTuple(50, 200, (1, 5), clip=True, center=100, toint=True),
@@ -959,14 +959,14 @@ def get_models(
                 "beta_1": ScistatsNormBetween(0, 1, hardClip=True, center=0.9),
                 "beta_2": ScistatsNormBetween(0, 1, hardClip=True, center=0.999),
             },
-            "Neural Network Regression",
+            "Neural Network Regressor",
             {
                 # "minBaseRes": 0.05,
                 "minCand": 100
             },
         ),
         (
-            "NNClass",
+            "NNC",
             neural_network.MLPClassifier(max_iter=maxiterPos,),
             {
                 "hidden_layer_sizes": SciStatsNormBetweenRandTuple(50, 200, (1, 5), clip=True, center=100, toint=True),
@@ -983,11 +983,33 @@ def get_models(
                 "beta_1": ScistatsNormBetween(0, 1, hardClip=True, center=0.9),
                 "beta_2": ScistatsNormBetween(0, 1, hardClip=True, center=0.999),
             },
-            "Neural Network Regression",
+            "Neural Network Classifier",
             {
                 # "minBaseRes": 0.05,
                 "minCand": 100
             },
+        ),
+        (
+            "DTR",
+            tree.DecisionTreeRegressor(),
+            {
+                "criterion": ["sqared_error", "mse", "friedman_mse", "absolute_error", "mae", "poisson"],
+                "splitter": ["best", "random"],
+                "max_features": ["auto", "sqrt", "log2"],
+            },
+            "Decision Tree Regressor",
+            None,
+        ),
+        (
+            "DTC",
+            tree.DecisionTreeClassifier(),
+            {
+                "criterion": ["sqared_error", "mse", "friedman_mse", "absolute_error", "mae", "poisson"],
+                "splitter": ["best", "random"],
+                "max_features": ["auto", "sqrt", "log2"],
+            },
+            "Decision Tree Classifier",
+            None,
         ),
     ]
     if restrict is not None:
