@@ -960,7 +960,7 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0, 1, hardClip=True, center=0.999),
             },
             "Neural Network Regression",
-            {"minBaseRes": 0.1, "maxBaseRes": 0.2},
+            {"minBaseRes": 0.05, "minCand": 100},
         ),
         (
             "NNClass",
@@ -981,7 +981,7 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0, 1, hardClip=True, center=0.999),
             },
             "Neural Network Regression",
-            {"minBaseRes": 0.1, "maxBaseRes": 0.2},
+            {"minBaseRes": 0.05, "minCand": 100},
         ),
     ]
     if restrict is not None:
@@ -1142,11 +1142,16 @@ def fit_models(
                     prelimRounds = 0
             # if numTurns >= 15:
             #     prelimRounds = 0
-            lastRoundResPercent = ScistatsNormBetween(0.8, 1.0, cond=(lambda x: 0.75 <= x <= 1.0)).rvs()
+            lastRoundResPercent = ScistatsNormBetween(0.8, 1.0, cond=(lambda x: 0.75 <= x <= 1.0), center=0.95).rvs()
             lastRoundRes = commons.iround(len(X_train) * lastRoundResPercent)
             fact = (lastRoundRes / baseRes) ** (1 / numTurns)
             lastRoundNumCand = ScistatsNormBetween(1, cv, cond=(lambda x: x >= 1), toint=True).rvs()
             numCand = commons.iround(lastRoundNumCand * (fact ** (numTurns + prelimRounds - 1)))
+            if halvingParams is not None:
+                if "minCand" in halvingParams.keys():
+                    h_minCand = halvingParams["minCand"]
+                    if numCand < h_minCand:
+                        numCand = h_minCand
             searchParams = {
                 "estimator": regr,
                 "param_distributions": params,
