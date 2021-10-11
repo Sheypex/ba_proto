@@ -948,7 +948,7 @@ def get_models(
                 "hidden_layer_sizes": SciStatsNormBetweenRandTuple(50, 200, (1, 5), clip=True, center=100, toint=True),
                 "activation": ["identity", "logistic", "tanh", "relu"],
                 "solver": ["lbfgs", "sgd", "adam"],
-                "alpha": ScistatsNormBetween(1e-6, 1, clip=True),
+                "alpha": ScistatsNormBetween(10e-7, 10e-1, clip=True),
                 "learning_rate": ["constant", "invscaling", "adaptive"],
                 "learning_rate_init": ScistatsNormBetween(1e-5, 1, clip=True),
                 "power_t": ScistatsNormBetween(0, 1, hardClip=True),
@@ -960,7 +960,7 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0, 1, hardClip=True, center=0.999),
             },
             "Neural Network Regression",
-            None,
+            {"minBaseRes": 0.2, "maxBaseRes": 0.4},
         ),
         (
             "NNClass",
