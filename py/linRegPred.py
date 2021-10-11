@@ -960,7 +960,10 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0, 1, hardClip=True, center=0.999),
             },
             "Neural Network Regression",
-            {"minBaseRes": 0.05, "minCand": 100},
+            {
+                # "minBaseRes": 0.05,
+                "minCand": 100
+            },
         ),
         (
             "NNClass",
@@ -981,7 +984,10 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0, 1, hardClip=True, center=0.999),
             },
             "Neural Network Regression",
-            {"minBaseRes": 0.05, "minCand": 100},
+            {
+                # "minBaseRes": 0.05,
+                "minCand": 100
+            },
         ),
     ]
     if restrict is not None:
