@@ -15,12 +15,15 @@ from typing import (
     Any,
     Dict,
     Union,
-    Callable, Iterable,
-    )
+    Callable,
+    Iterable,
+    Sequence,
+)
 
 import rich.panel
 import sklearn.base
 from alive_progress import alive_bar
+from numpy.distutils.misc_util import is_sequence
 from tqdm import tqdm, trange
 from log_symbols import LogSymbols
 
@@ -37,6 +40,7 @@ import random
 import argparse
 import sys
 from sklearn.experimental import enable_halving_search_cv
+from sklearn import neural_network
 from sklearn.model_selection import (
     HalvingGridSearchCV,
     RandomizedSearchCV,
@@ -210,9 +214,8 @@ def getSplits(
         )
 
 
+rc = commons.rc
 def main():
-    rc = commons.rc
-    #
     argp = argparse.ArgumentParser()
     argp.add_argument("polyDeg", type=int, choices=[1, 2, 3, 4, 5], action="store", default=1)
     argp.add_argument("--csv", type=str, action="store", dest="csvPath")
@@ -623,26 +626,40 @@ class ScistatsNormBetween:
         cond: Optional[Callable[[float], bool]] = None,
         div: Optional[float] = 2,
         toint: Optional[bool] = False,
-        clip: Optional[bool] = False,
-        hardClip: Optional[bool] = False,
+        clip: Optional[Union[bool, Sequence]] = False,
+        hardClip: Optional[Union[bool, Sequence]] = False,
+        center: Optional[float] = None,
     ) -> None:
-        self.lower = small
-        self.upper = large
-        if clip:
-            if hardClip:
-                clip_cond = lambda x: small < x < large
-            else:
-                clip_cond = lambda x: small <= x <= large
+        if small <= large:
+            self.lower = small
+            self.upper = large
         else:
-            clip_cond = lambda x: True
+            self.lower = large
+            self.upper = small
+        clip_cond = lambda x: True
+        if isinstance(clip, bool) and clip:
+            clip_cond = lambda x: self.lower <= x <= self.upper
+        if clip is not None and is_sequence(clip) and len(clip) >= 2:
+            clip_cond = lambda x: clip[0] <= x <= clip[1]
+        if isinstance(hardClip, bool) and hardClip:
+            clip_cond = lambda x: self.lower < x < self.upper
+        if hardClip is not None and is_sequence(hardClip) and len(hardClip) >= 2:
+            clip_cond = lambda x: hardClip[0] < x < hardClip[1]
         if cond is None:
             self.cond = lambda x: True and clip_cond(x)
         else:
             self.cond = lambda x: cond(x) and clip_cond(x)
-        self.norm = scistats.norm(loc=(large + small) / 2, scale=(large - small) / (div * 2))
+        if center is not None:
+            assert self.lower <= center <= self.upper, f"center must be within range of [{self.lower}, {self.upper}]"
+            self.center = center
+        else:
+            self.center = (self.upper + self.lower) / 2
+        self.norm = scistats.norm(loc=self.center, scale=(self.upper - self.lower) / (div * 2))
         self.toint = toint
 
     def rvs(self, size: int = 1, *args, **kwargs) -> Union[float, List[float]]:
+        if size < 1:
+            return []
         if size > 1:
             return [self.rvs(*args, **kwargs) for i in range(size)]
         else:
@@ -667,6 +684,32 @@ class ScistatsNormAround(ScistatsNormBetween):
         hardClip: Optional[bool] = False,
     ) -> None:
         super(ScistatsNormAround, self).__init__(center - dist, center + dist, cond, div, toint, clip, hardClip)
+
+
+class SciStatsNormBetweenRandTuple():
+    def __init__(
+        self,
+        small: float,
+        large: float,
+        tupleSize: Tuple,
+        cond: Optional[Callable[[float], bool]] = None,
+        div: Optional[float] = 2,
+        toint: Optional[bool] = False,
+        clip: Optional[Union[bool, Sequence]] = False,
+        hardClip: Optional[Union[bool, Sequence]] = False,
+        center: Optional[float] = None,
+    ):
+        self.dist = ScistatsNormBetween(small, large, cond, div, toint, clip, hardClip, center)
+        assert is_sequence(tupleSize) and len(tupleSize) >= 2
+        if tupleSize[0] <= tupleSize[1]:
+            self.tupleSize = (tupleSize[0], tupleSize[1])
+        else:
+            self.tupleSize = (tupleSize[1], tupleSize[0])
+
+    def rvs(self, *args, **kwargs):
+        if "size" in kwargs.keys():
+            kwargs.pop("size")
+        return self.dist.rvs(random.randint(self.tupleSize[0], self.tupleSize[1]), *args, **kwargs)
 
 
 def get_model_names(longname: bool = False) -> List[str]:
@@ -894,6 +937,48 @@ def get_models(
             ),
             None,
             "Theil Sen",
+            None,
+        ),
+        (
+            "NNReg",
+            neural_network.MLPRegressor(max_iter=maxiterPos,),
+            {
+                "hidden_layer_sizes": SciStatsNormBetweenRandTuple(50, 200, (1, 5), clip=True, center=100, toint=True),
+                "activation": ["identity", "logistic", "tanh", "relu"],
+                "solver": ["lbfgs", "sgd", "adam"],
+                "alpha": ScistatsNormBetween(1e-6, 1, clip=True),
+                "learning_rate": ["constant", "invscaling", "adaptive"],
+                "learning_rate_init": ScistatsNormBetween(1e-5, 1, clip=True),
+                "power_t": ScistatsNormBetween(0, 1, hardClip=True),
+                "tol": ScistatsNormBetween(0, 1e-2, clip=True, cond=lambda x: x >= 1e-5),
+                "warm_start": [True, False],
+                "momentum": ScistatsNormBetween(0, 1, hardClip=True, center=0.9),
+                "nesterovs_momentum": [True, False],
+                "beta_1": ScistatsNormBetween(0, 1, hardClip=True, center=0.9),
+                "beta_2": ScistatsNormBetween(0, 1, hardClip=True, center=0.999),
+            },
+            "Neural Network Regression",
+            None,
+        ),
+        (
+            "NNClass",
+            neural_network.MLPClassifier(max_iter=maxiterPos,),
+            {
+                "hidden_layer_sizes": SciStatsNormBetweenRandTuple(50, 200, (1, 2), clip=True, center=100, toint=True),
+                # "activation": ["identity", "logistic", "tanh", "relu"],
+                # "solver": ["lbfgs", "sgd", "adam"],
+                "alpha": ScistatsNormBetween(10e-7, 10e-1, clip=True),
+                # "learning_rate": ["constant", "invscaling", "adaptive"],
+                # "learning_rate_init": ScistatsNormBetween(1e-5, 1, clip=True),
+                # "power_t": ScistatsNormBetween(0, 1, hardClip=True),
+                # "tol": ScistatsNormBetween(0, 1e-2, clip=True, cond=lambda x: x >= 1e-5),
+                # "warm_start": [True, False],
+                # "momentum": ScistatsNormBetween(0, 1, hardClip=True, center=0.9),
+                # "nesterovs_momentum": [True, False],
+                # "beta_1": ScistatsNormBetween(0, 1, hardClip=True, center=0.9),
+                # "beta_2": ScistatsNormBetween(0, 1, hardClip=True, center=0.999),
+            },
+            "Neural Network Regression",
             None,
         ),
     ]
@@ -1166,7 +1251,7 @@ def fit_models(
             except Exception as e:
                 # spinner.fail("failed")
                 printError(f"Failed to fit {fullname} with error:", 1)
-                print(e)
+                rc.print_exception(show_locals=False)
                 exit(1)
         else:
             if showDone:
