@@ -215,6 +215,8 @@ def getSplits(
 
 
 rc = commons.rc
+
+
 def main():
     argp = argparse.ArgumentParser()
     argp.add_argument("polyDeg", type=int, choices=[1, 2, 3, 4, 5], action="store", default=1)
@@ -686,7 +688,7 @@ class ScistatsNormAround(ScistatsNormBetween):
         super(ScistatsNormAround, self).__init__(center - dist, center + dist, cond, div, toint, clip, hardClip)
 
 
-class SciStatsNormBetweenRandTuple():
+class SciStatsNormBetweenRandTuple:
     def __init__(
         self,
         small: float,
@@ -962,9 +964,7 @@ def get_models(
         ),
         (
             "NNClass",
-            neural_network.MLPClassifier(
-                    #max_iter=maxiterPos,
-                    ),
+            neural_network.MLPClassifier(max_iter=maxiterPos,),
             {
                 "hidden_layer_sizes": SciStatsNormBetweenRandTuple(50, 200, (1, 5), clip=True, center=100, toint=True),
                 "activation": ["identity", "logistic", "tanh", "relu"],
@@ -981,7 +981,7 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0, 1, hardClip=True, center=0.999),
             },
             "Neural Network Regression",
-            None,
+            {"minBaseRes": 0.2, "maxBaseRes": 0.4},
         ),
     ]
     if restrict is not None:
@@ -1107,6 +1107,8 @@ def fit_models(
         if params is not None:
             cv = ScistatsNormBetween(2, 4, cond=(lambda x: 2 <= x <= 5), toint=True).rvs()
             regrcv = ScistatsNormBetween(1, 1)  # this is pretty ugly and only needed because of the baseRes cond
+            minBaseRes = 8
+            maxBaseRes = commons.iround(0.02 * len(X_train))
             if params is not None:
                 if "cv" in params.keys():
                     regrcv = params["cv"]
@@ -1115,9 +1117,23 @@ def fit_models(
                     cv = halvingParams["cv"]
                     if cv is None or cv <= 1:
                         cv = 2
-            maxBaseRes = commons.iround(0.02 * len(X_train))
+                if "minBaseRes" in halvingParams.keys():
+                    h_minBaseRes = halvingParams["minBaseRes"]
+                    if 0 < h_minBaseRes < 1:
+                        minBaseRes = commons.iround(h_minBaseRes * len(X_train))
+                    else:
+                        minBaseRes = h_minBaseRes
+                if "maxBaseRes" in halvingParams.keys():
+                    h_maxBaseRes = halvingParams["maxBaseRes"]
+                    if 0 < h_maxBaseRes < 1:
+                        maxBaseRes = commons.iround(h_maxBaseRes * len(X_train))
+                    else:
+                        maxBaseRes = h_maxBaseRes
             baseRes = ScistatsNormBetween(
-                8, maxBaseRes if maxBaseRes >= 8 else 8, cond=(lambda x: x > 2 * cv * regrcv.upper), toint=True,
+                minBaseRes,
+                maxBaseRes if maxBaseRes >= minBaseRes else minBaseRes,
+                cond=(lambda x: x > 2 * cv * regrcv.upper),
+                toint=True,
             ).rvs()  # TODO: x>=9 is kind of arbitrary, whenever the regr also does CV, x must be bigger than 2*cv*<cv of regr> --> for x>=9 this should be the case but not all models require x>=9 so its a dirty fix for now
             numTurns = ScistatsNormBetween(cv / 2, 4 * cv, cond=(lambda x: 3 <= x <= 8), toint=True).rvs()
             prelimRounds = ScistatsNormBetween(0, cv / 2, cond=(lambda x: 0 <= x <= 2), toint=True).rvs()
