@@ -723,9 +723,14 @@ class SciStatsNormBetweenRandTuple:
         out = self.dist.rvs(randSize, *args, **kwargs)
         maxTries = 1e8
         tries = 1
-        while sum(out) > self.maxTotal and tries < maxTries:
-            out = self.dist.rvs(randSize, *args, **kwargs)
-            tries += 1
+        if randSize > 1:
+            while sum(out) > self.maxTotal and tries < maxTries:
+                out = self.dist.rvs(randSize, *args, **kwargs)
+                tries += 1
+        else:
+            while out > self.maxTotal and tries < maxTries:
+                out = self.dist.rvs(randSize, *args, **kwargs)
+                tries += 1
         return out
 
 
