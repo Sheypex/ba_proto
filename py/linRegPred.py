@@ -969,16 +969,16 @@ def get_models(
                     50, 150, (1, 5), clip=True, center=100, toint=True, maxTotal=500
                 ),
                 "activation": ["identity", "logistic", "tanh", "relu"],
-                "solver": [
-                    # "lbfgs", "sgd",
-                    "adam"
-                ],
+                "solver": ["lbfgs", "sgd", "adam"],
                 "alpha": ScistatsNormBetween(10e-7, 10, clip=True, center=1e-3),
                 "learning_rate": ["constant", "invscaling", "adaptive"],
                 "learning_rate_init": ScistatsNormBetween(1e-5, 1e-2, clip=True, center=1e-3),
                 "tol": ScistatsNormBetween(0, 1e-2, clip=True, cond=lambda x: x >= 1e-5),
                 "warm_start": [True, False],
                 "early_stopping": [True,],  # False
+                "power_t": ScistatsNormBetween(0, 1, hardClip=True, div=3),
+                "momentum": ScistatsNormBetween(0.5, 1, hardClip=True, center=0.9),
+                "nesterovs_momentum": [True, False],
                 "beta_1": ScistatsNormBetween(0.8, 1, hardClip=True, center=0.9),
                 "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
             },
@@ -993,16 +993,16 @@ def get_models(
                     50, 150, (1, 5), clip=True, center=100, toint=True, maxTotal=500
                 ),
                 "activation": ["identity", "logistic", "tanh", "relu"],
-                "solver": [
-                    # "lbfgs", "sgd",
-                    "adam"
-                ],
+                "solver": ["lbfgs", "sgd", "adam"],
                 "alpha": ScistatsNormBetween(10e-7, 10, clip=True, center=1e-3),
                 "learning_rate": ["constant", "invscaling", "adaptive"],
                 "learning_rate_init": ScistatsNormBetween(1e-5, 1e-2, clip=True, center=1e-3),
                 "tol": ScistatsNormBetween(0, 1e-2, clip=True, cond=lambda x: x >= 1e-5),
                 "warm_start": [True, False],
                 "early_stopping": [True,],  # False
+                "power_t": ScistatsNormBetween(0, 1, hardClip=True, div=3),
+                "momentum": ScistatsNormBetween(0.5, 1, hardClip=True, center=0.9),
+                "nesterovs_momentum": [True, False],
                 "beta_1": ScistatsNormBetween(0.8, 1, hardClip=True, center=0.9),
                 "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
             },
