@@ -984,7 +984,7 @@ def get_models(
             },
             "Neural Network Regressor",
             {
-                "minBaseRes": 16,
+                "minBaseRes": 80,
                 "minCand": 100
             },
         ),
@@ -1011,7 +1011,7 @@ def get_models(
             },
             "Neural Network Classifier",
             {
-                "minBaseRes": 16,
+                "minBaseRes": 80,
                 "minCand": 100
             },
         ),
