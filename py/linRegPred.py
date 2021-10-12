@@ -1039,6 +1039,18 @@ def get_models(
 
 
 def getHRSCVTournamentParams(params, halvingParams, X_train):
+    fact, numCand, baseRes, cv = _getHRSCVTournamentParams(params, halvingParams, X_train)
+    if halvingParams is not None:
+        if "minCand" in halvingParams.keys():
+            h_minCand = halvingParams["minCand"]
+            tries = 1
+            while numCand < h_minCand and tries < MAXTRIES:
+                fact, numCand, baseRes, cv = _getHRSCVTournamentParams(params, halvingParams, X_train)
+                tries += 1
+    return fact, numCand, baseRes, cv
+
+
+def _getHRSCVTournamentParams(params, halvingParams, X_train):
     cv = ScistatsNormBetween(2, 4, cond=(lambda x: 2 <= x <= 5), toint=True).rvs()
     regrcv = ScistatsNormBetween(1, 1)  # this is pretty ugly and only needed because of the baseRes cond
     minBaseRes = 8
@@ -1081,14 +1093,7 @@ def getHRSCVTournamentParams(params, halvingParams, X_train):
     fact = (lastRoundRes / baseRes) ** (1 / numTurns)
     lastRoundNumCand = ScistatsNormBetween(1, cv, cond=(lambda x: x >= 1), toint=True).rvs()
     numCand = commons.iround(lastRoundNumCand * (fact ** (numTurns + prelimRounds - 1)))
-    if halvingParams is not None:
-        if "minCand" in halvingParams.keys():
-            h_minCand = halvingParams["minCand"]
-            tries = 1
-            while numCand < h_minCand and tries < MAXTRIES:
-                fact, numCand, baseRes = getHRSCVTournamentParams(params, halvingParams, X_train)
-                tries += 1
-    return fact, numCand, baseRes
+    return fact, numCand, baseRes, cv
 
 
 def sanity_check(
@@ -1205,53 +1210,7 @@ def fit_models(
     for model in models:
         modelName, regr, params, longname, halvingParams = model
         if params is not None:
-            cv = ScistatsNormBetween(2, 4, cond=(lambda x: 2 <= x <= 5), toint=True).rvs()
-            regrcv = ScistatsNormBetween(1, 1)  # this is pretty ugly and only needed because of the baseRes cond
-            minBaseRes = 8
-            maxBaseRes = commons.iround(0.02 * len(X_train))
-            if params is not None:
-                if "cv" in params.keys():
-                    regrcv = params["cv"]
-            if halvingParams is not None:
-                if "cv" in halvingParams.keys():
-                    cv = halvingParams["cv"]
-                    if cv is None or cv <= 1:
-                        cv = 2
-                if "minBaseRes" in halvingParams.keys():
-                    h_minBaseRes = halvingParams["minBaseRes"]
-                    if 0 < h_minBaseRes < 1:
-                        minBaseRes = commons.iround(h_minBaseRes * len(X_train))
-                    else:
-                        minBaseRes = h_minBaseRes
-                if "maxBaseRes" in halvingParams.keys():
-                    h_maxBaseRes = halvingParams["maxBaseRes"]
-                    if 0 < h_maxBaseRes < 1:
-                        maxBaseRes = commons.iround(h_maxBaseRes * len(X_train))
-                    else:
-                        maxBaseRes = h_maxBaseRes
-            baseRes = ScistatsNormBetween(
-                minBaseRes,
-                maxBaseRes if maxBaseRes >= minBaseRes else minBaseRes,
-                cond=(lambda x: x > 2 * cv * regrcv.upper),
-                toint=True,
-            ).rvs()  # TODO: x>=9 is kind of arbitrary, whenever the regr also does CV, x must be bigger than 2*cv*<cv of regr> --> for x>=9 this should be the case but not all models require x>=9 so its a dirty fix for now
-            numTurns = ScistatsNormBetween(cv / 2, 4 * cv, cond=(lambda x: 3 <= x <= 8), toint=True).rvs()
-            prelimRounds = ScistatsNormBetween(0, cv / 2, cond=(lambda x: 0 <= x <= 2), toint=True).rvs()
-            if halvingParams is not None:
-                if "skipPreElim" in halvingParams.keys() and halvingParams["skipPreElim"]:
-                    prelimRounds = 0
-            # if numTurns >= 15:
-            #     prelimRounds = 0
-            lastRoundResPercent = ScistatsNormBetween(0.8, 1.0, cond=(lambda x: 0.75 <= x <= 1.0), center=0.95).rvs()
-            lastRoundRes = commons.iround(len(X_train) * lastRoundResPercent)
-            fact = (lastRoundRes / baseRes) ** (1 / numTurns)
-            lastRoundNumCand = ScistatsNormBetween(1, cv, cond=(lambda x: x >= 1), toint=True).rvs()
-            numCand = commons.iround(lastRoundNumCand * (fact ** (numTurns + prelimRounds - 1)))
-            if halvingParams is not None:
-                if "minCand" in halvingParams.keys():
-                    h_minCand = halvingParams["minCand"]
-                    if numCand < h_minCand:
-                        numCand = h_minCand
+            fact, numCand, baseRes, cv = getHRSCVTournamentParams(params, halvingParams, X_train)
             searchParams = {
                 "estimator": regr,
                 "param_distributions": params,
