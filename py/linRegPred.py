@@ -982,7 +982,7 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
             },
             "Neural Network Regressor",
-            {"minBaseRes": 40, "minCand": 100, "cv": 1, "maxNumTurns": 10},
+            {"minBaseRes": 40, "minCand": 100, "cv": 1, "maxNumTurns": 10, "maxPrelim": 5},
         ),
         (
             "NNC",
@@ -1006,7 +1006,7 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
             },
             "Neural Network Classifier",
-            {"minBaseRes": 40, "minCand": 100, "cv": 1, "maxNumTurns": 10},
+            {"minBaseRes": 40, "minCand": 100, "cv": 1, "maxNumTurns": 10, "maxPrelim": 5},
         ),
         (
             "DTR",
@@ -1062,6 +1062,8 @@ def _getHRSCVTournamentParams(params, halvingParams, X_train):
     maxBaseRes = commons.iround(0.02 * len(X_train))
     minNumTurns = max(cv / 2, 3)
     maxNumTurns = min(4 * cv, 8)
+    minPrelim = 0
+    maxPrelim = cv / 2
     if params is not None:
         if "cv" in params.keys():
             regrcv = params["cv"]
@@ -1074,6 +1076,10 @@ def _getHRSCVTournamentParams(params, halvingParams, X_train):
             minNumTurns = halvingParams["minNumTurns"]
         if "maxNumTurns" in halvingParams.keys():
             maxNumTurns = halvingParams["maxNumTurns"]
+        if "minPrelim" in halvingParams.keys():
+            minPrelim = halvingParams["minPrelim"]
+        if "maxPrelim" in halvingParams.keys():
+            maxPrelim = halvingParams["maxPrelim"]
         if "minBaseRes" in halvingParams.keys():
             h_minBaseRes = halvingParams["minBaseRes"]
             if 0 < h_minBaseRes < 1:
@@ -1095,7 +1101,7 @@ def _getHRSCVTournamentParams(params, halvingParams, X_train):
     numTurns = ScistatsNormBetween(
         minNumTurns, maxNumTurns, clip=True, toint=True, center=minNumTurns + 1 / 3 * (maxNumTurns - minNumTurns)
     ).rvs()
-    prelimRounds = ScistatsNormBetween(0, cv / 2, cond=(lambda x: 0 <= x <= 2), toint=True).rvs()
+    prelimRounds = ScistatsNormBetween(minPrelim, maxPrelim, clip=True, toint=True).rvs()
     if halvingParams is not None:
         if "skipPreElim" in halvingParams.keys() and halvingParams["skipPreElim"]:
             prelimRounds = 0
