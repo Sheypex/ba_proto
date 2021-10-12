@@ -1012,7 +1012,7 @@ def get_models(
             "DTR",
             tree.DecisionTreeRegressor(),
             {
-                "criterion": ["squared_error", "mse", "friedman_mse", "absolute_error", "mae", "poisson"],
+                "criterion": ["squared_error", "friedman_mse", "absolute_error", "poisson"],
                 "splitter": ["best", "random"],
                 "max_features": ["auto", "sqrt", "log2"],
             },
