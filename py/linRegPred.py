@@ -665,12 +665,15 @@ class ScistatsNormBetween:
         if size > 1:
             return [self.rvs(*args, **kwargs) for i in range(size)]
         else:
-            while True:
+            maxTries = 1e8
+            tries = 1
+            while tries < maxTries:
                 r = self.norm.rvs(*args, **kwargs)
                 if self.toint:
                     r = commons.iround(r)
                 if self.cond(r):
                     break
+                tries += 1
             return r
 
 
@@ -700,6 +703,7 @@ class SciStatsNormBetweenRandTuple:
         clip: Optional[Union[bool, Sequence]] = False,
         hardClip: Optional[Union[bool, Sequence]] = False,
         center: Optional[float] = None,
+        maxTotal: Optional[float] = None,
     ):
         self.dist = ScistatsNormBetween(small, large, cond, div, toint, clip, hardClip, center)
         assert is_sequence(tupleSize) and len(tupleSize) >= 2
@@ -707,11 +711,22 @@ class SciStatsNormBetweenRandTuple:
             self.tupleSize = (tupleSize[0], tupleSize[1])
         else:
             self.tupleSize = (tupleSize[1], tupleSize[0])
+        if maxTotal is not None:
+            self.maxTotal = maxTotal
+        else:
+            self.maxTotal = float("inf")
 
     def rvs(self, *args, **kwargs):
         if "size" in kwargs.keys():
             kwargs.pop("size")
-        return self.dist.rvs(random.randint(self.tupleSize[0], self.tupleSize[1]), *args, **kwargs)
+        randSize = random.randint(self.tupleSize[0], self.tupleSize[1])
+        out = self.dist.rvs(randSize, *args, **kwargs)
+        maxTries = 1e8
+        tries = 1
+        while sum(out) > self.maxTotal and tries < maxTries:
+            out = self.dist.rvs(randSize, *args, **kwargs)
+            tries += 1
+        return out
 
 
 def get_model_names(longname: bool = False) -> List[str]:
@@ -945,19 +960,23 @@ def get_models(
             "NNR",
             neural_network.MLPRegressor(max_iter=maxiterPos,),
             {
-                "hidden_layer_sizes": SciStatsNormBetweenRandTuple(10, 150, (1, 5), clip=True, center=100, toint=True),
+                "hidden_layer_sizes": SciStatsNormBetweenRandTuple(50, 150, (1, 3), clip=True, center=100, toint=True),
                 "activation": [
-                    #"identity",
+                    # "identity",
                     "logistic",
-                    #"tanh", "relu"
+                    # "tanh", "relu"
                 ],
-                "solver": ["lbfgs", "sgd", "adam"],
+                "solver": [
+                    # "lbfgs", "sgd",
+                    "adam"
+                ],
                 "alpha": ScistatsNormBetween(10e-7, 10e-1, clip=True, center=1e-3),
                 "learning_rate": ["constant", "invscaling", "adaptive"],
                 "learning_rate_init": ScistatsNormBetween(1e-5, 1e-2, clip=True),
                 "power_t": ScistatsNormBetween(0, 1, hardClip=True),
                 "tol": ScistatsNormBetween(0, 1e-2, clip=True, cond=lambda x: x >= 1e-5),
                 "warm_start": [True, False],
+                "early_stopping": [True, False],
                 "momentum": ScistatsNormBetween(0, 1, hardClip=True, center=0.9),
                 "nesterovs_momentum": [True, False],
                 "beta_1": ScistatsNormBetween(0.8, 1, hardClip=True, center=0.9),
@@ -973,19 +992,22 @@ def get_models(
             "NNC",
             neural_network.MLPClassifier(max_iter=maxiterPos,),
             {
-                "hidden_layer_sizes": SciStatsNormBetweenRandTuple(50, 200, (1, 5), clip=True, center=100, toint=True),
+                "hidden_layer_sizes": SciStatsNormBetweenRandTuple(
+                    50, 150, (1, 3), clip=True, center=100, toint=True, maxTotal=350
+                ),
                 "activation": ["identity", "logistic", "tanh", "relu"],
-                "solver": ["lbfgs", "sgd", "adam"],
-                "alpha": ScistatsNormBetween(10e-7, 10e-1, clip=True),
+                "solver": [
+                    # "lbfgs", "sgd",
+                    "adam"
+                ],
+                "alpha": ScistatsNormBetween(10e-7, 10e-1, clip=True, center=1e-3),
                 "learning_rate": ["constant", "invscaling", "adaptive"],
-                "learning_rate_init": ScistatsNormBetween(1e-5, 1, clip=True),
-                "power_t": ScistatsNormBetween(0, 1, hardClip=True),
+                "learning_rate_init": ScistatsNormBetween(1e-5, 1e-2, clip=True, center=1e-3),
                 "tol": ScistatsNormBetween(0, 1e-2, clip=True, cond=lambda x: x >= 1e-5),
-                "warm_start": [True, False],
-                "momentum": ScistatsNormBetween(0, 1, hardClip=True, center=0.9),
-                "nesterovs_momentum": [True, False],
-                "beta_1": ScistatsNormBetween(0, 1, hardClip=True, center=0.9),
-                "beta_2": ScistatsNormBetween(0, 1, hardClip=True, center=0.999),
+                "warm_start": [True,],  # False
+                "early_stopping": [True, False],
+                "beta_1": ScistatsNormBetween(0.8, 1, hardClip=True, center=0.9),
+                "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
             },
             "Neural Network Classifier",
             {
@@ -997,7 +1019,7 @@ def get_models(
             "DTR",
             tree.DecisionTreeRegressor(),
             {
-                "criterion": ["sqared_error", "mse", "friedman_mse", "absolute_error", "mae", "poisson"],
+                "criterion": ["squared_error", "mse", "friedman_mse", "absolute_error", "mae", "poisson"],
                 "splitter": ["best", "random"],
                 "max_features": ["auto", "sqrt", "log2"],
             },
@@ -1197,7 +1219,7 @@ def fit_models(
                 "scoring": custom_scoring,
                 "error_score": 0,
                 "cv": cv,
-                "verbose": 3,
+                "verbose": 1,
             }
             regr = HalvingRandomSearchCV(**searchParams)
             # regr = RandomizedSearchCV(estimator=regr, param_distributions=params, n_iter=2 ** 8, n_jobs=-1, refit=True,
