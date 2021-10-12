@@ -965,7 +965,7 @@ def get_models(
             neural_network.MLPRegressor(max_iter=maxiterPos,),
             {
                 "hidden_layer_sizes": SciStatsNormBetweenRandTuple(
-                    50, 150, (1, 5), clip=True, center=100, toint=True, maxTotal=500
+                    50, 150, (1, 3), clip=True, center=100, toint=True, maxTotal=300
                 ),
                 "activation": ["identity", "logistic", "tanh", "relu"],
                 "solver": ["lbfgs", "sgd", "adam"],
@@ -989,7 +989,7 @@ def get_models(
             neural_network.MLPClassifier(max_iter=maxiterPos,),
             {
                 "hidden_layer_sizes": SciStatsNormBetweenRandTuple(
-                    50, 150, (1, 5), clip=True, center=100, toint=True, maxTotal=500
+                    50, 150, (1, 3), clip=True, center=100, toint=True, maxTotal=300
                 ),
                 "activation": ["identity", "logistic", "tanh", "relu"],
                 "solver": ["lbfgs", "sgd", "adam"],
