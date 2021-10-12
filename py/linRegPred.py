@@ -1241,7 +1241,7 @@ def fit_models(
                 "refit": True,
                 # 'return_train_score'    : True,
                 "scoring": custom_scoring,
-                "error_score": float("-inf"),
+                "error_score": -1e-100,
                 "cv": cv,
                 "verbose": 1,
             }
