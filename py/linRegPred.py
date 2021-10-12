@@ -946,7 +946,11 @@ def get_models(
             neural_network.MLPRegressor(max_iter=maxiterPos,),
             {
                 "hidden_layer_sizes": SciStatsNormBetweenRandTuple(10, 150, (1, 5), clip=True, center=100, toint=True),
-                "activation": ["identity", "logistic", "tanh", "relu"],
+                "activation": [
+                    #"identity",
+                    "logistic", 
+                    #"tanh", "relu"
+                ],
                 "solver": ["lbfgs", "sgd", "adam"],
                 # "alpha": ScistatsNormBetween(10e-7, 10e-1, clip=True, center=1e-3),
                 # "learning_rate": ["constant", "invscaling", "adaptive"],
