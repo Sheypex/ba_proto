@@ -982,7 +982,7 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
             },
             "Neural Network Regressor",
-            {"minBaseRes": 40, "minCand": 100, "skipPreElim": True, "cv": 1},
+            {"minBaseRes": 40, "minCand": 100, "skipPreElim": True, "cv": 1, "maxNumTurns": 5},
         ),
         (
             "NNC",
@@ -1006,7 +1006,7 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
             },
             "Neural Network Classifier",
-            {"minBaseRes": 40, "minCand": 100, "skipPreElim": True, "cv": 1},
+            {"minBaseRes": 40, "minCand": 100, "skipPreElim": True, "cv": 1, "maxNumTurns": 5},
         ),
         (
             "DTR",
@@ -1060,6 +1060,8 @@ def _getHRSCVTournamentParams(params, halvingParams, X_train):
     regrcv = ScistatsNormBetween(1, 1)  # this is pretty ugly and only needed because of the baseRes cond
     minBaseRes = 8
     maxBaseRes = commons.iround(0.02 * len(X_train))
+    minNumTurns = max(cv / 2, 3)
+    maxNumTurns = min(4 * cv, 8)
     if params is not None:
         if "cv" in params.keys():
             regrcv = params["cv"]
@@ -1068,6 +1070,10 @@ def _getHRSCVTournamentParams(params, halvingParams, X_train):
             cv = halvingParams["cv"]
             if cv is None or cv <= 1:
                 cv = 2
+        if "minNumTurns" in halvingParams.keys():
+            minNumTurns = halvingParams["minNumTurns"]
+        if "maxNumTurns" in halvingParams.keys():
+            maxNumTurns = halvingParams["maxNumTurns"]
         if "minBaseRes" in halvingParams.keys():
             h_minBaseRes = halvingParams["minBaseRes"]
             if 0 < h_minBaseRes < 1:
@@ -1086,17 +1092,17 @@ def _getHRSCVTournamentParams(params, halvingParams, X_train):
         cond=(lambda x: x > 2 * cv * regrcv.upper),
         toint=True,
     ).rvs()  # TODO: x>=9 is kind of arbitrary, whenever the regr also does CV, x must be bigger than 2*cv*<cv of regr> --> for x>=9 this should be the case but not all models require x>=9 so its a dirty fix for now
-    numTurns = ScistatsNormBetween(cv / 2, 4 * cv, cond=(lambda x: 3 <= x <= 8), toint=True).rvs()
+    numTurns = ScistatsNormBetween(minNumTurns, maxNumTurns, clip=True, toint=True).rvs()
     prelimRounds = ScistatsNormBetween(0, cv / 2, cond=(lambda x: 0 <= x <= 2), toint=True).rvs()
     if halvingParams is not None:
         if "skipPreElim" in halvingParams.keys() and halvingParams["skipPreElim"]:
             prelimRounds = 0
     # if numTurns >= 15:
     #     prelimRounds = 0
-    lastRoundResPercent = ScistatsNormBetween(0.8, 1.0, cond=(lambda x: 0.75 <= x <= 1.0), center=0.95).rvs()
+    lastRoundResPercent = ScistatsNormBetween(0.8, 1.0, clip=True, center=0.95).rvs()
     lastRoundRes = commons.iround(len(X_train) * lastRoundResPercent)
     fact = (lastRoundRes / baseRes) ** (1 / numTurns)
-    lastRoundNumCand = ScistatsNormBetween(1, cv, cond=(lambda x: x >= 1), toint=True).rvs()
+    lastRoundNumCand = ScistatsNormBetween(1, max(cv, 2), clip=True, cond=(lambda x: x > 1), toint=True).rvs()
     numCand = commons.iround(lastRoundNumCand * (fact ** (numTurns + prelimRounds - 1)))
     return fact, numCand, baseRes, cv
 
