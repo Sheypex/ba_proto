@@ -982,7 +982,7 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
             },
             "Neural Network Regressor",
-            {"minBaseRes": 40, "minCand": 100, "skipPreElim": True, "cv": 1, "maxNumTurns": 20},
+            {"minBaseRes": 40, "minCand": 100, "cv": 1, "maxNumTurns": 10},
         ),
         (
             "NNC",
@@ -1006,7 +1006,7 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
             },
             "Neural Network Classifier",
-            {"minBaseRes": 40, "minCand": 100, "skipPreElim": True, "cv": 1, "maxNumTurns": 20},
+            {"minBaseRes": 40, "minCand": 100, "cv": 1, "maxNumTurns": 10},
         ),
         (
             "DTR",
@@ -1092,7 +1092,9 @@ def _getHRSCVTournamentParams(params, halvingParams, X_train):
         cond=(lambda x: x > 2 * cv * regrcv.upper),
         toint=True,
     ).rvs()  # TODO: x>=9 is kind of arbitrary, whenever the regr also does CV, x must be bigger than 2*cv*<cv of regr> --> for x>=9 this should be the case but not all models require x>=9 so its a dirty fix for now
-    numTurns = ScistatsNormBetween(minNumTurns, maxNumTurns, clip=True, toint=True).rvs()
+    numTurns = ScistatsNormBetween(
+        minNumTurns, maxNumTurns, clip=True, toint=True, center=minNumTurns + 1 / 3 * (maxNumTurns - minNumTurns)
+    ).rvs()
     prelimRounds = ScistatsNormBetween(0, cv / 2, cond=(lambda x: 0 <= x <= 2), toint=True).rvs()
     if halvingParams is not None:
         if "skipPreElim" in halvingParams.keys() and halvingParams["skipPreElim"]:
@@ -1102,7 +1104,7 @@ def _getHRSCVTournamentParams(params, halvingParams, X_train):
     lastRoundResPercent = ScistatsNormBetween(0.8, 1.0, clip=True, center=0.95).rvs()
     lastRoundRes = commons.iround(len(X_train) * lastRoundResPercent)
     fact = (lastRoundRes / baseRes) ** (1 / numTurns)
-    lastRoundNumCand = ScistatsNormBetween(1, max(cv, 2), clip=True, cond=(lambda x: x > 1), toint=True).rvs()
+    lastRoundNumCand = ScistatsNormBetween(1, max(cv, 2), clip=True, toint=True).rvs()
     numCand = commons.iround(lastRoundNumCand * (fact ** (numTurns + prelimRounds - 1)))
     return fact, numCand, baseRes, cv
 
@@ -1233,7 +1235,7 @@ def fit_models(
                 "refit": True,
                 # 'return_train_score'    : True,
                 "scoring": custom_scoring,
-                "error_score": 0,
+                "error_score": float("-inf"),
                 "cv": cv,
                 "verbose": 1,
             }
