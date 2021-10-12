@@ -982,7 +982,7 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
             },
             "Neural Network Regressor",
-            {"minBaseRes": 40, "minCand": 100, "skipPreElim": True, "cv": 1, "maxNumTurns": 5},
+            {"minBaseRes": 40, "minCand": 100, "skipPreElim": True, "cv": 1, "maxNumTurns": 20},
         ),
         (
             "NNC",
@@ -1006,7 +1006,7 @@ def get_models(
                 "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
             },
             "Neural Network Classifier",
-            {"minBaseRes": 40, "minCand": 100, "skipPreElim": True, "cv": 1, "maxNumTurns": 5},
+            {"minBaseRes": 40, "minCand": 100, "skipPreElim": True, "cv": 1, "maxNumTurns": 20},
         ),
         (
             "DTR",
