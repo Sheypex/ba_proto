@@ -215,7 +215,7 @@ def getSplits(
 
 
 rc = commons.rc
-MAXTRIES = 1e6
+MAXTRIES = 1e4
 
 
 def main():
@@ -1040,14 +1040,19 @@ def get_models(
 
 def getHRSCVTournamentParams(params, halvingParams, X_train):
     fact, numCand, baseRes, cv = _getHRSCVTournamentParams(params, halvingParams, X_train)
+    best = (fact, numCand, baseRes, cv)
     if halvingParams is not None:
         if "minCand" in halvingParams.keys():
             h_minCand = halvingParams["minCand"]
             tries = 1
+            bestCand = numCand
             while numCand < h_minCand and tries < MAXTRIES:
                 fact, numCand, baseRes, cv = _getHRSCVTournamentParams(params, halvingParams, X_train)
+                if numCand >= bestCand:
+                    best = (fact, numCand, baseRes, cv)
+                    bestCand = numCand
                 tries += 1
-    return fact, numCand, baseRes, cv
+    return best
 
 
 def _getHRSCVTournamentParams(params, halvingParams, X_train):
