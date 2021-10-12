@@ -965,25 +965,20 @@ def get_models(
             "NNR",
             neural_network.MLPRegressor(max_iter=maxiterPos,),
             {
-                "hidden_layer_sizes": SciStatsNormBetweenRandTuple(50, 150, (1, 3), clip=True, center=100, toint=True),
-                "activation": [
-                    # "identity",
-                    "logistic",
-                    # "tanh", "relu"
-                ],
+                "hidden_layer_sizes": SciStatsNormBetweenRandTuple(
+                    50, 150, (1, 3), clip=True, center=100, toint=True, maxTotal=300
+                ),
+                "activation": ["identity", "logistic", "tanh", "relu"],
                 "solver": [
                     # "lbfgs", "sgd",
                     "adam"
                 ],
-                "alpha": ScistatsNormBetween(10e-7, 10e-1, clip=True, center=1e-3),
+                "alpha": ScistatsNormBetween(10e-7, 10, clip=True, center=1e-3),
                 "learning_rate": ["constant", "invscaling", "adaptive"],
-                "learning_rate_init": ScistatsNormBetween(1e-5, 1e-2, clip=True),
-                "power_t": ScistatsNormBetween(0, 1, hardClip=True),
+                "learning_rate_init": ScistatsNormBetween(1e-5, 1e-2, clip=True, center=1e-3),
                 "tol": ScistatsNormBetween(0, 1e-2, clip=True, cond=lambda x: x >= 1e-5),
                 "warm_start": [True, False],
-                "early_stopping": [True, False],
-                "momentum": ScistatsNormBetween(0, 1, hardClip=True, center=0.9),
-                "nesterovs_momentum": [True, False],
+                "early_stopping": [True,],  # False
                 "beta_1": ScistatsNormBetween(0.8, 1, hardClip=True, center=0.9),
                 "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
             },
@@ -998,19 +993,19 @@ def get_models(
             neural_network.MLPClassifier(max_iter=maxiterPos,),
             {
                 "hidden_layer_sizes": SciStatsNormBetweenRandTuple(
-                    50, 150, (1, 3), clip=True, center=100, toint=True, maxTotal=350
+                    50, 150, (1, 3), clip=True, center=100, toint=True, maxTotal=300
                 ),
                 "activation": ["identity", "logistic", "tanh", "relu"],
                 "solver": [
                     # "lbfgs", "sgd",
                     "adam"
                 ],
-                "alpha": ScistatsNormBetween(10e-7, 10e-1, clip=True, center=1e-3),
+                "alpha": ScistatsNormBetween(10e-7, 10, clip=True, center=1e-3),
                 "learning_rate": ["constant", "invscaling", "adaptive"],
                 "learning_rate_init": ScistatsNormBetween(1e-5, 1e-2, clip=True, center=1e-3),
                 "tol": ScistatsNormBetween(0, 1e-2, clip=True, cond=lambda x: x >= 1e-5),
-                "warm_start": [True,],  # False
-                "early_stopping": [True, False],
+                "warm_start": [True, False],
+                "early_stopping": [True,],  # False
                 "beta_1": ScistatsNormBetween(0.8, 1, hardClip=True, center=0.9),
                 "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
             },
