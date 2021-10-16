@@ -46,8 +46,9 @@ def processFile(p: Union[str, Path], doGitAdd, clean):
                 os.remove(p)
             return
         m2 = re.match("(.*)\.part\d\d$", p.as_posix())
+        m3 = re.match("(.*)\.tar\.part\d\d$", p.as_posix())
         if m2:
-            if Path(m2.group(1)).exists() or click.confirm(f"Safe to remove {p.as_posix()}?"):
+            if Path(m2.group(1)).exists() or Path(m3.group(1)).exists() or click.confirm(f"Safe to remove {p.as_posix()}?"):
                 rc.log(f"Cleaning {p.as_posix()}")
                 os.remove(p)
             return
