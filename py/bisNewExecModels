@@ -1,0 +1,15 @@
+newExecModels/cubeModel.SGD_CV-eager_U-None.pickle
+newExecModels/cubeModel.SGD_CV-viralrecon_U-None.pickle
+newExecModels/cubeModel.SGD_CV-sarek_U-None.pickle
+newExecModels/cubeModel.SGD_CV-methylseq_U-None.pickle
+newExecModels/cubeModel.SGD_CV-chipseq_U-None.pickle
+newExecModels/linModel.NNR_CV-chipseq_U-None.pickle
+newExecModels/linModel.NNR_CV-eager_U-None.pickle
+newExecModels/linModel.NNR_CV-viralrecon_U-None.pickle
+newExecModels/linModel.NNR_CV-sarek_U-None.pickle
+newExecModels/linModel.NNR_CV-methylseq_U-None.pickle
+newExecModels/linModel.DTR_CV-chipseq_U-None.pickle
+newExecModels/linModel.DTR_CV-eager_U-None.pickle
+newExecModels/linModel.DTR_CV-viralrecon_U-None.pickle
+newExecModels/linModel.DTR_CV-sarek_U-None.pickle
+newExecModels/linModel.DTR_CV-methylseq_U-None.pickle

@@ -19,7 +19,7 @@ def decompress(p: Union[str, Path]):
     rc.log(" ".join(cmd))
     if True or click.confirm(f"do decompress ${' '.join(cmd)}?"):
         unpackTo = p.parent.joinpath(re.match("(.*)\.tar$", p.name).group(1)).as_posix()
-        click.confirm(f"outputting to {unpackTo}")
+        # click.confirm(f"outputting to {unpackTo}")
         with open(unpackTo, "bw") as out:
             subprocess.run(cmd, stdout=out)
 
