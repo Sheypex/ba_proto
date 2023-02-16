@@ -91,6 +91,8 @@ def main():
     allInstances = list(range(165, 194))
     allInstances.remove(174)
     allInstances.remove(177)
+    # TODO: this is relevant for filtered features.. remove when using models that expect all features
+    predBase = predBase.drop(["fio2", "fio4", "iperf12", "iperf13", "pCpu", "cpus", "rss", "vmem", "rchar", "wchar", "syscr", "syscw"], axis=1)
     #
     for regModelFile in regModels:
         try:
