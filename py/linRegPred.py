@@ -108,45 +108,45 @@ def printBox(message: str, borderTopBot: str = "#", borderSides: str = "#") -> N
 
 
 def getTransformers(
-    X: pds.DataFrame, polyDeg: int
+        X: pds.DataFrame, polyDeg: int
 ) -> Tuple[
     preprocessing.StandardScaler, preprocessing.PolynomialFeatures, preprocessing.StandardScaler,
 ]:
     scale: preprocessing.StandardScaler = preprocessing.StandardScaler().fit(X)
     if polyDeg > 1:
         poly: preprocessing.PolynomialFeatures = preprocessing.PolynomialFeatures(
-            degree=polyDeg, interaction_only=True
+                degree=polyDeg, interaction_only=True
         ).fit(X)
     else:
         poly: preprocessing.PolynomialFeatures = preprocessing.PolynomialFeatures(
-            degree=polyDeg, interaction_only=True, include_bias=False
+                degree=polyDeg, interaction_only=True, include_bias=False
         ).fit(X)
     scale2: preprocessing.StandardScaler = preprocessing.StandardScaler().fit(poly.transform(scale.transform(X)))
     return scale, poly, scale2
 
 
 def applyTransformers(
-    X: pds.DataFrame,
-    scale: preprocessing.StandardScaler,
-    poly: preprocessing.PolynomialFeatures,
-    scale2: preprocessing.StandardScaler,
+        X: pds.DataFrame,
+        scale: preprocessing.StandardScaler,
+        poly: preprocessing.PolynomialFeatures,
+        scale2: preprocessing.StandardScaler,
 ) -> List[List[float]]:
     return scale2.transform(poly.transform(scale.transform(X)))
 
 
-def getNumSplits(dF: pds.DataFrame, cvSize: int = 0, unknownSize: int = 0, wfs: Optional[List[str]] = None,) -> int:
+def getNumSplits(dF: pds.DataFrame, cvSize: int = 0, unknownSize: int = 0, wfs: Optional[List[str]] = None, ) -> int:
     if wfs is None:
         wfs = dF.wfName.unique()
     nSplits = 0
     #
     unknownCombs = [
-        (list(ukwfs), [wf for wf in wfs if wf not in ukwfs]) for ukwfs in itertools.combinations(wfs, unknownSize)
+            (list(ukwfs), [wf for wf in wfs if wf not in ukwfs]) for ukwfs in itertools.combinations(wfs, unknownSize)
     ]
     for ukSplit in unknownCombs:
         ukwfs, kwfs = ukSplit
         #
         cvCombs = [
-            (list(cvwfs), [wf for wf in kwfs if wf not in cvwfs]) for cvwfs in itertools.combinations(kwfs, cvSize)
+                (list(cvwfs), [wf for wf in kwfs if wf not in cvwfs]) for cvwfs in itertools.combinations(kwfs, cvSize)
         ]
         for cvSplit in cvCombs:
             nSplits += 1
@@ -154,14 +154,14 @@ def getNumSplits(dF: pds.DataFrame, cvSize: int = 0, unknownSize: int = 0, wfs: 
 
 
 def getSplits(
-    dF: pds.DataFrame,
-    polyDeg: int,
-    x_cols: List[str],
-    y_cols: List[str],
-    cvSize: int = 0,
-    unknownSize: int = 0,
-    wfs: Optional[List[str]] = None,
-    randomOrder: bool = True,
+        dF: pds.DataFrame,
+        polyDeg: int,
+        x_cols: List[str],
+        y_cols: List[str],
+        cvSize: int = 0,
+        unknownSize: int = 0,
+        wfs: Optional[List[str]] = None,
+        randomOrder: bool = True,
 ) -> Iterable[TrainTestUnknownSplit]:
     assert 1 <= polyDeg <= 5
     assert 0 <= cvSize <= 4
@@ -174,13 +174,13 @@ def getSplits(
     splits = list()
     #
     unknownCombs: List[Tuple[List[str], List[str]]] = [
-        (list(ukwfs), [wf for wf in wfs if wf not in ukwfs]) for ukwfs in itertools.combinations(wfs, unknownSize)
+            (list(ukwfs), [wf for wf in wfs if wf not in ukwfs]) for ukwfs in itertools.combinations(wfs, unknownSize)
     ]
     for ukSplit in unknownCombs:
         ukwfs, kwfs = ukSplit
         #
         cvCombs: List[Tuple[List[str], List[str]]] = [
-            (list(cvwfs), [wf for wf in kwfs if wf not in cvwfs]) for cvwfs in itertools.combinations(kwfs, cvSize)
+                (list(cvwfs), [wf for wf in kwfs if wf not in cvwfs]) for cvwfs in itertools.combinations(kwfs, cvSize)
         ]
         for cvSplit in cvCombs:
             cvwfs, trainwfs = cvSplit
@@ -199,9 +199,9 @@ def getSplits(
         #
         X_train = applyTransformers(rows_known.query("wfName in @trainwfs")[x_cols], X_scale, X_poly, X_scale2)
         X_test = (
-            X_train
-            if len(cvwfs) == 0
-            else applyTransformers(rows_known.query("wfName in @cvwfs")[x_cols], X_scale, X_poly, X_scale2)
+                X_train
+                if len(cvwfs) == 0
+                else applyTransformers(rows_known.query("wfName in @cvwfs")[x_cols], X_scale, X_poly, X_scale2)
         )
         X_unknown = list() if len(ukwfs) == 0 else applyTransformers(rows_unknown[x_cols], X_scale, X_poly, X_scale2)
         #
@@ -210,7 +210,7 @@ def getSplits(
         y_unknown = list() if len(ukwfs) == 0 else rows_unknown[y_cols]
         #
         yield TrainTestUnknownSplit(
-            X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_trans, ukwfs, cvwfs,
+                X_train, y_train, X_test, y_test, X_unknown, y_unknown, X_trans, ukwfs, cvwfs,
         )
 
 
@@ -226,21 +226,21 @@ def main():
     argp.add_argument("--improve", action="store_true", dest="improve", default=False)
     argp.add_argument("--maxiter", type=int, action="store", dest="maxiter", default=-1)
     argp.add_argument(
-        "models",
-        action="store",
-        nargs="*",
-        default="all",
-        choices=["all"] + get_model_names() + [f"_{x}" for x in get_model_names()],
+            "models",
+            action="store",
+            nargs="*",
+            default="all",
+            choices=["all"] + get_model_names() + [f"_{x}" for x in get_model_names()],
     )
     argp.add_argument("--repeat", action="store", type=int, dest="numRepeats", default=1)
     argp.add_argument("--latex", action="store_true", dest="latex", default=False)
     argp.add_argument("--showDone", action="store_true", dest="showDone", default=False)
     argp.add_argument("--models", action="store", dest="modelsPath", default="models")
     argp.add_argument(
-        "--WFCV", action="store", type=int, choices=[0, 1, 2, 3, 4], default=0, dest="cvSize",
+            "--WFCV", action="store", type=int, choices=[0, 1, 2, 3, 4], default=0, dest="cvSize",
     )
     argp.add_argument(
-        "--WFU", action="store", type=int, choices=[0, 1, 2, 3, 4], default=0, dest="unknownSize",
+            "--WFU", action="store", type=int, choices=[0, 1, 2, 3, 4], default=0, dest="unknownSize",
     )
     argp.add_argument("--sanity-check", action="store_true", dest="sanityCheck", default=False)
     argp.add_argument("--saveBest", action="store_true", dest="saveBest", default=False)
@@ -248,10 +248,10 @@ def main():
     doDegree = cliArgs.polyDeg
     doPoly = doDegree > 1
     assert not (
-        cliArgs.recompute and cliArgs.improve
+            cliArgs.recompute and cliArgs.improve
     ), "--recompute and --improve are mutually exclusive"  # mutually exclusive
     if (
-        type(cliArgs.models) is str
+            type(cliArgs.models) is str
     ):  # in case only one model or 'all' is given make sure its still in the format of a list
         cliArgs.models = [cliArgs.models]
     modelsToProduce: set[str] = set(cliArgs.models)  # parse 'all'
@@ -274,10 +274,10 @@ def main():
     p.mkdir(exist_ok=True)
     if p.exists() and not p.is_dir():
         raise FileExistsError(
-            f"The path {p} exists but is not a directory. It is an invalid location for storing models."
+                f"The path {p} exists but is not a directory. It is an invalid location for storing models."
         )
     assert (
-        cliArgs.cvSize + cliArgs.unknownSize <= 4
+            cliArgs.cvSize + cliArgs.unknownSize <= 4
     ), f"The sum of workflows used in the cv folds and tested as unknowns may not exceed 4: {cliArgs.cvSize=} and {cliArgs.unknownSize=} were supplied."
     # print cli config
     # printInfo(f"Running with command line arguments: {cliArgs.__dict__}")
@@ -299,45 +299,49 @@ def main():
         with db_actions.connect() as conn:
             dF = pds.read_sql('SELECT * FROM "averageRuntimesPredictionBase1000"', conn)
     # print(dF)
-    x_cols = [
-        "build-linux-kernel1",
-        "fio2",
-        "fio3",
-        "fio4",
-        "fio5",
-        "fio6",
-        "fio7",
-        "fio8",
-        "fio9",
-        "iperf10",
-        "iperf11",
-        "iperf12",
-        "iperf13",
-        "john-the-ripper14",
-        "john-the-ripper15",
-        "ramspeed16",
-        "ramspeed17",
-        "ramspeed18",
-        "ramspeed19",
-        "ramspeed20",
-        "ramspeed21",
-        "ramspeed22",
-        "ramspeed23",
-        "ramspeed24",
-        "ramspeed25",
-        "stream26",
-        "stream27",
-        "stream28",
-        "stream29",
-        "pCpu",
-        "cpus",
-        "rss",
-        "vmem",
-        "rchar",
-        "wchar",
-        "syscr",
-        "syscw",
+    all_x_cols = [
+            "build-linux-kernel1",
+            "fio2",
+            "fio3",
+            "fio4",
+            "fio5",
+            "fio6",
+            "fio7",
+            "fio8",
+            "fio9",
+            "iperf10",
+            "iperf11",
+            "iperf12",
+            "iperf13",
+            "john-the-ripper14",
+            "john-the-ripper15",
+            "ramspeed16",
+            "ramspeed17",
+            "ramspeed18",
+            "ramspeed19",
+            "ramspeed20",
+            "ramspeed21",
+            "ramspeed22",
+            "ramspeed23",
+            "ramspeed24",
+            "ramspeed25",
+            "stream26",
+            "stream27",
+            "stream28",
+            "stream29",
+            "pCpu",
+            "cpus",
+            "rss",
+            "vmem",
+            "rchar",
+            "wchar",
+            "syscr",
+            "syscw",
     ]
+    filtered_x_cols = ['build-linux-kernel1', 'fio3', 'fio5', 'fio6', 'fio7', 'fio8', 'fio9', 'iperf10', 'iperf11', 'john-the-ripper14', 'john-the-ripper15', 'ramspeed16',
+                       'ramspeed17', 'ramspeed18', 'ramspeed19', 'ramspeed20', 'ramspeed21', 'ramspeed22', 'ramspeed23', 'ramspeed24', 'ramspeed25', 'stream26', 'stream27',
+                       'stream28', 'stream29']
+    x_cols = filtered_x_cols
     y_cols = "rank"
     #
     wfs = dF.wfName.unique()
@@ -354,7 +358,7 @@ def main():
     numSplits = getNumSplits(dF, cliArgs.cvSize, cliArgs.unknownSize, wfs)
     with commons.stdProgress(rc) as prog:
         totalProg = prog.add_task(
-            "Total", total=cliArgs.numRepeats * numSplits * len(get_models(restrict=cliArgs.models)),
+                "Total", total=cliArgs.numRepeats * numSplits * len(get_models(restrict=cliArgs.models)),
         )
         repProg = prog.add_task("Repeats", total=cliArgs.numRepeats)
         splitProg = prog.add_task("Splits", total=numSplits)
@@ -370,11 +374,11 @@ def main():
                 assert len(X_test) == len(y_test)
                 assert len(X_unknown) == len(y_unknown)
                 rc.print(
-                    rich.panel.Panel(
-                        f"{ukwfs=}, {cvwfs=}: {len(X_train)=}, {len(X_test)=}, {len(X_unknown)=}",
-                        title="Split",
-                        title_align="left",
-                    )
+                        rich.panel.Panel(
+                                f"{ukwfs=}, {cvwfs=}: {len(X_train)=}, {len(X_test)=}, {len(X_unknown)=}",
+                                title="Split",
+                                title_align="left",
+                        )
                 )
                 if len(cvwfs) > 0:
                     cvsName = "+".join([wfShortnamesLUT[cv] for cv in cvwfs])
@@ -385,27 +389,27 @@ def main():
                 else:
                     uksName = "None"
                 doModels = fit_models(
-                    X_train,
-                    y_train,
-                    X_test,
-                    y_test,
-                    X_unknown,
-                    y_unknown,
-                    X_full,
-                    y_full,
-                    doDegree,
-                    picklePrefix=f"{picklePrefixes[doDegree]}Model.",
-                    randomOrder=True,
-                    notRecompute=not cliArgs.recompute,
-                    maxiter=cliArgs.maxiter,
-                    onlyImprove=cliArgs.improve,
-                    modelsToProduce=cliArgs.models,
-                    showDone=cliArgs.showDone,
-                    cvPostfix=f"_CV-{cvsName}_U-{uksName}",
-                    modelsPath=cliArgs.modelsPath,
-                    sanityCheck=cliArgs.sanityCheck,
-                    saveBest=cliArgs.saveBest,
-                    progressBar=[(prog, modelProg), (prog, totalProg)],
+                        X_train,
+                        y_train,
+                        X_test,
+                        y_test,
+                        X_unknown,
+                        y_unknown,
+                        X_full,
+                        y_full,
+                        doDegree,
+                        picklePrefix=f"{picklePrefixes[doDegree]}Model.",
+                        randomOrder=True,
+                        notRecompute=not cliArgs.recompute,
+                        maxiter=cliArgs.maxiter,
+                        onlyImprove=cliArgs.improve,
+                        modelsToProduce=cliArgs.models,
+                        showDone=cliArgs.showDone,
+                        cvPostfix=f"_CV-{cvsName}_U-{uksName}",
+                        modelsPath=cliArgs.modelsPath,
+                        sanityCheck=cliArgs.sanityCheck,
+                        saveBest=cliArgs.saveBest,
+                        progressBar=[(prog, modelProg), (prog, totalProg)],
                 )
                 prog.advance(splitProg)
                 splitsDone += 1
@@ -499,7 +503,7 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
             numparse = False
         if cvSize > 0:
             data[0][0] = (
-                data[0][0] + f"\n{', '.join([re.compile('nfcore/(.*?):.*').match(cv).group(1) for cv in cvName])}"
+                    data[0][0] + f"\n{', '.join([re.compile('nfcore/(.*?):.*').match(cv).group(1) for cv in cvName])}"
             )
         tableHeaders = (f"degree={degree}", "model", "confidence")
     else:
@@ -556,9 +560,9 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                     svr = svrs[s]
                     # prod = functools.reduce(lambda x, y: x * y, [x[0] for x in svr], 1)
                     svrComp[s] = (
-                        commons.jamGeomean([x[0] for x in svr if x[0] is not None])
-                        if len([x[0] for x in svr if x[0] is not None]) > 0
-                        else float("-inf")
+                            commons.jamGeomean([x[0] for x in svr if x[0] is not None])
+                            if len([x[0] for x in svr if x[0] is not None]) > 0
+                            else float("-inf")
                     )
                 bestSvr = [svr for n, svr in svrs.items() if svrComp[n] == max([a for a in svrComp.values()])][0]
                 res["SVR"] = bestSvr
@@ -599,39 +603,39 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                 p, name, conf, cv = d
                 if i == math.floor(len(g) / 2):
                     g[i] = [
-                        p,
-                        name,
-                        conf,
-                        f"{avg:.4f}" if avg is not None else None,
-                        cv,
+                            p,
+                            name,
+                            conf,
+                            f"{avg:.4f}" if avg is not None else None,
+                            cv,
                     ]
                 else:
                     g[i] = [p, name, conf, "", cv]
             grouped[j] = g
         grouped.sort(
-            key=lambda x: float(x[math.floor(len(g) / 2)][3])
-            if x[math.floor(len(g) / 2)][3] is not None
-            else float("-inf"),
-            reverse=True,
+                key=lambda x: float(x[math.floor(len(g) / 2)][3])
+                if x[math.floor(len(g) / 2)][3] is not None
+                else float("-inf"),
+                reverse=True,
         )
         data = [d for g in grouped for d in g]
         fmt = "latex" if latex else "simple"
         numparse = False
         tableHeaders = (f"degree={degree}", "model", "confidence", "average", "cv fold")
-    print(tabulate(data, headers=tableHeaders, tablefmt=fmt, missingval="N/A", disable_numparse=not numparse,))
+    print(tabulate(data, headers=tableHeaders, tablefmt=fmt, missingval="N/A", disable_numparse=not numparse, ))
 
 
 class ScistatsNormBetween:
     def __init__(
-        self,
-        small: float,
-        large: float,
-        cond: Optional[Callable[[float], bool]] = None,
-        div: Optional[float] = 2,
-        toint: Optional[bool] = False,
-        clip: Optional[Union[bool, Sequence]] = False,
-        hardClip: Optional[Union[bool, Sequence]] = False,
-        center: Optional[float] = None,
+            self,
+            small: float,
+            large: float,
+            cond: Optional[Callable[[float], bool]] = None,
+            div: Optional[float] = 2,
+            toint: Optional[bool] = False,
+            clip: Optional[Union[bool, Sequence]] = False,
+            hardClip: Optional[Union[bool, Sequence]] = False,
+            center: Optional[float] = None,
     ) -> None:
         if small <= large:
             self.lower = small
@@ -679,31 +683,31 @@ class ScistatsNormBetween:
 
 class ScistatsNormAround(ScistatsNormBetween):
     def __init__(
-        self,
-        center: float,
-        dist: float,
-        cond: Optional[Callable[[float], bool]] = None,
-        div: Optional[float] = 2,
-        toint: Optional[bool] = False,
-        clip: Optional[bool] = False,
-        hardClip: Optional[bool] = False,
+            self,
+            center: float,
+            dist: float,
+            cond: Optional[Callable[[float], bool]] = None,
+            div: Optional[float] = 2,
+            toint: Optional[bool] = False,
+            clip: Optional[bool] = False,
+            hardClip: Optional[bool] = False,
     ) -> None:
         super(ScistatsNormAround, self).__init__(center - dist, center + dist, cond, div, toint, clip, hardClip)
 
 
 class SciStatsNormBetweenRandTuple:
     def __init__(
-        self,
-        small: float,
-        large: float,
-        tupleSize: Tuple,
-        cond: Optional[Callable[[float], bool]] = None,
-        div: Optional[float] = 2,
-        toint: Optional[bool] = False,
-        clip: Optional[Union[bool, Sequence]] = False,
-        hardClip: Optional[Union[bool, Sequence]] = False,
-        center: Optional[float] = None,
-        maxTotal: Optional[float] = None,
+            self,
+            small: float,
+            large: float,
+            tupleSize: Tuple,
+            cond: Optional[Callable[[float], bool]] = None,
+            div: Optional[float] = 2,
+            toint: Optional[bool] = False,
+            clip: Optional[Union[bool, Sequence]] = False,
+            hardClip: Optional[Union[bool, Sequence]] = False,
+            center: Optional[float] = None,
+            maxTotal: Optional[float] = None,
     ):
         self.dist = ScistatsNormBetween(small, large, cond, div, toint, clip, hardClip, center)
         assert is_sequence(tupleSize) and len(tupleSize) >= 2
@@ -741,295 +745,295 @@ def get_model_names(longname: bool = False) -> List[str]:
 
 
 def get_models(
-    randomOrder: bool = False, maxiter: int = -1, restrict: Optional[List[str]] = None
+        randomOrder: bool = False, maxiter: int = -1, restrict: Optional[List[str]] = None
 ) -> List[Tuple[str, Any, Union[None, Dict[str, Any]], str, Union[None, Dict[str, Any]]]]:
     if maxiter <= 0:
         maxiterPos = 100_000
     else:
         maxiterPos = maxiter
     models: List[Tuple[str, Any, Union[None, Dict[str, Any]], str, Union[None, Dict[str, Any]]]] = [
-        ("Linear", linear_model.LinearRegression(n_jobs=-1), None, "Linear Regression", None,),
-        (
-            "SVR-linear",
-            svm.SVR(max_iter=maxiter, cache_size=1000),
-            {
-                "kernel": ["linear"],
-                "C": ScistatsNormBetween(0, 1e2, cond=(lambda x: x > 0)),
-                "epsilon": ScistatsNormBetween(0, 10, cond=(lambda x: x >= 0.1)),
-                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
-            },
-            "SVR - linear",
-            None,
-        ),
-        (
-            "SVR-poly",
-            svm.SVR(max_iter=maxiter, cache_size=1000),
-            {
-                "kernel": ["poly"],
-                "degree": [2, 3],
-                "gamma": ScistatsNormBetween(0, 1, cond=(lambda x: x > 0)),
-                "C": ScistatsNormBetween(0, 1e2, cond=(lambda x: x > 0)),
-                "epsilon": ScistatsNormBetween(0, 10, cond=(lambda x: x >= 0.1)),
-                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
-                "coef0": ScistatsNormAround(0, 10),
-            },
-            "SVR - poly",
-            None,
-        ),
-        (
-            "SVR-rbf",
-            svm.SVR(max_iter=maxiter, cache_size=1000),
-            {
-                "kernel": ["rbf"],
-                "gamma": ScistatsNormBetween(0, 1, cond=(lambda x: x > 0)),
-                "C": ScistatsNormBetween(0, 1e2, cond=(lambda x: x > 0)),
-                "epsilon": ScistatsNormBetween(0, 10, cond=(lambda x: x >= 0.1)),
-                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
-            },
-            "SVR - rbf",
-            None,
-        ),
-        (
-            "SVR-sigmoid",
-            svm.SVR(max_iter=maxiter, cache_size=1000),
-            {
-                "kernel": ["sigmoid"],
-                "gamma": ScistatsNormBetween(0, 1, cond=(lambda x: x > 0)),
-                "C": ScistatsNormBetween(0, 1e2, cond=(lambda x: x > 0)),
-                "epsilon": ScistatsNormBetween(0, 10, cond=(lambda x: x >= 0.1)),
-                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
-                "coef0": ScistatsNormAround(0, 10),
-            },
-            "SVR - sigmoid",
-            None,
-        ),
-        (
-            "Lasso",
-            linear_model.Lasso(max_iter=maxiterPos),
-            {
-                "alpha": ScistatsNormAround(1, 10, cond=(lambda x: x >= 0.1)),
-                "tol": ScistatsNormAround(0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True),
-                "selection": ["random"]  # , 'cyclic']
-                # 'warm_start': [True, False]
-            },
-            "Lasso",
-            None,
-        ),
-        (
-            "LassoCV",
-            linear_model.LassoCV(max_iter=maxiterPos, n_jobs=-1),
-            {
-                "eps": ScistatsNormBetween(1e-4, 1e-2, cond=(lambda x: x > 0)),
-                "n_alphas": ScistatsNormBetween(10, 1000, cond=(lambda x: x >= 10), toint=True),
-                "tol": ScistatsNormAround(0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True),
-                "cv": ScistatsNormBetween(2, 4, clip=True, toint=True),
-                "selection": ["random"]  # , 'cyclic']
-                # 'warm_start': [True, False]
-            },
-            "Lasso CV",
-            {"skipPreElim": True, "cv": 1},
-        ),
-        (
-            "Ridge",
-            linear_model.Ridge(),
-            {
-                "alpha": ScistatsNormAround(1, 10, cond=(lambda x: x > 0)),
-                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
-            },
-            "Ridge",
-            None,
-        ),
-        (
-            "RidgeCV",
-            linear_model.RidgeCV(alphas=ScistatsNormAround(1, 100, cond=(lambda x: x > 0)).rvs(size=5)),
-            {"cv": ScistatsNormBetween(2, 4, clip=True, toint=True)},
-            "Ridge CV",
-            {"skipPreElim": True, "cv": 1},
-        ),
-        (
-            "ElasticNet",
-            linear_model.ElasticNet(max_iter=maxiterPos),
-            {
-                "alpha": ScistatsNormAround(1, 10, cond=(lambda x: x >= 0.1)),
-                "l1_ratio": ScistatsNormBetween(0, 1, clip=True),
-                "tol": ScistatsNormAround(0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True),
-                "selection": ["random"]  # , 'cyclic']
-                # 'warm_start': [True, False]
-            },
-            "Elastic Net",
-            None,
-        ),
-        (
-            "ElasticNetCV",
-            linear_model.ElasticNetCV(max_iter=maxiterPos, n_jobs=-1),
-            {
-                "l1_ratio": ScistatsNormBetween(0, 1, clip=True),
-                "eps": ScistatsNormBetween(1e-4, 1e-2, cond=(lambda x: x > 0)),
-                "n_alphas": ScistatsNormBetween(10, 1000, cond=(lambda x: x >= 10), toint=True),
-                "tol": ScistatsNormAround(0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True),
-                "cv": ScistatsNormBetween(2, 4, clip=True, toint=True),
-                "selection": ["random"]  # , 'cyclic']
-                # 'warm_start': [True, False]
-            },
-            "Elastic Net CV",
-            {"skipPreElim": True, "cv": 1},
-        ),
-        (
-            "BayesianRidge",
-            linear_model.BayesianRidge(),
-            {
-                "n_iter": ScistatsNormAround(300, 200, cond=(lambda x: x >= 100), toint=True),
-                "alpha_1": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
-                "alpha_2": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
-                "lambda_1": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
-                "lambda_2": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
-                "alpha_init": ScistatsNormBetween(0, 1, cond=(lambda x: 0 <= x <= 1)),
-                "lambda_init": ScistatsNormAround(1, 10, cond=(lambda x: x > 0)),
-                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
-            },
-            "Bayesian Ridge",
-            None,
-        ),
-        (
-            "ARD",
-            linear_model.ARDRegression(),
-            {
-                "n_iter": ScistatsNormAround(300, 200, cond=(lambda x: x >= 100), toint=True),
-                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
-                "alpha_1": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
-                "alpha_2": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
-                "lambda_1": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
-                "lambda_2": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
-                "threshold_lambda": ScistatsNormBetween(5000, 20000, clip=True),
-            },
-            "Automatic Relevance Determination Regression",
-            None,
-        ),
-        (
-            "SGD",
-            linear_model.SGDRegressor(max_iter=maxiterPos),
-            {
-                "loss": ["squared_loss", "huber", "epsilon_insensitive", "squared_epsilon_insensitive",],
-                "penalty": ["l2", "l1", "elasticnet"],
-                "alpha": ScistatsNormAround(0, 1e-1, cond=(lambda x: 0 < x <= 1e-1)),
-                "l1_ratio": ScistatsNormBetween(0, 1, cond=(lambda x: 0 <= x <= 1)),  # only for penalty=elasticnet
-                "epsilon": ScistatsNormBetween(1e-3, 10, cond=(lambda x: x > 0)),
-                # for loss=huber, epsilon_insensitive, squared_epsilon_insensitive
-                "learning_rate": ["constant", "optimal", "invscaling", "adaptive"],
-                "eta0": ScistatsNormBetween(1e-3, 1e-1, cond=(lambda x: x > 0)),
-                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
-                # for learning_rate=constant, invscaling, adaptive
-                "power_t": ScistatsNormBetween(0, 1, cond=(lambda x: 0 < x < 1)),  # for learning_rate=invscaling
-            },
-            "Stochastic Gradient Descent",
-            None,
-        ),
-        (
-            "PA",
-            linear_model.PassiveAggressiveRegressor(max_iter=maxiterPos),
-            {
-                "C": ScistatsNormAround(0, 1e3, cond=(lambda x: x > 0)),
-                "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
-                "loss": ["epsilon_insensitive", "squared_epsilon_insensitive"],
-                "epsilon": ScistatsNormAround(0.1, 10, cond=(lambda x: x >= 1e-2))
-                # 'warm_start': [True, False]
-            },
-            "Passive Aggressive Regressor",
-            None,
-        ),
-        (
-            "Huber",
-            linear_model.HuberRegressor(max_iter=maxiterPos),
-            {
-                "epsilon": ScistatsNormAround(1, 10, cond=(lambda x: x > 1)),
-                "alpha": ScistatsNormAround(0, 1e-1, cond=(lambda x: 0 < x <= 1e-1)),
-                "tol": ScistatsNormAround(0, 1e-3, cond=(lambda x: x >= 1e-5), clip=True)
-                # 'warm_start': [True, False]
-            },
-            "Huber Regressor",
-            None,
-        ),
-        (
-            "TheilSen",
-            linear_model.TheilSenRegressor(
-                n_jobs=-1,
-                max_iter=maxiterPos,
-                tol=ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True).rvs(),
+            ("Linear", linear_model.LinearRegression(n_jobs=-1), None, "Linear Regression", None,),
+            (
+                    "SVR-linear",
+                    svm.SVR(max_iter=maxiter, cache_size=1000),
+                    {
+                            "kernel": ["linear"],
+                            "C": ScistatsNormBetween(0, 1e2, cond=(lambda x: x > 0)),
+                            "epsilon": ScistatsNormBetween(0, 10, cond=(lambda x: x >= 0.1)),
+                            "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
+                    },
+                    "SVR - linear",
+                    None,
             ),
-            None,
-            "Theil Sen",
-            None,
-        ),
-        (
-            "NNR",
-            neural_network.MLPRegressor(max_iter=maxiterPos,),
-            {
-                "hidden_layer_sizes": SciStatsNormBetweenRandTuple(
-                    50, 150, (1, 3), clip=True, center=100, toint=True, maxTotal=300
-                ),
-                "activation": ["identity", "logistic", "tanh", "relu"],
-                "solver": ["lbfgs", "sgd", "adam"],
-                "alpha": ScistatsNormBetween(10e-7, 10, clip=True, center=1e-1),
-                "learning_rate": ["constant", "invscaling", "adaptive"],
-                "learning_rate_init": ScistatsNormBetween(1e-5, 1e-2, clip=True, center=1e-3),
-                "tol": ScistatsNormBetween(0, 1e-2, clip=True, cond=lambda x: x >= 1e-5),
-                "warm_start": [True, False],
-                "early_stopping": [True,],  # False
-                "power_t": ScistatsNormBetween(0, 1, hardClip=True, div=3),
-                "momentum": ScistatsNormBetween(0.5, 1, hardClip=True, center=0.9),
-                "nesterovs_momentum": [True, False],
-                "beta_1": ScistatsNormBetween(0.8, 1, hardClip=True, center=0.9),
-                "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
-            },
-            "Neural Network Regressor",
-            {"minBaseRes": 40, "minCand": 100, "cv": 1, "maxNumTurns": 10, "maxPrelim": 3},
-        ),
-        (
-            "NNC",
-            neural_network.MLPClassifier(max_iter=maxiterPos,),
-            {
-                "hidden_layer_sizes": SciStatsNormBetweenRandTuple(
-                    50, 150, (1, 3), clip=True, center=100, toint=True, maxTotal=300
-                ),
-                "activation": ["identity", "logistic", "tanh", "relu"],
-                "solver": ["lbfgs", "sgd", "adam"],
-                "alpha": ScistatsNormBetween(10e-7, 10, clip=True, center=1e-1),
-                "learning_rate": ["constant", "invscaling", "adaptive"],
-                "learning_rate_init": ScistatsNormBetween(1e-5, 1e-2, clip=True, center=1e-3),
-                "tol": ScistatsNormBetween(0, 1e-2, clip=True, cond=lambda x: x >= 1e-5),
-                "warm_start": [True, False],
-                "early_stopping": [True,],  # False
-                "power_t": ScistatsNormBetween(0, 1, hardClip=True, div=3),
-                "momentum": ScistatsNormBetween(0.5, 1, hardClip=True, center=0.9),
-                "nesterovs_momentum": [True, False],
-                "beta_1": ScistatsNormBetween(0.8, 1, hardClip=True, center=0.9),
-                "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
-            },
-            "Neural Network Classifier",
-            {"minBaseRes": 40, "minCand": 100, "cv": 1, "maxNumTurns": 10, "maxPrelim": 3},
-        ),
-        (
-            "DTR",
-            tree.DecisionTreeRegressor(),
-            {
-                "criterion": ["squared_error", "friedman_mse", "absolute_error", "poisson"],
-                "splitter": ["best", "random"],
-                "max_features": ["auto", "sqrt", "log2"],
-            },
-            "Decision Tree Regressor",
-            None,
-        ),
-        (
-            "DTC",
-            tree.DecisionTreeClassifier(),
-            {
-                "criterion": ["gini", "entropy"],
-                "splitter": ["best", "random"],
-                "max_features": ["auto", "sqrt", "log2"],
-            },
-            "Decision Tree Classifier",
-            None,
-        ),
+            (
+                    "SVR-poly",
+                    svm.SVR(max_iter=maxiter, cache_size=1000),
+                    {
+                            "kernel": ["poly"],
+                            "degree": [2, 3],
+                            "gamma": ScistatsNormBetween(0, 1, cond=(lambda x: x > 0)),
+                            "C": ScistatsNormBetween(0, 1e2, cond=(lambda x: x > 0)),
+                            "epsilon": ScistatsNormBetween(0, 10, cond=(lambda x: x >= 0.1)),
+                            "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
+                            "coef0": ScistatsNormAround(0, 10),
+                    },
+                    "SVR - poly",
+                    None,
+            ),
+            (
+                    "SVR-rbf",
+                    svm.SVR(max_iter=maxiter, cache_size=1000),
+                    {
+                            "kernel": ["rbf"],
+                            "gamma": ScistatsNormBetween(0, 1, cond=(lambda x: x > 0)),
+                            "C": ScistatsNormBetween(0, 1e2, cond=(lambda x: x > 0)),
+                            "epsilon": ScistatsNormBetween(0, 10, cond=(lambda x: x >= 0.1)),
+                            "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
+                    },
+                    "SVR - rbf",
+                    None,
+            ),
+            (
+                    "SVR-sigmoid",
+                    svm.SVR(max_iter=maxiter, cache_size=1000),
+                    {
+                            "kernel": ["sigmoid"],
+                            "gamma": ScistatsNormBetween(0, 1, cond=(lambda x: x > 0)),
+                            "C": ScistatsNormBetween(0, 1e2, cond=(lambda x: x > 0)),
+                            "epsilon": ScistatsNormBetween(0, 10, cond=(lambda x: x >= 0.1)),
+                            "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
+                            "coef0": ScistatsNormAround(0, 10),
+                    },
+                    "SVR - sigmoid",
+                    None,
+            ),
+            (
+                    "Lasso",
+                    linear_model.Lasso(max_iter=maxiterPos),
+                    {
+                            "alpha": ScistatsNormAround(1, 10, cond=(lambda x: x >= 0.1)),
+                            "tol": ScistatsNormAround(0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True),
+                            "selection": ["random"]  # , 'cyclic']
+                            # 'warm_start': [True, False]
+                    },
+                    "Lasso",
+                    None,
+            ),
+            (
+                    "LassoCV",
+                    linear_model.LassoCV(max_iter=maxiterPos, n_jobs=-1),
+                    {
+                            "eps": ScistatsNormBetween(1e-4, 1e-2, cond=(lambda x: x > 0)),
+                            "n_alphas": ScistatsNormBetween(10, 1000, cond=(lambda x: x >= 10), toint=True),
+                            "tol": ScistatsNormAround(0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True),
+                            "cv": ScistatsNormBetween(2, 4, clip=True, toint=True),
+                            "selection": ["random"]  # , 'cyclic']
+                            # 'warm_start': [True, False]
+                    },
+                    "Lasso CV",
+                    {"skipPreElim": True, "cv": 1},
+            ),
+            (
+                    "Ridge",
+                    linear_model.Ridge(),
+                    {
+                            "alpha": ScistatsNormAround(1, 10, cond=(lambda x: x > 0)),
+                            "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
+                    },
+                    "Ridge",
+                    None,
+            ),
+            (
+                    "RidgeCV",
+                    linear_model.RidgeCV(alphas=ScistatsNormAround(1, 100, cond=(lambda x: x > 0)).rvs(size=5)),
+                    {"cv": ScistatsNormBetween(2, 4, clip=True, toint=True)},
+                    "Ridge CV",
+                    {"skipPreElim": True, "cv": 1},
+            ),
+            (
+                    "ElasticNet",
+                    linear_model.ElasticNet(max_iter=maxiterPos),
+                    {
+                            "alpha": ScistatsNormAround(1, 10, cond=(lambda x: x >= 0.1)),
+                            "l1_ratio": ScistatsNormBetween(0, 1, clip=True),
+                            "tol": ScistatsNormAround(0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True),
+                            "selection": ["random"]  # , 'cyclic']
+                            # 'warm_start': [True, False]
+                    },
+                    "Elastic Net",
+                    None,
+            ),
+            (
+                    "ElasticNetCV",
+                    linear_model.ElasticNetCV(max_iter=maxiterPos, n_jobs=-1),
+                    {
+                            "l1_ratio": ScistatsNormBetween(0, 1, clip=True),
+                            "eps": ScistatsNormBetween(1e-4, 1e-2, cond=(lambda x: x > 0)),
+                            "n_alphas": ScistatsNormBetween(10, 1000, cond=(lambda x: x >= 10), toint=True),
+                            "tol": ScistatsNormAround(0, 1e-2, cond=(lambda x: x >= 1e-4), clip=True),
+                            "cv": ScistatsNormBetween(2, 4, clip=True, toint=True),
+                            "selection": ["random"]  # , 'cyclic']
+                            # 'warm_start': [True, False]
+                    },
+                    "Elastic Net CV",
+                    {"skipPreElim": True, "cv": 1},
+            ),
+            (
+                    "BayesianRidge",
+                    linear_model.BayesianRidge(),
+                    {
+                            "n_iter": ScistatsNormAround(300, 200, cond=(lambda x: x >= 100), toint=True),
+                            "alpha_1": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
+                            "alpha_2": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
+                            "lambda_1": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
+                            "lambda_2": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
+                            "alpha_init": ScistatsNormBetween(0, 1, cond=(lambda x: 0 <= x <= 1)),
+                            "lambda_init": ScistatsNormAround(1, 10, cond=(lambda x: x > 0)),
+                            "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
+                    },
+                    "Bayesian Ridge",
+                    None,
+            ),
+            (
+                    "ARD",
+                    linear_model.ARDRegression(),
+                    {
+                            "n_iter": ScistatsNormAround(300, 200, cond=(lambda x: x >= 100), toint=True),
+                            "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
+                            "alpha_1": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
+                            "alpha_2": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
+                            "lambda_1": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
+                            "lambda_2": ScistatsNormAround(0, 1e-3, cond=(lambda x: 0 < x <= 1e-3)),
+                            "threshold_lambda": ScistatsNormBetween(5000, 20000, clip=True),
+                    },
+                    "Automatic Relevance Determination Regression",
+                    None,
+            ),
+            (
+                    "SGD",
+                    linear_model.SGDRegressor(max_iter=maxiterPos),
+                    {
+                            "loss": ["squared_loss", "huber", "epsilon_insensitive", "squared_epsilon_insensitive", ],
+                            "penalty": ["l2", "l1", "elasticnet"],
+                            "alpha": ScistatsNormAround(0, 1e-1, cond=(lambda x: 0 < x <= 1e-1)),
+                            "l1_ratio": ScistatsNormBetween(0, 1, cond=(lambda x: 0 <= x <= 1)),  # only for penalty=elasticnet
+                            "epsilon": ScistatsNormBetween(1e-3, 10, cond=(lambda x: x > 0)),
+                            # for loss=huber, epsilon_insensitive, squared_epsilon_insensitive
+                            "learning_rate": ["constant", "optimal", "invscaling", "adaptive"],
+                            "eta0": ScistatsNormBetween(1e-3, 1e-1, cond=(lambda x: x > 0)),
+                            "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
+                            # for learning_rate=constant, invscaling, adaptive
+                            "power_t": ScistatsNormBetween(0, 1, cond=(lambda x: 0 < x < 1)),  # for learning_rate=invscaling
+                    },
+                    "Stochastic Gradient Descent",
+                    None,
+            ),
+            (
+                    "PA",
+                    linear_model.PassiveAggressiveRegressor(max_iter=maxiterPos),
+                    {
+                            "C": ScistatsNormAround(0, 1e3, cond=(lambda x: x > 0)),
+                            "tol": ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True),
+                            "loss": ["epsilon_insensitive", "squared_epsilon_insensitive"],
+                            "epsilon": ScistatsNormAround(0.1, 10, cond=(lambda x: x >= 1e-2))
+                            # 'warm_start': [True, False]
+                    },
+                    "Passive Aggressive Regressor",
+                    None,
+            ),
+            (
+                    "Huber",
+                    linear_model.HuberRegressor(max_iter=maxiterPos),
+                    {
+                            "epsilon": ScistatsNormAround(1, 10, cond=(lambda x: x > 1)),
+                            "alpha": ScistatsNormAround(0, 1e-1, cond=(lambda x: 0 < x <= 1e-1)),
+                            "tol": ScistatsNormAround(0, 1e-3, cond=(lambda x: x >= 1e-5), clip=True)
+                            # 'warm_start': [True, False]
+                    },
+                    "Huber Regressor",
+                    None,
+            ),
+            (
+                    "TheilSen",
+                    linear_model.TheilSenRegressor(
+                            n_jobs=-1,
+                            max_iter=maxiterPos,
+                            tol=ScistatsNormAround(0, 1e-1, cond=(lambda x: x >= 1e-3), clip=True).rvs(),
+                    ),
+                    None,
+                    "Theil Sen",
+                    None,
+            ),
+            (
+                    "NNR",
+                    neural_network.MLPRegressor(max_iter=maxiterPos, ),
+                    {
+                            "hidden_layer_sizes": SciStatsNormBetweenRandTuple(
+                                    50, 150, (1, 3), clip=True, center=100, toint=True, maxTotal=300
+                            ),
+                            "activation": ["identity", "logistic", "tanh", "relu"],
+                            "solver": ["lbfgs", "sgd", "adam"],
+                            "alpha": ScistatsNormBetween(10e-7, 10, clip=True, center=1e-1),
+                            "learning_rate": ["constant", "invscaling", "adaptive"],
+                            "learning_rate_init": ScistatsNormBetween(1e-5, 1e-2, clip=True, center=1e-3),
+                            "tol": ScistatsNormBetween(0, 1e-2, clip=True, cond=lambda x: x >= 1e-5),
+                            "warm_start": [True, False],
+                            "early_stopping": [True, ],  # False
+                            "power_t": ScistatsNormBetween(0, 1, hardClip=True, div=3),
+                            "momentum": ScistatsNormBetween(0.5, 1, hardClip=True, center=0.9),
+                            "nesterovs_momentum": [True, False],
+                            "beta_1": ScistatsNormBetween(0.8, 1, hardClip=True, center=0.9),
+                            "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
+                    },
+                    "Neural Network Regressor",
+                    {"minBaseRes": 40, "minCand": 100, "cv": 1, "maxNumTurns": 10, "maxPrelim": 3},
+            ),
+            (
+                    "NNC",
+                    neural_network.MLPClassifier(max_iter=maxiterPos, ),
+                    {
+                            "hidden_layer_sizes": SciStatsNormBetweenRandTuple(
+                                    50, 150, (1, 3), clip=True, center=100, toint=True, maxTotal=300
+                            ),
+                            "activation": ["identity", "logistic", "tanh", "relu"],
+                            "solver": ["lbfgs", "sgd", "adam"],
+                            "alpha": ScistatsNormBetween(10e-7, 10, clip=True, center=1e-1),
+                            "learning_rate": ["constant", "invscaling", "adaptive"],
+                            "learning_rate_init": ScistatsNormBetween(1e-5, 1e-2, clip=True, center=1e-3),
+                            "tol": ScistatsNormBetween(0, 1e-2, clip=True, cond=lambda x: x >= 1e-5),
+                            "warm_start": [True, False],
+                            "early_stopping": [True, ],  # False
+                            "power_t": ScistatsNormBetween(0, 1, hardClip=True, div=3),
+                            "momentum": ScistatsNormBetween(0.5, 1, hardClip=True, center=0.9),
+                            "nesterovs_momentum": [True, False],
+                            "beta_1": ScistatsNormBetween(0.8, 1, hardClip=True, center=0.9),
+                            "beta_2": ScistatsNormBetween(0.9, 1, hardClip=True, center=0.999),
+                    },
+                    "Neural Network Classifier",
+                    {"minBaseRes": 40, "minCand": 100, "cv": 1, "maxNumTurns": 10, "maxPrelim": 3},
+            ),
+            (
+                    "DTR",
+                    tree.DecisionTreeRegressor(),
+                    {
+                            "criterion": ["squared_error", "friedman_mse", "absolute_error", "poisson"],
+                            "splitter": ["best", "random"],
+                            "max_features": ["auto", "sqrt", "log2"],
+                    },
+                    "Decision Tree Regressor",
+                    None,
+            ),
+            (
+                    "DTC",
+                    tree.DecisionTreeClassifier(),
+                    {
+                            "criterion": ["gini", "entropy"],
+                            "splitter": ["best", "random"],
+                            "max_features": ["auto", "sqrt", "log2"],
+                    },
+                    "Decision Tree Classifier",
+                    None,
+            ),
     ]
     if restrict is not None:
         models = [x for x in models if x[0] in restrict]
@@ -1093,13 +1097,13 @@ def _getHRSCVTournamentParams(params, halvingParams, X_train):
             else:
                 maxBaseRes = h_maxBaseRes
     baseRes = ScistatsNormBetween(
-        minBaseRes,
-        maxBaseRes if maxBaseRes >= minBaseRes else minBaseRes,
-        cond=(lambda x: x > 2 * cv * regrcv.upper),
-        toint=True,
+            minBaseRes,
+            maxBaseRes if maxBaseRes >= minBaseRes else minBaseRes,
+            cond=(lambda x: x > 2 * cv * regrcv.upper),
+            toint=True,
     ).rvs()  # TODO: x>=9 is kind of arbitrary, whenever the regr also does CV, x must be bigger than 2*cv*<cv of regr> --> for x>=9 this should be the case but not all models require x>=9 so its a dirty fix for now
     numTurns = ScistatsNormBetween(
-        minNumTurns, maxNumTurns, clip=True, toint=True, center=minNumTurns + 1 / 3 * (maxNumTurns - minNumTurns)
+            minNumTurns, maxNumTurns, clip=True, toint=True, center=minNumTurns + 1 / 3 * (maxNumTurns - minNumTurns)
     ).rvs()
     prelimRounds = ScistatsNormBetween(minPrelim, maxPrelim, clip=True, toint=True).rvs()
     if halvingParams is not None:
@@ -1116,30 +1120,30 @@ def _getHRSCVTournamentParams(params, halvingParams, X_train):
 
 
 def sanity_check(
-    pFile: Union[Path, str],
-    X_train: List[List[float]],
-    y_train: List[List[float]],
-    X_test: List[List[float]],
-    y_test: List[List[float]],
-    X_unknown: List[List[float]],
-    y_unknown: List[List[float]],
-    X_full: List[List[float]],
-    y_full: List[List[float]],
-    bonusPickleInfo: Optional[Any] = None,
-    loaded: Optional[PickleOut] = None,
+        pFile: Union[Path, str],
+        X_train: List[List[float]],
+        y_train: List[List[float]],
+        X_test: List[List[float]],
+        y_test: List[List[float]],
+        X_unknown: List[List[float]],
+        y_unknown: List[List[float]],
+        X_full: List[List[float]],
+        y_full: List[List[float]],
+        bonusPickleInfo: Optional[Any] = None,
+        loaded: Optional[PickleOut] = None,
 ) -> PickleOut:
     if loaded is None:
         loaded: PickleOut = pickle.load(open(pFile, "br"))
     try:
         (
-            longname,
-            regr,
-            test_confidence,
-            deg,
-            full_confidence,
-            unknown_confidence,
-            train_confidence,
-            bonusPickleInfo,
+                longname,
+                regr,
+                test_confidence,
+                deg,
+                full_confidence,
+                unknown_confidence,
+                train_confidence,
+                bonusPickleInfo,
         ) = loaded
     except:
         longname, regr, test_confidence, deg, full_conf = loaded
@@ -1148,7 +1152,7 @@ def sanity_check(
     full_confidence = regr.score(X_full, y_full)
     unknown_confidence = regr.score(X_unknown, y_unknown) if len(X_unknown) > 0 else None
     toDump = PickleOut(
-        longname, regr, test_confidence, deg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo,
+            longname, regr, test_confidence, deg, full_confidence, unknown_confidence, train_confidence, bonusPickleInfo,
     )
     with open(pFile, "bw") as f:
         pickle.dump(toDump, f)
@@ -1156,29 +1160,29 @@ def sanity_check(
 
 
 def fit_models(
-    X_train: List[List[float]],
-    y_train: List[List[float]],
-    X_test: List[List[float]],
-    y_test: List[List[float]],
-    X_unknown: List[List[float]],
-    y_unknown: List[List[float]],
-    X_full: List[List[float]],
-    y_full: List[List[float]],
-    polyDeg: int,
-    models: Optional[List[Tuple[str, Any, Union[None, Dict[str, Any]], str, Union[None, Dict[str, Any]]]]] = None,
-    picklePrefix: Optional[str] = "",
-    randomOrder: Optional[bool] = False,
-    notRecompute: Optional[bool] = True,
-    maxiter: Optional[int] = -1,
-    onlyImprove: Optional[bool] = False,
-    modelsToProduce: Optional[List[str]] = None,
-    showDone: Optional[bool] = False,
-    cvPostfix: Optional[str] = None,
-    modelsPath: Union[Path, str] = None,
-    sanityCheck: Optional[bool] = False,
-    saveBest: Optional[bool] = False,
-    bonusPickleInfo: Optional[Any] = None,
-    progressBar: Optional[Union[Tuple[rich.progress.Progress, int], List[Tuple[rich.progress.Progress, int]]]] = None,
+        X_train: List[List[float]],
+        y_train: List[List[float]],
+        X_test: List[List[float]],
+        y_test: List[List[float]],
+        X_unknown: List[List[float]],
+        y_unknown: List[List[float]],
+        X_full: List[List[float]],
+        y_full: List[List[float]],
+        polyDeg: int,
+        models: Optional[List[Tuple[str, Any, Union[None, Dict[str, Any]], str, Union[None, Dict[str, Any]]]]] = None,
+        picklePrefix: Optional[str] = "",
+        randomOrder: Optional[bool] = False,
+        notRecompute: Optional[bool] = True,
+        maxiter: Optional[int] = -1,
+        onlyImprove: Optional[bool] = False,
+        modelsToProduce: Optional[List[str]] = None,
+        showDone: Optional[bool] = False,
+        cvPostfix: Optional[str] = None,
+        modelsPath: Union[Path, str] = None,
+        sanityCheck: Optional[bool] = False,
+        saveBest: Optional[bool] = False,
+        bonusPickleInfo: Optional[Any] = None,
+        progressBar: Optional[Union[Tuple[rich.progress.Progress, int], List[Tuple[rich.progress.Progress, int]]]] = None,
 ) -> List[PickleOut]:
     # TODO: fix this https://stats.stackexchange.com/questions/431883/lasso-regression-doesnt-converge-in-case-of-zero-y-vector in sklearn
     def custom_scoring(est: sklearn.base.RegressorMixin, X: List[List[float]], y: List[List[float]]) -> float:
@@ -1203,12 +1207,12 @@ def fit_models(
         full_samples = random.sample(range(len(X_full)), full_portion)
         train_confidence = est.score(X, y)
         test_confidence = est.score(
-            [t for i, t in enumerate(X_test) if i in test_samples],
-            [t for i, t in enumerate(y_test) if i in test_samples],
+                [t for i, t in enumerate(X_test) if i in test_samples],
+                [t for i, t in enumerate(y_test) if i in test_samples],
         )
         full_confidence = est.score(
-            [t for i, t in enumerate(X_full) if i in full_samples],
-            [t for i, t in enumerate(y_full) if i in full_samples],
+                [t for i, t in enumerate(X_full) if i in full_samples],
+                [t for i, t in enumerate(y_full) if i in full_samples],
         )
         newGeo = commons.jamGeomean([test_confidence, full_confidence, train_confidence])
         return newGeo
@@ -1222,7 +1226,7 @@ def fit_models(
         modelsToProduce = get_model_names()
     if models is None:
         models: list[tuple[str, Any, Optional[dict[str, Any]], str, Optional[dict[str, Any]]]] = get_models(
-            randomOrder=randomOrder, maxiter=maxiter, restrict=modelsToProduce
+                randomOrder=randomOrder, maxiter=maxiter, restrict=modelsToProduce
         )
     # printInfo(f"Processing models: {[x[3] for x in models]}")
     trained: List[PickleOut] = []
@@ -1231,19 +1235,19 @@ def fit_models(
         if params is not None:
             fact, numCand, baseRes, cv = getHRSCVTournamentParams(params, halvingParams, X_train)
             searchParams = {
-                "estimator": regr,
-                "param_distributions": params,
-                "n_jobs": -1,
-                "factor": fact,
-                "n_candidates": numCand,
-                "min_resources": baseRes,
-                "aggressive_elimination": True,
-                "refit": True,
-                # 'return_train_score'    : True,
-                "scoring": custom_scoring,
-                "error_score": -1e-50,
-                "cv": cv,
-                "verbose": 1,
+                    "estimator": regr,
+                    "param_distributions": params,
+                    "n_jobs": -1,
+                    "factor": fact,
+                    "n_candidates": numCand,
+                    "min_resources": baseRes,
+                    "aggressive_elimination": True,
+                    "refit": True,
+                    # 'return_train_score'    : True,
+                    "scoring": custom_scoring,
+                    "error_score": -1e-50,
+                    "cv": cv,
+                    "verbose": 1,
             }
             regr = HalvingRandomSearchCV(**searchParams)
             # regr = RandomizedSearchCV(estimator=regr, param_distributions=params, n_iter=2 ** 8, n_jobs=-1, refit=True,
@@ -1268,32 +1272,32 @@ def fit_models(
                 if params is not None:
                     # toDump = (longname, regr.best_estimator_, test_confidence, polyDeg, full_confidence)
                     toDump = PickleOut(
-                        longname,
-                        regr.best_estimator_,
-                        test_confidence,
-                        polyDeg,
-                        full_confidence,
-                        unknown_confidence,
-                        train_confidence,
-                        bonusPickleInfo,
+                            longname,
+                            regr.best_estimator_,
+                            test_confidence,
+                            polyDeg,
+                            full_confidence,
+                            unknown_confidence,
+                            train_confidence,
+                            bonusPickleInfo,
                     )
                 else:
                     # toDump = (longname, regr, test_confidence, polyDeg, full_confidence)
                     toDump = PickleOut(
-                        longname,
-                        regr,
-                        test_confidence,
-                        polyDeg,
-                        full_confidence,
-                        unknown_confidence,
-                        train_confidence,
-                        bonusPickleInfo,
+                            longname,
+                            regr,
+                            test_confidence,
+                            polyDeg,
+                            full_confidence,
+                            unknown_confidence,
+                            train_confidence,
+                            bonusPickleInfo,
                     )
                 if onlyImprove:
                     printInfo(f"Trying to improve {fullname}", 1)
                     if not pFile.is_file():
                         printWarn(
-                            f"There was no pickle found for {fullname} (at {pickleName}.pickle) to improve", 1,
+                                f"There was no pickle found for {fullname} (at {pickleName}.pickle) to improve", 1,
                         )
                         pickle.dump(toDump, open(pFile, "bw"))
                         trained.append(toDump)
@@ -1301,45 +1305,47 @@ def fit_models(
                         loaded = pickle.load(open(pFile, "br"))
                         if sanityCheck:
                             loaded = sanity_check(
-                                pFile,
-                                X_train,
-                                y_train,
-                                X_test,
-                                y_test,
-                                X_unknown,
-                                y_unknown,
-                                X_full,
-                                y_full,
-                                bonusPickleInfo,
-                                loaded,
+                                    pFile,
+                                    X_train,
+                                    y_train,
+                                    X_test,
+                                    y_test,
+                                    X_unknown,
+                                    y_unknown,
+                                    X_full,
+                                    y_full,
+                                    bonusPickleInfo,
+                                    loaded,
                             )
                         newGeo = commons.jamGeomean([test_confidence, full_confidence, train_confidence])
                         loadedGeo = commons.jamGeomean(
-                            [loaded.test_confidence, loaded.full_confidence, loaded.train_confidence,]
+                                [loaded.test_confidence, loaded.full_confidence, loaded.train_confidence, ]
                         )
                         table = tabulate(
-                            [
                                 [
-                                    "old:",
-                                    loaded.test_confidence,
-                                    loaded.full_confidence,
-                                    loaded.train_confidence,
-                                    loadedGeo,
+                                        [
+                                                "old:",
+                                                loaded.test_confidence,
+                                                loaded.full_confidence,
+                                                loaded.train_confidence,
+                                                loadedGeo,
+                                        ],
+                                        ["new:", test_confidence, full_confidence, train_confidence, newGeo, ],
                                 ],
-                                ["new:", test_confidence, full_confidence, train_confidence, newGeo,],
-                            ],
-                            headers=["", "test_conf", "full_conf", "train_conf", "geo_mean",],
+                                headers=["", "test_conf", "full_conf", "train_conf", "geo_mean", ],
                         )
+                        geoDiff = newGeo - loadedGeo
+                        geoPercent = (100 * newGeo / loadedGeo) - 100
                         if newGeo >= loadedGeo:
                             pickle.dump(toDump, open(pFile, "bw"))
                             printInfo(
-                                f"Improved (or matched) {fullname} (over {pickleName}.pickle): (+{newGeo - loadedGeo})",
-                                1,
+                                    f"Improved (or matched) {fullname} (over {pickleName}.pickle): (+{geoDiff:.5f}, +{geoPercent:.5f}%)",
+                                    1,
                             )
                             trained.append(toDump)
                         else:
                             printInfo(
-                                f"Did not improve {fullname} (over {pickleName}.pickle): ({newGeo - loadedGeo})", 1,
+                                    f"Did not improve {fullname} (over {pickleName}.pickle): ({geoDiff:.5f}, {geoPercent:.5f}%)", 1,
                             )
                             trained.append(loaded)
                         print("\n".join(["\t" + row for row in table.split("\n")]))
@@ -1365,6 +1371,25 @@ def fit_models(
                     loaded = pickle.load(open(pFile, "br"))
                     if sanityCheck:
                         loaded = sanity_check(
+                                pFile,
+                                X_train,
+                                y_train,
+                                X_test,
+                                y_test,
+                                X_unknown,
+                                y_unknown,
+                                X_full,
+                                y_full,
+                                bonusPickleInfo,
+                                loaded,
+                        )
+                    trained.append(loaded)
+                    printSucc("Sanity checked", 1)
+            else:
+                printInfo(f"{fullname}:")
+                loaded = pickle.load(open(pFile, "br"))
+                if sanityCheck:
+                    loaded = sanity_check(
                             pFile,
                             X_train,
                             y_train,
@@ -1376,25 +1401,6 @@ def fit_models(
                             y_full,
                             bonusPickleInfo,
                             loaded,
-                        )
-                    trained.append(loaded)
-                    printSucc("Sanity checked", 1)
-            else:
-                printInfo(f"{fullname}:")
-                loaded = pickle.load(open(pFile, "br"))
-                if sanityCheck:
-                    loaded = sanity_check(
-                        pFile,
-                        X_train,
-                        y_train,
-                        X_test,
-                        y_test,
-                        X_unknown,
-                        y_unknown,
-                        X_full,
-                        y_full,
-                        bonusPickleInfo,
-                        loaded,
                     )
                 trained.append(loaded)
                 # spinner.succeed(f"Found pickle for {fullName}")
