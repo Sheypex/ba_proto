@@ -419,6 +419,8 @@ def main():
             if not prog.finished:
                 prog.reset(splitProg)
                 prog.reset(modelProg)
+    if cliArgs.showDone:
+        showResults(doModels, doDegree, cliArgs.cvSize)
 
 
 def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
