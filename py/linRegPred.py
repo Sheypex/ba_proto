@@ -338,9 +338,7 @@ def main():
             "syscr",
             "syscw",
     ]
-    filtered_x_cols = ['build-linux-kernel1', 'fio3', 'fio5', 'fio6', 'fio7', 'fio8', 'fio9', 'iperf10', 'iperf11', 'john-the-ripper14', 'john-the-ripper15', 'ramspeed16',
-                       'ramspeed17', 'ramspeed18', 'ramspeed19', 'ramspeed20', 'ramspeed21', 'ramspeed22', 'ramspeed23', 'ramspeed24', 'ramspeed25', 'stream26', 'stream27',
-                       'stream28', 'stream29']
+    filtered_x_cols = ['john-the-ripper15', 'ramspeed16', 'ramspeed18', 'ramspeed19', 'ramspeed20', 'ramspeed21', 'ramspeed22', 'ramspeed23', 'ramspeed24', 'ramspeed25']
     x_cols = filtered_x_cols
     y_cols = "rank"
     #
@@ -354,6 +352,8 @@ def main():
     full_scale, full_poly, full_scale2 = getTransformers(X, doDegree)
     X_full = applyTransformers(X, full_scale, full_poly, full_scale2)
     y_full = y
+    #
+    doneModels = list()
     #
     numSplits = getNumSplits(dF, cliArgs.cvSize, cliArgs.unknownSize, wfs)
     with commons.stdProgress(rc) as prog:
@@ -411,6 +411,10 @@ def main():
                         saveBest=cliArgs.saveBest,
                         progressBar=[(prog, modelProg), (prog, totalProg)],
                 )
+                doneModels.append((doModels, cvwfs))
+                if cliArgs.showDone:
+                    if cliArgs.cvSize > 0:
+                        showResults((doModels, cvwfs), doDegree, cliArgs.cvSize, False)
                 prog.advance(splitProg)
                 splitsDone += 1
                 if not splitsDone == numSplits:
@@ -420,7 +424,10 @@ def main():
                 prog.reset(splitProg)
                 prog.reset(modelProg)
     if cliArgs.showDone:
-        showResults(doModels, doDegree, cliArgs.cvSize)
+        if cliArgs.cvSize > 0:
+            showResults(doneModels, doDegree, cliArgs.cvSize, True)
+        else:
+            showResults(doModels, doDegree, 0, False)
 
 
 def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
@@ -454,18 +461,18 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
                 bestSvr = bestSvr[0]
             #
             for d in [["", x[0], x[2]] for x in m]:
-                _, name, conf = d
+                _, name, test_conf = d
                 if name in svrs:
                     continue
-                if conf is not None:
-                    conf = f"{conf:.4f}"
+                if test_conf is not None:
+                    test_conf = f"{test_conf:.4f}"
                 if name == "Linear Regression":
                     name = "Ordinary Least Squares"
                 name = name.replace("Regression", "")
                 name = name.replace("Regressor", "")
                 if "SVR" in name:
                     name = "SVR"
-                data.append(["", name, conf])
+                data.append(["", name, test_conf])
             for model in ["Lasso", "Elastic Net", "Ridge"]:
                 b = [x for x in data if x[1] == model]
                 c = [x for x in data if x[1] == f"{model} CV"]
@@ -513,10 +520,10 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
         for n in get_model_names(longname=True):
             for i, x in enumerate(m):
                 for r in x:
-                    name, _, conf, deg, full_conf = r
+                    name, _, test_conf, deg, full_conf, unknown_conf, train_conf, _ = r
                     if name == n:
-                        if conf is not None and full_conf is not None:
-                            gconf = commons.jamGeomean([conf, full_conf])
+                        if test_conf is not None and full_conf is not None and train_conf:
+                            gconf = commons.jamGeomean([test_conf, full_conf, train_conf])
                         else:
                             gconf = None
                         if name not in res.keys():
@@ -572,22 +579,22 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
         data = []
         for n in res.keys():
             for r in res[n]:
-                conf, cv = r
-                data.append(["", n, conf, cv])
+                test_conf, cv = r
+                data.append(["", n, test_conf, cv])
         for i, d in enumerate(data):
-            p, name, conf, cv = d
-            if conf is not None:
-                conf = f"{conf:.4f}"
+            p, name, test_conf, cv = d
+            if test_conf is not None:
+                test_conf = f"{test_conf:.4f}"
             if latex:
                 if name == "Linear Regression":
                     name = "Ordinary Least Squares"
                 name = name.replace("Regression", "")
                 name = name.replace("Regressor", "")
             cv = ", ".join([re.compile("nfcore/(.*?):.*").match(c).group(1) for c in cv])
-            data[i] = [p, name, conf, cv]
+            data[i] = [p, name, test_conf, cv]
         grouped = {}
         for d in data:
-            p, name, conf, cv = d
+            p, name, test_conf, cv = d
             if name not in grouped.keys():
                 grouped[name] = [d]
             else:
@@ -602,17 +609,17 @@ def showResults(models, degree, cvSize=0, cvSummary=False, latex=False):
             else:
                 avg = None
             for i, d in enumerate(g):
-                p, name, conf, cv = d
+                p, name, test_conf, cv = d
                 if i == math.floor(len(g) / 2):
                     g[i] = [
                             p,
                             name,
-                            conf,
+                            test_conf,
                             f"{avg:.4f}" if avg is not None else None,
                             cv,
                     ]
                 else:
-                    g[i] = [p, name, conf, "", cv]
+                    g[i] = [p, name, test_conf, "", cv]
             grouped[j] = g
         grouped.sort(
                 key=lambda x: float(x[math.floor(len(g) / 2)][3])
