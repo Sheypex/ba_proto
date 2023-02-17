@@ -48,7 +48,7 @@ def main():
         # )
     #
     if True:
-        cvmodelDir = "newExecModels"
+        cvmodelDir = "filteredFeatureModels"
         models = {"regression": [], "nn": [], "dt": []}
         for f in os.listdir(cvmodelDir):
             if re.match(".*\.pickle$", f) and f != "bestModel.pickle":
@@ -109,12 +109,12 @@ def main():
                 "display.max_rows", None, "display.max_columns", None, "display.width", None, "display.precision", 4,
             ):
                 df.sort_values(by="path", inplace=True, ignore_index=True)
-                hasAllCVs = df.groupby(["degree", "name"])["cv"].agg(lambda c: len(c) == 5)
+                # hasAllCVs = df.groupby(["degree", "name"])["cv"].agg(lambda c: len(c) == 5)
                 # print(hasAllCVs)
                 # print(df)
-                df = df.join(hasAllCVs, on=["degree", "name"], rsuffix="_p")
-                df = df[df["cv_p"]]
-                df.drop("cv_p", axis=1, inplace=True)
+                # df = df.join(hasAllCVs, on=["degree", "name"], rsuffix="_p")
+                # df = df[df["cv_p"]]
+                # df.drop("cv_p", axis=1, inplace=True)
                 # print(df)
                 m = df.groupby(["degree", "name"])["gconf"].aggregate(commons.jamGeomean)
                 # m.sort_values(ascending=False, inplace=True)
@@ -122,10 +122,10 @@ def main():
                 df = df.join(m, on=["degree", "name"], rsuffix="_m")
                 df.sort_values(by=["gconf_m"], ascending=False, inplace=True)
                 df = df.reset_index(drop=True)
-                # print(df)
+                print(df)
                 #
                 best = df.head(5).values
-                [rc.print(x[3]) for x in best]
+                # [rc.print(x[3]) for x in best]
     #
     if False:
         pModels = list()
