@@ -16,38 +16,38 @@ from my_yaml import yaml_load, yaml_dump
 
 
 def main():
-    res = db_actions.select("*", "help2")
-    transposed = {'nodeConfig'         : [165, 166, 167, 168, 169, 170, 171, 172, 173, 175, 176, 178, 179, 180, 181,
-                                          182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193],
+    res = db_actions.exec("select * from help3;")
+    transposed = {'nodeConfig': [165, 166, 167, 168, 169, 170, 171, 172, 173, 175, 176, 178, 179, 180, 181,
+                                 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193],
                   'build-linux-kernel1': [],
-                  'fio2'               : [],
-                  'fio3'               : [],
-                  'fio4'               : [],
-                  'fio5'               : [],
-                  'fio6'               : [],
-                  'fio7'               : [],
-                  'fio8'               : [],
-                  'fio9'               : [],
-                  'iperf10'            : [],
-                  'iperf11'            : [],
-                  'iperf12'            : [],
-                  'iperf13'            : [],
-                  'john-the-ripper14'  : [],
-                  'john-the-ripper15'  : [],
-                  'ramspeed16'         : [],
-                  'ramspeed17'         : [],
-                  'ramspeed18'         : [],
-                  'ramspeed19'         : [],
-                  'ramspeed20'         : [],
-                  'ramspeed21'         : [],
-                  'ramspeed22'         : [],
-                  'ramspeed23'         : [],
-                  'ramspeed24'         : [],
-                  'ramspeed25'         : [],
-                  'stream26'           : [],
-                  'stream27'           : [],
-                  'stream28'           : [],
-                  'stream29'           : []}
+                  'fio2': [],
+                  'fio3': [],
+                  'fio4': [],
+                  'fio5': [],
+                  'fio6': [],
+                  'fio7': [],
+                  'fio8': [],
+                  'fio9': [],
+                  'iperf10': [],
+                  'iperf11': [],
+                  'iperf12': [],
+                  'iperf13': [],
+                  'john-the-ripper14': [],
+                  'john-the-ripper15': [],
+                  'ramspeed16': [],
+                  'ramspeed17': [],
+                  'ramspeed18': [],
+                  'ramspeed19': [],
+                  'ramspeed20': [],
+                  'ramspeed21': [],
+                  'ramspeed22': [],
+                  'ramspeed23': [],
+                  'ramspeed24': [],
+                  'ramspeed25': [],
+                  'stream26': [],
+                  'stream27': [],
+                  'stream28': [],
+                  'stream29': []}
     cols = ['build-linux-kernel1', 'fio2', 'fio3', 'fio4', 'fio5', 'fio6', 'fio7', 'fio8', 'fio9', 'iperf10', 'iperf11',
             'iperf12', 'iperf13', 'john-the-ripper14', 'john-the-ripper15', 'ramspeed16', 'ramspeed17', 'ramspeed18',
             'ramspeed19', 'ramspeed20', 'ramspeed21', 'ramspeed22', 'ramspeed23', 'ramspeed24', 'ramspeed25',
@@ -61,7 +61,8 @@ def main():
                     transposed[col].append(r[6][i])
     # pprint(transposed)
 
-    # print('create table "nodeBenchmarkTransposedRankings" ( "nodeConfig" int,' + ','.join(        ['"' + c + '"' + ' int' for c in cols]) + ');')
+    print('create table "nodeBenchmarkTransposedScores" ( "nodeConfig" int,' + ','.join(
+        ['"' + c + '"' + ' double precision' for c in cols]) + ');')
     rows = []
     for i, node in enumerate(transposed['nodeConfig']):
         row = [node]
@@ -69,9 +70,12 @@ def main():
             row.append(transposed[col][i])
         rows.append(data_types.node_benchmark_transposed_rankings_entry(*row))
 
-    if False:
+    if True:
         for row in rows:
-            db_actions.insert(row, "nodeBenchmarkTransposedRankings", underscoreToDash=True, retID=False)
+            print(f'insert into "nodeBenchmarkTransposedScores" VALUES ({",".join(map((lambda x: ":" + x), row.__dict__.keys()))}) returning "nodeConfig";')
+            db_actions.exec(
+                f'insert into "nodeBenchmarkTransposedScores" VALUES ({",".join(map((lambda x: ":" + x), row.__dict__.keys()))}) returning "nodeConfig";',
+                params={i: x for i, x in row.__dict__.items() if i is not '__len__'})
 
 
 if __name__ == '__main__':
