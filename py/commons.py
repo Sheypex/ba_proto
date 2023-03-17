@@ -2,6 +2,7 @@ import math
 import statistics
 from datetime import timedelta
 
+import numpy as np
 import rich.progress
 from rich.progress import Progress as rProgress
 import rich.traceback
@@ -11,8 +12,8 @@ import rich.pretty
 
 ########
 rc = Console()
-rich.pretty.install(console=rc, indent_guides=True, max_length=2, expand_all=True)
-rich.traceback.install(console=rc, show_locals=True)
+rich.pretty.install(console=rc, indent_guides=True, max_length=3, expand_all=True)
+rich.traceback.install(console=rc, show_locals=False)
 
 
 ########
@@ -117,7 +118,7 @@ class ItemsPerSecondColumn(rich.progress.ProgressColumn):
             self.itemsPS[task.id] = roundToFirstSignificantDigits(task.completed / elapsed, 3, 3)
         if True:  # self.seen[task.id] < task.completed:
             self.itemsPS[task.id] = roundToFirstSignificantDigits(
-                ema(roundToFirstSignificantDigits(task.completed / elapsed, 3, 3), self.itemsPS[task.id],), 3, 3,
+                ema(roundToFirstSignificantDigits(task.completed / elapsed, 3, 3), self.itemsPS[task.id], ), 3, 3,
             )
             self.seen[task.id] = task.completed
         return Text(f"({self.itemsPS[task.id]:,}/s)", style="progress.elapsed")
@@ -140,9 +141,9 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
         if task.finished:
             trueSPI = roundToFirstSignificantDigits(elapsed / task.completed, 3, 3)
             if trueSPI <= 60:
-                return Text(f"({trueSPI}s/item)", style="progress.elapsed",)
+                return Text(f"({trueSPI}s/item)", style="progress.elapsed", )
             else:
-                return Text(f"({timedelta(seconds=int(trueSPI))}/item)", style="progress.elapsed",)
+                return Text(f"({timedelta(seconds=int(trueSPI))}/item)", style="progress.elapsed", )
         #
         if task.completed == 0:
             self.seen[task.id] = 0
@@ -154,7 +155,7 @@ class SecondsPerItemColumn(rich.progress.ProgressColumn):
         #
         if True:  # self.seen[task.id] < task.completed:
             self.secPerItem[task.id] = roundToFirstSignificantDigits(
-                ema(roundToFirstSignificantDigits(elapsed / task.completed, 3, 3), self.secPerItem[task.id],), 3, 3,
+                ema(roundToFirstSignificantDigits(elapsed / task.completed, 3, 3), self.secPerItem[task.id], ), 3, 3,
             )
             self.seen[task.id] = task.completed
         if self.secPerItem[task.id] <= 60:
@@ -194,7 +195,7 @@ class SmartTimeRemainingColumn(rich.progress.ProgressColumn):
         if True:  # self.seen[task.id] < task.completed:
             self.avg_remaining_seconds[task.id] = ema(remaining, self.avg_remaining_seconds[task.id], self.smoothing)
             self.seen[task.id] = task.completed
-        return Text(str(timedelta(seconds=int(self.avg_remaining_seconds[task.id]))), style="progress.remaining",)
+        return Text(str(timedelta(seconds=int(self.avg_remaining_seconds[task.id]))), style="progress.remaining", )
 
 
 def stdProgress(console=None):
@@ -213,3 +214,19 @@ def stdProgress(console=None):
         console=console,
         transient=False,
     )
+
+
+def rankingToGraphMatrix(ranking: np.ndarray):
+    m = np.zeros(shape=(len(ranking), len(ranking)))
+    for i, v in enumerate(ranking):
+        for j, w in enumerate(ranking):
+            m[i, j] = int(v < w)
+    return m
+
+
+def rankingDistance(ranking1: np.ndarray, ranking2: np.ndarray):
+    return np.sum(np.sum(np.abs(rankingToGraphMatrix(ranking1) - rankingToGraphMatrix(ranking2))))
+
+
+def rankingScore(ranking1: np.ndarray, ranking2: np.ndarray):
+    return 1 - (rankingDistance(ranking1, ranking2) / len(ranking1) ** 2)
