@@ -1,6 +1,7 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
-# platform: linux-64
+# platform: linux-63
+python=3.11
 conda-forge::seaborn=0.12.2=hd8ed1ab_0
 conda-forge::psycopg2=2.9.3=py311h968e94b_2
 conda-forge::conda-tree=1.1.0=pyhd8ed1ab_2
