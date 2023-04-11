@@ -68,7 +68,7 @@ def main():
         case 4:
             generator = WorkflowGenerator(MethylRecpRecipe.from_num_tasks(250))
             workflow = generator.build_workflow()
-            workflow.write_dot(pathlib.Path('methyl.dot'))
+            workflow.write_json(pathlib.Path('methyl.json'))
         case _:
             print("wrong selection")
 
