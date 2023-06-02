@@ -16,10 +16,10 @@ from MethylRecp.MethylRecp_recipes import MethylRecpRecipe
 def main():
     logging.getLogger().setLevel(logging.INFO)
     logging.info("running")
-    branch = 4
+    branch = 0
     match branch:
         case 0:
-            parser = wfcommons.wfinstances.NextflowLogsParser(execution_dir=pathlib.Path("tmp/pipeline_info"))
+            parser = wfcommons.wfinstances.NextflowLogsParser(execution_dir=pathlib.Path("Meth2/done/pipeline_info"))
             basename = "methylseq"
             filename = basename + "_0"
             for n in itertools.count(1):
