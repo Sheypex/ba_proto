@@ -26,7 +26,8 @@
         "1.0",
         "1.1",
         "1.2",
-        "1.3"
+        "1.3",
+        "1.4"
       ]
     },
     "wms": {
@@ -218,8 +219,7 @@
                 "items": {
                   "type": "string",
                   "description": "Id of the parent task",
-                  "minLength": 1,
-                  "pattern": "^[0-9a-zA-Z-_.]*$"
+                  "minLength": 1
                 }
               },
               "files": {

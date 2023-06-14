@@ -33,8 +33,8 @@ class TaskContent:
     # files: List[str]
     id: str
     # "category": "nfcore_methylseq:methylseq:input_check:samplesheet_check"
-    # runtimeInSeconds: float
-    runtime: float
+    runtimeInSeconds: float
+    # runtime: float
     cores: float
     # avgCPU: float
     # readBytes: int
@@ -55,7 +55,7 @@ class FileContent:
 def main():
     # make_json()
     #
-    with open("test.json", "rb") as f:
+    with open("methyl.json", "rb") as f:
         jsonContent = json.load(f)
     tasksContent: List[TaskContent] = [DataClassUnpack.instantiate(TaskContent, t) for t in
                                        jsonContent["workflow"]["tasks"]]
@@ -93,8 +93,8 @@ def main():
                '@name': t.name,
                # '@namespace': 'methylseq', # TODO
                '@numcores': t.cores,
-               '@runtime': t.runtime * t.cores,
-               '@runtime_raw': t.runtime,
+               '@runtime': t.runtimeInSeconds * t.cores,
+               '@runtime_raw': t.runtimeInSeconds,
                'uses': []
                }
         idXmlLUT[t.id] = xml

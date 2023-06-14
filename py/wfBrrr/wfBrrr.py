@@ -4,22 +4,23 @@ import json
 import logging
 import pathlib
 
-import MethylRecp_recipes
+try:
+    from Methylseq_recipes import MethylseqRecipe as testrecp
+except ModuleNotFoundError:
+    pass
 import rich.prompt
 import wfcommons
-from wfcommons import WorkflowGenerator
 from wfcommons.wfchef.chef import main as chefGo
-
-from MethylRecp.MethylRecp_recipes import MethylRecpRecipe
+from wfcommons import WorkflowGenerator
 
 
 def main():
     logging.getLogger().setLevel(logging.INFO)
     logging.info("running")
-    branch = 0
+    branch = 2
     match branch:
         case 0:
-            parser = wfcommons.wfinstances.NextflowLogsParser(execution_dir=pathlib.Path("Meth2/done/pipeline_info"))
+            parser = wfcommons.wfinstances.NextflowLogsParser(execution_dir=pathlib.Path("jsonToDax/pipeline_big_info"))
             basename = "methylseq"
             filename = basename + "_0"
             for n in itertools.count(1):
@@ -35,7 +36,7 @@ def main():
             else:
                 logging.info("aborting")
         case 1:
-            inst = wfcommons.Instance(input_instance=pathlib.Path("methylseq_0.json"))
+            inst = wfcommons.Instance(input_instance=pathlib.Path("jsonToDax/methylseq_big.json"))
             inst.write_dot(pathlib.Path("./test.dot"))
         case 2:
             chefGo()
@@ -66,9 +67,9 @@ def main():
                 with open(fn, "w") as f:
                     json.dump(content, f)
         case 4:
-            generator = WorkflowGenerator(MethylRecpRecipe.from_num_tasks(250))
+            generator = WorkflowGenerator(testrecp.from_num_tasks(250))
             workflow = generator.build_workflow()
-            workflow.write_json(pathlib.Path('methyl.json'))
+            workflow.write_json(pathlib.Path('jsonToDax/methyl.json'))
         case _:
             print("wrong selection")
 

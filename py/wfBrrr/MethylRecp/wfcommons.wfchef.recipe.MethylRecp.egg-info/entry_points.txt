@@ -1,2 +1,0 @@
-[workflow_recipes]
-MethylRecp_recipe = MethylRecp_recipes.MethylRecp:MethylRecpRecipe
