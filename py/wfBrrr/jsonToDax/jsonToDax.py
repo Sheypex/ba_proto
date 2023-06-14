@@ -113,16 +113,20 @@ def main():
     with open("files.json", "rb") as f:
         filesContent: List[dict] = json.load(f)
     filesContent: List[FileContent] = [DataClassUnpack.instantiate(FileContent, f) for f in filesContent]
+    # remove tags from task names in filesContent | ie task_name (tag) -> task_name
+    # Todo: synthetic tasks will be assigned a random file list from a task with matching name (by choice over available task ids)
+    for f in filesContent:
+        f.taskName = re.fullmatch(r"(.*?)( \(.*\))?", f.taskName).group(1)
+
     # collect all files associated with each task name
     # task names in files.json may mismatch against instance.json task names
-    baseTaskNameFilesLUT: Dict[str, List[FileContent]] = {}
+    baseTaskNameFilesLUT: Dict[str, Dict[str, FileContent]] = {}
     for f in filesContent:
-        baseTaskNameFilesLUT.setdefault(f.taskName, [])
-        baseTaskNameFilesLUT[f.taskName].append(f)
-    assert all(len(set(f.id for f in v)) == 1 for k, v in baseTaskNameFilesLUT.items())
+        baseTaskNameFilesLUT.setdefault(f.taskName, {})
+        baseTaskNameFilesLUT[f.taskName][f.id] = f
 
     # check if we're parsing a synthetic instance
-    # Todo just checking the first should be enough but is technically risky
+    # Todo: just checking the first should be enough but is technically risky
     res = re.fullmatch(r"(.*?)_(\d{8})", tasksContent[0].name)
     if res is None:
         synth = False
