@@ -1,7 +1,7 @@
 {
     "name": "sarek",
     "description": "Instance generated with WfCommons - https://wfcommons.org",
-    "createdAt": "2023-06-16T10:41:21.523123",
+    "createdAt": "2023-06-16T12:38:32.505925",
     "schemaVersion": "1.4",
     "author": {
         "name": "alex",
@@ -13,11 +13,11 @@
         "url": "https://www.nextflow.io"
     },
     "workflow": {
-        "executedAt": "20230616T124121+0200",
+        "executedAt": "20230616T143832+0200",
         "makespan": 109,
         "tasks": [
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:CREATE_INTERVALS_BED (genome.interval_list)",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:CREATE_INTERVALS_BED",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_intervals:create_intervals_bed",
@@ -63,7 +63,7 @@
                 },
                 "parents": [],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_KNOWN_INDELS (mills_and_1000G.indels.vcf)"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_KNOWN_INDELS"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2.311,
@@ -75,7 +75,7 @@
                 "writtenBytes": 13
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_KNOWN_INDELS (mills_and_1000G.indels.vcf)",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_KNOWN_INDELS",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_genome:tabix_known_indels",
@@ -102,10 +102,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:CREATE_INTERVALS_BED (genome.interval_list)"
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:CREATE_INTERVALS_BED"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX (genome.fasta)"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1.275,
@@ -118,7 +118,7 @@
                 "memoryInBytes": 3144
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX (genome.fasta)",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_genome:bwamem1_index",
@@ -148,10 +148,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_KNOWN_INDELS (mills_and_1000G.indels.vcf)"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_KNOWN_INDELS"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:GATK4_INTERVALLISTTOBED (genome)"
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:GATK4_INTERVALLISTTOBED"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2.194,
@@ -164,7 +164,7 @@
                 "memoryInBytes": 5360
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:GATK4_INTERVALLISTTOBED (genome)",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:GATK4_INTERVALLISTTOBED",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_intervals:gatk4_intervallisttobed",
@@ -199,10 +199,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX (genome.fasta)"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:SAMTOOLS_FAIDX (genome.fasta)"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:SAMTOOLS_FAIDX"
                 ],
                 "files": [],
                 "runtimeInSeconds": 6.522,
@@ -215,7 +215,7 @@
                 "memoryInBytes": 254360
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:SAMTOOLS_FAIDX (genome.fasta)",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:SAMTOOLS_FAIDX",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_genome:samtools_faidx",
@@ -242,10 +242,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:GATK4_INTERVALLISTTOBED (genome)"
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:GATK4_INTERVALLISTTOBED"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:GATK4_CREATESEQUENCEDICTIONARY (genome.fasta)"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:GATK4_CREATESEQUENCEDICTIONARY"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1.737,
@@ -258,7 +258,7 @@
                 "memoryInBytes": 3228
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:GATK4_CREATESEQUENCEDICTIONARY (genome.fasta)",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:GATK4_CREATESEQUENCEDICTIONARY",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_genome:gatk4_createsequencedictionary",
@@ -293,10 +293,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:SAMTOOLS_FAIDX (genome.fasta)"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:SAMTOOLS_FAIDX"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_DBSNP (dbsnp_146.hg38.vcf)"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_DBSNP"
                 ],
                 "files": [],
                 "runtimeInSeconds": 6.595,
@@ -309,7 +309,7 @@
                 "memoryInBytes": 255856
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_DBSNP (dbsnp_146.hg38.vcf)",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_DBSNP",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_genome:tabix_dbsnp",
@@ -336,10 +336,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:GATK4_CREATESEQUENCEDICTIONARY (genome.fasta)"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:GATK4_CREATESEQUENCEDICTIONARY"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:FASTQC (test-test_L1)"
+                    "NFCORE_SAREK:SAREK:FASTQC"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1.346,
@@ -352,7 +352,7 @@
                 "memoryInBytes": 3092
             },
             {
-                "name": "NFCORE_SAREK:SAREK:FASTQC (test-test_L1)",
+                "name": "NFCORE_SAREK:SAREK:FASTQC",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:fastqc",
@@ -401,10 +401,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_DBSNP (dbsnp_146.hg38.vcf)"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_DBSNP"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr22_1-40001)"
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT"
                 ],
                 "files": [],
                 "runtimeInSeconds": 10.913,
@@ -417,7 +417,7 @@
                 "memoryInBytes": 493100
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr22_1-40001)",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_intervals:tabix_bgziptabix_interval_split",
@@ -451,10 +451,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:FASTQC (test-test_L1)"
+                    "NFCORE_SAREK:SAREK:FASTQC"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (test)"
+                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM"
                 ],
                 "files": [],
                 "runtimeInSeconds": 0.794,
@@ -467,7 +467,7 @@
                 "memoryInBytes": 3248
             },
             {
-                "name": "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (test)",
+                "name": "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:fastq_align_bwamem_mem2_dragmap:bwamem1_mem",
@@ -528,10 +528,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr22_1-40001)"
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (test)"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES"
                 ],
                 "files": [],
                 "runtimeInSeconds": 16.193,
@@ -544,7 +544,7 @@
                 "memoryInBytes": 186820
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (test)",
+                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_markduplicates:gatk4_markduplicates",
@@ -610,10 +610,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (test)"
+                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (test)"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES"
                 ],
                 "files": [],
                 "runtimeInSeconds": 12.204,
@@ -626,7 +626,7 @@
                 "memoryInBytes": 2354760
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (test)",
+                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_markduplicates:index_markduplicates",
@@ -655,10 +655,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (test)"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (test)"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS"
                 ],
                 "files": [],
                 "runtimeInSeconds": 0.674,
@@ -671,7 +671,7 @@
                 "memoryInBytes": 3200
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (test)",
+                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_markduplicates:cram_qc_mosdepth_samtools:samtools_stats",
@@ -704,10 +704,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (test)"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (test)"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2.582,
@@ -720,7 +720,7 @@
                 "memoryInBytes": 26816
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (test)",
+                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_markduplicates:cram_qc_mosdepth_samtools:mosdepth",
@@ -755,10 +755,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (test)"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)"
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR"
                 ],
                 "files": [],
                 "runtimeInSeconds": 0.707,
@@ -771,7 +771,7 @@
                 "memoryInBytes": 6312
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+                "name": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_baserecalibrator:gatk4_baserecalibrator",
@@ -814,10 +814,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (test)"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)"
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR"
                 ],
                 "files": [],
                 "runtimeInSeconds": 7.253,
@@ -830,7 +830,7 @@
                 "memoryInBytes": 293984
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)",
+                "name": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_applybqsr:gatk4_applybqsr",
@@ -871,10 +871,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)"
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (test)"
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM"
                 ],
                 "files": [],
                 "runtimeInSeconds": 8.15,
@@ -887,7 +887,7 @@
                 "memoryInBytes": 313684
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (test)",
+                "name": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_applybqsr:cram_merge_index_samtools:index_cram",
@@ -916,10 +916,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)"
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (test)"
+                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS"
                 ],
                 "files": [],
                 "runtimeInSeconds": 0.632,
@@ -932,7 +932,7 @@
                 "memoryInBytes": 3136
             },
             {
-                "name": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (test)",
+                "name": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:cram_qc_recal:samtools_stats",
@@ -965,10 +965,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (test)"
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (test)"
+                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1.027,
@@ -981,7 +981,7 @@
                 "memoryInBytes": 12884
             },
             {
-                "name": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (test)",
+                "name": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:cram_qc_recal:mosdepth",
@@ -1016,10 +1016,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (test)"
+                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (test)"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1.061,
@@ -1032,7 +1032,7 @@
                 "memoryInBytes": 6004
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (test)",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_single_strelka:strelka_single",
@@ -1078,10 +1078,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (test)"
+                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (test)"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS"
                 ],
                 "files": [],
                 "runtimeInSeconds": 6.951,
@@ -1094,7 +1094,7 @@
                 "memoryInBytes": 105944
             },
             {
-                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (test)",
+                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:bcftools_stats",
@@ -1126,10 +1126,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (test)"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (test)"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL"
                 ],
                 "files": [],
                 "runtimeInSeconds": 0.88,
@@ -1142,7 +1142,7 @@
                 "memoryInBytes": 9520
             },
             {
-                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (test)",
+                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_tstv_qual",
@@ -1171,10 +1171,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (test)"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (test)"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2.201,
@@ -1187,7 +1187,7 @@
                 "memoryInBytes": 2680
             },
             {
-                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (test)",
+                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_summary",
@@ -1216,10 +1216,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (test)"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (test)"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2.118,
@@ -1232,7 +1232,7 @@
                 "memoryInBytes": 2832
             },
             {
-                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (test)",
+                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_tstv_count",
@@ -1261,10 +1261,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (test)"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS (1)"
+                    "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2.282,
@@ -1277,7 +1277,7 @@
                 "memoryInBytes": 2904
             },
             {
-                "name": "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS (1)",
+                "name": "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:custom_dumpsoftwareversions",
@@ -1292,7 +1292,7 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (test)"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT"
                 ],
                 "children": [
                     "NFCORE_SAREK:SAREK:MULTIQC"
@@ -1338,7 +1338,7 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS (1)"
+                    "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS"
                 ],
                 "children": [],
                 "files": [],
