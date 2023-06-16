@@ -1,0 +1,2426 @@
+[
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:CREATE_INTERVALS_BED (genome.interval_list)",
+        "fileName": "genome.interval_list",
+        "tag": "genome.interval_list",
+        "size": 197,
+        "output": false,
+        "id": "2"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:CREATE_INTERVALS_BED (genome.interval_list)",
+        "fileName": "versions.yml",
+        "tag": "genome.interval_list",
+        "size": 77,
+        "output": true,
+        "id": "2"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:CREATE_INTERVALS_BED (genome.interval_list)",
+        "fileName": "chr22_1-40001.bed",
+        "tag": "genome.interval_list",
+        "size": 14,
+        "output": true,
+        "id": "2"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_KNOWN_INDELS (mills_and_1000G.indels.vcf)",
+        "fileName": "mills_and_1000G.indels.vcf.gz",
+        "tag": "mills_and_1000G.indels.vcf",
+        "size": 4133,
+        "output": false,
+        "id": "5"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_KNOWN_INDELS (mills_and_1000G.indels.vcf)",
+        "fileName": "versions.yml",
+        "tag": "mills_and_1000G.indels.vcf",
+        "size": 72,
+        "output": true,
+        "id": "5"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_KNOWN_INDELS (mills_and_1000G.indels.vcf)",
+        "fileName": "mills_and_1000G.indels.vcf.gz.tbi",
+        "tag": "mills_and_1000G.indels.vcf",
+        "size": 132,
+        "output": true,
+        "id": "5"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX (genome.fasta)",
+        "fileName": "genome.fasta",
+        "tag": "genome.fasta",
+        "size": 40675,
+        "output": false,
+        "id": "10"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX (genome.fasta)",
+        "fileName": "genome.ann",
+        "tag": "genome.fasta",
+        "size": 36,
+        "output": true,
+        "id": "10"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX (genome.fasta)",
+        "fileName": "genome.amb",
+        "tag": "genome.fasta",
+        "size": 10,
+        "output": true,
+        "id": "10"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX (genome.fasta)",
+        "fileName": "genome.bwt",
+        "tag": "genome.fasta",
+        "size": 40108,
+        "output": true,
+        "id": "10"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX (genome.fasta)",
+        "fileName": "genome.sa",
+        "tag": "genome.fasta",
+        "size": 20056,
+        "output": true,
+        "id": "10"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX (genome.fasta)",
+        "fileName": "genome.pac",
+        "tag": "genome.fasta",
+        "size": 10002,
+        "output": true,
+        "id": "10"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:BWAMEM1_INDEX (genome.fasta)",
+        "fileName": "versions.yml",
+        "tag": "genome.fasta",
+        "size": 74,
+        "output": true,
+        "id": "10"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:GATK4_INTERVALLISTTOBED (genome)",
+        "fileName": "genome.interval_list",
+        "tag": "genome",
+        "size": 197,
+        "output": false,
+        "id": "1"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:GATK4_INTERVALLISTTOBED (genome)",
+        "fileName": "versions.yml",
+        "tag": "genome",
+        "size": 83,
+        "output": true,
+        "id": "1"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:GATK4_INTERVALLISTTOBED (genome)",
+        "fileName": "genome.bed",
+        "tag": "genome",
+        "size": 22,
+        "output": true,
+        "id": "1"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:SAMTOOLS_FAIDX (genome.fasta)",
+        "fileName": "genome.fasta",
+        "tag": "genome.fasta",
+        "size": 40675,
+        "output": false,
+        "id": "7"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:SAMTOOLS_FAIDX (genome.fasta)",
+        "fileName": "versions.yml",
+        "tag": "genome.fasta",
+        "size": 74,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:SAMTOOLS_FAIDX (genome.fasta)",
+        "fileName": "genome.fasta.fai",
+        "tag": "genome.fasta",
+        "size": 20,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:GATK4_CREATESEQUENCEDICTIONARY (genome.fasta)",
+        "fileName": "genome.fasta",
+        "tag": "genome.fasta",
+        "size": 40675,
+        "output": false,
+        "id": "3"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:GATK4_CREATESEQUENCEDICTIONARY (genome.fasta)",
+        "fileName": "versions.yml",
+        "tag": "genome.fasta",
+        "size": 87,
+        "output": true,
+        "id": "3"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:GATK4_CREATESEQUENCEDICTIONARY (genome.fasta)",
+        "fileName": "genome.dict",
+        "tag": "genome.fasta",
+        "size": 85,
+        "output": true,
+        "id": "3"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_DBSNP (dbsnp_146.hg38.vcf)",
+        "fileName": "dbsnp_146.hg38.vcf.gz",
+        "tag": "dbsnp_146.hg38.vcf",
+        "size": 54037,
+        "output": false,
+        "id": "4"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_DBSNP (dbsnp_146.hg38.vcf)",
+        "fileName": "dbsnp_146.hg38.vcf.gz.tbi",
+        "tag": "dbsnp_146.hg38.vcf",
+        "size": 137,
+        "output": true,
+        "id": "4"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_DBSNP (dbsnp_146.hg38.vcf)",
+        "fileName": "versions.yml",
+        "tag": "dbsnp_146.hg38.vcf",
+        "size": 65,
+        "output": true,
+        "id": "4"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQC (test-test_L1)",
+        "fileName": "test_1.fastq.gz",
+        "tag": "test-test_L1",
+        "size": 16013759,
+        "output": false,
+        "id": "12"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQC (test-test_L1)",
+        "fileName": "test_2.fastq.gz",
+        "tag": "test-test_L1",
+        "size": 16698858,
+        "output": false,
+        "id": "12"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQC (test-test_L1)",
+        "fileName": "test-test_L1_test_1.fastq.gz",
+        "tag": "test-test_L1",
+        "size": 16013759,
+        "output": true,
+        "id": "12"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQC (test-test_L1)",
+        "fileName": "test-test_L1_test_1_fastqc.zip",
+        "tag": "test-test_L1",
+        "size": 333966,
+        "output": true,
+        "id": "12"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQC (test-test_L1)",
+        "fileName": "test-test_L1_test_1_fastqc.html",
+        "tag": "test-test_L1",
+        "size": 600187,
+        "output": true,
+        "id": "12"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQC (test-test_L1)",
+        "fileName": "test-test_L1_test_2_fastqc.html",
+        "tag": "test-test_L1",
+        "size": 583377,
+        "output": true,
+        "id": "12"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQC (test-test_L1)",
+        "fileName": "versions.yml",
+        "tag": "test-test_L1",
+        "size": 48,
+        "output": true,
+        "id": "12"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQC (test-test_L1)",
+        "fileName": "test-test_L1_test_2_fastqc.zip",
+        "tag": "test-test_L1",
+        "size": 308678,
+        "output": true,
+        "id": "12"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQC (test-test_L1)",
+        "fileName": "test-test_L1_test_2.fastq.gz",
+        "tag": "test-test_L1",
+        "size": 16698858,
+        "output": true,
+        "id": "12"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr22_1-40001)",
+        "fileName": "chr22_1-40001.bed",
+        "tag": "chr22_1-40001",
+        "size": 14,
+        "output": false,
+        "id": "16"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr22_1-40001)",
+        "fileName": "versions.yml",
+        "tag": "chr22_1-40001",
+        "size": 88,
+        "output": true,
+        "id": "16"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr22_1-40001)",
+        "fileName": "chr22_1-40001.bed.gz.tbi",
+        "tag": "chr22_1-40001",
+        "size": 107,
+        "output": true,
+        "id": "16"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr22_1-40001)",
+        "fileName": "chr22_1-40001.bed.gz",
+        "tag": "chr22_1-40001",
+        "size": 73,
+        "output": true,
+        "id": "16"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (test)",
+        "fileName": "test_1.fastq.gz",
+        "tag": "test",
+        "size": 16013759,
+        "output": false,
+        "id": "13"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (test)",
+        "fileName": "test_2.fastq.gz",
+        "tag": "test",
+        "size": 16698858,
+        "output": false,
+        "id": "13"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (test)",
+        "fileName": "bwa",
+        "tag": "test",
+        "size": 4096,
+        "output": false,
+        "id": "13"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 111,
+        "output": true,
+        "id": "13"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (test)",
+        "fileName": "test.sorted.bam",
+        "tag": "test",
+        "size": 34370487,
+        "output": true,
+        "id": "13"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (test)",
+        "fileName": "test.sorted.bam",
+        "tag": "test",
+        "size": 34370487,
+        "output": false,
+        "id": "18"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (test)",
+        "fileName": "genome.fasta",
+        "tag": "test",
+        "size": 40675,
+        "output": false,
+        "id": "18"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (test)",
+        "fileName": "genome.fasta.fai",
+        "tag": "test",
+        "size": 20,
+        "output": false,
+        "id": "18"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (test)",
+        "fileName": "test.md.cram",
+        "tag": "test",
+        "size": 22930384,
+        "output": true,
+        "id": "18"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 103,
+        "output": true,
+        "id": "18"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (test)",
+        "fileName": "test.md.cram.crai",
+        "tag": "test",
+        "size": 500,
+        "output": true,
+        "id": "18"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (test)",
+        "fileName": "test.md.cram.metrics",
+        "tag": "test",
+        "size": 1821,
+        "output": true,
+        "id": "18"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (test)",
+        "fileName": "test.md.cram",
+        "tag": "test",
+        "size": 22930384,
+        "output": false,
+        "id": "19"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 84,
+        "output": true,
+        "id": "19"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (test)",
+        "fileName": "test.md.cram.crai",
+        "tag": "test",
+        "size": 500,
+        "output": true,
+        "id": "19"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (test)",
+        "fileName": "test.md.cram",
+        "tag": "test",
+        "size": 22930384,
+        "output": false,
+        "id": "21"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (test)",
+        "fileName": "test.md.cram.crai",
+        "tag": "test",
+        "size": 500,
+        "output": false,
+        "id": "21"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (test)",
+        "fileName": "genome.fasta",
+        "tag": "test",
+        "size": 40675,
+        "output": false,
+        "id": "21"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 104,
+        "output": true,
+        "id": "21"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (test)",
+        "fileName": "test.md.cram.stats",
+        "tag": "test",
+        "size": 182809,
+        "output": true,
+        "id": "21"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (test)",
+        "fileName": "genome.fasta.fai",
+        "tag": "test",
+        "size": 20,
+        "output": true,
+        "id": "21"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (test)",
+        "fileName": "test.md.cram",
+        "tag": "test",
+        "size": 22930384,
+        "output": false,
+        "id": "20"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (test)",
+        "fileName": "test.md.cram.crai",
+        "tag": "test",
+        "size": 500,
+        "output": false,
+        "id": "20"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (test)",
+        "fileName": "genome.fasta",
+        "tag": "test",
+        "size": 40675,
+        "output": false,
+        "id": "20"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (test)",
+        "fileName": "test.md.mosdepth.global.dist.txt",
+        "tag": "test",
+        "size": 5840,
+        "output": true,
+        "id": "20"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (test)",
+        "fileName": "test.md.regions.bed.gz",
+        "tag": "test",
+        "size": 534,
+        "output": true,
+        "id": "20"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (test)",
+        "fileName": "test.md.mosdepth.summary.txt",
+        "tag": "test",
+        "size": 166,
+        "output": true,
+        "id": "20"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 96,
+        "output": true,
+        "id": "20"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (test)",
+        "fileName": "test.md.mosdepth.region.dist.txt",
+        "tag": "test",
+        "size": 1996,
+        "output": true,
+        "id": "20"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (test)",
+        "fileName": "test.md.regions.bed.gz.csi",
+        "tag": "test",
+        "size": 106,
+        "output": true,
+        "id": "20"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (test)",
+        "fileName": "genome.fasta.fai",
+        "tag": "test",
+        "size": 20,
+        "output": true,
+        "id": "20"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "test.md.cram",
+        "tag": "test",
+        "size": 22930384,
+        "output": false,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "test.md.cram.crai",
+        "tag": "test",
+        "size": 500,
+        "output": false,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "chr22_1-40001.bed",
+        "tag": "test",
+        "size": 14,
+        "output": false,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "genome.fasta",
+        "tag": "test",
+        "size": 40675,
+        "output": false,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "genome.fasta.fai",
+        "tag": "test",
+        "size": 20,
+        "output": false,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "genome.dict",
+        "tag": "test",
+        "size": 85,
+        "output": false,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "dbsnp_146.hg38.vcf.gz",
+        "tag": "test",
+        "size": 54037,
+        "output": false,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "mills_and_1000G.indels.vcf.gz",
+        "tag": "test",
+        "size": 4133,
+        "output": false,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "dbsnp_146.hg38.vcf.gz.tbi",
+        "tag": "test",
+        "size": 137,
+        "output": false,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "mills_and_1000G.indels.vcf.gz.tbi",
+        "tag": "test",
+        "size": 132,
+        "output": false,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "tmp_read_resource_7857616425412758802.config",
+        "tag": "test",
+        "size": 510,
+        "output": true,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "tmp_read_resource_2709101572157006854.config",
+        "tag": "test",
+        "size": 510,
+        "output": true,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "tmp_read_resource_9609601138792721542.config",
+        "tag": "test",
+        "size": 510,
+        "output": true,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 85,
+        "output": true,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "test.recal.table",
+        "tag": "test",
+        "size": 160277,
+        "output": true,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (test)",
+        "fileName": "tmp_read_resource_18280634864551990616.config",
+        "tag": "test",
+        "size": 510,
+        "output": true,
+        "id": "23"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)",
+        "fileName": "test.md.cram",
+        "tag": "test",
+        "size": 22930384,
+        "output": false,
+        "id": "24"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)",
+        "fileName": "test.md.cram.crai",
+        "tag": "test",
+        "size": 500,
+        "output": false,
+        "id": "24"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)",
+        "fileName": "test.recal.table",
+        "tag": "test",
+        "size": 160277,
+        "output": false,
+        "id": "24"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)",
+        "fileName": "chr22_1-40001.bed",
+        "tag": "test",
+        "size": 14,
+        "output": false,
+        "id": "24"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)",
+        "fileName": "genome.fasta",
+        "tag": "test",
+        "size": 40675,
+        "output": false,
+        "id": "24"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)",
+        "fileName": "genome.fasta.fai",
+        "tag": "test",
+        "size": 20,
+        "output": false,
+        "id": "24"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)",
+        "fileName": "genome.dict",
+        "tag": "test",
+        "size": 85,
+        "output": false,
+        "id": "24"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)",
+        "fileName": "test.recal.cram",
+        "tag": "test",
+        "size": 1182671,
+        "output": true,
+        "id": "24"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 71,
+        "output": true,
+        "id": "24"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)",
+        "fileName": "test.recal.cram.bai",
+        "tag": "test",
+        "size": 128,
+        "output": true,
+        "id": "24"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)",
+        "fileName": "tmp_read_resource_771198492520913951.config",
+        "tag": "test",
+        "size": 510,
+        "output": true,
+        "id": "24"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (test)",
+        "fileName": "tmp_read_resource_4929220970818474124.config",
+        "tag": "test",
+        "size": 510,
+        "output": true,
+        "id": "24"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (test)",
+        "fileName": "test.recal.cram",
+        "tag": "test",
+        "size": 1182671,
+        "output": false,
+        "id": "25"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 95,
+        "output": true,
+        "id": "25"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (test)",
+        "fileName": "test.recal.cram.crai",
+        "tag": "test",
+        "size": 66,
+        "output": true,
+        "id": "25"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (test)",
+        "fileName": "test.recal.cram",
+        "tag": "test",
+        "size": 1182671,
+        "output": false,
+        "id": "27"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (test)",
+        "fileName": "test.recal.cram.crai",
+        "tag": "test",
+        "size": 66,
+        "output": false,
+        "id": "27"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (test)",
+        "fileName": "genome.fasta",
+        "tag": "test",
+        "size": 40675,
+        "output": false,
+        "id": "27"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 73,
+        "output": true,
+        "id": "27"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (test)",
+        "fileName": "test.recal.cram.stats",
+        "tag": "test",
+        "size": 173721,
+        "output": true,
+        "id": "27"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (test)",
+        "fileName": "genome.fasta.fai",
+        "tag": "test",
+        "size": 20,
+        "output": true,
+        "id": "27"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (test)",
+        "fileName": "test.recal.cram",
+        "tag": "test",
+        "size": 1182671,
+        "output": false,
+        "id": "28"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (test)",
+        "fileName": "test.recal.cram.crai",
+        "tag": "test",
+        "size": 66,
+        "output": false,
+        "id": "28"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (test)",
+        "fileName": "genome.fasta",
+        "tag": "test",
+        "size": 40675,
+        "output": false,
+        "id": "28"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (test)",
+        "fileName": "test.recal.mosdepth.summary.txt",
+        "tag": "test",
+        "size": 166,
+        "output": true,
+        "id": "28"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 65,
+        "output": true,
+        "id": "28"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (test)",
+        "fileName": "test.recal.regions.bed.gz.csi",
+        "tag": "test",
+        "size": 106,
+        "output": true,
+        "id": "28"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (test)",
+        "fileName": "test.recal.regions.bed.gz",
+        "tag": "test",
+        "size": 534,
+        "output": true,
+        "id": "28"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (test)",
+        "fileName": "test.recal.mosdepth.global.dist.txt",
+        "tag": "test",
+        "size": 5840,
+        "output": true,
+        "id": "28"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (test)",
+        "fileName": "test.recal.mosdepth.region.dist.txt",
+        "tag": "test",
+        "size": 1996,
+        "output": true,
+        "id": "28"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (test)",
+        "fileName": "genome.fasta.fai",
+        "tag": "test",
+        "size": 20,
+        "output": true,
+        "id": "28"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (test)",
+        "fileName": "test.recal.cram",
+        "tag": "test",
+        "size": 1182671,
+        "output": false,
+        "id": "29"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (test)",
+        "fileName": "test.recal.cram.crai",
+        "tag": "test",
+        "size": 66,
+        "output": false,
+        "id": "29"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (test)",
+        "fileName": "chr22_1-40001.bed.gz",
+        "tag": "test",
+        "size": 73,
+        "output": false,
+        "id": "29"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (test)",
+        "fileName": "chr22_1-40001.bed.gz.tbi",
+        "tag": "test",
+        "size": 107,
+        "output": false,
+        "id": "29"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (test)",
+        "fileName": "genome.fasta",
+        "tag": "test",
+        "size": 40675,
+        "output": false,
+        "id": "29"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (test)",
+        "fileName": "genome.fasta.fai",
+        "tag": "test",
+        "size": 20,
+        "output": false,
+        "id": "29"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 125,
+        "output": true,
+        "id": "29"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (test)",
+        "fileName": "runWorkflow.py",
+        "tag": "test",
+        "size": 7814,
+        "output": true,
+        "id": "29"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (test)",
+        "fileName": "workflow.exitcode.txt",
+        "tag": "test",
+        "size": 2,
+        "output": true,
+        "id": "29"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (test)",
+        "fileName": "runWorkflow.py.config.pickle",
+        "tag": "test",
+        "size": 3639,
+        "output": true,
+        "id": "29"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (test)",
+        "fileName": "test.strelka.variants.vcf.gz",
+        "tag": "test",
+        "size": 2183,
+        "output": false,
+        "id": "33"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 81,
+        "output": true,
+        "id": "33"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (test)",
+        "fileName": "test.strelka.variants.bcftools_stats.txt",
+        "tag": "test",
+        "size": 2842,
+        "output": true,
+        "id": "33"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (test)",
+        "fileName": "test.strelka.variants.vcf.gz",
+        "tag": "test",
+        "size": 2183,
+        "output": false,
+        "id": "32"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (test)",
+        "fileName": "genome.bed",
+        "tag": "test",
+        "size": 22,
+        "output": false,
+        "id": "32"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (test)",
+        "fileName": "test.strelka.variants.TsTv.qual",
+        "tag": "test",
+        "size": 155,
+        "output": true,
+        "id": "32"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 87,
+        "output": true,
+        "id": "32"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (test)",
+        "fileName": "test.strelka.variants.vcf.gz",
+        "tag": "test",
+        "size": 2183,
+        "output": false,
+        "id": "31"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (test)",
+        "fileName": "genome.bed",
+        "tag": "test",
+        "size": 22,
+        "output": false,
+        "id": "31"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 85,
+        "output": true,
+        "id": "31"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (test)",
+        "fileName": "test.strelka.variants.FILTER.summary",
+        "tag": "test",
+        "size": 172,
+        "output": true,
+        "id": "31"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (test)",
+        "fileName": "test.strelka.variants.vcf.gz",
+        "tag": "test",
+        "size": 2183,
+        "output": false,
+        "id": "30"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (test)",
+        "fileName": "genome.bed",
+        "tag": "test",
+        "size": 22,
+        "output": false,
+        "id": "30"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (test)",
+        "fileName": "test.strelka.variants.TsTv.count",
+        "tag": "test",
+        "size": 55,
+        "output": true,
+        "id": "30"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (test)",
+        "fileName": "versions.yml",
+        "tag": "test",
+        "size": 88,
+        "output": true,
+        "id": "30"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS (1)",
+        "fileName": "collated_versions.yml",
+        "tag": null,
+        "size": 1849,
+        "output": false,
+        "id": "34"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS (1)",
+        "fileName": "software_versions_mqc.yml",
+        "tag": "null",
+        "size": 4421,
+        "output": true,
+        "id": "34"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS (1)",
+        "fileName": "versions.yml",
+        "tag": "null",
+        "size": 79,
+        "output": true,
+        "id": "34"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS (1)",
+        "fileName": "software_versions.yml",
+        "tag": "null",
+        "size": 878,
+        "output": true,
+        "id": "34"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "1/methods_description_mqc.yaml",
+        "tag": null,
+        "size": 4056,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "2/workflow_summary_mqc.yaml",
+        "tag": null,
+        "size": 3622,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "3/test-test_L1_test_1_fastqc.zip",
+        "tag": null,
+        "size": 333966,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "4/test-test_L1_test_2_fastqc.zip",
+        "tag": null,
+        "size": 308678,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "5/test.md.cram.metrics",
+        "tag": null,
+        "size": 1821,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "6/test.md.mosdepth.global.dist.txt",
+        "tag": null,
+        "size": 5840,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "7/test.md.mosdepth.region.dist.txt",
+        "tag": null,
+        "size": 1996,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "8/test.md.cram.stats",
+        "tag": null,
+        "size": 182809,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "9/test.recal.table",
+        "tag": null,
+        "size": 160277,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "10/test.recal.cram.stats",
+        "tag": null,
+        "size": 173721,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "11/test.recal.mosdepth.global.dist.txt",
+        "tag": null,
+        "size": 5840,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "12/test.recal.mosdepth.region.dist.txt",
+        "tag": null,
+        "size": 1996,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "13/test.strelka.variants.bcftools_stats.txt",
+        "tag": null,
+        "size": 2842,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "14/test.strelka.variants.FILTER.summary",
+        "tag": null,
+        "size": 172,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "15/test.strelka.variants.TsTv.qual",
+        "tag": null,
+        "size": 155,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "16/test.strelka.variants.TsTv.count",
+        "tag": null,
+        "size": 55,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "17/software_versions_mqc.yml",
+        "tag": null,
+        "size": 4421,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "multiqc_config.yml",
+        "tag": null,
+        "size": 1761,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-cumcoverage-dist-id_1.txt",
+        "tag": "null",
+        "size": 1025,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "picard_histogram_1.txt",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "multiqc_picard_dups.txt",
+        "tag": "null",
+        "size": 285,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_SNP.txt",
+        "tag": "null",
+        "size": 63,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_base_n_content_plot_1.txt",
+        "tag": "null",
+        "size": 853,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_sequence_quality_scores_plot_1.txt",
+        "tag": "null",
+        "size": 144,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "vcftools_tstv_by_qual.txt",
+        "tag": "null",
+        "size": 39,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "multiqc_data.json",
+        "tag": "null",
+        "size": 675356,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_Transversions.txt",
+        "tag": "null",
+        "size": 63,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_vcftools_tstv_by_qual_1.txt",
+        "tag": "null",
+        "size": 39,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "multiqc_sources.txt",
+        "tag": "null",
+        "size": 1410,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "vcftools_tstv_by_count.txt",
+        "tag": "null",
+        "size": 50,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-coverage-per-contig_1.txt",
+        "tag": "null",
+        "size": 42,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_base_sequence_quality_plot_1.txt",
+        "tag": "null",
+        "size": 2537,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "multiqc_bcftools_stats.txt",
+        "tag": "null",
+        "size": 627,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_gatk-base-recalibrator-quality-scores-plot_Pre-recalibration_Percent.txt",
+        "tag": "null",
+        "size": 703,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "picard_histogram_2.txt",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_duplication_levels_plot_1.txt",
+        "tag": "null",
+        "size": 243,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "multiqc_citations.txt",
+        "tag": "null",
+        "size": 542,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_gatk-base-recalibrator-quality-scores-plot_Pre-recalibration_Count.txt",
+        "tag": "null",
+        "size": 493,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mosdepth_cumcov_dist.txt",
+        "tag": "null",
+        "size": 726,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_samtools_alignment_plot_1.txt",
+        "tag": "null",
+        "size": 84,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_picard_deduplication_1.txt",
+        "tag": "null",
+        "size": 99,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_Transitions.txt",
+        "tag": "null",
+        "size": 63,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "picard_histogram.txt",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "multiqc_general_stats.txt",
+        "tag": "null",
+        "size": 2110,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_length_distribution_plot_1.txt",
+        "tag": "null",
+        "size": 382,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mosdepth_cov_dist.txt",
+        "tag": "null",
+        "size": 726,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-coverage-dist-id_1.txt",
+        "tag": "null",
+        "size": 875,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "multiqc_samtools_stats.txt",
+        "tag": "null",
+        "size": 1792,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_vcftools_tstv_by_count_1.txt",
+        "tag": "null",
+        "size": 56,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1.txt",
+        "tag": "null",
+        "size": 108,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "multiqc_fastqc.txt",
+        "tag": "null",
+        "size": 808,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_depth_1.txt",
+        "tag": "null",
+        "size": 29,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "gatk_base_recalibrator.txt",
+        "tag": "null",
+        "size": 11,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Percentages.txt",
+        "tag": "null",
+        "size": 4039,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mosdepth_perchrom.txt",
+        "tag": "null",
+        "size": 42,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_Indels.txt",
+        "tag": "null",
+        "size": 63,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Counts.txt",
+        "tag": "null",
+        "size": 1748,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_indel-lengths_1.txt",
+        "tag": "null",
+        "size": 91,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test-test_L1_test_1_fastqc.zip",
+        "tag": "null",
+        "size": 333966,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test.recal.table",
+        "tag": "null",
+        "size": 160277,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test-test_L1_test_2_fastqc.zip",
+        "tag": "null",
+        "size": 308678,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "multiqc_report.html",
+        "tag": "null",
+        "size": 1257472,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test.md.cram.stats",
+        "tag": "null",
+        "size": 182809,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test.strelka.variants.TsTv.count",
+        "tag": "null",
+        "size": 55,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test.md.mosdepth.region.dist.txt",
+        "tag": "null",
+        "size": 1996,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "versions.yml",
+        "tag": "null",
+        "size": 48,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test.recal.mosdepth.region.dist.txt",
+        "tag": "null",
+        "size": 1996,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test.strelka.variants.FILTER.summary",
+        "tag": "null",
+        "size": 172,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_depth_1.pdf",
+        "tag": "null",
+        "size": 12838,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_samtools_alignment_plot_1.pdf",
+        "tag": "null",
+        "size": 12220,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-coverage-dist-id_1.pdf",
+        "tag": "null",
+        "size": 15351,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_vcftools_tstv_by_count_1.pdf",
+        "tag": "null",
+        "size": 11654,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1_pc.pdf",
+        "tag": "null",
+        "size": 14648,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_Transitions.pdf",
+        "tag": "null",
+        "size": 11799,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Percentages.pdf",
+        "tag": "null",
+        "size": 14970,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_picard_deduplication_1.pdf",
+        "tag": "null",
+        "size": 12518,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_gatk-base-recalibrator-quality-scores-plot_Pre-recalibration_Percent.pdf",
+        "tag": "null",
+        "size": 13618,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_SNP.pdf",
+        "tag": "null",
+        "size": 11799,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-coverage-per-contig_1.pdf",
+        "tag": "null",
+        "size": 12181,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_Indels.pdf",
+        "tag": "null",
+        "size": 11898,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Counts.pdf",
+        "tag": "null",
+        "size": 14825,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_sequence_quality_scores_plot_1.pdf",
+        "tag": "null",
+        "size": 13191,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1.pdf",
+        "tag": "null",
+        "size": 13363,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_vcftools_tstv_by_qual_1.pdf",
+        "tag": "null",
+        "size": 13327,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_duplication_levels_plot_1.pdf",
+        "tag": "null",
+        "size": 16082,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_picard_deduplication_1_pc.pdf",
+        "tag": "null",
+        "size": 13151,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-coverage-per-contig_1_pc.pdf",
+        "tag": "null",
+        "size": 12674,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_base_sequence_quality_plot_1.pdf",
+        "tag": "null",
+        "size": 14939,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_Transversions.pdf",
+        "tag": "null",
+        "size": 11799,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_samtools_alignment_plot_1_pc.pdf",
+        "tag": "null",
+        "size": 12855,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_base_n_content_plot_1.pdf",
+        "tag": "null",
+        "size": 15033,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_length_distribution_plot_1.pdf",
+        "tag": "null",
+        "size": 14545,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-cumcoverage-dist-id_1.pdf",
+        "tag": "null",
+        "size": 15481,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_indel-lengths_1.pdf",
+        "tag": "null",
+        "size": 13828,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_gatk-base-recalibrator-quality-scores-plot_Pre-recalibration_Count.pdf",
+        "tag": "null",
+        "size": 13881,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_vcftools_tstv_by_count_1.png",
+        "tag": "null",
+        "size": 15754,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_gatk-base-recalibrator-quality-scores-plot_Pre-recalibration_Percent.png",
+        "tag": "null",
+        "size": 21030,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_Indels.png",
+        "tag": "null",
+        "size": 22671,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Percentages.png",
+        "tag": "null",
+        "size": 44141,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-cumcoverage-dist-id_1.png",
+        "tag": "null",
+        "size": 31049,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_indel-lengths_1.png",
+        "tag": "null",
+        "size": 19475,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-coverage-dist-id_1.png",
+        "tag": "null",
+        "size": 27129,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_picard_deduplication_1_pc.png",
+        "tag": "null",
+        "size": 9771,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1.png",
+        "tag": "null",
+        "size": 10466,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_base_sequence_quality_plot_1.png",
+        "tag": "null",
+        "size": 19925,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_duplication_levels_plot_1.png",
+        "tag": "null",
+        "size": 23304,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_sequence_quality_scores_plot_1.png",
+        "tag": "null",
+        "size": 33550,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Counts.png",
+        "tag": "null",
+        "size": 44815,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1_pc.png",
+        "tag": "null",
+        "size": 10869,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_Transitions.png",
+        "tag": "null",
+        "size": 15293,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-coverage-per-contig_1_pc.png",
+        "tag": "null",
+        "size": 10629,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-coverage-per-contig_1.png",
+        "tag": "null",
+        "size": 9991,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_base_n_content_plot_1.png",
+        "tag": "null",
+        "size": 15588,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_samtools_alignment_plot_1_pc.png",
+        "tag": "null",
+        "size": 9846,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_vcftools_tstv_by_qual_1.png",
+        "tag": "null",
+        "size": 15620,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_length_distribution_plot_1.png",
+        "tag": "null",
+        "size": 28323,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_gatk-base-recalibrator-quality-scores-plot_Pre-recalibration_Count.png",
+        "tag": "null",
+        "size": 21847,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_Transversions.png",
+        "tag": "null",
+        "size": 15293,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_depth_1.png",
+        "tag": "null",
+        "size": 15039,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_picard_deduplication_1.png",
+        "tag": "null",
+        "size": 9364,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_samtools_alignment_plot_1.png",
+        "tag": "null",
+        "size": 9437,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_SNP.png",
+        "tag": "null",
+        "size": 15293,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_vcftools_tstv_by_qual_1.svg",
+        "tag": "null",
+        "size": 25628,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_indel-lengths_1.svg",
+        "tag": "null",
+        "size": 26801,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_base_n_content_plot_1.svg",
+        "tag": "null",
+        "size": 30836,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_picard_deduplication_1_pc.svg",
+        "tag": "null",
+        "size": 25160,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_depth_1.svg",
+        "tag": "null",
+        "size": 22449,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_picard_deduplication_1.svg",
+        "tag": "null",
+        "size": 24731,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_vcftools_tstv_by_count_1.svg",
+        "tag": "null",
+        "size": 23572,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-cumcoverage-dist-id_1.svg",
+        "tag": "null",
+        "size": 33518,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_gatk-base-recalibrator-quality-scores-plot_Pre-recalibration_Percent.svg",
+        "tag": "null",
+        "size": 25752,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-coverage-per-contig_1.svg",
+        "tag": "null",
+        "size": 21084,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-coverage-per-contig_1_pc.svg",
+        "tag": "null",
+        "size": 22608,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_base_sequence_quality_plot_1.svg",
+        "tag": "null",
+        "size": 29938,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1.svg",
+        "tag": "null",
+        "size": 25781,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_samtools_alignment_plot_1_pc.svg",
+        "tag": "null",
+        "size": 23836,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_Indels.svg",
+        "tag": "null",
+        "size": 23339,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Percentages.svg",
+        "tag": "null",
+        "size": 30409,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_sequence_quality_scores_plot_1.svg",
+        "tag": "null",
+        "size": 29718,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_samtools_alignment_plot_1.svg",
+        "tag": "null",
+        "size": 23411,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_Transitions.svg",
+        "tag": "null",
+        "size": 22176,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_mosdepth-coverage-dist-id_1.svg",
+        "tag": "null",
+        "size": 31772,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_gatk-base-recalibrator-quality-scores-plot_Pre-recalibration_Count.svg",
+        "tag": "null",
+        "size": 26556,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_length_distribution_plot_1.svg",
+        "tag": "null",
+        "size": 29915,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_duplication_levels_plot_1.svg",
+        "tag": "null",
+        "size": 34403,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1_pc.svg",
+        "tag": "null",
+        "size": 27275,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Counts.svg",
+        "tag": "null",
+        "size": 30744,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_Transversions.svg",
+        "tag": "null",
+        "size": 22176,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "mqc_bcftools_stats_vqc_Count_SNP.svg",
+        "tag": "null",
+        "size": 22176,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test.strelka.variants.TsTv.qual",
+        "tag": "null",
+        "size": 155,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test.recal.cram.stats",
+        "tag": "null",
+        "size": 173721,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test.recal.mosdepth.global.dist.txt",
+        "tag": "null",
+        "size": 5840,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "methods_description_mqc.yaml",
+        "tag": "null",
+        "size": 4056,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test.md.mosdepth.global.dist.txt",
+        "tag": "null",
+        "size": 5840,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "workflow_summary_mqc.yaml",
+        "tag": "null",
+        "size": 3622,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "software_versions_mqc.yml",
+        "tag": "null",
+        "size": 4421,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test.md.cram.metrics",
+        "tag": "null",
+        "size": 1821,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "NFCORE_SAREK:SAREK:MULTIQC",
+        "fileName": "test.strelka.variants.bcftools_stats.txt",
+        "tag": "null",
+        "size": 2842,
+        "output": true,
+        "id": "35"
+    }
+]

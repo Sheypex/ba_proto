@@ -1,9 +1,10 @@
 import itertools
 import json
+import logging
 import pathlib
 import re
 from dataclasses import dataclass, fields
-from typing import List, Dict
+from typing import List, Dict, Union
 
 import rich
 import wfcommons
@@ -53,7 +54,16 @@ class FileContent:
 
 
 def main():
-    # make_json()
+    logging.getLogger().setLevel(logging.INFO)
+    logging.info("running")
+    #
+    logging.info("generating .json format of execution trace info")
+    for wfname in ["eager", "chipseq", "methylseq", "sarek", "viralrecon"]:
+        for big in [True, False]:
+            logging.info(f"checking {wfname}{'_big' if big else ''}")
+            make_json(wfname, big)
+    logging.info("completed parsing to .json")
+    assert False
     #
     with open("methyl.json", "rb") as f:
         jsonContent = json.load(f)
@@ -208,10 +218,22 @@ def main():
     print(xmltodict.unparse(output, pretty=True))
 
 
-def make_json():
-    parser = wfcommons.wfinstances.NextflowLogsParser(execution_dir=pathlib.Path("pipeline_info"))
-    wf = parser.build_workflow("methylseq")
-    wf.write_json(pathlib.Path("methylseq.json"))
+def make_json(wfname: str, big: bool, basePath: str = "results") -> Union[str, None]:
+    # find pipeline_info dir in respective subdir of given wf in results collection -> results/{wfname}[_big]/pipeline_info
+    loc = pathlib.Path(basePath)
+    dirName = f"{wfname}{'_big' if big else ''}"
+    loc = loc.joinpath(dirName)
+    if not loc.exists():
+        logging.info(f"no results for {dirName}")
+        return None
+    loc = loc.joinpath("pipeline_info")
+    #
+    parser = wfcommons.wfinstances.NextflowLogsParser(execution_dir=loc)
+    wf = parser.build_workflow(wfname)
+    jsonLoc = loc.parent.joinpath(f"{wfname}.json")
+    wf.write_json(jsonLoc)  # save to results/{wfname}[_big]/{wfname}.json
+    logging.info(f"wrote .json to {jsonLoc.as_posix()}")
+    return dirName
 
 
 if __name__ == '__main__':

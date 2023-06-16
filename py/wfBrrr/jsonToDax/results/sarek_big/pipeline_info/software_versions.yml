@@ -1,0 +1,133 @@
+ASCAT:
+  alleleCounter: 4.3.0
+  ascat: 3.0.0
+ASSESS_SIGNIFICANCE:
+  controlfreec: '11.6'
+BCFTOOLS_SORT:
+  bcftools: '1.16'
+BCFTOOLS_STATS:
+  bcftools: '1.16'
+BWAMEM1_MEM:
+  bwa: 0.7.17-r1188
+  samtools: 1.16.1
+CALCULATECONTAMINATION:
+  gatk4: 4.3.0.0
+CAT_MPILEUP:
+  pigz: 2.3.4
+CNVKIT_ANTITARGET:
+  cnvkit: 0.9.9
+CNVKIT_BATCH:
+  cnvkit: 0.9.9
+  samtools: 1.16.1
+CNVKIT_REFERENCE:
+  cnvkit: 0.9.9
+CREATE_INTERVALS_BED:
+  gawk: 5.1.0
+CUSTOM_DUMPSOFTWAREVERSIONS:
+  python: 3.10.6
+  yaml: '6.0'
+ENSEMBLVEP:
+  ensemblvep: '106.1'
+FASTP:
+  fastp: 0.23.2
+FASTQC:
+  fastqc: 0.11.9
+FILTERMUTECTCALLS:
+  gatk4: 4.3.0.0
+FREEBAYES:
+  freebayes: 1.3.6
+FREEC2BED:
+  controlfreec: '11.6'
+FREEC2CIRCOS:
+  controlfreec: '11.6'
+FREEC_SOMATIC:
+  controlfreec: '11.6'
+GATHERPILEUPSUMMARIES_NORMAL:
+  gatk4: 4.3.0.0
+GATHERPILEUPSUMMARIES_TUMOR:
+  gatk4: 4.3.0.0
+GATK4_APPLYBQSR:
+  gatk4: 4.3.0.0
+GATK4_BASERECALIBRATOR:
+  gatk4: 4.3.0.0
+GATK4_GATHERBQSRREPORTS:
+  gatk4: 4.3.0.0
+GATK4_MARKDUPLICATES:
+  gatk4: 4.3.0.0
+  samtools: 1.16.1
+GETPILEUPSUMMARIES_NORMAL:
+  gatk4: 4.3.0.0
+GETPILEUPSUMMARIES_TUMOR:
+  gatk4: 4.3.0.0
+INDEX_CRAM:
+  samtools: 1.16.1
+INDEX_MARKDUPLICATES:
+  samtools: 1.16.1
+LEARNREADORIENTATIONMODEL:
+  gatk4: 4.3.0.0
+MAKEGRAPH:
+  controlfreec: '11.6'
+MANTA_GERMLINE:
+  manta: 1.6.0
+MANTA_SOMATIC:
+  manta: 1.6.0
+MERGEMUTECTSTATS:
+  gatk4: 4.3.0.0
+MERGE_CRAM:
+  samtools: 1.16.1
+MERGE_FREEBAYES:
+  gatk4: 4.3.0.0
+MERGE_MANTA_DIPLOID:
+  gatk4: 4.3.0.0
+MERGE_MANTA_SMALL_INDELS:
+  gatk4: 4.3.0.0
+MERGE_MANTA_SOMATIC:
+  gatk4: 4.3.0.0
+MERGE_MANTA_SV:
+  gatk4: 4.3.0.0
+MERGE_MUTECT2:
+  gatk4: 4.3.0.0
+MERGE_STRELKA:
+  gatk4: 4.3.0.0
+MERGE_STRELKA_GENOME:
+  gatk4: 4.3.0.0
+MERGE_STRELKA_INDELS:
+  gatk4: 4.3.0.0
+MERGE_STRELKA_SNVS:
+  gatk4: 4.3.0.0
+MOSDEPTH:
+  mosdepth: 0.3.3
+MUTECT2_PAIRED:
+  gatk4: 4.3.0.0
+SAMTOOLS_MPILEUP:
+  samtools: 1.16.1
+SAMTOOLS_STATS:
+  samtools: 1.16.1
+STRELKA_SINGLE:
+  strelka: 2.9.10
+STRELKA_SOMATIC:
+  strelka: 2.9.10
+SVDB_MERGE:
+  samtools: 1.15.1
+  svdb: 2.6.1
+TABIX_BGZIPTABIX_INTERVAL_SPLIT:
+  tabix: '1.12'
+TABIX_BGZIP_TIDDIT_SV:
+  tabix: '1.12'
+TABIX_DBSNP:
+  tabix: '1.12'
+TIDDIT_SV:
+  tiddit: 3.3.2
+UNZIP_ALLELES:
+  7za: 15.09 beta
+UNZIP_GC:
+  7za: 15.09 beta
+UNZIP_LOCI:
+  7za: 15.09 beta
+UNZIP_RT:
+  7za: 15.09 beta
+VCFTOOLS_TSTV_COUNT:
+  vcftools: 0.1.16
+Workflow:
+  Nextflow: 22.10.8
+  nf-core/sarek: 3.1.2
