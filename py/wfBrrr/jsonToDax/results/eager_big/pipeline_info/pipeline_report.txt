@@ -1,0 +1,52 @@
+----------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~\
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/eager v2.4.6
+----------------------------------------------------
+
+Run Name: voluminous_darwin
+
+## nf-core/eager execution completed successfully! ##
+
+
+The workflow was completed at 2023-06-16T23:59:46.099719Z (duration: 4h 18m 39s)
+
+The command used to launch the workflow was as follows:
+
+  nextflow -log eager.log run nf-core/eager -profile test_full,docker -w work_eager --outdir done_eager -with-trace -with-report -with-dag eager.dax
+
+
+
+Pipeline Configuration:
+-----------------------
+ - Pipeline Release: master
+ - Run Name: voluminous_darwin
+ - Input: https://raw.githubusercontent.com/nf-core/test-datasets/eager/testdata/Benchmarking/benchmarking_vikingfish.tsv
+ - Fasta Ref: https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_other/Gadus_morhua/representative/GCF_902167405.1_gadMor3.0/GCF_902167405.1_gadMor3.0_genomic.fna.gz
+ - Max Resources: 128 GB memory, 16 cpus, 10d time per job
+ - Container: docker - nfcore/eager:2.4.6
+ - Output dir: done_eager
+ - Launch dir: /data/nf
+ - Working dir: /data/nf/work_eager
+ - Script dir: /root/.nextflow/assets/nf-core/eager
+ - User: root
+ - Config Profile: test_full,docker
+ - Config Profile Description: Full test dataset to check nf-core/eager function
+ - Config Files: /root/.nextflow/assets/nf-core/eager/nextflow.config, /data/nf/nextflow.config
+ - Date Started: 2023-06-16T19:41:06.916381Z
+ - Date Completed: 2023-06-16T23:59:46.099719Z
+ - Pipeline script file path: /root/.nextflow/assets/nf-core/eager/main.nf
+ - Pipeline script hash ID: 9468fc0cc9c5c58adcaf963a03e35970
+ - Pipeline repository Git URL: https://github.com/nf-core/eager
+ - Pipeline repository Git Commit: bb32ae3b0110b9a26b791f73a5324828d849271a
+ - Pipeline Git branch/tag: master
+ - Nextflow Version: 22.10.8
+ - Nextflow Build: 5862
+ - Nextflow Compile Timestamp: 02-06-2023 11:37 UTC
+
+--
+nf-core/eager
+https://github.com/nf-core/eager

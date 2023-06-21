@@ -1,0 +1,52 @@
+----------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~\
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/eager v2.4.6
+----------------------------------------------------
+
+Run Name: cheeky_darwin
+
+## nf-core/eager execution completed successfully! ##
+
+
+The workflow was completed at 2023-06-16T19:40:59.904637Z (duration: 1m 15s)
+
+The command used to launch the workflow was as follows:
+
+  nextflow -log eager.log run nf-core/eager -profile test,docker -w work_eager --outdir done_eager -with-trace -with-report -with-dag eager.dax
+
+
+
+Pipeline Configuration:
+-----------------------
+ - Pipeline Release: master
+ - Run Name: cheeky_darwin
+ - Input: https://raw.githubusercontent.com/nf-core/test-datasets/eager/testdata/Mammoth/mammoth_design_fastq.tsv
+ - Fasta Ref: https://raw.githubusercontent.com/nf-core/test-datasets/eager/reference/Mammoth/Mammoth_MT_Krause.fasta
+ - Max Resources: 6 GB memory, 2 cpus, 2d time per job
+ - Container: docker - nfcore/eager:2.4.6
+ - Output dir: done_eager
+ - Launch dir: /data/nf
+ - Working dir: /data/nf/work_eager
+ - Script dir: /root/.nextflow/assets/nf-core/eager
+ - User: root
+ - Config Profile: test,docker
+ - Config Profile Description: Minimal test dataset to check pipeline function
+ - Config Files: /root/.nextflow/assets/nf-core/eager/nextflow.config, /data/nf/nextflow.config
+ - Date Started: 2023-06-16T19:39:44.998252Z
+ - Date Completed: 2023-06-16T19:40:59.904637Z
+ - Pipeline script file path: /root/.nextflow/assets/nf-core/eager/main.nf
+ - Pipeline script hash ID: 9468fc0cc9c5c58adcaf963a03e35970
+ - Pipeline repository Git URL: https://github.com/nf-core/eager
+ - Pipeline repository Git Commit: bb32ae3b0110b9a26b791f73a5324828d849271a
+ - Pipeline Git branch/tag: master
+ - Nextflow Version: 22.10.8
+ - Nextflow Build: 5862
+ - Nextflow Compile Timestamp: 02-06-2023 11:37 UTC
+
+--
+nf-core/eager
+https://github.com/nf-core/eager

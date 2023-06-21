@@ -1,7 +1,7 @@
 {
     "name": "sarek",
     "description": "Instance generated with WfCommons - https://wfcommons.org",
-    "createdAt": "2023-06-16T12:38:32.482283",
+    "createdAt": "2023-06-21T10:42:35.311165",
     "schemaVersion": "1.4",
     "author": {
         "name": "alex",
@@ -13,11 +13,11 @@
         "url": "https://www.nextflow.io"
     },
     "workflow": {
-        "executedAt": "20230616T143832+0200",
+        "executedAt": "20230621T124235+0200",
         "makespan": 23227,
         "tasks": [
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_DBSNP",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_DBSNP (dbsnp_146.hg38.vcf)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_genome:tabix_dbsnp",
@@ -45,7 +45,7 @@
                 },
                 "parents": [],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_RT"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_RT (RT_G1000_hg38.zip)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 94.959,
@@ -58,7 +58,7 @@
                 "memoryInBytes": 20060
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_RT",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_RT (RT_G1000_hg38.zip)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_genome:unzip_rt",
@@ -86,10 +86,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_DBSNP"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:TABIX_DBSNP (dbsnp_146.hg38.vcf)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_ALLELES"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_ALLELES (G1000_alleles_hg38.zip)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 5.252,
@@ -102,7 +102,7 @@
                 "memoryInBytes": 9536
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_ALLELES",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_ALLELES (G1000_alleles_hg38.zip)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_genome:unzip_alleles",
@@ -130,10 +130,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_RT"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_RT (RT_G1000_hg38.zip)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_LOCI"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_LOCI (G1000_loci_hg38.zip)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2.639,
@@ -146,7 +146,7 @@
                 "memoryInBytes": 9772
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_LOCI",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_LOCI (G1000_loci_hg38.zip)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_genome:unzip_loci",
@@ -174,10 +174,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_ALLELES"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_ALLELES (G1000_alleles_hg38.zip)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_GC"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_GC (GC_G1000_hg38.zip)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2.662,
@@ -190,7 +190,7 @@
                 "memoryInBytes": 9452
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_GC",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_GC (GC_G1000_hg38.zip)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_genome:unzip_gc",
@@ -218,10 +218,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_LOCI"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_LOCI (G1000_loci_hg38.zip)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_ANTITARGET"
+                    "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_ANTITARGET (sarek)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 5.169,
@@ -234,7 +234,7 @@
                 "memoryInBytes": 9528
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_ANTITARGET",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_ANTITARGET (sarek)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_reference_cnvkit:cnvkit_antitarget",
@@ -261,10 +261,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_GC"
+                    "NFCORE_SAREK:SAREK:PREPARE_GENOME:UNZIP_GC (GC_G1000_hg38.zip)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:CREATE_INTERVALS_BED"
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:CREATE_INTERVALS_BED (S07604624_Padded_Agilent_SureSelectXT_allexons_V6_UTR.bed)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 6.929,
@@ -277,7 +277,7 @@
                 "memoryInBytes": 335848
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:CREATE_INTERVALS_BED",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:CREATE_INTERVALS_BED (S07604624_Padded_Agilent_SureSelectXT_allexons_V6_UTR.bed)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_intervals:create_intervals_bed",
@@ -383,10 +383,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_ANTITARGET"
+                    "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_ANTITARGET (sarek)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_REFERENCE"
+                    "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_REFERENCE (Homo_sapiens_assembly38.fasta)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2.271,
@@ -399,7 +399,7 @@
                 "memoryInBytes": 3756
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_REFERENCE",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_REFERENCE (Homo_sapiens_assembly38.fasta)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_reference_cnvkit:cnvkit_reference",
@@ -431,10 +431,12 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:CREATE_INTERVALS_BED"
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:CREATE_INTERVALS_BED (S07604624_Padded_Agilent_SureSelectXT_allexons_V6_UTR.bed)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT"
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr17_38877931-38878296)",
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr7_103100352-103101145)",
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr1_11981-12351)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 70.912,
@@ -447,7 +449,109 @@
                 "memoryInBytes": 352448
             },
             {
-                "name": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT",
+                "name": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr17_38877931-38878296)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:prepare_intervals:tabix_bgziptabix_interval_split",
+                    "arguments": [
+                        "bgzip",
+                        "--threads",
+                        "1",
+                        "-c",
+                        "chr17_38877931-38878296.bed",
+                        ">",
+                        "chr17_38877931-38878296.bed.gz",
+                        "tabix",
+                        "chr17_38877931-38878296.bed.gz",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT\":",
+                        "tabix:",
+                        "$(echo",
+                        "$(tabix",
+                        "-h",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*Version:",
+                        "//",
+                        "s/",
+                        ".*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_REFERENCE (Homo_sapiens_assembly38.fasta)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:FASTQC (HCC1395N-1)",
+                    "NFCORE_SAREK:SAREK:FASTQC (HCC1395T-1)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 1.407,
+                "cores": 1.0,
+                "id": "25",
+                "category": "nfcore_sarek:sarek:prepare_intervals:tabix_bgziptabix_interval_split",
+                "avgCPU": 76.0,
+                "readBytes": 13257,
+                "writtenBytes": 2161,
+                "memoryInBytes": 5752
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr7_103100352-103101145)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:prepare_intervals:tabix_bgziptabix_interval_split",
+                    "arguments": [
+                        "bgzip",
+                        "--threads",
+                        "1",
+                        "-c",
+                        "chr7_103100352-103101145.bed",
+                        ">",
+                        "chr7_103100352-103101145.bed.gz",
+                        "tabix",
+                        "chr7_103100352-103101145.bed.gz",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT\":",
+                        "tabix:",
+                        "$(echo",
+                        "$(tabix",
+                        "-h",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*Version:",
+                        "//",
+                        "s/",
+                        ".*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_REFERENCE (Homo_sapiens_assembly38.fasta)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:FASTQC (HCC1395N-1)",
+                    "NFCORE_SAREK:SAREK:FASTQC (HCC1395T-1)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 1.591,
+                "cores": 1.0,
+                "id": "23",
+                "category": "nfcore_sarek:sarek:prepare_intervals:tabix_bgziptabix_interval_split",
+                "avgCPU": 83.0,
+                "readBytes": 27183,
+                "writtenBytes": 4294,
+                "memoryInBytes": 5892
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr1_11981-12351)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:prepare_intervals:tabix_bgziptabix_interval_split",
@@ -481,10 +585,11 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_REFERENCE"
+                    "NFCORE_SAREK:SAREK:PREPARE_REFERENCE_CNVKIT:CNVKIT_REFERENCE (Homo_sapiens_assembly38.fasta)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:FASTQC"
+                    "NFCORE_SAREK:SAREK:FASTQC (HCC1395N-1)",
+                    "NFCORE_SAREK:SAREK:FASTQC (HCC1395T-1)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1.492,
@@ -497,7 +602,157 @@
                 "memoryInBytes": 5864
             },
             {
-                "name": "NFCORE_SAREK:SAREK:FASTQC",
+                "name": "NFCORE_SAREK:SAREK:FASTQC (HCC1395N-1)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:fastqc",
+                    "arguments": [
+                        "printf",
+                        "\"%sn\"",
+                        "SRR7890919_WES_HCC1395BL-EA_normal_1.fastq.gz",
+                        "SRR7890919_WES_HCC1395BL-EA_normal_2.fastq.gz",
+                        "|",
+                        "while",
+                        "read",
+                        "f",
+                        "do",
+                        "[[",
+                        "$f",
+                        "=~",
+                        "^HCC1395N-1.*",
+                        "]]",
+                        "||",
+                        "ln",
+                        "-s",
+                        "$f",
+                        "HCC1395N-1_$f",
+                        "done",
+                        "fastqc",
+                        "--quiet",
+                        "--threads",
+                        "4",
+                        "HCC1395N-1*",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:FASTQC\":",
+                        "fastqc:",
+                        "$(",
+                        "fastqc",
+                        "--version",
+                        "|",
+                        "sed",
+                        "-e",
+                        "\"s/FastQC",
+                        "v//g\"",
+                        ")",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr17_38877931-38878296)",
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr7_103100352-103101145)",
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr1_11981-12351)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:FASTP (HCC1395N-1)",
+                    "NFCORE_SAREK:SAREK:FASTP (HCC1395T-1)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 620.532,
+                "cores": 4.0,
+                "id": "19",
+                "category": "nfcore_sarek:sarek:fastqc",
+                "avgCPU": 198.0,
+                "readBytes": 13126052,
+                "writtenBytes": 8898,
+                "memoryInBytes": 746388
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:FASTP (HCC1395N-1)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:fastp",
+                    "arguments": [
+                        "[",
+                        "!",
+                        "-f",
+                        "HCC1395N-1_1.fastq.gz",
+                        "]",
+                        "&&",
+                        "ln",
+                        "-sf",
+                        "SRR7890919_WES_HCC1395BL-EA_normal_1.fastq.gz",
+                        "HCC1395N-1_1.fastq.gz",
+                        "[",
+                        "!",
+                        "-f",
+                        "HCC1395N-1_2.fastq.gz",
+                        "]",
+                        "&&",
+                        "ln",
+                        "-sf",
+                        "SRR7890919_WES_HCC1395BL-EA_normal_2.fastq.gz",
+                        "HCC1395N-1_2.fastq.gz",
+                        "fastp",
+                        "--in1",
+                        "HCC1395N-1_1.fastq.gz",
+                        "--in2",
+                        "HCC1395N-1_2.fastq.gz",
+                        "--out1",
+                        "HCC1395N-1_1.fastp.fastq.gz",
+                        "--out2",
+                        "HCC1395N-1_2.fastp.fastq.gz",
+                        "--json",
+                        "HCC1395N-1.fastp.json",
+                        "--html",
+                        "HCC1395N-1.fastp.html",
+                        "--thread",
+                        "12",
+                        "--detect_adapter_for_pe",
+                        "--disable_adapter_trimming",
+                        "--split_by_lines",
+                        "80000000",
+                        "2>",
+                        "HCC1395N-1.fastp.log",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:FASTP\":",
+                        "fastp:",
+                        "$(fastp",
+                        "--version",
+                        "2>&1",
+                        "|",
+                        "sed",
+                        "-e",
+                        "\"s/fastp",
+                        "//g\")",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:FASTQC (HCC1395N-1)",
+                    "NFCORE_SAREK:SAREK:FASTQC (HCC1395T-1)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (HCC1395N-1)",
+                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (HCC1395T-1)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 226.824,
+                "cores": 12.0,
+                "id": "18",
+                "category": "nfcore_sarek:sarek:fastp",
+                "avgCPU": 1106.6,
+                "readBytes": 13120496,
+                "writtenBytes": 25698030,
+                "memoryInBytes": 2015976
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:FASTQC (HCC1395T-1)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:fastqc",
@@ -546,10 +801,13 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT"
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr17_38877931-38878296)",
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr7_103100352-103101145)",
+                    "NFCORE_SAREK:SAREK:PREPARE_INTERVALS:TABIX_BGZIPTABIX_INTERVAL_SPLIT (chr1_11981-12351)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:FASTP"
+                    "NFCORE_SAREK:SAREK:FASTP (HCC1395N-1)",
+                    "NFCORE_SAREK:SAREK:FASTP (HCC1395T-1)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 728.408,
@@ -562,7 +820,7 @@
                 "memoryInBytes": 747308
             },
             {
-                "name": "NFCORE_SAREK:SAREK:FASTP",
+                "name": "NFCORE_SAREK:SAREK:FASTP (HCC1395T-1)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:fastp",
@@ -626,10 +884,12 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:FASTQC"
+                    "NFCORE_SAREK:SAREK:FASTQC (HCC1395N-1)",
+                    "NFCORE_SAREK:SAREK:FASTQC (HCC1395T-1)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM"
+                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (HCC1395N-1)",
+                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (HCC1395T-1)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 261.839,
@@ -642,7 +902,86 @@
                 "memoryInBytes": 2023260
             },
             {
-                "name": "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM",
+                "name": "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (HCC1395N-1)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:fastq_align_bwamem_mem2_dragmap:bwamem1_mem",
+                    "arguments": [
+                        "INDEX=`find",
+                        "-L",
+                        "./",
+                        "-name",
+                        "\"*.amb\"",
+                        "|",
+                        "sed",
+                        "s/.amb//`",
+                        "bwa",
+                        "mem",
+                        "-K",
+                        "100000000",
+                        "-Y",
+                        "-R",
+                        "\"@RGtID:null.HCC1395N.1tPU:1tSM:HCC1395_HCC1395NtLB:HCC1395NtDS:GATK/Sequence/WholeGenomeFasta/Homo_sapiens_assembly38.fastatPL:ILLUMINA\"",
+                        "-t",
+                        "16",
+                        "$INDEX",
+                        "0002.HCC1395N-1_1.fastp.fastq.gz",
+                        "0002.HCC1395N-1_2.fastp.fastq.gz",
+                        "|",
+                        "samtools",
+                        "sort",
+                        "--threads",
+                        "16",
+                        "-o",
+                        "HCC1395N-1.0002.bam",
+                        "-",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM\":",
+                        "bwa:",
+                        "$(echo",
+                        "$(bwa",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*Version:",
+                        "//",
+                        "s/Contact:.*$//)",
+                        "samtools:",
+                        "$(echo",
+                        "$(samtools",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*samtools",
+                        "//",
+                        "s/Using.*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:FASTP (HCC1395N-1)",
+                    "NFCORE_SAREK:SAREK:FASTP (HCC1395T-1)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (HCC1395T)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 204.607,
+                "cores": 16.0,
+                "id": "30",
+                "category": "nfcore_sarek:sarek:fastq_align_bwamem_mem2_dragmap:bwamem1_mem",
+                "avgCPU": 1498.2,
+                "readBytes": 12969275,
+                "writtenBytes": 7363004,
+                "memoryInBytes": 11682312
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (HCC1395T-1)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:fastq_align_bwamem_mem2_dragmap:bwamem1_mem",
@@ -705,10 +1044,12 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:FASTP"
+                    "NFCORE_SAREK:SAREK:FASTP (HCC1395N-1)",
+                    "NFCORE_SAREK:SAREK:FASTP (HCC1395T-1)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (HCC1395T)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 221.181,
@@ -721,7 +1062,113 @@
                 "memoryInBytes": 12868932
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES",
+                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (HCC1395N)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:bam_markduplicates:gatk4_markduplicates",
+                    "arguments": [
+                        "gatk",
+                        "--java-options",
+                        "\"-Xmx30g\"",
+                        "MarkDuplicates",
+                        "--INPUT",
+                        "HCC1395N-1.0007.bam",
+                        "--INPUT",
+                        "HCC1395N-1.0008.bam",
+                        "--INPUT",
+                        "HCC1395N-1.0003.bam",
+                        "--INPUT",
+                        "HCC1395N-1.0009.bam",
+                        "--INPUT",
+                        "HCC1395N-1.0010.bam",
+                        "--INPUT",
+                        "HCC1395N-1.0001.bam",
+                        "--INPUT",
+                        "HCC1395N-1.0006.bam",
+                        "--INPUT",
+                        "HCC1395N-1.0011.bam",
+                        "--INPUT",
+                        "HCC1395N-1.0005.bam",
+                        "--INPUT",
+                        "HCC1395N-1.0004.bam",
+                        "--INPUT",
+                        "HCC1395N-1.0012.bam",
+                        "--INPUT",
+                        "HCC1395N-1.0002.bam",
+                        "--OUTPUT",
+                        "HCC1395N.md.cram.bam",
+                        "--METRICS_FILE",
+                        "HCC1395N.md.cram.metrics",
+                        "--TMP_DIR",
+                        ".",
+                        "--REFERENCE_SEQUENCE",
+                        "Homo_sapiens_assembly38.fasta",
+                        "-REMOVE_DUPLICATES",
+                        "false",
+                        "-VALIDATION_STRINGENCY",
+                        "LENIENT",
+                        "samtools",
+                        "view",
+                        "-Ch",
+                        "-T",
+                        "Homo_sapiens_assembly38.fasta",
+                        "-o",
+                        "HCC1395N.md.cram",
+                        "HCC1395N.md.cram.bam",
+                        "rm",
+                        "HCC1395N.md.cram.bam",
+                        "samtools",
+                        "index",
+                        "HCC1395N.md.cram",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES\":",
+                        "gatk4:",
+                        "$(echo",
+                        "$(gatk",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*(GATK)",
+                        "v//",
+                        "s/",
+                        ".*$//)",
+                        "samtools:",
+                        "$(echo",
+                        "$(samtools",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*samtools",
+                        "//",
+                        "s/Using.*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (HCC1395N-1)",
+                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (HCC1395T-1)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (HCC1395T)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 2224.762,
+                "cores": 6.0,
+                "id": "98",
+                "category": "nfcore_sarek:sarek:bam_markduplicates:gatk4_markduplicates",
+                "avgCPU": 163.8,
+                "readBytes": 51998314,
+                "writtenBytes": 39061911,
+                "memoryInBytes": 16581656
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (HCC1395T)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_markduplicates:gatk4_markduplicates",
@@ -809,10 +1256,12 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM"
+                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (HCC1395N-1)",
+                    "NFCORE_SAREK:SAREK:FASTQ_ALIGN_BWAMEM_MEM2_DRAGMAP:BWAMEM1_MEM (HCC1395T-1)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (HCC1395T)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2538.895,
@@ -825,7 +1274,217 @@
                 "memoryInBytes": 17692900
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES",
+                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (HCC1395N)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:bam_markduplicates:index_markduplicates",
+                    "arguments": [
+                        "samtools",
+                        "index",
+                        "-@",
+                        "0",
+                        "HCC1395N.md.cram",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES\":",
+                        "samtools:",
+                        "$(echo",
+                        "$(samtools",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*samtools",
+                        "//",
+                        "s/Using.*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (HCC1395T)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (HCC1395T)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 2.021,
+                "cores": 1.0,
+                "id": "100",
+                "category": "nfcore_sarek:sarek:bam_markduplicates:index_markduplicates",
+                "avgCPU": 90.1,
+                "readBytes": 4528642,
+                "writtenBytes": 627,
+                "memoryInBytes": 11312
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (HCC1395N)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:bam_markduplicates:cram_qc_mosdepth_samtools:samtools_stats",
+                    "arguments": [
+                        "samtools",
+                        "stats",
+                        "--threads",
+                        "1",
+                        "--reference",
+                        "Homo_sapiens_assembly38.fasta",
+                        "HCC1395N.md.cram",
+                        ">",
+                        "HCC1395N.md.cram.stats",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS\":",
+                        "samtools:",
+                        "$(echo",
+                        "$(samtools",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*samtools",
+                        "//",
+                        "s/Using.*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (HCC1395T)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (HCC1395T)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 636.535,
+                "cores": 1.0,
+                "id": "101",
+                "category": "nfcore_sarek:sarek:bam_markduplicates:cram_qc_mosdepth_samtools:samtools_stats",
+                "avgCPU": 98.2,
+                "readBytes": 10866302,
+                "writtenBytes": 527,
+                "memoryInBytes": 285012
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (HCC1395N)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:bam_baserecalibrator:gatk4_baserecalibrator",
+                    "arguments": [
+                        "gatk",
+                        "--java-options",
+                        "\"-Xmx4g\"",
+                        "BaseRecalibrator",
+                        "--input",
+                        "HCC1395N.md.cram",
+                        "--output",
+                        "HCC1395N_chr1_11981-12351.recal.table",
+                        "--reference",
+                        "Homo_sapiens_assembly38.fasta",
+                        "--intervals",
+                        "chr1_11981-12351.bed",
+                        "--known-sites",
+                        "dbsnp_146.hg38.vcf.gz",
+                        "--known-sites",
+                        "Mills_and_1000G_gold_standard.indels.hg38.vcf.gz",
+                        "--tmp-dir",
+                        ".",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR\":",
+                        "gatk4:",
+                        "$(echo",
+                        "$(gatk",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*(GATK)",
+                        "v//",
+                        "s/",
+                        ".*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (HCC1395T)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (HCC1395T)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 1312.968,
+                "cores": 2.0,
+                "id": "105",
+                "category": "nfcore_sarek:sarek:bam_baserecalibrator:gatk4_baserecalibrator",
+                "avgCPU": 101.4,
+                "readBytes": 7128780,
+                "writtenBytes": 2720,
+                "memoryInBytes": 3007812
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (HCC1395N)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:bam_markduplicates:cram_qc_mosdepth_samtools:mosdepth",
+                    "arguments": [
+                        "mosdepth",
+                        "--threads",
+                        "4",
+                        "--by",
+                        "S07604624_Padded_Agilent_SureSelectXT_allexons_V6_UTR.bed",
+                        "--fasta",
+                        "Homo_sapiens_assembly38.fasta",
+                        "HCC1395N.md",
+                        "HCC1395N.md.cram",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH\":",
+                        "mosdepth:",
+                        "$(mosdepth",
+                        "--version",
+                        "2>&1",
+                        "|",
+                        "sed",
+                        "s/^.*mosdepth",
+                        "//",
+                        "s/",
+                        ".*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (HCC1395T)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS (HCC1395T)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 159.569,
+                "cores": 4.0,
+                "id": "102",
+                "category": "nfcore_sarek:sarek:bam_markduplicates:cram_qc_mosdepth_samtools:mosdepth",
+                "avgCPU": 172.4,
+                "readBytes": 15756877,
+                "writtenBytes": 1145286,
+                "memoryInBytes": 2120676
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (HCC1395T)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_markduplicates:index_markduplicates",
@@ -854,10 +1513,12 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:GATK4_MARKDUPLICATES (HCC1395T)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (HCC1395T)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2.196,
@@ -870,56 +1531,7 @@
                 "memoryInBytes": 10956
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS",
-                "type": "compute",
-                "command": {
-                    "program": "nfcore_sarek:sarek:bam_markduplicates:cram_qc_mosdepth_samtools:samtools_stats",
-                    "arguments": [
-                        "samtools",
-                        "stats",
-                        "--threads",
-                        "1",
-                        "--reference",
-                        "Homo_sapiens_assembly38.fasta",
-                        "HCC1395T.md.cram",
-                        ">",
-                        "HCC1395T.md.cram.stats",
-                        "cat",
-                        "<<-END_VERSIONS",
-                        ">",
-                        "versions.yml",
-                        "\"NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS\":",
-                        "samtools:",
-                        "$(echo",
-                        "$(samtools",
-                        "--version",
-                        "2>&1)",
-                        "|",
-                        "sed",
-                        "s/^.*samtools",
-                        "//",
-                        "s/Using.*$//)",
-                        "END_VERSIONS"
-                    ]
-                },
-                "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES"
-                ],
-                "children": [
-                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR"
-                ],
-                "files": [],
-                "runtimeInSeconds": 751.413,
-                "cores": 1.0,
-                "id": "109",
-                "category": "nfcore_sarek:sarek:bam_markduplicates:cram_qc_mosdepth_samtools:samtools_stats",
-                "avgCPU": 98.2,
-                "readBytes": 11562770,
-                "writtenBytes": 527,
-                "memoryInBytes": 286764
-            },
-            {
-                "name": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR",
+                "name": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (HCC1395T)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_baserecalibrator:gatk4_baserecalibrator",
@@ -962,10 +1574,12 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (HCC1395T)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (HCC1395T)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1816.267,
@@ -978,7 +1592,58 @@
                 "memoryInBytes": 2672104
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH",
+                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS (HCC1395T)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:bam_markduplicates:cram_qc_mosdepth_samtools:samtools_stats",
+                    "arguments": [
+                        "samtools",
+                        "stats",
+                        "--threads",
+                        "1",
+                        "--reference",
+                        "Homo_sapiens_assembly38.fasta",
+                        "HCC1395T.md.cram",
+                        ">",
+                        "HCC1395T.md.cram.stats",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:SAMTOOLS_STATS\":",
+                        "samtools:",
+                        "$(echo",
+                        "$(samtools",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*samtools",
+                        "//",
+                        "s/Using.*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:INDEX_MARKDUPLICATES (HCC1395T)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (HCC1395T)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 751.413,
+                "cores": 1.0,
+                "id": "109",
+                "category": "nfcore_sarek:sarek:bam_markduplicates:cram_qc_mosdepth_samtools:samtools_stats",
+                "avgCPU": 98.2,
+                "readBytes": 11562770,
+                "writtenBytes": 527,
+                "memoryInBytes": 286764
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (HCC1395T)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_markduplicates:cram_qc_mosdepth_samtools:mosdepth",
@@ -1011,10 +1676,12 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR"
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_BASERECALIBRATOR (HCC1395T)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS"
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS (HCC1395T)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 184.573,
@@ -1027,7 +1694,123 @@
                 "memoryInBytes": 2123064
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS",
+                "name": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS (HCC1395N)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:bam_baserecalibrator:gatk4_gatherbqsrreports",
+                    "arguments": [
+                        "gatk",
+                        "--java-options",
+                        "\"-Xmx4g\"",
+                        "GatherBQSRReports",
+                        "--input",
+                        "HCC1395N_chr17_38877931-38878296.recal.table",
+                        "--input",
+                        "HCC1395N_chr1_11981-12351.recal.table",
+                        "--input",
+                        "HCC1395N_chr7_103100352-103101145.recal.table",
+                        "--output",
+                        "HCC1395N.recal.table",
+                        "--tmp-dir",
+                        ".",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS\":",
+                        "gatk4:",
+                        "$(echo",
+                        "$(gatk",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*(GATK)",
+                        "v//",
+                        "s/",
+                        ".*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (HCC1395T)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (HCC1395T)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 5.959,
+                "cores": 2.0,
+                "id": "114",
+                "category": "nfcore_sarek:sarek:bam_baserecalibrator:gatk4_gatherbqsrreports",
+                "avgCPU": 179.8,
+                "readBytes": 104478,
+                "writtenBytes": 1743,
+                "memoryInBytes": 237720
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (HCC1395N)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:bam_applybqsr:gatk4_applybqsr",
+                    "arguments": [
+                        "gatk",
+                        "--java-options",
+                        "\"-Xmx4g\"",
+                        "ApplyBQSR",
+                        "--input",
+                        "HCC1395N.md.cram",
+                        "--output",
+                        "HCC1395N_chr7_103100352-103101145.recal.cram",
+                        "--reference",
+                        "Homo_sapiens_assembly38.fasta",
+                        "--bqsr-recal-file",
+                        "HCC1395N.recal.table",
+                        "--intervals",
+                        "chr7_103100352-103101145.bed",
+                        "--tmp-dir",
+                        ".",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR\":",
+                        "gatk4:",
+                        "$(echo",
+                        "$(gatk",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*(GATK)",
+                        "v//",
+                        "s/",
+                        ".*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS (HCC1395T)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM (HCC1395T)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 1873.504,
+                "cores": 2.0,
+                "id": "115",
+                "category": "nfcore_sarek:sarek:bam_applybqsr:gatk4_applybqsr",
+                "avgCPU": 101.7,
+                "readBytes": 4608580,
+                "writtenBytes": 8366119,
+                "memoryInBytes": 2125336
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS (HCC1395T)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_baserecalibrator:gatk4_gatherbqsrreports",
@@ -1066,10 +1849,12 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH"
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_MARKDUPLICATES:CRAM_QC_MOSDEPTH_SAMTOOLS:MOSDEPTH (HCC1395T)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR"
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (HCC1395T)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 5.796,
@@ -1082,7 +1867,7 @@
                 "memoryInBytes": 225752
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR",
+                "name": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (HCC1395T)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_applybqsr:gatk4_applybqsr",
@@ -1123,10 +1908,12 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS"
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_BASERECALIBRATOR:GATK4_GATHERBQSRREPORTS (HCC1395T)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM"
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM (HCC1395T)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2104.269,
@@ -1139,7 +1926,7 @@
                 "memoryInBytes": 2236692
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM",
+                "name": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_applybqsr:cram_merge_index_samtools:merge_cram",
@@ -1150,10 +1937,10 @@
                         "1",
                         "--reference",
                         "Homo_sapiens_assembly38.fasta",
-                        "HCC1395T.recal.cram",
-                        "1/HCC1395T_chr17_38877931-38878296.recal.cram",
-                        "2/HCC1395T_chr1_11981-12351.recal.cram",
-                        "3/HCC1395T_chr7_103100352-103101145.recal.cram",
+                        "HCC1395N.recal.cram",
+                        "1/HCC1395N_chr17_38877931-38878296.recal.cram",
+                        "2/HCC1395N_chr7_103100352-103101145.recal.cram",
+                        "3/HCC1395N_chr1_11981-12351.recal.cram",
                         "cat",
                         "<<-END_VERSIONS",
                         ">",
@@ -1173,23 +1960,25 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR"
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (HCC1395T)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM"
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (HCC1395T)"
                 ],
                 "files": [],
-                "runtimeInSeconds": 562.579,
+                "runtimeInSeconds": 770.683,
                 "cores": 2.0,
-                "id": "138",
+                "id": "122",
                 "category": "nfcore_sarek:sarek:bam_applybqsr:cram_merge_index_samtools:merge_cram",
-                "avgCPU": 176.0,
-                "readBytes": 23591263,
-                "writtenBytes": 22471712,
-                "memoryInBytes": 1101344
+                "avgCPU": 149.4,
+                "readBytes": 18269623,
+                "writtenBytes": 17580312,
+                "memoryInBytes": 755400
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM",
+                "name": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_applybqsr:cram_merge_index_samtools:index_cram",
@@ -1198,7 +1987,7 @@
                         "index",
                         "-@",
                         "0",
-                        "HCC1395T.recal.cram",
+                        "HCC1395N.recal.cram",
                         "cat",
                         "<<-END_VERSIONS",
                         ">",
@@ -1218,23 +2007,24 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM"
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM (HCC1395T)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TIDDIT_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TIDDIT_SV (HCC1395N)"
                 ],
                 "files": [],
-                "runtimeInSeconds": 9.925,
+                "runtimeInSeconds": 3.292,
                 "cores": 1.0,
-                "id": "162",
+                "id": "123",
                 "category": "nfcore_sarek:sarek:bam_applybqsr:cram_merge_index_samtools:index_cram",
-                "avgCPU": 46.5,
-                "readBytes": 15343380,
-                "writtenBytes": 635,
-                "memoryInBytes": 11488
+                "avgCPU": 63.0,
+                "readBytes": 9460272,
+                "writtenBytes": 545,
+                "memoryInBytes": 11392
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TIDDIT_SV",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TIDDIT_SV (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_single_tiddit:tiddit_sv",
@@ -1266,10 +2056,12 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM"
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (HCC1395T)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS"
+                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (HCC1395T)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 871.302,
@@ -1282,7 +2074,7 @@
                 "memoryInBytes": 6976848
             },
             {
-                "name": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS",
+                "name": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:cram_qc_recal:samtools_stats",
@@ -1293,9 +2085,9 @@
                         "1",
                         "--reference",
                         "Homo_sapiens_assembly38.fasta",
-                        "HCC1395T.recal.cram",
+                        "HCC1395N.recal.cram",
                         ">",
-                        "HCC1395T.recal.cram.stats",
+                        "HCC1395N.recal.cram.stats",
                         "cat",
                         "<<-END_VERSIONS",
                         ">",
@@ -1315,23 +2107,23 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TIDDIT_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TIDDIT_SV (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:FREEBAYES"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:FREEBAYES (HCC1395N)"
                 ],
                 "files": [],
-                "runtimeInSeconds": 769.007,
+                "runtimeInSeconds": 585.859,
                 "cores": 1.0,
-                "id": "164",
+                "id": "124",
                 "category": "nfcore_sarek:sarek:cram_qc_recal:samtools_stats",
-                "avgCPU": 98.9,
-                "readBytes": 18225836,
-                "writtenBytes": 577,
-                "memoryInBytes": 289000
+                "avgCPU": 98.7,
+                "readBytes": 15193660,
+                "writtenBytes": 575,
+                "memoryInBytes": 285456
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:FREEBAYES",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:FREEBAYES (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_freebayes:freebayes",
@@ -1369,10 +2161,11 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS"
+                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (HCC1395T)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MANTA_GERMLINE"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MANTA_GERMLINE (HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2986.363,
@@ -1385,7 +2178,7 @@
                 "memoryInBytes": 576712
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MANTA_GERMLINE",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MANTA_GERMLINE (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_germline_manta:manta_germline",
@@ -1438,10 +2231,11 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:FREEBAYES"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:FREEBAYES (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH"
+                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (HCC1395T)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 411.365,
@@ -1454,7 +2248,7 @@
                 "memoryInBytes": 589144
             },
             {
-                "name": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH",
+                "name": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:cram_qc_recal:mosdepth",
@@ -1466,8 +2260,8 @@
                         "S07604624_Padded_Agilent_SureSelectXT_allexons_V6_UTR.bed",
                         "--fasta",
                         "Homo_sapiens_assembly38.fasta",
-                        "HCC1395T.recal",
-                        "HCC1395T.recal.cram",
+                        "HCC1395N.recal",
+                        "HCC1395N.recal.cram",
                         "cat",
                         "<<-END_VERSIONS",
                         ">",
@@ -1487,23 +2281,23 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MANTA_GERMLINE"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MANTA_GERMLINE (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_CNVKIT:CNVKIT_BATCH"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_CNVKIT:CNVKIT_BATCH (HCC1395N)"
                 ],
                 "files": [],
-                "runtimeInSeconds": 144.818,
+                "runtimeInSeconds": 140.928,
                 "cores": 4.0,
-                "id": "163",
+                "id": "125",
                 "category": "nfcore_sarek:sarek:cram_qc_recal:mosdepth",
-                "avgCPU": 153.9,
-                "readBytes": 14480711,
-                "writtenBytes": 1028015,
-                "memoryInBytes": 2109964
+                "avgCPU": 152.1,
+                "readBytes": 12096058,
+                "writtenBytes": 918520,
+                "memoryInBytes": 2109180
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_CNVKIT:CNVKIT_BATCH",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_CNVKIT:CNVKIT_BATCH (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_cnvkit:cnvkit_batch",
@@ -1560,10 +2354,11 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH"
+                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (HCC1395T)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1539.009,
@@ -1576,7 +2371,7 @@
                 "memoryInBytes": 2328060
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_single_strelka:strelka_single",
@@ -1623,10 +2418,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_CNVKIT:CNVKIT_BATCH"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_CNVKIT:CNVKIT_BATCH (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TABIX_BGZIP_TIDDIT_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TABIX_BGZIP_TIDDIT_SV (HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 184.53,
@@ -1639,7 +2434,59 @@
                 "memoryInBytes": 682308
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TABIX_BGZIP_TIDDIT_SV",
+                "name": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM (HCC1395T)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:bam_applybqsr:cram_merge_index_samtools:merge_cram",
+                    "arguments": [
+                        "samtools",
+                        "merge",
+                        "--threads",
+                        "1",
+                        "--reference",
+                        "Homo_sapiens_assembly38.fasta",
+                        "HCC1395T.recal.cram",
+                        "1/HCC1395T_chr17_38877931-38878296.recal.cram",
+                        "2/HCC1395T_chr1_11981-12351.recal.cram",
+                        "3/HCC1395T_chr7_103100352-103101145.recal.cram",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM\":",
+                        "samtools:",
+                        "$(echo",
+                        "$(samtools",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*samtools",
+                        "//",
+                        "s/Using.*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:GATK4_APPLYBQSR (HCC1395T)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (HCC1395T)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 562.579,
+                "cores": 2.0,
+                "id": "138",
+                "category": "nfcore_sarek:sarek:bam_applybqsr:cram_merge_index_samtools:merge_cram",
+                "avgCPU": 176.0,
+                "readBytes": 23591263,
+                "writtenBytes": 22471712,
+                "memoryInBytes": 1101344
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TABIX_BGZIP_TIDDIT_SV (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_single_tiddit:tabix_bgzip_tiddit_sv",
@@ -1673,10 +2520,11 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:STRELKA_SINGLE (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 0.734,
@@ -1689,16 +2537,16 @@
                 "memoryInBytes": 3176
             },
             {
-                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS",
+                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:bcftools_stats",
                     "arguments": [
                         "bcftools",
                         "stats",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered.vcf.gz",
+                        "HCC1395N.freebayes.vcf.gz",
                         ">",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered.bcftools_stats.txt",
+                        "HCC1395N.freebayes.bcftools_stats.txt",
                         "cat",
                         "<<-END_VERSIONS",
                         ">",
@@ -1721,32 +2569,33 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TABIX_BGZIP_TIDDIT_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TABIX_BGZIP_TIDDIT_SV (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
-                "runtimeInSeconds": 1.233,
+                "runtimeInSeconds": 1.823,
                 "cores": 1.0,
-                "id": "272",
+                "id": "206",
                 "category": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:bcftools_stats",
-                "avgCPU": 97.1,
-                "readBytes": 1135,
-                "writtenBytes": 48,
-                "memoryInBytes": 13704
+                "avgCPU": 95.0,
+                "readBytes": 24642,
+                "writtenBytes": 1990,
+                "memoryInBytes": 16284
             },
             {
-                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY",
+                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_summary",
                     "arguments": [
                         "vcftools",
                         "--gzvcf",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered.vcf.gz",
+                        "HCC1395N.freebayes.vcf.gz",
                         "--out",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered",
+                        "HCC1395N.freebayes",
                         "--FILTER-summary",
                         "cat",
                         "<<-END_VERSIONS",
@@ -1766,32 +2615,34 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
-                "runtimeInSeconds": 2.487,
+                "runtimeInSeconds": 2.895,
                 "cores": 1.0,
-                "id": "270",
+                "id": "204",
                 "category": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_summary",
-                "avgCPU": 76.7,
-                "readBytes": 1089,
-                "writtenBytes": 74,
-                "memoryInBytes": 10252
+                "avgCPU": 96.1,
+                "readBytes": 26860,
+                "writtenBytes": 17,
+                "memoryInBytes": 8844
             },
             {
-                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL",
+                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_tstv_qual",
                     "arguments": [
                         "vcftools",
                         "--gzvcf",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered.vcf.gz",
+                        "HCC1395N.freebayes.vcf.gz",
                         "--out",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered",
+                        "HCC1395N.freebayes",
                         "--TsTv-by-qual",
                         "cat",
                         "<<-END_VERSIONS",
@@ -1811,32 +2662,34 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
-                "runtimeInSeconds": 2.479,
+                "runtimeInSeconds": 3.566,
                 "cores": 1.0,
-                "id": "268",
+                "id": "205",
                 "category": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_tstv_qual",
-                "avgCPU": 70.7,
-                "readBytes": 1089,
-                "writtenBytes": 14,
-                "memoryInBytes": 9764
+                "avgCPU": 94.7,
+                "readBytes": 23808,
+                "writtenBytes": 8863,
+                "memoryInBytes": 24220
             },
             {
-                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT",
+                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_tstv_count",
                     "arguments": [
                         "vcftools",
                         "--gzvcf",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered.vcf.gz",
+                        "HCC1395N.freebayes.vcf.gz",
                         "--out",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered",
+                        "HCC1395N.freebayes",
                         "--TsTv-by-count",
                         "cat",
                         "<<-END_VERSIONS",
@@ -1856,23 +2709,24 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_SMALL_INDELS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_SMALL_INDELS (HCC1395N)"
                 ],
                 "files": [],
-                "runtimeInSeconds": 2.373,
+                "runtimeInSeconds": 3.001,
                 "cores": 1.0,
-                "id": "269",
+                "id": "207",
                 "category": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_tstv_count",
-                "avgCPU": 65.5,
-                "readBytes": 1089,
-                "writtenBytes": 14,
-                "memoryInBytes": 10052
+                "avgCPU": 94.8,
+                "readBytes": 23808,
+                "writtenBytes": 17,
+                "memoryInBytes": 14264
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_SMALL_INDELS",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_SMALL_INDELS (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_germline_manta:merge_manta_small_indels",
@@ -1913,10 +2767,11 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT"
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_SV (HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 8.211,
@@ -1929,7 +2784,7 @@
                 "memoryInBytes": 241720
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_SV",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_SV (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_germline_manta:merge_manta_sv",
@@ -1970,10 +2825,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_SMALL_INDELS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_SMALL_INDELS (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_DIPLOID"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_DIPLOID (HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 8.289,
@@ -1986,7 +2841,7 @@
                 "memoryInBytes": 241100
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_DIPLOID",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_DIPLOID (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_germline_manta:merge_manta_diploid",
@@ -2027,10 +2882,11 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_SV (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:ENSEMBLVEP"
+                    "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:ENSEMBLVEP (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:ENSEMBLVEP (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 7.242,
@@ -2043,16 +2899,16 @@
                 "memoryInBytes": 243160
             },
             {
-                "name": "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:ENSEMBLVEP",
+                "name": "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:ENSEMBLVEP (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:vcf_annotate_all:vcf_annotate_ensemblvep:ensemblvep",
                     "arguments": [
                         "vep",
                         "-i",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered.vcf.gz",
+                        "HCC1395N.freebayes.vcf.gz",
                         "-o",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered_VEP.ann.vcf",
+                        "HCC1395N.freebayes_VEP.ann.vcf",
                         "--everything",
                         "--filter_common",
                         "--per_gene",
@@ -2073,7 +2929,7 @@
                         "--fork",
                         "6",
                         "--stats_file",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered_VEP.summary.html",
+                        "HCC1395N.freebayes_VEP.summary.html",
                         "cat",
                         "<<-END_VERSIONS",
                         ">",
@@ -2095,23 +2951,23 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_DIPLOID"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_DIPLOID (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA_GENOME"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA_GENOME (HCC1395N)"
                 ],
                 "files": [],
-                "runtimeInSeconds": 165.634,
+                "runtimeInSeconds": 264.224,
                 "cores": 6.0,
-                "id": "271",
+                "id": "203",
                 "category": "nfcore_sarek:sarek:vcf_annotate_all:vcf_annotate_ensemblvep:ensemblvep",
-                "avgCPU": 290.3,
-                "readBytes": 4548313,
-                "writtenBytes": 27929,
-                "memoryInBytes": 10220400
+                "avgCPU": 523.1,
+                "readBytes": 23550087,
+                "writtenBytes": 424018,
+                "memoryInBytes": 3426716
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA_GENOME",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA_GENOME (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_single_strelka:merge_strelka_genome",
@@ -2152,10 +3008,11 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:ENSEMBLVEP"
+                    "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:ENSEMBLVEP (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:ENSEMBLVEP (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA (HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 21.253,
@@ -2168,7 +3025,7 @@
                 "memoryInBytes": 704324
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_single_strelka:merge_strelka",
@@ -2209,10 +3066,11 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA_GENOME"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA_GENOME (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:TABIX_BGZIPTABIX"
+                    "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:TABIX_BGZIPTABIX (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:TABIX_BGZIPTABIX (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 8.538,
@@ -2225,7 +3083,7 @@
                 "memoryInBytes": 406864
             },
             {
-                "name": "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:TABIX_BGZIPTABIX",
+                "name": "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:TABIX_BGZIPTABIX (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:vcf_annotate_all:vcf_annotate_ensemblvep:tabix_bgziptabix",
@@ -2234,11 +3092,11 @@
                         "--threads",
                         "1",
                         "-c",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered_VEP.ann.vcf",
+                        "HCC1395N.freebayes_VEP.ann.vcf",
                         ">",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered_VEP.ann.vcf.gz",
+                        "HCC1395N.freebayes_VEP.ann.vcf.gz",
                         "tabix",
-                        "HCC1395T_vs_HCC1395N.mutect2.filtered_VEP.ann.vcf.gz",
+                        "HCC1395N.freebayes_VEP.ann.vcf.gz",
                         "cat",
                         "<<-END_VERSIONS",
                         ">",
@@ -2259,23 +3117,69 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_NORMAL:TIDDIT_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_NORMAL:TIDDIT_SV (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
-                "runtimeInSeconds": 0.91,
+                "runtimeInSeconds": 2.539,
                 "cores": 1.0,
-                "id": "274",
+                "id": "248",
                 "category": "nfcore_sarek:sarek:vcf_annotate_all:vcf_annotate_ensemblvep:tabix_bgziptabix",
-                "avgCPU": 67.6,
-                "readBytes": 9049,
-                "writtenBytes": 3343,
-                "memoryInBytes": 5808
+                "avgCPU": 90.4,
+                "readBytes": 127998,
+                "writtenBytes": 39079,
+                "memoryInBytes": 5956
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_NORMAL:TIDDIT_SV",
+                "name": "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM (HCC1395T)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:bam_applybqsr:cram_merge_index_samtools:index_cram",
+                    "arguments": [
+                        "samtools",
+                        "index",
+                        "-@",
+                        "0",
+                        "HCC1395T.recal.cram",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:INDEX_CRAM\":",
+                        "samtools:",
+                        "$(echo",
+                        "$(samtools",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*samtools",
+                        "//",
+                        "s/Using.*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:BAM_APPLYBQSR:CRAM_MERGE_INDEX_SAMTOOLS:MERGE_CRAM (HCC1395T)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TIDDIT_SV (HCC1395N)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 9.925,
+                "cores": 1.0,
+                "id": "162",
+                "category": "nfcore_sarek:sarek:bam_applybqsr:cram_merge_index_samtools:index_cram",
+                "avgCPU": 46.5,
+                "readBytes": 15343380,
+                "writtenBytes": 635,
+                "memoryInBytes": 11488
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_NORMAL:TIDDIT_SV (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_tiddit:tiddit_normal:tiddit_sv",
@@ -2307,10 +3211,11 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:TABIX_BGZIPTABIX"
+                    "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:TABIX_BGZIPTABIX (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:TABIX_BGZIPTABIX (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:FREEBAYES"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:FREEBAYES (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 856.859,
@@ -2323,7 +3228,56 @@
                 "memoryInBytes": 1381188
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:FREEBAYES",
+                "name": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS (HCC1395T)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:cram_qc_recal:samtools_stats",
+                    "arguments": [
+                        "samtools",
+                        "stats",
+                        "--threads",
+                        "1",
+                        "--reference",
+                        "Homo_sapiens_assembly38.fasta",
+                        "HCC1395T.recal.cram",
+                        ">",
+                        "HCC1395T.recal.cram.stats",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:CRAM_QC_RECAL:SAMTOOLS_STATS\":",
+                        "samtools:",
+                        "$(echo",
+                        "$(samtools",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*samtools",
+                        "//",
+                        "s/Using.*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TIDDIT_SV (HCC1395N)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:FREEBAYES (HCC1395N)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 769.007,
+                "cores": 1.0,
+                "id": "164",
+                "category": "nfcore_sarek:sarek:cram_qc_recal:samtools_stats",
+                "avgCPU": 98.9,
+                "readBytes": 18225836,
+                "writtenBytes": 577,
+                "memoryInBytes": 289000
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:FREEBAYES (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_freebayes:freebayes",
@@ -2369,10 +3323,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_NORMAL:TIDDIT_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_NORMAL:TIDDIT_SV (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MANTA_SOMATIC"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MANTA_SOMATIC (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 3752.411,
@@ -2385,7 +3339,7 @@
                 "memoryInBytes": 318908
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MANTA_SOMATIC",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MANTA_SOMATIC (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_manta:manta_somatic",
@@ -2446,10 +3400,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:FREEBAYES"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:FREEBAYES (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_TUMOR:TIDDIT_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_TUMOR:TIDDIT_SV (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 422.404,
@@ -2462,7 +3416,7 @@
                 "memoryInBytes": 696084
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_TUMOR:TIDDIT_SV",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_TUMOR:TIDDIT_SV (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_tiddit:tiddit_tumor:tiddit_sv",
@@ -2494,10 +3448,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MANTA_SOMATIC"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MANTA_SOMATIC (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GETPILEUPSUMMARIES_TUMOR"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GETPILEUPSUMMARIES_TUMOR (HCC1395T)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 961.884,
@@ -2510,7 +3464,7 @@
                 "memoryInBytes": 5069032
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GETPILEUPSUMMARIES_TUMOR",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GETPILEUPSUMMARIES_TUMOR (HCC1395T)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_mutect2:getpileupsummaries_tumor",
@@ -2551,10 +3505,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_TUMOR:TIDDIT_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_TUMOR:TIDDIT_SV (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:BCFTOOLS_SORT"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:BCFTOOLS_SORT (HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 937.96,
@@ -2567,7 +3521,7 @@
                 "memoryInBytes": 2441680
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:BCFTOOLS_SORT",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:BCFTOOLS_SORT (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_freebayes:bcftools_sort",
@@ -2599,10 +3553,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GETPILEUPSUMMARIES_TUMOR"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GETPILEUPSUMMARIES_TUMOR (HCC1395T)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_NORMAL:SAMTOOLS_MPILEUP"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_NORMAL:SAMTOOLS_MPILEUP (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 2.959,
@@ -2615,7 +3569,7 @@
                 "memoryInBytes": 53196
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_NORMAL:SAMTOOLS_MPILEUP",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_NORMAL:SAMTOOLS_MPILEUP (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:mpileup_normal:samtools_mpileup",
@@ -2650,10 +3604,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:BCFTOOLS_SORT"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:BCFTOOLS_SORT (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MUTECT2_PAIRED"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MUTECT2_PAIRED (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1041.766,
@@ -2666,7 +3620,7 @@
                 "memoryInBytes": 248520
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MUTECT2_PAIRED",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MUTECT2_PAIRED (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_mutect2:mutect2_paired",
@@ -2715,10 +3669,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_NORMAL:SAMTOOLS_MPILEUP"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_NORMAL:SAMTOOLS_MPILEUP (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_NORMAL:TABIX_BGZIP_TIDDIT_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_NORMAL:TABIX_BGZIP_TIDDIT_SV (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 5296.412,
@@ -2731,7 +3685,7 @@
                 "memoryInBytes": 3800400
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_NORMAL:TABIX_BGZIP_TIDDIT_SV",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_NORMAL:TABIX_BGZIP_TIDDIT_SV (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_tiddit:tiddit_normal:tabix_bgzip_tiddit_sv",
@@ -2765,10 +3719,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MUTECT2_PAIRED"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MUTECT2_PAIRED (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GETPILEUPSUMMARIES_NORMAL"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GETPILEUPSUMMARIES_NORMAL (HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 0.726,
@@ -2781,7 +3735,7 @@
                 "memoryInBytes": 3108
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GETPILEUPSUMMARIES_NORMAL",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GETPILEUPSUMMARIES_NORMAL (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_mutect2:getpileupsummaries_normal",
@@ -2822,10 +3776,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_NORMAL:TABIX_BGZIP_TIDDIT_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_NORMAL:TABIX_BGZIP_TIDDIT_SV (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_TUMOR:SAMTOOLS_MPILEUP"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_TUMOR:SAMTOOLS_MPILEUP (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 768.462,
@@ -2838,7 +3792,7 @@
                 "memoryInBytes": 2073756
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_TUMOR:SAMTOOLS_MPILEUP",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_TUMOR:SAMTOOLS_MPILEUP (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:mpileup_tumor:samtools_mpileup",
@@ -2873,10 +3827,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GETPILEUPSUMMARIES_NORMAL"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GETPILEUPSUMMARIES_NORMAL (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_TUMOR:TABIX_BGZIP_TIDDIT_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_TUMOR:TABIX_BGZIP_TIDDIT_SV (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1337.65,
@@ -2889,7 +3843,7 @@
                 "memoryInBytes": 247452
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_TUMOR:TABIX_BGZIP_TIDDIT_SV",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_TUMOR:TABIX_BGZIP_TIDDIT_SV (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_tiddit:tiddit_tumor:tabix_bgzip_tiddit_sv",
@@ -2923,10 +3877,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_TUMOR:SAMTOOLS_MPILEUP"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_TUMOR:SAMTOOLS_MPILEUP (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:MERGE_FREEBAYES"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:MERGE_FREEBAYES (HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1.348,
@@ -2939,7 +3893,56 @@
                 "memoryInBytes": 3124
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:MERGE_FREEBAYES",
+                "name": "NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH (HCC1395T)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:cram_qc_recal:mosdepth",
+                    "arguments": [
+                        "mosdepth",
+                        "--threads",
+                        "4",
+                        "--by",
+                        "S07604624_Padded_Agilent_SureSelectXT_allexons_V6_UTR.bed",
+                        "--fasta",
+                        "Homo_sapiens_assembly38.fasta",
+                        "HCC1395T.recal",
+                        "HCC1395T.recal.cram",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:CRAM_QC_RECAL:MOSDEPTH\":",
+                        "mosdepth:",
+                        "$(mosdepth",
+                        "--version",
+                        "2>&1",
+                        "|",
+                        "sed",
+                        "s/^.*mosdepth",
+                        "//",
+                        "s/",
+                        ".*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MANTA_GERMLINE (HCC1395N)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_CNVKIT:CNVKIT_BATCH (HCC1395N)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 144.818,
+                "cores": 4.0,
+                "id": "163",
+                "category": "nfcore_sarek:sarek:cram_qc_recal:mosdepth",
+                "avgCPU": 153.9,
+                "readBytes": 14480711,
+                "writtenBytes": 1028015,
+                "memoryInBytes": 2109964
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:MERGE_FREEBAYES (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_germline_all:bam_variant_calling_freebayes:merge_freebayes",
@@ -2980,10 +3983,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_TUMOR:TABIX_BGZIP_TIDDIT_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_TUMOR:TABIX_BGZIP_TIDDIT_SV (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_DIPLOID"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_DIPLOID (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 11.424,
@@ -2996,7 +3999,7 @@
                 "memoryInBytes": 551412
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_DIPLOID",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_DIPLOID (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_manta:merge_manta_diploid",
@@ -3037,10 +4040,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:MERGE_FREEBAYES"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_FREEBAYES:MERGE_FREEBAYES (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SMALL_INDELS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SMALL_INDELS (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 6.268,
@@ -3053,7 +4056,7 @@
                 "memoryInBytes": 210232
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SMALL_INDELS",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SMALL_INDELS (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_manta:merge_manta_small_indels",
@@ -3094,10 +4097,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_DIPLOID"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_DIPLOID (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SOMATIC"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SOMATIC (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 6.153,
@@ -3110,7 +4113,196 @@
                 "memoryInBytes": 211960
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SOMATIC",
+                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (HCC1395T_vs_HCC1395N)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:bcftools_stats",
+                    "arguments": [
+                        "bcftools",
+                        "stats",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered.vcf.gz",
+                        ">",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered.bcftools_stats.txt",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS\":",
+                        "bcftools:",
+                        "$(bcftools",
+                        "--version",
+                        "2>&1",
+                        "|",
+                        "head",
+                        "-n1",
+                        "|",
+                        "sed",
+                        "s/^.*bcftools",
+                        "//",
+                        "s/",
+                        ".*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_TIDDIT:TABIX_BGZIP_TIDDIT_SV (HCC1395N)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (HCC1395T_vs_HCC1395N)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 1.233,
+                "cores": 1.0,
+                "id": "272",
+                "category": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:bcftools_stats",
+                "avgCPU": 97.1,
+                "readBytes": 1135,
+                "writtenBytes": 48,
+                "memoryInBytes": 13704
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (HCC1395T_vs_HCC1395N)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_summary",
+                    "arguments": [
+                        "vcftools",
+                        "--gzvcf",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered.vcf.gz",
+                        "--out",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered",
+                        "--FILTER-summary",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY\":",
+                        "vcftools:",
+                        "$(echo",
+                        "$(vcftools",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*VCFtools",
+                        "(//s/).*//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:BCFTOOLS_STATS (HCC1395T_vs_HCC1395N)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (HCC1395T_vs_HCC1395N)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 2.487,
+                "cores": 1.0,
+                "id": "270",
+                "category": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_summary",
+                "avgCPU": 76.7,
+                "readBytes": 1089,
+                "writtenBytes": 74,
+                "memoryInBytes": 10252
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (HCC1395T_vs_HCC1395N)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_tstv_count",
+                    "arguments": [
+                        "vcftools",
+                        "--gzvcf",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered.vcf.gz",
+                        "--out",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered",
+                        "--TsTv-by-count",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT\":",
+                        "vcftools:",
+                        "$(echo",
+                        "$(vcftools",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*VCFtools",
+                        "(//s/).*//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (HCC1395T_vs_HCC1395N)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_SMALL_INDELS (HCC1395N)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 2.373,
+                "cores": 1.0,
+                "id": "269",
+                "category": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_tstv_count",
+                "avgCPU": 65.5,
+                "readBytes": 1089,
+                "writtenBytes": 14,
+                "memoryInBytes": 10052
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL (HCC1395T_vs_HCC1395N)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_tstv_qual",
+                    "arguments": [
+                        "vcftools",
+                        "--gzvcf",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered.vcf.gz",
+                        "--out",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered",
+                        "--TsTv-by-qual",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_QUAL\":",
+                        "vcftools:",
+                        "$(echo",
+                        "$(vcftools",
+                        "--version",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*VCFtools",
+                        "(//s/).*//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_SUMMARY (HCC1395T_vs_HCC1395N)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (HCC1395N)",
+                    "NFCORE_SAREK:SAREK:VCF_QC_BCFTOOLS_VCFTOOLS:VCFTOOLS_TSTV_COUNT (HCC1395T_vs_HCC1395N)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 2.479,
+                "cores": 1.0,
+                "id": "268",
+                "category": "nfcore_sarek:sarek:vcf_qc_bcftools_vcftools:vcftools_tstv_qual",
+                "avgCPU": 70.7,
+                "readBytes": 1089,
+                "writtenBytes": 14,
+                "memoryInBytes": 9764
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SOMATIC (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_manta:merge_manta_somatic",
@@ -3151,10 +4343,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SMALL_INDELS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SMALL_INDELS (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SV (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 5.946,
@@ -3167,7 +4359,7 @@
                 "memoryInBytes": 213716
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SV",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SV (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_manta:merge_manta_sv",
@@ -3208,10 +4400,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SOMATIC"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SOMATIC (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:STRELKA_SOMATIC"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:STRELKA_SOMATIC (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 7.775,
@@ -3224,7 +4416,7 @@
                 "memoryInBytes": 240724
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:STRELKA_SOMATIC",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:STRELKA_SOMATIC (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_strelka:strelka_somatic",
@@ -3275,10 +4467,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SV"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MANTA:MERGE_MANTA_SV (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_CNVKIT:CNVKIT_BATCH"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_CNVKIT:CNVKIT_BATCH (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 394.523,
@@ -3291,7 +4483,7 @@
                 "memoryInBytes": 1217512
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_CNVKIT:CNVKIT_BATCH",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_CNVKIT:CNVKIT_BATCH (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_cnvkit:cnvkit_batch",
@@ -3360,10 +4552,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:STRELKA_SOMATIC"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:STRELKA_SOMATIC (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GATHERPILEUPSUMMARIES_NORMAL"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GATHERPILEUPSUMMARIES_NORMAL (HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 5495.609,
@@ -3376,7 +4568,7 @@
                 "memoryInBytes": 1668268
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GATHERPILEUPSUMMARIES_NORMAL",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GATHERPILEUPSUMMARIES_NORMAL (HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_mutect2:gatherpileupsummaries_normal",
@@ -3417,10 +4609,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_CNVKIT:CNVKIT_BATCH"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_CNVKIT:CNVKIT_BATCH (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_NORMAL:CAT_MPILEUP"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_NORMAL:CAT_MPILEUP (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 8.203,
@@ -3433,7 +4625,7 @@
                 "memoryInBytes": 388492
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_NORMAL:CAT_MPILEUP",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_NORMAL:CAT_MPILEUP (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:mpileup_normal:cat_mpileup",
@@ -3463,10 +4655,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GATHERPILEUPSUMMARIES_NORMAL"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GATHERPILEUPSUMMARIES_NORMAL (HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GATHERPILEUPSUMMARIES_TUMOR"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GATHERPILEUPSUMMARIES_TUMOR (HCC1395T)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 24.7,
@@ -3479,7 +4671,7 @@
                 "memoryInBytes": 3504
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GATHERPILEUPSUMMARIES_TUMOR",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GATHERPILEUPSUMMARIES_TUMOR (HCC1395T)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_mutect2:gatherpileupsummaries_tumor",
@@ -3520,10 +4712,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_NORMAL:CAT_MPILEUP"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_NORMAL:CAT_MPILEUP (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_TUMOR:CAT_MPILEUP"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_TUMOR:CAT_MPILEUP (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 8.182,
@@ -3536,7 +4728,7 @@
                 "memoryInBytes": 423648
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_TUMOR:CAT_MPILEUP",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_TUMOR:CAT_MPILEUP (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:mpileup_tumor:cat_mpileup",
@@ -3566,10 +4758,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GATHERPILEUPSUMMARIES_TUMOR"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:GATHERPILEUPSUMMARIES_TUMOR (HCC1395T)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:CALCULATECONTAMINATION"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:CALCULATECONTAMINATION (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 30.59,
@@ -3582,7 +4774,7 @@
                 "memoryInBytes": 3464
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:CALCULATECONTAMINATION",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:CALCULATECONTAMINATION (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_mutect2:calculatecontamination",
@@ -3621,10 +4813,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_TUMOR:CAT_MPILEUP"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:MPILEUP_TUMOR:CAT_MPILEUP (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC_SOMATIC"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC_SOMATIC (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 23.682,
@@ -3637,7 +4829,7 @@
                 "memoryInBytes": 776360
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC_SOMATIC",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC_SOMATIC (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_controlfreec:freec_somatic",
@@ -3901,10 +5093,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:CALCULATECONTAMINATION"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:CALCULATECONTAMINATION (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:MERGE_STRELKA_INDELS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:MERGE_STRELKA_INDELS (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 3420.931,
@@ -3917,7 +5109,7 @@
                 "memoryInBytes": 8791224
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:MERGE_STRELKA_INDELS",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:MERGE_STRELKA_INDELS (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_strelka:merge_strelka_indels",
@@ -3958,10 +5150,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC_SOMATIC"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC_SOMATIC (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:MERGE_STRELKA_SNVS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:MERGE_STRELKA_SNVS (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 6.256,
@@ -3974,7 +5166,7 @@
                 "memoryInBytes": 236160
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:MERGE_STRELKA_SNVS",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:MERGE_STRELKA_SNVS (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_strelka:merge_strelka_snvs",
@@ -4015,10 +5207,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:MERGE_STRELKA_INDELS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:MERGE_STRELKA_INDELS (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:BCFTOOLS_SORT"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:BCFTOOLS_SORT (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 8.526,
@@ -4031,7 +5223,7 @@
                 "memoryInBytes": 365932
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:BCFTOOLS_SORT",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:BCFTOOLS_SORT (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_freebayes:bcftools_sort",
@@ -4063,10 +5255,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:MERGE_STRELKA_SNVS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_STRELKA:MERGE_STRELKA_SNVS (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_ASCAT:ASCAT"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_ASCAT:ASCAT (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 5.027,
@@ -4079,7 +5271,7 @@
                 "memoryInBytes": 112384
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_ASCAT:ASCAT",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_ASCAT:ASCAT (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_ascat:ascat",
@@ -4468,10 +5660,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:BCFTOOLS_SORT"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:BCFTOOLS_SORT (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:SVDB_MERGE"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:SVDB_MERGE (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 232.376,
@@ -4484,7 +5676,7 @@
                 "memoryInBytes": 3852760
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:SVDB_MERGE",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:SVDB_MERGE (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_tiddit:svdb_merge",
@@ -4529,10 +5721,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_ASCAT:ASCAT"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_ASCAT:ASCAT (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:MERGE_FREEBAYES"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:MERGE_FREEBAYES (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1.264,
@@ -4545,7 +5737,7 @@
                 "memoryInBytes": 9240
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:MERGE_FREEBAYES",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:MERGE_FREEBAYES (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_freebayes:merge_freebayes",
@@ -4586,10 +5778,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:SVDB_MERGE"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:SVDB_MERGE (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC2BED"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC2BED (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 23.073,
@@ -4602,7 +5794,125 @@
                 "memoryInBytes": 533408
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC2BED",
+                "name": "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:ENSEMBLVEP (HCC1395T_vs_HCC1395N)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:vcf_annotate_all:vcf_annotate_ensemblvep:ensemblvep",
+                    "arguments": [
+                        "vep",
+                        "-i",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered.vcf.gz",
+                        "-o",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered_VEP.ann.vcf",
+                        "--everything",
+                        "--filter_common",
+                        "--per_gene",
+                        "--total_length",
+                        "--offline",
+                        "--format",
+                        "vcf",
+                        "--vcf",
+                        "--assembly",
+                        "GRCh38",
+                        "--species",
+                        "homo_sapiens",
+                        "--cache",
+                        "--cache_version",
+                        "106",
+                        "--dir_cache",
+                        "/.vep",
+                        "--fork",
+                        "6",
+                        "--stats_file",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered_VEP.summary.html",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:ENSEMBLVEP\":",
+                        "ensemblvep:",
+                        "$(",
+                        "echo",
+                        "$(vep",
+                        "--help",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*Versions:.*ensembl-vep",
+                        ":",
+                        "//s/",
+                        ".*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_GERMLINE_MANTA:MERGE_MANTA_DIPLOID (HCC1395N)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA_GENOME (HCC1395N)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 165.634,
+                "cores": 6.0,
+                "id": "271",
+                "category": "nfcore_sarek:sarek:vcf_annotate_all:vcf_annotate_ensemblvep:ensemblvep",
+                "avgCPU": 290.3,
+                "readBytes": 4548313,
+                "writtenBytes": 27929,
+                "memoryInBytes": 10220400
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:TABIX_BGZIPTABIX (HCC1395T_vs_HCC1395N)",
+                "type": "compute",
+                "command": {
+                    "program": "nfcore_sarek:sarek:vcf_annotate_all:vcf_annotate_ensemblvep:tabix_bgziptabix",
+                    "arguments": [
+                        "bgzip",
+                        "--threads",
+                        "1",
+                        "-c",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered_VEP.ann.vcf",
+                        ">",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered_VEP.ann.vcf.gz",
+                        "tabix",
+                        "HCC1395T_vs_HCC1395N.mutect2.filtered_VEP.ann.vcf.gz",
+                        "cat",
+                        "<<-END_VERSIONS",
+                        ">",
+                        "versions.yml",
+                        "\"NFCORE_SAREK:SAREK:VCF_ANNOTATE_ALL:VCF_ANNOTATE_ENSEMBLVEP:TABIX_BGZIPTABIX\":",
+                        "tabix:",
+                        "$(echo",
+                        "$(tabix",
+                        "-h",
+                        "2>&1)",
+                        "|",
+                        "sed",
+                        "s/^.*Version:",
+                        "//",
+                        "s/",
+                        ".*$//)",
+                        "END_VERSIONS"
+                    ]
+                },
+                "parents": [
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_GERMLINE_ALL:BAM_VARIANT_CALLING_SINGLE_STRELKA:MERGE_STRELKA (HCC1395N)"
+                ],
+                "children": [
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_TIDDIT:TIDDIT_NORMAL:TIDDIT_SV (HCC1395T_vs_HCC1395N)"
+                ],
+                "files": [],
+                "runtimeInSeconds": 0.91,
+                "cores": 1.0,
+                "id": "274",
+                "category": "nfcore_sarek:sarek:vcf_annotate_all:vcf_annotate_ensemblvep:tabix_bgziptabix",
+                "avgCPU": 67.6,
+                "readBytes": 9049,
+                "writtenBytes": 3343,
+                "memoryInBytes": 5808
+            },
+            {
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC2BED (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_controlfreec:freec2bed",
@@ -4638,10 +5948,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:MERGE_FREEBAYES"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_FREEBAYES:MERGE_FREEBAYES (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC2CIRCOS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC2CIRCOS (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1.683,
@@ -4654,7 +5964,7 @@
                 "memoryInBytes": 8544
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC2CIRCOS",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC2CIRCOS (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_controlfreec:freec2circos",
@@ -4690,10 +6000,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC2BED"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC2BED (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:ASSESS_SIGNIFICANCE"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:ASSESS_SIGNIFICANCE (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 1.751,
@@ -4706,7 +6016,7 @@
                 "memoryInBytes": 8460
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:ASSESS_SIGNIFICANCE",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:ASSESS_SIGNIFICANCE (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_controlfreec:assess_significance",
@@ -4748,10 +6058,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC2CIRCOS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:FREEC2CIRCOS (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:MAKEGRAPH"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:MAKEGRAPH (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 54.595,
@@ -4764,7 +6074,7 @@
                 "memoryInBytes": 723464
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:MAKEGRAPH",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:MAKEGRAPH (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_controlfreec:makegraph",
@@ -4813,10 +6123,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:ASSESS_SIGNIFICANCE"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:ASSESS_SIGNIFICANCE (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MERGE_MUTECT2"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MERGE_MUTECT2 (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 9.992,
@@ -4829,7 +6139,7 @@
                 "memoryInBytes": 187028
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MERGE_MUTECT2",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MERGE_MUTECT2 (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_mutect2:merge_mutect2",
@@ -4870,10 +6180,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:MAKEGRAPH"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_CONTROLFREEC:MAKEGRAPH (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:LEARNREADORIENTATIONMODEL"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:LEARNREADORIENTATIONMODEL (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 6.223,
@@ -4886,7 +6196,7 @@
                 "memoryInBytes": 219396
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:LEARNREADORIENTATIONMODEL",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:LEARNREADORIENTATIONMODEL (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_mutect2:learnreadorientationmodel",
@@ -4925,10 +6235,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MERGE_MUTECT2"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MERGE_MUTECT2 (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MERGEMUTECTSTATS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MERGEMUTECTSTATS (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 88.389,
@@ -4941,7 +6251,7 @@
                 "memoryInBytes": 2201380
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MERGEMUTECTSTATS",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MERGEMUTECTSTATS (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_mutect2:mergemutectstats",
@@ -4980,10 +6290,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:LEARNREADORIENTATIONMODEL"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:LEARNREADORIENTATIONMODEL (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:FILTERMUTECTCALLS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:FILTERMUTECTCALLS (HCC1395T_vs_HCC1395N)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 5.229,
@@ -4996,7 +6306,7 @@
                 "memoryInBytes": 143816
             },
             {
-                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:FILTERMUTECTCALLS",
+                "name": "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:FILTERMUTECTCALLS (HCC1395T_vs_HCC1395N)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:bam_variant_calling_somatic_all:bam_variant_calling_somatic_mutect2:filtermutectcalls",
@@ -5039,10 +6349,10 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MERGEMUTECTSTATS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:MERGEMUTECTSTATS (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
-                    "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS"
+                    "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS (1)"
                 ],
                 "files": [],
                 "runtimeInSeconds": 20.531,
@@ -5055,7 +6365,7 @@
                 "memoryInBytes": 1545852
             },
             {
-                "name": "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS",
+                "name": "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS (1)",
                 "type": "compute",
                 "command": {
                     "program": "nfcore_sarek:sarek:custom_dumpsoftwareversions",
@@ -5070,7 +6380,7 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:FILTERMUTECTCALLS"
+                    "NFCORE_SAREK:SAREK:BAM_VARIANT_CALLING_SOMATIC_ALL:BAM_VARIANT_CALLING_SOMATIC_MUTECT2:FILTERMUTECTCALLS (HCC1395T_vs_HCC1395N)"
                 ],
                 "children": [
                     "NFCORE_SAREK:SAREK:MULTIQC"
@@ -5116,7 +6426,7 @@
                     ]
                 },
                 "parents": [
-                    "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS"
+                    "NFCORE_SAREK:SAREK:CUSTOM_DUMPSOFTWAREVERSIONS (1)"
                 ],
                 "children": [],
                 "files": [],

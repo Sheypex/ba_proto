@@ -120,7 +120,7 @@ class Instance:
 
     # @property
     # def occupiedResources(self):
-    #     occ = dict(
+    #     occ = _dict(
     #             vcpus=sum()
     #             )
     #     return occ
@@ -1095,7 +1095,7 @@ def sanitycheckCluster(clusterData: dict = None, methods: list = None, wfs: list
     if clusterData is None:
         rc.log("cluster data was None")
         return False
-    assert type(clusterData) is dict, "clusterData must be a dict"
+    assert type(clusterData) is dict, "clusterData must be a _dict"
     for wf in wfs:
         if wf not in clusterData.keys():
             rc.log(f"cluster data was missing workflow {wf}")
@@ -1314,7 +1314,7 @@ def main():
             # rc.log(rich.panel.Panel(rich.pretty.Pretty(prevRes, max_length=2)))
             prevRes = {tuple(sorted(list(k))): v for k, v in prevRes.items()}
             # rc.log(rich.panel.Panel(rich.pretty.Pretty(prevRes, max_length=2)))
-            # dict.fromkeys([tuple(sorted(list(k))) for k in prevRes.keys()], list(prevRes.values()))  # make sure the keys are sorted clusters
+            # _dict.fromkeys([tuple(sorted(list(k))) for k in prevRes.keys()], list(prevRes.values()))  # make sure the keys are sorted clusters
             prevKnownClusters = 0
             with Pool() as pool:
                 for cluster in clusters:

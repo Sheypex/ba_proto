@@ -1,0 +1,5322 @@
+[
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_bbduk.txt",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_maltextract.txt",
+        "tag": "null",
+        "size": 23,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_gatk3.txt",
+        "tag": "null",
+        "size": 15,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_multiqc.txt",
+        "tag": "null",
+        "size": 22,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_pmdtools.txt",
+        "tag": "null",
+        "size": 15,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_eigenstrat_snp_coverage.txt",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_preseq.txt",
+        "tag": "null",
+        "size": 441,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_sequencetools.txt",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "software_versions.csv",
+        "tag": "null",
+        "size": 666,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_dedup.txt",
+        "tag": "null",
+        "size": 28,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_bamutil.txt",
+        "tag": "null",
+        "size": 2373,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_malt.txt",
+        "tag": "null",
+        "size": 14,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_bcftools.txt",
+        "tag": "null",
+        "size": 5,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_qualimap.txt",
+        "tag": "null",
+        "size": 603,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_gatk.txt",
+        "tag": "null",
+        "size": 44,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_vcf2genome.txt",
+        "tag": "null",
+        "size": 32,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_multivcfanalyzer.txt",
+        "tag": "null",
+        "size": 26,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_damageprofiler.txt",
+        "tag": "null",
+        "size": 21,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_angsd.txt",
+        "tag": "null",
+        "size": 15,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_endorSpy.txt",
+        "tag": "null",
+        "size": 14,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_bedtools.txt",
+        "tag": "null",
+        "size": 17,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_freebayes.txt",
+        "tag": "null",
+        "size": 17,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_samtools.txt",
+        "tag": "null",
+        "size": 2633,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_pipeline.txt",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_mtnucratiocalculator.txt",
+        "tag": "null",
+        "size": 248,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_circulargenerator.txt",
+        "tag": "null",
+        "size": 29,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_markduplicates.txt",
+        "tag": "null",
+        "size": 15,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_nextflow.txt",
+        "tag": "null",
+        "size": 8,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_fastqc.txt",
+        "tag": "null",
+        "size": 15,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_mapdamage.txt",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_kraken.txt",
+        "tag": "null",
+        "size": 21,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_bwa.txt",
+        "tag": "null",
+        "size": 1180,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_bowtie2.txt",
+        "tag": "null",
+        "size": 955,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "software_versions_mqc.yaml",
+        "tag": "null",
+        "size": 2253,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "get_software_versions",
+        "fileName": "v_fastp.txt",
+        "tag": "null",
+        "size": 13,
+        "output": true,
+        "id": "7"
+    },
+    {
+        "taskName": "makeSeqDict (Mammoth_MT_Krause.fasta)",
+        "fileName": "Mammoth_MT_Krause.fasta",
+        "tag": "Mammoth_MT_Krause.fasta",
+        "size": 17077,
+        "output": false,
+        "id": "3"
+    },
+    {
+        "taskName": "makeSeqDict (Mammoth_MT_Krause.fasta)",
+        "fileName": "where_are_my_files.txt",
+        "tag": "Mammoth_MT_Krause.fasta",
+        "size": 1147,
+        "output": false,
+        "id": "3"
+    },
+    {
+        "taskName": "makeSeqDict (Mammoth_MT_Krause.fasta)",
+        "fileName": "Mammoth_MT_Krause.dict",
+        "tag": "Mammoth_MT_Krause.fasta",
+        "size": 161,
+        "output": true,
+        "id": "3"
+    },
+    {
+        "taskName": "makeBWAIndex (Mammoth_MT_Krause.fasta)",
+        "fileName": "Mammoth_MT_Krause.fasta",
+        "tag": "Mammoth_MT_Krause.fasta",
+        "size": 17077,
+        "output": false,
+        "id": "1"
+    },
+    {
+        "taskName": "makeBWAIndex (Mammoth_MT_Krause.fasta)",
+        "fileName": "where_are_my_files.txt",
+        "tag": "Mammoth_MT_Krause.fasta",
+        "size": 1147,
+        "output": false,
+        "id": "1"
+    },
+    {
+        "taskName": "makeBWAIndex (Mammoth_MT_Krause.fasta)",
+        "fileName": "Mammoth_MT_Krause.fasta.pac",
+        "tag": "Mammoth_MT_Krause.fasta",
+        "size": 4194,
+        "output": true,
+        "id": "1"
+    },
+    {
+        "taskName": "makeBWAIndex (Mammoth_MT_Krause.fasta)",
+        "fileName": "Mammoth_MT_Krause.fasta.bwt",
+        "tag": "Mammoth_MT_Krause.fasta",
+        "size": 16876,
+        "output": true,
+        "id": "1"
+    },
+    {
+        "taskName": "makeBWAIndex (Mammoth_MT_Krause.fasta)",
+        "fileName": "Mammoth_MT_Krause.fasta.amb",
+        "tag": "Mammoth_MT_Krause.fasta",
+        "size": 10,
+        "output": true,
+        "id": "1"
+    },
+    {
+        "taskName": "makeBWAIndex (Mammoth_MT_Krause.fasta)",
+        "fileName": "Mammoth_MT_Krause.fasta.sa",
+        "tag": "Mammoth_MT_Krause.fasta",
+        "size": 8440,
+        "output": true,
+        "id": "1"
+    },
+    {
+        "taskName": "makeBWAIndex (Mammoth_MT_Krause.fasta)",
+        "fileName": "Mammoth_MT_Krause.fasta.ann",
+        "tag": "Mammoth_MT_Krause.fasta",
+        "size": 88,
+        "output": true,
+        "id": "1"
+    },
+    {
+        "taskName": "makeFastaIndex (Mammoth_MT_Krause.fasta)",
+        "fileName": "Mammoth_MT_Krause.fasta",
+        "tag": "Mammoth_MT_Krause.fasta",
+        "size": 17077,
+        "output": false,
+        "id": "2"
+    },
+    {
+        "taskName": "makeFastaIndex (Mammoth_MT_Krause.fasta)",
+        "fileName": "where_are_my_files.txt",
+        "tag": "Mammoth_MT_Krause.fasta",
+        "size": 1147,
+        "output": false,
+        "id": "2"
+    },
+    {
+        "taskName": "makeFastaIndex (Mammoth_MT_Krause.fasta)",
+        "fileName": "Mammoth_MT_Krause.fasta.fai",
+        "tag": "Mammoth_MT_Krause.fasta",
+        "size": 27,
+        "output": true,
+        "id": "2"
+    },
+    {
+        "taskName": "output_documentation",
+        "fileName": "output.md",
+        "tag": null,
+        "size": 75979,
+        "output": false,
+        "id": "6"
+    },
+    {
+        "taskName": "output_documentation",
+        "fileName": "images",
+        "tag": null,
+        "size": 4096,
+        "output": false,
+        "id": "6"
+    },
+    {
+        "taskName": "output_documentation",
+        "fileName": "results_description.html",
+        "tag": "null",
+        "size": 7767495,
+        "output": true,
+        "id": "6"
+    },
+    {
+        "taskName": "fastqc (JK2802_L2)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq.gz",
+        "tag": "JK2802_L2",
+        "size": 638797,
+        "output": false,
+        "id": "10"
+    },
+    {
+        "taskName": "fastqc (JK2802_L2)",
+        "fileName": "input.2",
+        "tag": "JK2802_L2",
+        "size": 2,
+        "output": false,
+        "id": "10"
+    },
+    {
+        "taskName": "fastqc (JK2802_L2)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand_raw_fastqc.zip",
+        "tag": "JK2802_L2",
+        "size": 260684,
+        "output": true,
+        "id": "10"
+    },
+    {
+        "taskName": "fastqc (JK2802_L2)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand_raw_fastqc.html",
+        "tag": "JK2802_L2",
+        "size": 248557,
+        "output": true,
+        "id": "10"
+    },
+    {
+        "taskName": "adapter_removal (JK2802_L2)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq.gz",
+        "tag": "JK2802_L2",
+        "size": 638797,
+        "output": false,
+        "id": "11"
+    },
+    {
+        "taskName": "adapter_removal (JK2802_L2)",
+        "fileName": "nf-core_eager_dummy.txt",
+        "tag": "JK2802_L2",
+        "size": 138,
+        "output": false,
+        "id": "11"
+    },
+    {
+        "taskName": "adapter_removal (JK2802_L2)",
+        "fileName": "nf-core_eager_dummy2.txt",
+        "tag": "JK2802_L2",
+        "size": 145,
+        "output": false,
+        "id": "11"
+    },
+    {
+        "taskName": "adapter_removal (JK2802_L2)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq_L2.se.discarded.gz",
+        "tag": "JK2802_L2",
+        "size": 4833,
+        "output": true,
+        "id": "11"
+    },
+    {
+        "taskName": "adapter_removal (JK2802_L2)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq_L2.se.truncated.gz",
+        "tag": "JK2802_L2",
+        "size": 447736,
+        "output": true,
+        "id": "11"
+    },
+    {
+        "taskName": "adapter_removal (JK2802_L2)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq_L2.se.settings",
+        "tag": "JK2802_L2",
+        "size": 2605,
+        "output": true,
+        "id": "11"
+    },
+    {
+        "taskName": "fastqc (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq.gz",
+        "tag": "JK2782_L1",
+        "size": 671908,
+        "output": false,
+        "id": "8"
+    },
+    {
+        "taskName": "fastqc (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R2_001.fastq.gz.tengrand.fq.gz",
+        "tag": "JK2782_L1",
+        "size": 722004,
+        "output": false,
+        "id": "8"
+    },
+    {
+        "taskName": "fastqc (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand_raw_fastqc.zip",
+        "tag": "JK2782_L1",
+        "size": 265582,
+        "output": true,
+        "id": "8"
+    },
+    {
+        "taskName": "fastqc (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R2_001.fastq.gz.tengrand_raw_fastqc.html",
+        "tag": "JK2782_L1",
+        "size": 249228,
+        "output": true,
+        "id": "8"
+    },
+    {
+        "taskName": "fastqc (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R2_001.fastq.gz.tengrand_raw_fastqc.zip",
+        "tag": "JK2782_L1",
+        "size": 260038,
+        "output": true,
+        "id": "8"
+    },
+    {
+        "taskName": "fastqc (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand_raw_fastqc.html",
+        "tag": "JK2782_L1",
+        "size": 251760,
+        "output": true,
+        "id": "8"
+    },
+    {
+        "taskName": "adapter_removal (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq.gz",
+        "tag": "JK2782_L1",
+        "size": 671908,
+        "output": false,
+        "id": "9"
+    },
+    {
+        "taskName": "adapter_removal (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R2_001.fastq.gz.tengrand.fq.gz",
+        "tag": "JK2782_L1",
+        "size": 722004,
+        "output": false,
+        "id": "9"
+    },
+    {
+        "taskName": "adapter_removal (JK2782_L1)",
+        "fileName": "nf-core_eager_dummy2.txt",
+        "tag": "JK2782_L1",
+        "size": 145,
+        "output": false,
+        "id": "9"
+    },
+    {
+        "taskName": "adapter_removal (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.collapsed.gz",
+        "tag": "JK2782_L1",
+        "size": 345692,
+        "output": true,
+        "id": "9"
+    },
+    {
+        "taskName": "adapter_removal (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.pair1.truncated.gz",
+        "tag": "JK2782_L1",
+        "size": 3171,
+        "output": true,
+        "id": "9"
+    },
+    {
+        "taskName": "adapter_removal (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.discarded.gz",
+        "tag": "JK2782_L1",
+        "size": 3312,
+        "output": true,
+        "id": "9"
+    },
+    {
+        "taskName": "adapter_removal (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.singleton.truncated.gz",
+        "tag": "JK2782_L1",
+        "size": 608,
+        "output": true,
+        "id": "9"
+    },
+    {
+        "taskName": "adapter_removal (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.pair2.truncated.gz",
+        "tag": "JK2782_L1",
+        "size": 2977,
+        "output": true,
+        "id": "9"
+    },
+    {
+        "taskName": "adapter_removal (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.settings",
+        "tag": "JK2782_L1",
+        "size": 5887,
+        "output": true,
+        "id": "9"
+    },
+    {
+        "taskName": "adapter_removal (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.combined.fq.gz",
+        "tag": "JK2782_L1",
+        "size": 375150,
+        "output": true,
+        "id": "9"
+    },
+    {
+        "taskName": "adapter_removal (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.combined.tmp.fq.gz",
+        "tag": "JK2782_L1",
+        "size": 375913,
+        "output": true,
+        "id": "9"
+    },
+    {
+        "taskName": "adapter_removal (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.collapsed.truncated.gz",
+        "tag": "JK2782_L1",
+        "size": 23465,
+        "output": true,
+        "id": "9"
+    },
+    {
+        "taskName": "fastqc_after_clipping (JK2802_L2)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq_L2.se.truncated.gz",
+        "tag": "JK2802_L2",
+        "size": 447736,
+        "output": false,
+        "id": "15"
+    },
+    {
+        "taskName": "fastqc_after_clipping (JK2802_L2)",
+        "fileName": "nf-core_eager_dummy.txt",
+        "tag": "JK2802_L2",
+        "size": 138,
+        "output": false,
+        "id": "15"
+    },
+    {
+        "taskName": "fastqc_after_clipping (JK2802_L2)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq_L2.se.truncated_fastqc.zip",
+        "tag": "JK2802_L2",
+        "size": 276018,
+        "output": true,
+        "id": "15"
+    },
+    {
+        "taskName": "fastqc_after_clipping (JK2802_L2)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq_L2.se.truncated_fastqc.html",
+        "tag": "JK2802_L2",
+        "size": 259859,
+        "output": true,
+        "id": "15"
+    },
+    {
+        "taskName": "fastqc_after_clipping (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.combined.fq.gz",
+        "tag": "JK2782_L1",
+        "size": 375150,
+        "output": false,
+        "id": "17"
+    },
+    {
+        "taskName": "fastqc_after_clipping (JK2782_L1)",
+        "fileName": "nf-core_eager_dummy.txt",
+        "tag": "JK2782_L1",
+        "size": 138,
+        "output": false,
+        "id": "17"
+    },
+    {
+        "taskName": "fastqc_after_clipping (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.combined_fastqc.html",
+        "tag": "JK2782_L1",
+        "size": 244013,
+        "output": true,
+        "id": "17"
+    },
+    {
+        "taskName": "fastqc_after_clipping (JK2782_L1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.combined_fastqc.zip",
+        "tag": "JK2782_L1",
+        "size": 257225,
+        "output": true,
+        "id": "17"
+    },
+    {
+        "taskName": "bwa (JK2802)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq_L2.se.truncated.gz",
+        "tag": "JK2802",
+        "size": 447736,
+        "output": false,
+        "id": "18"
+    },
+    {
+        "taskName": "bwa (JK2802)",
+        "fileName": "nf-core_eager_dummy.txt",
+        "tag": "JK2802",
+        "size": 138,
+        "output": false,
+        "id": "18"
+    },
+    {
+        "taskName": "bwa (JK2802)",
+        "fileName": "BWAIndex",
+        "tag": "JK2802",
+        "size": 4096,
+        "output": false,
+        "id": "18"
+    },
+    {
+        "taskName": "bwa (JK2802)",
+        "fileName": "JK2802.sai",
+        "tag": "JK2802",
+        "size": 84020,
+        "output": true,
+        "id": "18"
+    },
+    {
+        "taskName": "bwa (JK2802)",
+        "fileName": "JK2802_SE.mapped.bam.bai",
+        "tag": "JK2802",
+        "size": 128,
+        "output": true,
+        "id": "18"
+    },
+    {
+        "taskName": "bwa (JK2802)",
+        "fileName": "JK2802_SE.mapped.bam",
+        "tag": "JK2802",
+        "size": 509926,
+        "output": true,
+        "id": "18"
+    },
+    {
+        "taskName": "bwa (JK2782)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.combined.fq.gz",
+        "tag": "JK2782",
+        "size": 375150,
+        "output": false,
+        "id": "20"
+    },
+    {
+        "taskName": "bwa (JK2782)",
+        "fileName": "nf-core_eager_dummy.txt",
+        "tag": "JK2782",
+        "size": 138,
+        "output": false,
+        "id": "20"
+    },
+    {
+        "taskName": "bwa (JK2782)",
+        "fileName": "BWAIndex",
+        "tag": "JK2782",
+        "size": 4096,
+        "output": false,
+        "id": "20"
+    },
+    {
+        "taskName": "bwa (JK2782)",
+        "fileName": "JK2782_PE.mapped.bam",
+        "tag": "JK2782",
+        "size": 434609,
+        "output": true,
+        "id": "20"
+    },
+    {
+        "taskName": "bwa (JK2782)",
+        "fileName": "JK2782.sai",
+        "tag": "JK2782",
+        "size": 72324,
+        "output": true,
+        "id": "20"
+    },
+    {
+        "taskName": "bwa (JK2782)",
+        "fileName": "JK2782_PE.mapped.bam.bai",
+        "tag": "JK2782",
+        "size": 104,
+        "output": true,
+        "id": "20"
+    },
+    {
+        "taskName": "samtools_flagstat (JK2782)",
+        "fileName": "JK2782_PE.mapped.bam",
+        "tag": "JK2782",
+        "size": 434609,
+        "output": false,
+        "id": "26"
+    },
+    {
+        "taskName": "samtools_flagstat (JK2782)",
+        "fileName": "JK2782_PE.mapped.bam.bai",
+        "tag": "JK2782",
+        "size": 104,
+        "output": false,
+        "id": "26"
+    },
+    {
+        "taskName": "samtools_flagstat (JK2782)",
+        "fileName": "JK2782_flagstat.stats",
+        "tag": "JK2782",
+        "size": 380,
+        "output": true,
+        "id": "26"
+    },
+    {
+        "taskName": "samtools_flagstat (JK2802)",
+        "fileName": "JK2802_SE.mapped.bam",
+        "tag": "JK2802",
+        "size": 509926,
+        "output": false,
+        "id": "32"
+    },
+    {
+        "taskName": "samtools_flagstat (JK2802)",
+        "fileName": "JK2802_SE.mapped.bam.bai",
+        "tag": "JK2802",
+        "size": 128,
+        "output": false,
+        "id": "32"
+    },
+    {
+        "taskName": "samtools_flagstat (JK2802)",
+        "fileName": "JK2802_flagstat.stats",
+        "tag": "JK2802",
+        "size": 380,
+        "output": true,
+        "id": "32"
+    },
+    {
+        "taskName": "markduplicates (JK2802)",
+        "fileName": "JK2802_SE.mapped.bam",
+        "tag": "JK2802",
+        "size": 509926,
+        "output": false,
+        "id": "31"
+    },
+    {
+        "taskName": "markduplicates (JK2802)",
+        "fileName": "JK2802_SE.mapped.bam.bai",
+        "tag": "JK2802",
+        "size": 128,
+        "output": false,
+        "id": "31"
+    },
+    {
+        "taskName": "markduplicates (JK2802)",
+        "fileName": "JK2802_rmdup.metrics",
+        "tag": "JK2802",
+        "size": 1350,
+        "output": true,
+        "id": "31"
+    },
+    {
+        "taskName": "markduplicates (JK2802)",
+        "fileName": "JK2802_rmdup.bam",
+        "tag": "JK2802",
+        "size": 497579,
+        "output": true,
+        "id": "31"
+    },
+    {
+        "taskName": "markduplicates (JK2802)",
+        "fileName": "JK2802.bam",
+        "tag": "JK2802",
+        "size": 509926,
+        "output": true,
+        "id": "31"
+    },
+    {
+        "taskName": "markduplicates (JK2802)",
+        "fileName": "JK2802_rmdup.bam.bai",
+        "tag": "JK2802",
+        "size": 128,
+        "output": true,
+        "id": "31"
+    },
+    {
+        "taskName": "markduplicates (JK2782)",
+        "fileName": "JK2782_PE.mapped.bam",
+        "tag": "JK2782",
+        "size": 434609,
+        "output": false,
+        "id": "25"
+    },
+    {
+        "taskName": "markduplicates (JK2782)",
+        "fileName": "JK2782_PE.mapped.bam.bai",
+        "tag": "JK2782",
+        "size": 104,
+        "output": false,
+        "id": "25"
+    },
+    {
+        "taskName": "markduplicates (JK2782)",
+        "fileName": "JK2782_rmdup.bam.bai",
+        "tag": "JK2782",
+        "size": 104,
+        "output": true,
+        "id": "25"
+    },
+    {
+        "taskName": "markduplicates (JK2782)",
+        "fileName": "JK2782_rmdup.bam",
+        "tag": "JK2782",
+        "size": 412963,
+        "output": true,
+        "id": "25"
+    },
+    {
+        "taskName": "markduplicates (JK2782)",
+        "fileName": "JK2782.bam",
+        "tag": "JK2782",
+        "size": 434609,
+        "output": true,
+        "id": "25"
+    },
+    {
+        "taskName": "markduplicates (JK2782)",
+        "fileName": "JK2782_rmdup.metrics",
+        "tag": "JK2782",
+        "size": 1346,
+        "output": true,
+        "id": "25"
+    },
+    {
+        "taskName": "preseq (JK2782)",
+        "fileName": "JK2782_PE.mapped.bam",
+        "tag": "JK2782",
+        "size": 434609,
+        "output": false,
+        "id": "30"
+    },
+    {
+        "taskName": "preseq (JK2782)",
+        "fileName": "JK2782_PE.mapped.preseq",
+        "tag": "JK2782",
+        "size": 40,
+        "output": true,
+        "id": "30"
+    },
+    {
+        "taskName": "preseq (JK2802)",
+        "fileName": "JK2802_SE.mapped.bam",
+        "tag": "JK2802",
+        "size": 509926,
+        "output": false,
+        "id": "33"
+    },
+    {
+        "taskName": "preseq (JK2802)",
+        "fileName": "JK2802_SE.mapped.preseq",
+        "tag": "JK2802",
+        "size": 40,
+        "output": true,
+        "id": "33"
+    },
+    {
+        "taskName": "endorSpy (JK2782)",
+        "fileName": "JK2782_flagstat.stats",
+        "tag": "JK2782",
+        "size": 380,
+        "output": false,
+        "id": "34"
+    },
+    {
+        "taskName": "endorSpy (JK2782)",
+        "fileName": "nf-core_eager_dummy.txt",
+        "tag": "JK2782",
+        "size": 138,
+        "output": false,
+        "id": "34"
+    },
+    {
+        "taskName": "endorSpy (JK2782)",
+        "fileName": "JK2782_endogenous_dna_mqc.json",
+        "tag": "JK2782",
+        "size": 205,
+        "output": true,
+        "id": "34"
+    },
+    {
+        "taskName": "endorSpy (JK2802)",
+        "fileName": "JK2802_flagstat.stats",
+        "tag": "JK2802",
+        "size": 380,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "endorSpy (JK2802)",
+        "fileName": "nf-core_eager_dummy.txt",
+        "tag": "JK2802",
+        "size": 138,
+        "output": false,
+        "id": "35"
+    },
+    {
+        "taskName": "endorSpy (JK2802)",
+        "fileName": "JK2802_endogenous_dna_mqc.json",
+        "tag": "JK2802",
+        "size": 205,
+        "output": true,
+        "id": "35"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "JK2782_rmdup.bam",
+        "tag": "JK2782",
+        "size": 412963,
+        "output": false,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "JK2782_rmdup.bam.bai",
+        "tag": "JK2782",
+        "size": 104,
+        "output": false,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "Mammoth_MT_Krause.fasta",
+        "tag": "JK2782",
+        "size": 17077,
+        "output": false,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "Mammoth_MT_Krause.fasta.fai",
+        "tag": "JK2782",
+        "size": 27,
+        "output": false,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "lgdistribution.txt",
+        "tag": "JK2782",
+        "size": 2178,
+        "output": true,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "DamagePlot.pdf",
+        "tag": "JK2782",
+        "size": 6425,
+        "output": true,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "Length_plot.pdf",
+        "tag": "JK2782",
+        "size": 12007,
+        "output": true,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "DNA_comp_genome.txt",
+        "tag": "JK2782",
+        "size": 348,
+        "output": true,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "5pCtoT_freq.txt",
+        "tag": "JK2782",
+        "size": 437,
+        "output": true,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "3pGtoA_freq.txt",
+        "tag": "JK2782",
+        "size": 466,
+        "output": true,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "DNA_composition_sample.txt",
+        "tag": "JK2782",
+        "size": 10537,
+        "output": true,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "identity_histogram.pdf",
+        "tag": "JK2782",
+        "size": 4336,
+        "output": true,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "dmgprof.json",
+        "tag": "JK2782",
+        "size": 4658,
+        "output": true,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "misincorporation.txt",
+        "tag": "JK2782",
+        "size": 49530,
+        "output": true,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "5p_freq_misincorporations.txt",
+        "tag": "JK2782",
+        "size": 2106,
+        "output": true,
+        "id": "38"
+    },
+    {
+        "taskName": "damageprofiler (JK2782)",
+        "fileName": "3p_freq_misincorporations.txt",
+        "tag": "JK2782",
+        "size": 2106,
+        "output": true,
+        "id": "38"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "JK2802_rmdup.bam",
+        "tag": "JK2802",
+        "size": 497579,
+        "output": false,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "JK2802_rmdup.bam.bai",
+        "tag": "JK2802",
+        "size": 128,
+        "output": false,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "Mammoth_MT_Krause.fasta",
+        "tag": "JK2802",
+        "size": 17077,
+        "output": false,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "nf-core_eager_dummy.txt",
+        "tag": "JK2802",
+        "size": 138,
+        "output": false,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "qualimapReport.html",
+        "tag": "JK2802",
+        "size": 14562,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "jquery.js",
+        "tag": "JK2802",
+        "size": 72174,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "report.css",
+        "tag": "JK2802",
+        "size": 608,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "underscore.js",
+        "tag": "JK2802",
+        "size": 8574,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "minus.png",
+        "tag": "JK2802",
+        "size": 199,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "websupport.js",
+        "tag": "JK2802",
+        "size": 25246,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "comment.png",
+        "tag": "JK2802",
+        "size": 3445,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "basic.css",
+        "tag": "JK2802",
+        "size": 8461,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "comment-bright.png",
+        "tag": "JK2802",
+        "size": 3500,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "agogo.css",
+        "tag": "JK2802",
+        "size": 7130,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "searchtools.js",
+        "tag": "JK2802",
+        "size": 16043,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "plus.png",
+        "tag": "JK2802",
+        "size": 199,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "up-pressed.png",
+        "tag": "JK2802",
+        "size": 372,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "comment-close.png",
+        "tag": "JK2802",
+        "size": 3578,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "up.png",
+        "tag": "JK2802",
+        "size": 363,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "file.png",
+        "tag": "JK2802",
+        "size": 392,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "pygments.css",
+        "tag": "JK2802",
+        "size": 3932,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "bgfooter.png",
+        "tag": "JK2802",
+        "size": 434,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "down-pressed.png",
+        "tag": "JK2802",
+        "size": 368,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "doctools.js",
+        "tag": "JK2802",
+        "size": 6840,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "bgtop.png",
+        "tag": "JK2802",
+        "size": 430,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "down.png",
+        "tag": "JK2802",
+        "size": 363,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "ajax-loader.gif",
+        "tag": "JK2802",
+        "size": 673,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "mapped_reads_gc-content_distribution.txt",
+        "tag": "JK2802",
+        "size": 1443,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "mapping_quality_histogram.txt",
+        "tag": "JK2802",
+        "size": 369,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "mapped_reads_nucleotide_content.txt",
+        "tag": "JK2802",
+        "size": 10241,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "coverage_histogram.txt",
+        "tag": "JK2802",
+        "size": 644,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "mapped_reads_clipping_profile.txt",
+        "tag": "JK2802",
+        "size": 1179,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "coverage_across_reference.txt",
+        "tag": "JK2802",
+        "size": 17050,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "genome_fraction_coverage.txt",
+        "tag": "JK2802",
+        "size": 1219,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "mapping_quality_across_reference.txt",
+        "tag": "JK2802",
+        "size": 6075,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "duplication_rate_histogram.txt",
+        "tag": "JK2802",
+        "size": 472,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "homopolymer_indels.txt",
+        "tag": "JK2802",
+        "size": 83,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "genome_results.txt",
+        "tag": "JK2802",
+        "size": 4685,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "genome_coverage_histogram.png",
+        "tag": "JK2802",
+        "size": 44401,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "genome_gc_content_per_window.png",
+        "tag": "JK2802",
+        "size": 55720,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "genome_reads_content_per_read_position.png",
+        "tag": "JK2802",
+        "size": 84343,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "genome_uniq_read_starts_histogram.png",
+        "tag": "JK2802",
+        "size": 33538,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "genome_coverage_across_reference.png",
+        "tag": "JK2802",
+        "size": 163653,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "genome_mapping_quality_across_reference.png",
+        "tag": "JK2802",
+        "size": 39340,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "genome_homopolymer_indels.png",
+        "tag": "JK2802",
+        "size": 26191,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "genome_reads_clipping_profile.png",
+        "tag": "JK2802",
+        "size": 32961,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "genome_coverage_0to50_histogram.png",
+        "tag": "JK2802",
+        "size": 44450,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "genome_mapping_quality_histogram.png",
+        "tag": "JK2802",
+        "size": 36694,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "qualimap (JK2802)",
+        "fileName": "genome_coverage_quotes.png",
+        "tag": "JK2802",
+        "size": 33561,
+        "output": true,
+        "id": "60"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "JK2802_rmdup.bam",
+        "tag": "JK2802",
+        "size": 497579,
+        "output": false,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "JK2802_rmdup.bam.bai",
+        "tag": "JK2802",
+        "size": 128,
+        "output": false,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "Mammoth_MT_Krause.fasta",
+        "tag": "JK2802",
+        "size": 17077,
+        "output": false,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "Mammoth_MT_Krause.fasta.fai",
+        "tag": "JK2802",
+        "size": 27,
+        "output": false,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "lgdistribution.txt",
+        "tag": "JK2802",
+        "size": 1591,
+        "output": true,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "DamagePlot.pdf",
+        "tag": "JK2802",
+        "size": 6292,
+        "output": true,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "Length_plot.pdf",
+        "tag": "JK2802",
+        "size": 9624,
+        "output": true,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "DNA_comp_genome.txt",
+        "tag": "JK2802",
+        "size": 343,
+        "output": true,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "5pCtoT_freq.txt",
+        "tag": "JK2802",
+        "size": 459,
+        "output": true,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "3pGtoA_freq.txt",
+        "tag": "JK2802",
+        "size": 463,
+        "output": true,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "DNA_composition_sample.txt",
+        "tag": "JK2802",
+        "size": 10643,
+        "output": true,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "identity_histogram.pdf",
+        "tag": "JK2802",
+        "size": 4424,
+        "output": true,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "dmgprof.json",
+        "tag": "JK2802",
+        "size": 3620,
+        "output": true,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "misincorporation.txt",
+        "tag": "JK2802",
+        "size": 49696,
+        "output": true,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "5p_freq_misincorporations.txt",
+        "tag": "JK2802",
+        "size": 2106,
+        "output": true,
+        "id": "41"
+    },
+    {
+        "taskName": "damageprofiler (JK2802)",
+        "fileName": "3p_freq_misincorporations.txt",
+        "tag": "JK2802",
+        "size": 2106,
+        "output": true,
+        "id": "41"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "JK2782_rmdup.bam",
+        "tag": "JK2782",
+        "size": 412963,
+        "output": false,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "JK2782_rmdup.bam.bai",
+        "tag": "JK2782",
+        "size": 104,
+        "output": false,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "Mammoth_MT_Krause.fasta",
+        "tag": "JK2782",
+        "size": 17077,
+        "output": false,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "nf-core_eager_dummy.txt",
+        "tag": "JK2782",
+        "size": 138,
+        "output": false,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "qualimapReport.html",
+        "tag": "JK2782",
+        "size": 14139,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "jquery.js",
+        "tag": "JK2782",
+        "size": 72174,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "report.css",
+        "tag": "JK2782",
+        "size": 608,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "underscore.js",
+        "tag": "JK2782",
+        "size": 8574,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "minus.png",
+        "tag": "JK2782",
+        "size": 199,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "websupport.js",
+        "tag": "JK2782",
+        "size": 25246,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "comment.png",
+        "tag": "JK2782",
+        "size": 3445,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "basic.css",
+        "tag": "JK2782",
+        "size": 8461,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "comment-bright.png",
+        "tag": "JK2782",
+        "size": 3500,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "agogo.css",
+        "tag": "JK2782",
+        "size": 7130,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "searchtools.js",
+        "tag": "JK2782",
+        "size": 16043,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "plus.png",
+        "tag": "JK2782",
+        "size": 199,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "up-pressed.png",
+        "tag": "JK2782",
+        "size": 372,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "comment-close.png",
+        "tag": "JK2782",
+        "size": 3578,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "up.png",
+        "tag": "JK2782",
+        "size": 363,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "file.png",
+        "tag": "JK2782",
+        "size": 392,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "pygments.css",
+        "tag": "JK2782",
+        "size": 3932,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "bgfooter.png",
+        "tag": "JK2782",
+        "size": 434,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "down-pressed.png",
+        "tag": "JK2782",
+        "size": 368,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "doctools.js",
+        "tag": "JK2782",
+        "size": 6840,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "bgtop.png",
+        "tag": "JK2782",
+        "size": 430,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "down.png",
+        "tag": "JK2782",
+        "size": 363,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "ajax-loader.gif",
+        "tag": "JK2782",
+        "size": 673,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "mapped_reads_gc-content_distribution.txt",
+        "tag": "JK2782",
+        "size": 1395,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "mapping_quality_histogram.txt",
+        "tag": "JK2782",
+        "size": 354,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "mapped_reads_nucleotide_content.txt",
+        "tag": "JK2782",
+        "size": 17310,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "coverage_histogram.txt",
+        "tag": "JK2782",
+        "size": 456,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "coverage_across_reference.txt",
+        "tag": "JK2782",
+        "size": 16985,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "genome_fraction_coverage.txt",
+        "tag": "JK2782",
+        "size": 1066,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "mapping_quality_across_reference.txt",
+        "tag": "JK2782",
+        "size": 5867,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "duplication_rate_histogram.txt",
+        "tag": "JK2782",
+        "size": 472,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "homopolymer_indels.txt",
+        "tag": "JK2782",
+        "size": 84,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "genome_results.txt",
+        "tag": "JK2782",
+        "size": 4652,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "genome_coverage_histogram.png",
+        "tag": "JK2782",
+        "size": 39627,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "genome_gc_content_per_window.png",
+        "tag": "JK2782",
+        "size": 55014,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "genome_reads_content_per_read_position.png",
+        "tag": "JK2782",
+        "size": 210896,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "genome_uniq_read_starts_histogram.png",
+        "tag": "JK2782",
+        "size": 30816,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "genome_coverage_across_reference.png",
+        "tag": "JK2782",
+        "size": 156300,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "genome_mapping_quality_across_reference.png",
+        "tag": "JK2782",
+        "size": 37818,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "genome_homopolymer_indels.png",
+        "tag": "JK2782",
+        "size": 25701,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "genome_coverage_0to50_histogram.png",
+        "tag": "JK2782",
+        "size": 39336,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "genome_mapping_quality_histogram.png",
+        "tag": "JK2782",
+        "size": 36630,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "qualimap (JK2782)",
+        "fileName": "genome_coverage_quotes.png",
+        "tag": "JK2782",
+        "size": 33349,
+        "output": true,
+        "id": "57"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "multiqc_config.yaml",
+        "tag": null,
+        "size": 7758,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "software_versions_mqc.yaml",
+        "tag": null,
+        "size": 2253,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "nf-core_eager_logo_outline_drop.png",
+        "tag": null,
+        "size": 285176,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "fastqc_raw/JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand_raw_fastqc.html",
+        "tag": null,
+        "size": 248557,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "fastqc_raw/JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand_raw_fastqc.zip",
+        "tag": null,
+        "size": 260684,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "fastqc_raw/JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand_raw_fastqc.html",
+        "tag": null,
+        "size": 251760,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "fastqc_raw/JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand_raw_fastqc.zip",
+        "tag": null,
+        "size": 265582,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "fastqc_raw/JK2782_TGGCCGATCAACGA_L008_R2_001.fastq.gz.tengrand_raw_fastqc.html",
+        "tag": null,
+        "size": 249228,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "fastqc_raw/JK2782_TGGCCGATCAACGA_L008_R2_001.fastq.gz.tengrand_raw_fastqc.zip",
+        "tag": null,
+        "size": 260038,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "fastqc/JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq_L2.se.truncated_fastqc.html",
+        "tag": null,
+        "size": 259859,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "fastqc/JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq_L2.se.truncated_fastqc.zip",
+        "tag": null,
+        "size": 276018,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "fastqc/JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.combined_fastqc.html",
+        "tag": null,
+        "size": 244013,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "fastqc/JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.combined_fastqc.zip",
+        "tag": null,
+        "size": 257225,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.14",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.15",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.16",
+        "tag": null,
+        "size": 1,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.17",
+        "tag": null,
+        "size": 2,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.18",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.19",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.20",
+        "tag": null,
+        "size": 4,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq_L2.se.settings",
+        "tag": null,
+        "size": 2605,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.21",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.22",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.23",
+        "tag": null,
+        "size": 1,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.24",
+        "tag": null,
+        "size": 2,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.25",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.26",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/input.27",
+        "tag": null,
+        "size": 4,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "adapter_removal/JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.settings",
+        "tag": null,
+        "size": 5887,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.30",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.31",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.32",
+        "tag": null,
+        "size": 1,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.33",
+        "tag": null,
+        "size": 2,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.34",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.35",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.36",
+        "tag": null,
+        "size": 4,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/JK2782_flagstat.stats",
+        "tag": null,
+        "size": 380,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.37",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.38",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.39",
+        "tag": null,
+        "size": 1,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.40",
+        "tag": null,
+        "size": 2,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.41",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.42",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/input.43",
+        "tag": null,
+        "size": 4,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "flagstat/JK2802_flagstat.stats",
+        "tag": null,
+        "size": 380,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.46",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.47",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.48",
+        "tag": null,
+        "size": 1,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.49",
+        "tag": null,
+        "size": 2,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.50",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.51",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.52",
+        "tag": null,
+        "size": 4,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/JK2802_SE.mapped.preseq",
+        "tag": null,
+        "size": 40,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.53",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.54",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.55",
+        "tag": null,
+        "size": 1,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.56",
+        "tag": null,
+        "size": 2,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.57",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.58",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/input.59",
+        "tag": null,
+        "size": 4,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq/JK2782_PE.mapped.preseq",
+        "tag": null,
+        "size": 40,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof1/input.62",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof2/input.63",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof3/input.64",
+        "tag": null,
+        "size": 1,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof4/input.65",
+        "tag": null,
+        "size": 2,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof5/input.66",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof6/input.67",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof7/input.68",
+        "tag": null,
+        "size": 4,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof8/dmgprof.json",
+        "tag": null,
+        "size": 4658,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof9/input.69",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof10/input.70",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof11/input.71",
+        "tag": null,
+        "size": 1,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof12/input.72",
+        "tag": null,
+        "size": 2,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof13/input.73",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof14/input.74",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof15/input.75",
+        "tag": null,
+        "size": 4,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "damageprofiler/dmgprof16/dmgprof.json",
+        "tag": null,
+        "size": 3620,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap1/input.78",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap2/input.79",
+        "tag": null,
+        "size": 10,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap3/input.80",
+        "tag": null,
+        "size": 5,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap4/input.81",
+        "tag": null,
+        "size": 8,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap5/input.82",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap6/input.83",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap7/input.84",
+        "tag": null,
+        "size": 8,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap8/JK2782_rmdup_stats",
+        "tag": null,
+        "size": 4096,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap9/input.85",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap10/input.86",
+        "tag": null,
+        "size": 10,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap11/input.87",
+        "tag": null,
+        "size": 5,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap12/input.88",
+        "tag": null,
+        "size": 8,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap13/input.89",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap14/input.90",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap15/input.91",
+        "tag": null,
+        "size": 8,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "qualimap/qualimap16/JK2802_rmdup_stats",
+        "tag": null,
+        "size": 4096,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.94",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.95",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.96",
+        "tag": null,
+        "size": 1,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.97",
+        "tag": null,
+        "size": 2,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.98",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.99",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.100",
+        "tag": null,
+        "size": 4,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/JK2782_rmdup.metrics",
+        "tag": null,
+        "size": 1346,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.101",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.102",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.103",
+        "tag": null,
+        "size": 1,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.104",
+        "tag": null,
+        "size": 2,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.105",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.106",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/input.107",
+        "tag": null,
+        "size": 4,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "markdup/JK2802_rmdup.metrics",
+        "tag": null,
+        "size": 1350,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.110",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.111",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.112",
+        "tag": null,
+        "size": 1,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.113",
+        "tag": null,
+        "size": 2,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.114",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.115",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.116",
+        "tag": null,
+        "size": 4,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/JK2782_endogenous_dna_mqc.json",
+        "tag": null,
+        "size": 205,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.117",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.118",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.119",
+        "tag": null,
+        "size": 1,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.120",
+        "tag": null,
+        "size": 2,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.121",
+        "tag": null,
+        "size": 7,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.122",
+        "tag": null,
+        "size": 6,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/input.123",
+        "tag": null,
+        "size": 4,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "endorspy/JK2802_endogenous_dna_mqc.json",
+        "tag": null,
+        "size": 205,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "workflow_summary_mqc.yaml",
+        "tag": null,
+        "size": 1488,
+        "output": false,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.74",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "dmgprof.json",
+        "tag": "null",
+        "size": 4658,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.73",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "dmgprof.json",
+        "tag": "null",
+        "size": 3620,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.69",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.64",
+        "tag": "null",
+        "size": 1,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.71",
+        "tag": "null",
+        "size": 1,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.62",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.70",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.65",
+        "tag": "null",
+        "size": 2,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.75",
+        "tag": "null",
+        "size": 4,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.67",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.68",
+        "tag": "null",
+        "size": 4,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.66",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.72",
+        "tag": "null",
+        "size": 2,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.63",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_retained_plot_1.txt",
+        "tag": "null",
+        "size": 278,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "picard_histogram_1.txt",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "multiqc_picard_dups.txt",
+        "tag": "null",
+        "size": 357,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_n_content_plot_1.txt",
+        "tag": "null",
+        "size": 1158,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_quality_scores_plot_1.txt",
+        "tag": "null",
+        "size": 1103,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_adapter_content_plot_1.txt",
+        "tag": "null",
+        "size": 1786,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "multiqc_data.json",
+        "tag": "null",
+        "size": 879318,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "multiqc_sources.txt",
+        "tag": "null",
+        "size": 3492,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "preseq.txt",
+        "tag": "null",
+        "size": 57,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_sequence_quality_plot_1.txt",
+        "tag": "null",
+        "size": 2445,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Mate2.txt",
+        "tag": "null",
+        "size": 2421,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "picard_histogram_2.txt",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "multiqc_damageprofiler_metrics.txt",
+        "tag": "null",
+        "size": 130,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "multiqc_samtools_flagstat.txt",
+        "tag": "null",
+        "size": 970,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_duplication_levels_plot_1.txt",
+        "tag": "null",
+        "size": 416,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "multiqc_citations.txt",
+        "tag": "null",
+        "size": 512,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Singleton.txt",
+        "tag": "null",
+        "size": 2419,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "multiqc_fastqc_1.txt",
+        "tag": "null",
+        "size": 958,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_preseq_plot_1.txt",
+        "tag": "null",
+        "size": 126,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_picard_deduplication_1.txt",
+        "tag": "null",
+        "size": 104,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_sequence_quality_plot-2_1.txt",
+        "tag": "null",
+        "size": 2649,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "picard_histogram.txt",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Collapsed.txt",
+        "tag": "null",
+        "size": 2579,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_n_content_plot-2_1.txt",
+        "tag": "null",
+        "size": 1032,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot-2_Percentages.txt",
+        "tag": "null",
+        "size": 3874,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "multiqc_general_stats.txt",
+        "tag": "null",
+        "size": 3479,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Mate1.txt",
+        "tag": "null",
+        "size": 2184,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_length_distribution_plot_1.txt",
+        "tag": "null",
+        "size": 883,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_qualimap_gc_content_1.txt",
+        "tag": "null",
+        "size": 2121,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "multiqc_qualimap_bamqc_genome_results.txt",
+        "tag": "null",
+        "size": 387,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_length-distribution-Reverse_1.txt",
+        "tag": "null",
+        "size": 1272,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1.txt",
+        "tag": "null",
+        "size": 177,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "multiqc_fastqc.txt",
+        "tag": "null",
+        "size": 1104,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot-2_Counts.txt",
+        "tag": "null",
+        "size": 1810,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_duplication_levels_plot-2_1.txt",
+        "tag": "null",
+        "size": 271,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fiveprime_misinc_plot_1.txt",
+        "tag": "null",
+        "size": 542,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_qualimap_genome_fraction_1.txt",
+        "tag": "null",
+        "size": 1142,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_adapter_content_plot-2_1.txt",
+        "tag": "null",
+        "size": 2264,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_length-distribution-Forward_1.txt",
+        "tag": "null",
+        "size": 1305,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_threeprime_misinc_plot_1.txt",
+        "tag": "null",
+        "size": 573,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Collapsed_Truncated.txt",
+        "tag": "null",
+        "size": 2419,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Percentages.txt",
+        "tag": "null",
+        "size": 2601,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "multiqc_adapter_removal.txt",
+        "tag": "null",
+        "size": 463,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_quality_scores_plot-2_1.txt",
+        "tag": "null",
+        "size": 510,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_qualimap_coverage_histogram_1.txt",
+        "tag": "null",
+        "size": 437,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Discarded.txt",
+        "tag": "null",
+        "size": 2052,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_All.txt",
+        "tag": "null",
+        "size": 2370,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot-2_1.txt",
+        "tag": "null",
+        "size": 129,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Counts.txt",
+        "tag": "null",
+        "size": 2033,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2782_flagstat.stats",
+        "tag": "null",
+        "size": 380,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.32",
+        "tag": "null",
+        "size": 1,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.35",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.40",
+        "tag": "null",
+        "size": 2,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2802_flagstat.stats",
+        "tag": "null",
+        "size": 380,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.39",
+        "tag": "null",
+        "size": 1,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.38",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.42",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.37",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.34",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.41",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.30",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.33",
+        "tag": "null",
+        "size": 2,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.36",
+        "tag": "null",
+        "size": 4,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.43",
+        "tag": "null",
+        "size": 4,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.31",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "multiqc_report.html",
+        "tag": "null",
+        "size": 1726163,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand_raw_fastqc.zip",
+        "tag": "null",
+        "size": 265582,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R2_001.fastq.gz.tengrand_raw_fastqc.html",
+        "tag": "null",
+        "size": 249228,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand_raw_fastqc.zip",
+        "tag": "null",
+        "size": 260684,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand_raw_fastqc.html",
+        "tag": "null",
+        "size": 248557,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R2_001.fastq.gz.tengrand_raw_fastqc.zip",
+        "tag": "null",
+        "size": 260038,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand_raw_fastqc.html",
+        "tag": "null",
+        "size": 251760,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fiveprime_misinc_plot_1.pdf",
+        "tag": "null",
+        "size": 15023,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Collapsed_Truncated.pdf",
+        "tag": "null",
+        "size": 15338,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_adapter_content_plot_1.pdf",
+        "tag": "null",
+        "size": 17910,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1_pc.pdf",
+        "tag": "null",
+        "size": 15906,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_length-distribution-Forward_1.pdf",
+        "tag": "null",
+        "size": 15419,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Percentages.pdf",
+        "tag": "null",
+        "size": 16457,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot-2_Counts.pdf",
+        "tag": "null",
+        "size": 15869,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_picard_deduplication_1.pdf",
+        "tag": "null",
+        "size": 13227,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Mate1.pdf",
+        "tag": "null",
+        "size": 14969,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot-2_1_pc.pdf",
+        "tag": "null",
+        "size": 15854,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Counts.pdf",
+        "tag": "null",
+        "size": 16034,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_quality_scores_plot_1.pdf",
+        "tag": "null",
+        "size": 16265,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1.pdf",
+        "tag": "null",
+        "size": 15357,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_preseq_plot_1.pdf",
+        "tag": "null",
+        "size": 15874,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_duplication_levels_plot_1.pdf",
+        "tag": "null",
+        "size": 17545,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Discarded.pdf",
+        "tag": "null",
+        "size": 15223,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Mate2.pdf",
+        "tag": "null",
+        "size": 14516,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot-2_1.pdf",
+        "tag": "null",
+        "size": 15357,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_n_content_plot-2_1.pdf",
+        "tag": "null",
+        "size": 16308,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_picard_deduplication_1_pc.pdf",
+        "tag": "null",
+        "size": 13722,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_duplication_levels_plot-2_1.pdf",
+        "tag": "null",
+        "size": 17442,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_length-distribution-Reverse_1.pdf",
+        "tag": "null",
+        "size": 15137,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Singleton.pdf",
+        "tag": "null",
+        "size": 14422,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_sequence_quality_plot-2_1.pdf",
+        "tag": "null",
+        "size": 17137,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_retained_plot_1.pdf",
+        "tag": "null",
+        "size": 15726,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_qualimap_coverage_histogram_1.pdf",
+        "tag": "null",
+        "size": 14210,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_sequence_quality_plot_1.pdf",
+        "tag": "null",
+        "size": 18040,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_adapter_content_plot-2_1.pdf",
+        "tag": "null",
+        "size": 17839,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_qualimap_gc_content_1.pdf",
+        "tag": "null",
+        "size": 15250,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_retained_plot_1_pc.pdf",
+        "tag": "null",
+        "size": 16509,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_quality_scores_plot-2_1.pdf",
+        "tag": "null",
+        "size": 16263,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_n_content_plot_1.pdf",
+        "tag": "null",
+        "size": 16625,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_threeprime_misinc_plot_1.pdf",
+        "tag": "null",
+        "size": 14884,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Collapsed.pdf",
+        "tag": "null",
+        "size": 15690,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_length_distribution_plot_1.pdf",
+        "tag": "null",
+        "size": 16782,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_qualimap_genome_fraction_1.pdf",
+        "tag": "null",
+        "size": 16175,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot-2_Percentages.pdf",
+        "tag": "null",
+        "size": 16587,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_All.pdf",
+        "tag": "null",
+        "size": 16444,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_duplication_levels_plot-2_1.png",
+        "tag": "null",
+        "size": 27103,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_threeprime_misinc_plot_1.png",
+        "tag": "null",
+        "size": 35533,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot-2_1_pc.png",
+        "tag": "null",
+        "size": 14333,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot-2_Percentages.png",
+        "tag": "null",
+        "size": 48212,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_adapter_content_plot_1.png",
+        "tag": "null",
+        "size": 42736,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Percentages.png",
+        "tag": "null",
+        "size": 49740,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_length-distribution-Forward_1.png",
+        "tag": "null",
+        "size": 77122,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot-2_1.png",
+        "tag": "null",
+        "size": 14073,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_picard_deduplication_1_pc.png",
+        "tag": "null",
+        "size": 10536,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Collapsed_Truncated.png",
+        "tag": "null",
+        "size": 62430,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1.png",
+        "tag": "null",
+        "size": 16584,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_sequence_quality_plot_1.png",
+        "tag": "null",
+        "size": 37951,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Discarded.png",
+        "tag": "null",
+        "size": 26843,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_duplication_levels_plot_1.png",
+        "tag": "null",
+        "size": 27583,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fiveprime_misinc_plot_1.png",
+        "tag": "null",
+        "size": 41417,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_quality_scores_plot_1.png",
+        "tag": "null",
+        "size": 35648,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Mate2.png",
+        "tag": "null",
+        "size": 23902,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_length-distribution-Reverse_1.png",
+        "tag": "null",
+        "size": 76571,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Counts.png",
+        "tag": "null",
+        "size": 50326,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1_pc.png",
+        "tag": "null",
+        "size": 16860,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_sequence_quality_plot-2_1.png",
+        "tag": "null",
+        "size": 26863,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_All.png",
+        "tag": "null",
+        "size": 62317,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_qualimap_genome_fraction_1.png",
+        "tag": "null",
+        "size": 39716,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Collapsed.png",
+        "tag": "null",
+        "size": 44382,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot-2_Counts.png",
+        "tag": "null",
+        "size": 46727,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_qualimap_coverage_histogram_1.png",
+        "tag": "null",
+        "size": 40271,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_quality_scores_plot-2_1.png",
+        "tag": "null",
+        "size": 29835,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_adapter_content_plot-2_1.png",
+        "tag": "null",
+        "size": 27791,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_n_content_plot-2_1.png",
+        "tag": "null",
+        "size": 18564,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_qualimap_gc_content_1.png",
+        "tag": "null",
+        "size": 43360,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Singleton.png",
+        "tag": "null",
+        "size": 26436,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Mate1.png",
+        "tag": "null",
+        "size": 39495,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_n_content_plot_1.png",
+        "tag": "null",
+        "size": 19733,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_preseq_plot_1.png",
+        "tag": "null",
+        "size": 49710,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_retained_plot_1.png",
+        "tag": "null",
+        "size": 18436,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_length_distribution_plot_1.png",
+        "tag": "null",
+        "size": 41546,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_picard_deduplication_1.png",
+        "tag": "null",
+        "size": 10265,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_retained_plot_1_pc.png",
+        "tag": "null",
+        "size": 18389,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_retained_plot_1_pc.svg",
+        "tag": "null",
+        "size": 39213,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_length-distribution-Forward_1.svg",
+        "tag": "null",
+        "size": 33390,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_duplication_levels_plot-2_1.svg",
+        "tag": "null",
+        "size": 37783,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_n_content_plot_1.svg",
+        "tag": "null",
+        "size": 38646,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_picard_deduplication_1_pc.svg",
+        "tag": "null",
+        "size": 25832,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_quality_scores_plot-2_1.svg",
+        "tag": "null",
+        "size": 35758,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_picard_deduplication_1.svg",
+        "tag": "null",
+        "size": 25165,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fiveprime_misinc_plot_1.svg",
+        "tag": "null",
+        "size": 30746,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_All.svg",
+        "tag": "null",
+        "size": 34958,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Collapsed.svg",
+        "tag": "null",
+        "size": 33500,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_length-distribution-Reverse_1.svg",
+        "tag": "null",
+        "size": 32875,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot-2_1.svg",
+        "tag": "null",
+        "size": 29654,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Singleton.svg",
+        "tag": "null",
+        "size": 29127,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_sequence_quality_plot_1.svg",
+        "tag": "null",
+        "size": 39044,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1.svg",
+        "tag": "null",
+        "size": 31999,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot-2_Counts.svg",
+        "tag": "null",
+        "size": 33475,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_adapter_content_plot-2_1.svg",
+        "tag": "null",
+        "size": 37515,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_qualimap_gc_content_1.svg",
+        "tag": "null",
+        "size": 31415,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_qualimap_coverage_histogram_1.svg",
+        "tag": "null",
+        "size": 26701,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Percentages.svg",
+        "tag": "null",
+        "size": 38122,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_threeprime_misinc_plot_1.svg",
+        "tag": "null",
+        "size": 28162,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_quality_scores_plot_1.svg",
+        "tag": "null",
+        "size": 38458,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot-2_Percentages.svg",
+        "tag": "null",
+        "size": 35217,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_preseq_plot_1.svg",
+        "tag": "null",
+        "size": 31927,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_qualimap_genome_fraction_1.svg",
+        "tag": "null",
+        "size": 30999,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Mate1.svg",
+        "tag": "null",
+        "size": 30098,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_length_distribution_plot_1.svg",
+        "tag": "null",
+        "size": 32494,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_duplication_levels_plot_1.svg",
+        "tag": "null",
+        "size": 40489,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Mate2.svg",
+        "tag": "null",
+        "size": 29235,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot_1_pc.svg",
+        "tag": "null",
+        "size": 32709,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_sequence_gc_content_plot_Counts.svg",
+        "tag": "null",
+        "size": 37725,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_n_content_plot-2_1.svg",
+        "tag": "null",
+        "size": 33264,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_per_base_sequence_quality_plot-2_1.svg",
+        "tag": "null",
+        "size": 34143,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Discarded.svg",
+        "tag": "null",
+        "size": 30897,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_length_count_plot_Collapsed_Truncated.svg",
+        "tag": "null",
+        "size": 31468,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_adapter_content_plot_1.svg",
+        "tag": "null",
+        "size": 42664,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_fastqc_sequence_counts_plot-2_1_pc.svg",
+        "tag": "null",
+        "size": 30300,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "mqc_ar_retained_plot_1.svg",
+        "tag": "null",
+        "size": 39880,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.123",
+        "tag": "null",
+        "size": 4,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.119",
+        "tag": "null",
+        "size": 1,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.121",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2782_endogenous_dna_mqc.json",
+        "tag": "null",
+        "size": 205,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.111",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.113",
+        "tag": "null",
+        "size": 2,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.115",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.116",
+        "tag": "null",
+        "size": 4,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.120",
+        "tag": "null",
+        "size": 2,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.110",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.112",
+        "tag": "null",
+        "size": 1,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2802_endogenous_dna_mqc.json",
+        "tag": "null",
+        "size": 205,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.122",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.117",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.114",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.118",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.combined_fastqc.html",
+        "tag": "null",
+        "size": 244013,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq_L2.se.truncated_fastqc.zip",
+        "tag": "null",
+        "size": 276018,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.combined_fastqc.zip",
+        "tag": "null",
+        "size": 257225,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq_L2.se.truncated_fastqc.html",
+        "tag": "null",
+        "size": 259859,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.97",
+        "tag": "null",
+        "size": 2,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2802_rmdup.metrics",
+        "tag": "null",
+        "size": 1350,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.102",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.107",
+        "tag": "null",
+        "size": 4,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.104",
+        "tag": "null",
+        "size": 2,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.98",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.94",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.100",
+        "tag": "null",
+        "size": 4,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.101",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.106",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.99",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.96",
+        "tag": "null",
+        "size": 1,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.103",
+        "tag": "null",
+        "size": 1,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.105",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.95",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2782_rmdup.metrics",
+        "tag": "null",
+        "size": 1346,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.78",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.91",
+        "tag": "null",
+        "size": 8,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.85",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.81",
+        "tag": "null",
+        "size": 8,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.87",
+        "tag": "null",
+        "size": 5,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.90",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.83",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.79",
+        "tag": "null",
+        "size": 10,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.86",
+        "tag": "null",
+        "size": 10,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.84",
+        "tag": "null",
+        "size": 8,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.80",
+        "tag": "null",
+        "size": 5,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.88",
+        "tag": "null",
+        "size": 8,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.82",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.89",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.22",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.24",
+        "tag": "null",
+        "size": 2,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2782_TGGCCGATCAACGA_L008_R1_001.fastq.gz.tengrand.fq_L1.pe.settings",
+        "tag": "null",
+        "size": 5887,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.23",
+        "tag": "null",
+        "size": 1,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.19",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.26",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.27",
+        "tag": "null",
+        "size": 4,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.15",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.21",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.25",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.17",
+        "tag": "null",
+        "size": 2,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2802_AGAATAACCTACCA_L008_R1_001.fastq.gz.tengrand.fq_L2.se.settings",
+        "tag": "null",
+        "size": 2605,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.16",
+        "tag": "null",
+        "size": 1,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.18",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.20",
+        "tag": "null",
+        "size": 4,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.14",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.54",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.59",
+        "tag": "null",
+        "size": 4,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.50",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.47",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.56",
+        "tag": "null",
+        "size": 2,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.58",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.57",
+        "tag": "null",
+        "size": 7,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.46",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2782_PE.mapped.preseq",
+        "tag": "null",
+        "size": 40,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.55",
+        "tag": "null",
+        "size": 1,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.53",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.51",
+        "tag": "null",
+        "size": 6,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "JK2802_SE.mapped.preseq",
+        "tag": "null",
+        "size": 40,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.52",
+        "tag": "null",
+        "size": 4,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.49",
+        "tag": "null",
+        "size": 2,
+        "output": true,
+        "id": "61"
+    },
+    {
+        "taskName": "multiqc (1)",
+        "fileName": "input.48",
+        "tag": "null",
+        "size": 1,
+        "output": true,
+        "id": "61"
+    }
+]
