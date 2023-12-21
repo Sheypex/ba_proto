@@ -1,0 +1,2 @@
+[workflow_recipes]
+eager_recipe = eager_recipes.eager:EagerRecipe

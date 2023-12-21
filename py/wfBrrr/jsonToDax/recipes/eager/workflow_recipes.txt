@@ -1,0 +1,1 @@
+eager_recipe = eager_recipes.eager:EagerRecipe

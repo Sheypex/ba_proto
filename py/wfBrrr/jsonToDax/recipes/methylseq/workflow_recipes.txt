@@ -1,0 +1,1 @@
+methylseq_recipe = methylseq_recipes.methylseq:MethylseqRecipe

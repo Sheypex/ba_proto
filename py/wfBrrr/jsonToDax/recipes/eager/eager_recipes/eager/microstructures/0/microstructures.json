@@ -1,0 +1,218 @@
+{
+  "microstructure_d0884123dc68ebcd926cb432404e7bef68c52cf046d150274800aba5e8d8749a": {
+    "name": "microstructure_d0884123dc68ebcd926cb432404e7bef68c52cf046d150274800aba5e8d8749a",
+    "nodes": [
+      [
+        "fastqc (COD092E1bL1i69_L7)"
+      ],
+      [
+        "fastqc (COD076E1bL1_L1)"
+      ],
+      [
+        "fastqc (COD092E1bL1i69_L8)"
+      ],
+      [
+        "fastqc (COD076E1bL1_L6)"
+      ],
+      [
+        "fastqc (COD092E1bL1i69_L6)"
+      ],
+      [
+        "fastqc (COD076E1bL1_L8)"
+      ]
+    ],
+    "frequency": 6
+  },
+  "microstructure_5fdc36943245fd9818d5c5acbb3dd4aa29f61df29f9d1a26e59a426fbc99857b": {
+    "name": "microstructure_5fdc36943245fd9818d5c5acbb3dd4aa29f61df29f9d1a26e59a426fbc99857b",
+    "nodes": [
+      [
+        "adapter_removal (COD076E1bL1_L6)"
+      ],
+      [
+        "adapter_removal (COD092E1bL1i69_L6)"
+      ],
+      [
+        "adapter_removal (COD076E1bL1_L1)"
+      ],
+      [
+        "adapter_removal (COD076E1bL1_L8)"
+      ],
+      [
+        "adapter_removal (COD092E1bL1i69_L8)"
+      ],
+      [
+        "adapter_removal (COD092E1bL1i69_L7)"
+      ]
+    ],
+    "frequency": 6
+  },
+  "microstructure_8a2eeb945ac612e63e5ffd197b4403243aabfbe15eec75a8ae35b9393a1aac9a": {
+    "name": "microstructure_8a2eeb945ac612e63e5ffd197b4403243aabfbe15eec75a8ae35b9393a1aac9a",
+    "nodes": [
+      [
+        "fastqc_after_clipping (COD076E1bL1_L1)"
+      ],
+      [
+        "fastqc_after_clipping (COD076E1bL1_L8)"
+      ],
+      [
+        "fastqc_after_clipping (COD076E1bL1_L6)"
+      ],
+      [
+        "fastqc_after_clipping (COD092E1bL1i69_L8)"
+      ],
+      [
+        "fastqc_after_clipping (COD092E1bL1i69_L6)"
+      ],
+      [
+        "fastqc_after_clipping (COD092E1bL1i69_L7)"
+      ]
+    ],
+    "frequency": 6
+  },
+  "microstructure_a1db22fbc8b10e70f194af6951e66005b5bf67e53abe178a1b7afbef9fe764b0": {
+    "name": "microstructure_a1db22fbc8b10e70f194af6951e66005b5bf67e53abe178a1b7afbef9fe764b0",
+    "nodes": [
+      [
+        "lanemerge (COD076E1bL1)"
+      ],
+      [
+        "lanemerge (COD092E1bL1i69)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_dafc2f6ff47783af14df989f790af4c699aaba90a216756f7cfda95edb3d35bb": {
+    "name": "microstructure_dafc2f6ff47783af14df989f790af4c699aaba90a216756f7cfda95edb3d35bb",
+    "nodes": [
+      [
+        "bwa (COD076E1bL1)"
+      ],
+      [
+        "bwa (COD092E1bL1i69)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_5921d9c57e00562c54b1f0c8f84089fe1702d3926aaa9b8fde55b143f77cdf68": {
+    "name": "microstructure_5921d9c57e00562c54b1f0c8f84089fe1702d3926aaa9b8fde55b143f77cdf68",
+    "nodes": [
+      [
+        "samtools_flagstat (COD076E1bL1)"
+      ],
+      [
+        "samtools_flagstat (COD092E1bL1i69)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_0cf6a5804a4ff0c874bc1bfc447753e8359ed52bfcd2c3c5b1aa4ded73560bd4": {
+    "name": "microstructure_0cf6a5804a4ff0c874bc1bfc447753e8359ed52bfcd2c3c5b1aa4ded73560bd4",
+    "nodes": [
+      [
+        "samtools_filter (COD076E1bL1)"
+      ],
+      [
+        "samtools_filter (COD092E1bL1i69)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_e5676ca331312b614f45a16271bd1271afb20273150f61ea7dc942d57a7f1643": {
+    "name": "microstructure_e5676ca331312b614f45a16271bd1271afb20273150f61ea7dc942d57a7f1643",
+    "nodes": [
+      [
+        "samtools_flagstat_after_filter (COD092E1bL1i69)"
+      ],
+      [
+        "samtools_flagstat_after_filter (COD076E1bL1)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_025df50e8a058a50a80c8bc9abe9f69299122c671c09ad02f75f137ee2d5ba1d": {
+    "name": "microstructure_025df50e8a058a50a80c8bc9abe9f69299122c671c09ad02f75f137ee2d5ba1d",
+    "nodes": [
+      [
+        "markduplicates (COD076E1bL1)"
+      ],
+      [
+        "markduplicates (COD092E1bL1i69)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_ba906720f304748cd0532552a65d6901be81460758ee1f38b13fe26988fd5ab1": {
+    "name": "microstructure_ba906720f304748cd0532552a65d6901be81460758ee1f38b13fe26988fd5ab1",
+    "nodes": [
+      [
+        "preseq (COD092E1bL1i69)"
+      ],
+      [
+        "preseq (COD076E1bL1)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_40f2fc6728c6b7fcbba553ab3e801bbddc0308804945ff7e11177e79053b509d": {
+    "name": "microstructure_40f2fc6728c6b7fcbba553ab3e801bbddc0308804945ff7e11177e79053b509d",
+    "nodes": [
+      [
+        "endorSpy (COD076E1bL1)"
+      ],
+      [
+        "endorSpy (COD092E1bL1i69)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_46f103cc94bb9cf2af97f403e2a9a13b454a626a8ec0696cb574f896ae1e9fac": {
+    "name": "microstructure_46f103cc94bb9cf2af97f403e2a9a13b454a626a8ec0696cb574f896ae1e9fac",
+    "nodes": [
+      [
+        "damageprofiler (COD076E1bL1)"
+      ],
+      [
+        "damageprofiler (COD092E1bL1i69)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_0bc731002558010d72c6475c7f119067148921e81e23864634c7840bb002d55b": {
+    "name": "microstructure_0bc731002558010d72c6475c7f119067148921e81e23864634c7840bb002d55b",
+    "nodes": [
+      [
+        "qualimap (COD092)"
+      ],
+      [
+        "qualimap (COD076)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_50a24c458d97143df6076ceaecc59324f167e58ef49acf47eddb4bd047fa179e": {
+    "name": "microstructure_50a24c458d97143df6076ceaecc59324f167e58ef49acf47eddb4bd047fa179e",
+    "nodes": [
+      [
+        "genotyping_hc (COD076)"
+      ],
+      [
+        "genotyping_hc (COD092)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_b9276d36bb4af2df617addc23946ba5a3153b5f769490f1473176db8b5642a36": {
+    "name": "microstructure_b9276d36bb4af2df617addc23946ba5a3153b5f769490f1473176db8b5642a36",
+    "nodes": [
+      [
+        "bcftools_stats (COD092)"
+      ],
+      [
+        "bcftools_stats (COD076)"
+      ]
+    ],
+    "frequency": 2
+  }
+}

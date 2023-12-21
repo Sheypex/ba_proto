@@ -1,0 +1,2 @@
+[workflow_recipes]
+chipseq_recipe = chipseq_recipes.chipseq:ChipseqRecipe

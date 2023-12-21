@@ -1,0 +1,122 @@
+{
+  "microstructure_885755938b7710237387d83f1da184c182c97f74777a7ea448a59183fd9567fe": {
+    "name": "microstructure_885755938b7710237387d83f1da184c182c97f74777a7ea448a59183fd9567fe",
+    "nodes": [
+      [
+        "fastqc (JK2782_L1)"
+      ],
+      [
+        "fastqc (JK2802_L2)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_7d689c62f53d0e6ab25de12b21f6e2a6713f66a1720d58e3056e9cff93815de1": {
+    "name": "microstructure_7d689c62f53d0e6ab25de12b21f6e2a6713f66a1720d58e3056e9cff93815de1",
+    "nodes": [
+      [
+        "adapter_removal (JK2782_L1)"
+      ],
+      [
+        "adapter_removal (JK2802_L2)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_aff5645d5dedbbbf5ee93dc802c20b5a46344b232be348064b5857920afec9e5": {
+    "name": "microstructure_aff5645d5dedbbbf5ee93dc802c20b5a46344b232be348064b5857920afec9e5",
+    "nodes": [
+      [
+        "fastqc_after_clipping (JK2782_L1)"
+      ],
+      [
+        "fastqc_after_clipping (JK2802_L2)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_30291320efb865b46bc9e9b9d45bf7aa2218b5acd5ec5b25b8c34d052791f580": {
+    "name": "microstructure_30291320efb865b46bc9e9b9d45bf7aa2218b5acd5ec5b25b8c34d052791f580",
+    "nodes": [
+      [
+        "bwa (JK2802)"
+      ],
+      [
+        "bwa (JK2782)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_69538d79436008af3c9a5aa12746391e6f76fa88adcff986053bb9d22eceb709": {
+    "name": "microstructure_69538d79436008af3c9a5aa12746391e6f76fa88adcff986053bb9d22eceb709",
+    "nodes": [
+      [
+        "samtools_flagstat (JK2782)"
+      ],
+      [
+        "samtools_flagstat (JK2802)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_f6ccf89d5b18824f607d3a3746bf74da4ac1c3a082a5eb1ebf2ed211ba7b415c": {
+    "name": "microstructure_f6ccf89d5b18824f607d3a3746bf74da4ac1c3a082a5eb1ebf2ed211ba7b415c",
+    "nodes": [
+      [
+        "markduplicates (JK2802)"
+      ],
+      [
+        "markduplicates (JK2782)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_01f23ceca888f97f842bcd149d2964ff1de3cf0619bb7737b50777c4c93bfba2": {
+    "name": "microstructure_01f23ceca888f97f842bcd149d2964ff1de3cf0619bb7737b50777c4c93bfba2",
+    "nodes": [
+      [
+        "preseq (JK2782)"
+      ],
+      [
+        "preseq (JK2802)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_64fa9ab5dc18d1f67fc28eb9a9f7bf240e300b8bb3216dd90d7f8885fa823019": {
+    "name": "microstructure_64fa9ab5dc18d1f67fc28eb9a9f7bf240e300b8bb3216dd90d7f8885fa823019",
+    "nodes": [
+      [
+        "endorSpy (JK2782)"
+      ],
+      [
+        "endorSpy (JK2802)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_e3aac1374079c6e5a888fe41742699a831117156ddb3ae706a92dba071276b30": {
+    "name": "microstructure_e3aac1374079c6e5a888fe41742699a831117156ddb3ae706a92dba071276b30",
+    "nodes": [
+      [
+        "damageprofiler (JK2802)"
+      ],
+      [
+        "damageprofiler (JK2782)"
+      ]
+    ],
+    "frequency": 2
+  },
+  "microstructure_11d43f34619a9953e895ce9c9b684eacdfc3c642cd997dea2c3462bfedd8dc4c": {
+    "name": "microstructure_11d43f34619a9953e895ce9c9b684eacdfc3c642cd997dea2c3462bfedd8dc4c",
+    "nodes": [
+      [
+        "qualimap (JK2782)"
+      ],
+      [
+        "qualimap (JK2802)"
+      ]
+    ],
+    "frequency": 2
+  }
+}

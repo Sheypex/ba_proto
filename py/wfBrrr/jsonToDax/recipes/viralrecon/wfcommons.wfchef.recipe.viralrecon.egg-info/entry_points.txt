@@ -1,0 +1,2 @@
+[workflow_recipes]
+viralrecon_recipe = viralrecon_recipes.viralrecon:ViralreconRecipe

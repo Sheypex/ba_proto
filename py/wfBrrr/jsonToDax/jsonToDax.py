@@ -239,7 +239,7 @@ def parse_instances():
         for t in tasksContent:
             xml = {'@id': t.id,
                    '@name': t.name,
-                   # '@namespace': 'methylseq', # TODO
+                   '@namespace': wfname,
                    '@numcores': t.cores,
                    '@runtime': t.runtimeInSeconds * t.cores,
                    '@runtime_raw': t.runtimeInSeconds,

@@ -1,0 +1,152 @@
+{
+  "microstructure_ae33162d11031cc9ae0b67d251e8daecef18b64f06674cb1a39bef9d0c484aa0": {
+    "name": "microstructure_ae33162d11031cc9ae0b67d251e8daecef18b64f06674cb1a39bef9d0c484aa0",
+    "nodes": [
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:FASTQC (SRR389222_sub2)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:FASTQC (Ecoli_10K_methylated)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:FASTQC (SRR389222_sub1)"
+      ]
+    ],
+    "frequency": 3
+  },
+  "microstructure_14ff5a3e4bb614995a505296499d9212bb471c99eb2906560909dff35ee2bd06": {
+    "name": "microstructure_14ff5a3e4bb614995a505296499d9212bb471c99eb2906560909dff35ee2bd06",
+    "nodes": [
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:TRIMGALORE (SRR389222_sub2)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:TRIMGALORE (Ecoli_10K_methylated)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:TRIMGALORE (SRR389222_sub1)"
+      ]
+    ],
+    "frequency": 3
+  },
+  "microstructure_1d966fe28778be8fdd0ac7bb524bc7b2bb9eb30beb7ef1ffea732222bda87db3": {
+    "name": "microstructure_1d966fe28778be8fdd0ac7bb524bc7b2bb9eb30beb7ef1ffea732222bda87db3",
+    "nodes": [
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_ALIGN (Ecoli_10K_methylated)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_ALIGN (SRR389222_sub2)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_ALIGN (SRR389222_sub1)"
+      ]
+    ],
+    "frequency": 3
+  },
+  "microstructure_3936c485c25a6062f418a28558b9184e4c159928e616cfe8f7ed6f2ba62f0169": {
+    "name": "microstructure_3936c485c25a6062f418a28558b9184e4c159928e616cfe8f7ed6f2ba62f0169",
+    "nodes": [
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_DEDUPLICATE (Ecoli_10K_methylated)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_DEDUPLICATE (SRR389222_sub1)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_DEDUPLICATE (SRR389222_sub2)"
+      ]
+    ],
+    "frequency": 3
+  },
+  "microstructure_721ffc0e085465d6dd4e8acb794b3f5d4996a03969b3f5452b70b6f3bfeb66eb": {
+    "name": "microstructure_721ffc0e085465d6dd4e8acb794b3f5d4996a03969b3f5452b70b6f3bfeb66eb",
+    "nodes": [
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_ALIGNED (Ecoli_10K_methylated)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_ALIGNED (SRR389222_sub1)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_ALIGNED (SRR389222_sub2)"
+      ]
+    ],
+    "frequency": 3
+  },
+  "microstructure_128f18a95a0eada9251ee26458a66a8c8454446c83fb5b145b1d179086cfb47a": {
+    "name": "microstructure_128f18a95a0eada9251ee26458a66a8c8454446c83fb5b145b1d179086cfb47a",
+    "nodes": [
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:PRESEQ_LCEXTRAP (SRR389222_sub1)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:PRESEQ_LCEXTRAP (Ecoli_10K_methylated)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:PRESEQ_LCEXTRAP (SRR389222_sub2)"
+      ]
+    ],
+    "frequency": 3
+  },
+  "microstructure_dec273e3e9fff4056524be6099a0962c18aaa463e27de97c7ac3f820251884e8": {
+    "name": "microstructure_dec273e3e9fff4056524be6099a0962c18aaa463e27de97c7ac3f820251884e8",
+    "nodes": [
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_DEDUPLICATED (Ecoli_10K_methylated)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_DEDUPLICATED (SRR389222_sub1)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:SAMTOOLS_SORT_DEDUPLICATED (SRR389222_sub2)"
+      ]
+    ],
+    "frequency": 3
+  },
+  "microstructure_c0ea70cbfacdf9e2d24a1806b94931a62aa07e0d05a229a5aefbd440e6252381": {
+    "name": "microstructure_c0ea70cbfacdf9e2d24a1806b94931a62aa07e0d05a229a5aefbd440e6252381",
+    "nodes": [
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_METHYLATIONEXTRACTOR (SRR389222_sub1)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_METHYLATIONEXTRACTOR (Ecoli_10K_methylated)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_METHYLATIONEXTRACTOR (SRR389222_sub2)"
+      ]
+    ],
+    "frequency": 3
+  },
+  "microstructure_4b5edb98de56229c628f6053f9223e82bb3134377b36a0e846e6a9100d4b749e": {
+    "name": "microstructure_4b5edb98de56229c628f6053f9223e82bb3134377b36a0e846e6a9100d4b749e",
+    "nodes": [
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:QUALIMAP_BAMQC (Ecoli_10K_methylated)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:QUALIMAP_BAMQC (SRR389222_sub1)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:QUALIMAP_BAMQC (SRR389222_sub2)"
+      ]
+    ],
+    "frequency": 3
+  },
+  "microstructure_8374fa8169bcd3903d64ad3f81ad5ff4853910f83a00e6637b7591ff9e59b68c": {
+    "name": "microstructure_8374fa8169bcd3903d64ad3f81ad5ff4853910f83a00e6637b7591ff9e59b68c",
+    "nodes": [
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_REPORT (Ecoli_10K_methylated)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_REPORT (SRR389222_sub1)"
+      ],
+      [
+        "NFCORE_METHYLSEQ:METHYLSEQ:BISMARK:BISMARK_REPORT (SRR389222_sub2)"
+      ]
+    ],
+    "frequency": 3
+  }
+}

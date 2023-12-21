@@ -1,0 +1,1 @@
+viralrecon_recipe = viralrecon_recipes.viralrecon:ViralreconRecipe

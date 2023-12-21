@@ -1,0 +1,134 @@
+{
+  "frequencies": {
+    "microstructure_ae33162d11031cc9ae0b67d251e8daecef18b64f06674cb1a39bef9d0c484aa0": [
+      [
+        38,
+        3
+      ]
+    ],
+    "microstructure_14ff5a3e4bb614995a505296499d9212bb471c99eb2906560909dff35ee2bd06": [
+      [
+        38,
+        3
+      ]
+    ],
+    "microstructure_1d966fe28778be8fdd0ac7bb524bc7b2bb9eb30beb7ef1ffea732222bda87db3": [
+      [
+        38,
+        3
+      ]
+    ],
+    "microstructure_3936c485c25a6062f418a28558b9184e4c159928e616cfe8f7ed6f2ba62f0169": [
+      [
+        38,
+        3
+      ]
+    ],
+    "microstructure_721ffc0e085465d6dd4e8acb794b3f5d4996a03969b3f5452b70b6f3bfeb66eb": [
+      [
+        38,
+        3
+      ]
+    ],
+    "microstructure_128f18a95a0eada9251ee26458a66a8c8454446c83fb5b145b1d179086cfb47a": [
+      [
+        38,
+        3
+      ]
+    ],
+    "microstructure_dec273e3e9fff4056524be6099a0962c18aaa463e27de97c7ac3f820251884e8": [
+      [
+        38,
+        3
+      ]
+    ],
+    "microstructure_c0ea70cbfacdf9e2d24a1806b94931a62aa07e0d05a229a5aefbd440e6252381": [
+      [
+        38,
+        3
+      ]
+    ],
+    "microstructure_4b5edb98de56229c628f6053f9223e82bb3134377b36a0e846e6a9100d4b749e": [
+      [
+        38,
+        3
+      ]
+    ],
+    "microstructure_8374fa8169bcd3903d64ad3f81ad5ff4853910f83a00e6637b7591ff9e59b68c": [
+      [
+        38,
+        3
+      ]
+    ],
+    "microstructure_b6c8be8d914762bd0dd89367f6ac2612848d0ad776fe65b50e7d3ddfd0c834f3": [
+      [
+        76,
+        7
+      ]
+    ],
+    "microstructure_7f17d439a4c71a980f98a8e9081bdb5dcee1a599b4324e62442f32b24884900f": [
+      [
+        76,
+        7
+      ]
+    ],
+    "microstructure_64200c47e92ea808e9f924988fd2a83c569aa00750614f642c9ac862d05cdae2": [
+      [
+        76,
+        7
+      ]
+    ],
+    "microstructure_bded62a7e4ab3e65b1cb45e72f8a8bd12f19d53714954f0738dd85249fedf609": [
+      [
+        76,
+        7
+      ]
+    ],
+    "microstructure_a20ffd7e9824bdefc44e0523ef883d2b279f889f1c404162e81944751dfa4d6e": [
+      [
+        76,
+        7
+      ]
+    ],
+    "microstructure_3695d2623accbaa4d16210701b68198f89e4f2c6cc4e72395fc95d4bb7c8cc38": [
+      [
+        76,
+        7
+      ]
+    ],
+    "microstructure_b6f84e640bd76d4d7302b06eaf106ce1b737713d1b48fd05527de531c4f89bef": [
+      [
+        76,
+        7
+      ]
+    ],
+    "microstructure_94e4ea75b8b82760426049f8080a320c8500c909c3032bf970514b39d320feb0": [
+      [
+        76,
+        7
+      ]
+    ],
+    "microstructure_0027ec9ddf21bb22653c4bb4b0e91def82b3ba2b96e917f933a24d185f500bda": [
+      [
+        76,
+        7
+      ]
+    ],
+    "microstructure_465c93608c7658c2bc797ba9212a36104f62d3b2e6a11f7c09f662246aaebbe9": [
+      [
+        76,
+        7
+      ]
+    ]
+  },
+  "base_graphs": {
+    "1": {
+      "size": 89,
+      "order": 38
+    },
+    "0": {
+      "size": 459,
+      "order": 76
+    }
+  }
+}

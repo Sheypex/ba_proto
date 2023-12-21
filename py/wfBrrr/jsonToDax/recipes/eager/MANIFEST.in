@@ -1,0 +1,3 @@
+graft eager_recipes/eager/microstructures/**
+graft eager_recipes/eager/microstructures
+graft eager_recipes/eager

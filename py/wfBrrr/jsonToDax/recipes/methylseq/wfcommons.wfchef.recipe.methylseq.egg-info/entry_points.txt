@@ -1,0 +1,2 @@
+[workflow_recipes]
+methylseq_recipe = methylseq_recipes.methylseq:MethylseqRecipe
